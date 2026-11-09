@@ -654,7 +654,7 @@
 
             await ghFetch("actions/workflows/schedule.yml/dispatches", {
                 method: "POST",
-                body: JSON.stringify({ ref: "main" })
+                body: JSON.stringify({ ref: "main", inputs: { mode: "rebuild" } })
             });
 
             alert("✅ लेख सफलतापूर्वक हटा दिया गया है! 35 सेकंड में वेबसाइट अपडेट हो जाएगी।");
@@ -768,7 +768,7 @@
 
             await ghFetch("actions/workflows/schedule.yml/dispatches", {
                 method: "POST",
-                body: JSON.stringify({ ref: "main" })
+                body: JSON.stringify({ ref: "main", inputs: { mode: "rebuild" } })
             });
 
             statusBox.className = "status-msg status-success";
