@@ -76,6 +76,16 @@
             border-radius: 4px;
             letter-spacing: 0.5px;
         }
+        .brand img {
+            height: 36px;
+            width: auto;
+            display: block;
+        }
+        @media (max-width: 640px) {
+            .brand img {
+                height: 30px;
+            }
+        }
         .container {
             max-width: 960px;
             margin: 28px auto 70px;
@@ -308,12 +318,12 @@
 <body>
     <div class="top-bar">
         <span>अबतक24.in (AABTAK24.IN) • EDITORIAL & SITE CMS</span>
-        <span class="tag" id="repo-indicator">AdityaCODER1/auto-news-bot</span>
+        <span class="tag">Operated by Aabtak24</span>
     </div>
 
     <header>
-        <div class="brand">
-            <span>अब<span style="color:var(--accent);">तक24</span>.in</span>
+        <div class="brand notranslate" translate="no">
+            <img src="https://aabtak24.in/logo.svg" alt="अबतक24.in" width="206" height="36" decoding="sync">
             <span class="badge-cms">ADMIN CMS</span>
         </div>
         <div class="actions-group hidden" id="header-actions">
@@ -646,7 +656,6 @@
             modules: { toolbar: quillToolbar }
         });
 
-        document.getElementById("repo-indicator").textContent = CONFIG.GITHUB_REPO;
         if (!CONFIG.ENCRYPTED_TOKEN || !CONFIG.ENCRYPTED_TOKEN.trim()) {
             document.getElementById("setup-box").classList.remove("hidden");
         }
