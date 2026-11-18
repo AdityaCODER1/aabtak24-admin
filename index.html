@@ -449,6 +449,585 @@
             font-size: 12px;
             color: var(--pf-muted);
         }
+
+        /* Header Manager & Interactive Desktop/Mobile Live Preview */
+        .preview-toolbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 12px;
+        }
+        .seg-control {
+            display: inline-flex;
+            background: var(--card-subtle);
+            border: 1px solid var(--border);
+            border-radius: 5px;
+            padding: 3px;
+            gap: 4px;
+        }
+        .seg-btn {
+            appearance: none;
+            border: none;
+            background: transparent;
+            color: var(--text-muted);
+            font-family: 'Mukta', sans-serif;
+            font-size: 14px;
+            font-weight: 700;
+            padding: 5px 12px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.15s ease;
+        }
+        .seg-btn.active {
+            background: #141210;
+            color: #FFFFFF;
+        }
+        .hb-option-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+            gap: 12px;
+            margin-bottom: 18px;
+        }
+        .hb-option-card {
+            appearance: none;
+            text-align: left;
+            background: #FFF;
+            border: 2px solid var(--border);
+            border-radius: 6px;
+            padding: 12px 14px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            transition: border-color 0.15s ease, background-color 0.15s ease, transform 0.15s ease;
+            font-family: inherit;
+            color: var(--text-main);
+        }
+        .hb-option-card:hover {
+            border-color: var(--accent);
+            transform: translateY(-1px);
+        }
+        .hb-option-card.active {
+            border-color: var(--accent);
+            background: var(--accent-tint);
+            box-shadow: 0 4px 12px -4px rgba(255, 76, 0, 0.25);
+        }
+        .hb-preview-glyph {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
+            min-width: 38px;
+            height: 36px;
+            border-radius: 4px;
+            background: var(--card-subtle);
+            border: 1px solid var(--border);
+            padding: 0 8px;
+            flex-shrink: 0;
+        }
+        .hb-preview-glyph.boxed {
+            background: #FFF;
+            border: 2px solid #141210;
+            box-shadow: 2px 2px 0 #141210;
+        }
+        .hb-preview-glyph.bars {
+            background: transparent;
+            border-color: transparent;
+        }
+        .hb-preview-glyph.pill {
+            border-radius: 999px;
+            background: #FFF;
+        }
+        .hb-mini-lines {
+            width: 18px;
+            height: 12px;
+            display: inline-flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: flex-end;
+        }
+        .hb-mini-lines span {
+            display: block;
+            width: 100%;
+            height: 2px;
+            background: #141210;
+            border-radius: 2px;
+        }
+        .hb-preview-glyph.staggered .hb-mini-lines span:nth-child(2) { width: 70%; }
+        .hb-preview-glyph.staggered .hb-mini-lines span:nth-child(3) { width: 45%; }
+
+        /* Simulated Website Preview Frame */
+        .preview-header-stage {
+            background: #EDE5D8;
+            padding: 18px;
+            border-radius: 6px;
+            border: 1px solid var(--border);
+        }
+        .ph-viewport {
+            --ph-topbar-bg: #141210;
+            --ph-topbar-text: #EAE3DC;
+            --ph-bg: #FAF6F0;
+            --ph-text: #141210;
+            --ph-muted: #6E655F;
+            --ph-accent: #FF4C00;
+            --ph-border: #141210;
+            --ph-divider: #E2D9CC;
+            --ph-pill-bg: #F3EDE2;
+            --ph-drawer-bg: #FFFFFF;
+            --ph-drawer-text: #141210;
+            --ph-drawer-muted: #6E655F;
+            --ph-drawer-accent: #FF4C00;
+            --ph-drawer-border: #E2D9CC;
+            --ph-drawer-hover-bg: #FFE8DC;
+            --ph-drawer-hover-text: #C83700;
+            --ph-drawer-pill-bg: #F3EDE2;
+            background: #FAF6F0;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            overflow: hidden;
+            position: relative;
+            box-shadow: 0 12px 26px -12px rgba(20, 18, 16, 0.22);
+        }
+        .ph-viewport.mobile-frame {
+            max-width: 375px;
+            margin: 0 auto;
+            border: 3px solid #2C2723;
+            border-radius: 18px;
+            min-height: 500px;
+            display: flex;
+            flex-direction: column;
+        }
+        .ph-topbar {
+            background: var(--ph-topbar-bg);
+            color: var(--ph-topbar-text);
+            border-bottom: 3px solid var(--ph-accent);
+            padding: 6px 18px;
+            font-size: 11.5px;
+            font-weight: 700;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        .ph-topbar.dark {
+            --ph-topbar-bg: #0D0B0A;
+            --ph-topbar-text: #B8AFA6;
+            border-bottom: 1px solid var(--ph-border);
+        }
+        .ph-topbar-edition {
+            color: var(--ph-accent);
+            text-transform: uppercase;
+            margin-left: auto;
+        }
+        .ph-header {
+            background: var(--ph-bg);
+            color: var(--ph-text);
+            border-bottom: 2px solid var(--ph-border);
+            position: relative;
+            z-index: 3;
+        }
+        .ph-header.dark {
+            --ph-bg: #141210;
+            --ph-text: #FAF6F0;
+            --ph-muted: #B8AFA6;
+            --ph-border: #2C2723;
+            --ph-divider: #2C2723;
+            --ph-pill-bg: rgba(255, 255, 255, 0.08);
+            border-bottom: 3px solid var(--ph-accent);
+        }
+        .ph-header-inner {
+            padding: 12px 18px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 14px;
+        }
+        .ph-header.layout-compact .ph-header-inner {
+            padding: 8px 18px;
+        }
+        .ph-header.layout-centered .ph-header-inner {
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 18px 10px;
+        }
+        .ph-header.layout-centered .ph-brand-wrap {
+            align-items: center;
+            text-align: center;
+        }
+        .ph-header.layout-centered .ph-desktop-group {
+            width: 100%;
+            justify-content: center;
+            padding-top: 8px;
+            border-top: 1px solid var(--ph-divider);
+        }
+        .ph-viewport.mobile-frame .ph-header.layout-centered .ph-header-inner {
+            flex-direction: row;
+            justify-content: space-between;
+        }
+        .ph-viewport.mobile-frame .ph-header.layout-centered .ph-brand-wrap {
+            align-items: flex-start;
+            text-align: left;
+        }
+        .ph-brand-wrap {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 2px;
+            min-width: 0;
+        }
+        .ph-logo-img {
+            height: 28px;
+            width: auto;
+            display: block;
+        }
+        .ph-header.layout-compact .ph-logo-img { height: 24px; }
+        .ph-header.layout-centered .ph-logo-img { height: 32px; }
+        .ph-brand-title {
+            font-family: 'Mukta', sans-serif;
+            font-size: 20px;
+            font-weight: 800;
+            color: var(--ph-text);
+            line-height: 1.1;
+        }
+        .ph-tagline {
+            font-size: 11px;
+            font-weight: 600;
+            color: var(--ph-muted);
+        }
+        .ph-desktop-group {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            flex-wrap: wrap;
+        }
+        .ph-nav {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            flex-wrap: wrap;
+        }
+        .ph-nav a {
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--ph-text);
+            text-decoration: none;
+            position: relative;
+            padding: 3px 0;
+        }
+        .ph-nav a.active { color: var(--ph-accent); }
+        .ph-nav.nav-underline a.active::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: -2px;
+            height: 2.5px;
+            background: var(--ph-accent);
+        }
+        .ph-nav.nav-pills { gap: 6px; }
+        .ph-nav.nav-pills a {
+            padding: 4px 9px;
+            border-radius: 4px;
+        }
+        .ph-nav.nav-pills a.active {
+            background: var(--ph-accent);
+            color: #FFFFFF;
+        }
+        .ph-nav.nav-minimal a { opacity: 0.82; }
+        .ph-nav.nav-minimal a.active { opacity: 1; }
+        .ph-actions {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .ph-action-btn {
+            display: inline-flex;
+            align-items: center;
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-family: 'Mukta', sans-serif;
+            font-size: 12px;
+            font-weight: 800;
+            text-decoration: none;
+            white-space: nowrap;
+        }
+        .ph-action-btn.accent {
+            background: var(--ph-accent);
+            color: #FFFFFF;
+            border: 1.5px solid var(--ph-accent);
+        }
+        .ph-action-btn.outline {
+            background: var(--ph-pill-bg);
+            color: var(--ph-text);
+            border: 1.5px solid var(--ph-divider);
+        }
+        .ph-hamburger {
+            appearance: none;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            background: transparent;
+            color: var(--ph-text);
+            border: 1.5px solid transparent;
+            border-radius: 4px;
+            padding: 7px 8px;
+            min-width: 36px;
+            min-height: 36px;
+            font-family: 'Mukta', sans-serif;
+            font-size: 13px;
+            font-weight: 800;
+        }
+        .ph-hamburger-lines {
+            width: 19px;
+            height: 13px;
+            display: inline-flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: flex-end;
+        }
+        .ph-hamburger-lines span {
+            display: block;
+            width: 100%;
+            height: 2px;
+            background: currentColor;
+            border-radius: 2px;
+            transition: transform 0.2s ease, opacity 0.15s ease, width 0.2s ease;
+        }
+        .ph-hamburger.hb-staggered {
+            background: var(--ph-pill-bg);
+            border-color: var(--ph-divider);
+        }
+        .ph-hamburger.hb-staggered .ph-hamburger-lines span:nth-child(2) { width: 72%; }
+        .ph-hamburger.hb-staggered .ph-hamburger-lines span:nth-child(3) { width: 48%; }
+        .ph-hamburger.hb-boxed {
+            background: #FFF;
+            border: 2px solid var(--ph-border);
+            box-shadow: 2px 2px 0 var(--ph-border);
+        }
+        .ph-header.dark .ph-hamburger.hb-boxed {
+            background: #1E1B18;
+            border-color: rgba(250, 246, 240, 0.4);
+            box-shadow: 2px 2px 0 var(--ph-accent);
+        }
+        .ph-hamburger.hb-pill {
+            background: var(--ph-pill-bg);
+            border-color: var(--ph-divider);
+            border-radius: 999px;
+            padding: 5px 12px;
+        }
+        .ph-hamburger.is-open,
+        .ph-header.dark .ph-hamburger.is-open {
+            background: var(--ph-accent);
+            border-color: var(--ph-accent);
+            color: #FFFFFF;
+            box-shadow: none;
+        }
+        .ph-hamburger.is-open .ph-hamburger-lines span:nth-child(1) {
+            width: 100%;
+            transform: translateY(5.5px) rotate(45deg);
+        }
+        .ph-hamburger.is-open .ph-hamburger-lines span:nth-child(2) {
+            opacity: 0;
+        }
+        .ph-hamburger.is-open .ph-hamburger-lines span:nth-child(3) {
+            width: 100%;
+            transform: translateY(-5.5px) rotate(-45deg);
+        }
+
+        .ph-mock-page {
+            padding: 16px 18px 20px;
+            background: #FAF6F0;
+            flex: 1;
+        }
+        .ph-mock-card {
+            background: #FFFFFF;
+            border: 1px solid #E2D9CC;
+            border-top: 3px solid #FF4C00;
+            border-radius: 4px;
+            padding: 14px;
+        }
+        .ph-mock-line {
+            height: 10px;
+            border-radius: 3px;
+            background: #E7DFD3;
+            margin-bottom: 8px;
+        }
+        .ph-mock-line.title {
+            height: 15px;
+            width: 72%;
+            background: #D5CBBF;
+        }
+        .ph-drawer-wrap {
+            position: absolute;
+            inset: 0;
+            z-index: 15;
+            pointer-events: none;
+            visibility: hidden;
+            transition: visibility 0.25s ease;
+        }
+        .ph-drawer-wrap.is-open {
+            pointer-events: auto;
+            visibility: visible;
+        }
+        .ph-drawer-wrap.dark {
+            --ph-drawer-bg: #141210;
+            --ph-drawer-text: #FAF6F0;
+            --ph-drawer-muted: #B8AFA6;
+            --ph-drawer-border: #2C2723;
+            --ph-drawer-hover-bg: rgba(255, 76, 0, 0.16);
+            --ph-drawer-hover-text: #FF7A45;
+            --ph-drawer-pill-bg: rgba(255, 255, 255, 0.08);
+        }
+        .ph-drawer-backdrop {
+            position: absolute;
+            inset: 0;
+            background: rgba(14, 12, 10, 0.54);
+            opacity: 0;
+            transition: opacity 0.25s ease;
+        }
+        .ph-drawer-wrap.is-open .ph-drawer-backdrop { opacity: 1; }
+        .ph-drawer-wrap.style-dropdown .ph-drawer-backdrop { background: transparent; }
+        .ph-drawer-panel {
+            position: absolute;
+            background: var(--ph-drawer-bg);
+            color: var(--ph-drawer-text);
+            display: flex;
+            flex-direction: column;
+            overflow-y: auto;
+        }
+        .ph-drawer-wrap.style-slide-right .ph-drawer-panel {
+            top: 0;
+            right: 0;
+            bottom: 0;
+            width: 78%;
+            border-left: 3px solid var(--ph-drawer-accent);
+            box-shadow: -12px 0 30px rgba(0, 0, 0, 0.28);
+            transform: translateX(100%);
+            transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .ph-drawer-wrap.style-slide-right.is-open .ph-drawer-panel { transform: translateX(0); }
+        .ph-drawer-wrap.style-slide-left .ph-drawer-panel {
+            top: 0;
+            left: 0;
+            bottom: 0;
+            width: 78%;
+            border-right: 3px solid var(--ph-drawer-accent);
+            box-shadow: 12px 0 30px rgba(0, 0, 0, 0.28);
+            transform: translateX(-100%);
+            transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .ph-drawer-wrap.style-slide-left.is-open .ph-drawer-panel { transform: translateX(0); }
+        .ph-drawer-wrap.style-fullscreen .ph-drawer-panel {
+            inset: 0;
+            width: 100%;
+            border-top: 4px solid var(--ph-drawer-accent);
+            opacity: 0;
+            transform: translateY(-8px);
+            transition: opacity 0.22s ease, transform 0.22s ease;
+        }
+        .ph-drawer-wrap.style-fullscreen.is-open .ph-drawer-panel {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .ph-drawer-wrap.style-dropdown .ph-drawer-panel {
+            top: 86px;
+            right: 14px;
+            width: 225px;
+            max-height: 305px;
+            border: 1px solid var(--ph-drawer-border);
+            border-top: 4px solid var(--ph-drawer-accent);
+            border-radius: 5px;
+            box-shadow: 0 14px 28px rgba(0, 0, 0, 0.24);
+            opacity: 0;
+            transform: translateY(-6px);
+            transition: opacity 0.18s ease, transform 0.18s ease;
+        }
+        .ph-drawer-wrap.style-dropdown.is-open .ph-drawer-panel {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .ph-drawer-wrap.style-dropdown .ph-drawer-head,
+        .ph-drawer-wrap.style-dropdown .ph-drawer-tagline,
+        .ph-drawer-wrap.style-dropdown .ph-drawer-foot {
+            display: none;
+        }
+        .ph-drawer-head {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 12px 14px;
+            border-bottom: 1px solid var(--ph-drawer-border);
+        }
+        .ph-drawer-close {
+            appearance: none;
+            width: 30px;
+            height: 30px;
+            border-radius: 4px;
+            border: 1px solid var(--ph-drawer-border);
+            background: var(--ph-drawer-pill-bg);
+            color: var(--ph-drawer-text);
+            font-weight: 700;
+            cursor: pointer;
+        }
+        .ph-drawer-tagline {
+            padding: 8px 14px 4px;
+            font-size: 11.5px;
+            color: var(--ph-drawer-muted);
+        }
+        .ph-drawer-links {
+            display: flex;
+            flex-direction: column;
+            padding: 4px 0;
+            flex: 1 0 auto;
+        }
+        .ph-drawer-links a {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 9px 14px;
+            font-size: 13.5px;
+            font-weight: 700;
+            color: var(--ph-drawer-text);
+            text-decoration: none;
+            border-bottom: 1px solid var(--ph-drawer-border);
+            border-left: 3px solid transparent;
+        }
+        .ph-drawer-links a:last-child { border-bottom: none; }
+        .ph-drawer-links a.active {
+            background: var(--ph-drawer-hover-bg);
+            color: var(--ph-drawer-hover-text);
+            border-left-color: var(--ph-drawer-accent);
+        }
+        .ph-drawer-actions {
+            padding: 10px 14px;
+            border-top: 1px solid var(--ph-drawer-border);
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+        }
+        .ph-drawer-actions .ph-action-btn {
+            flex: 1 1 auto;
+            justify-content: center;
+            --ph-text: var(--ph-drawer-text);
+            --ph-pill-bg: var(--ph-drawer-pill-bg);
+            --ph-divider: var(--ph-drawer-border);
+            --ph-accent: var(--ph-drawer-accent);
+        }
+        .ph-drawer-foot {
+            padding: 10px 14px;
+            border-top: 1px solid var(--ph-drawer-border);
+            font-size: 11px;
+            font-weight: 700;
+            color: var(--ph-drawer-accent);
+            margin-top: auto;
+            text-transform: uppercase;
+        }
     </style>
 </head>
 <body>
@@ -504,8 +1083,9 @@
         <div id="dashboard-view" class="hidden">
             <div class="tabs">
                 <button type="button" class="tab-btn active" data-tab="articles" onclick="switchTab('articles')">📝 समाचार (Articles)</button>
-                <button type="button" class="tab-btn" data-tab="nav-cats" onclick="switchTab('nav-cats')">🗂️ श्रेणियाँ और हेडर (Categories & Header)</button>
+                <button type="button" class="tab-btn" data-tab="nav-cats" onclick="switchTab('nav-cats')">🗂️ श्रेणियाँ (Categories)</button>
                 <button type="button" class="tab-btn" data-tab="custom-pages" onclick="switchTab('custom-pages')">📄 कस्टम पेज (Custom Pages)</button>
+                <button type="button" class="tab-btn" data-tab="header" onclick="switchTab('header')">🧭 हेडर (Header)</button>
                 <button type="button" class="tab-btn" data-tab="footer" onclick="switchTab('footer')">📌 फ़ुटर (Footer)</button>
             </div>
 
@@ -577,43 +1157,14 @@
                 </div>
             </div>
 
-            <!-- ==================== TAB 2: CATEGORIES & HEADER MENU ==================== -->
+            <!-- ==================== TAB 2: CATEGORIES & AI RULES ==================== -->
             <div id="tab-nav-cats" class="tab-panel">
-                <div class="card">
-                    <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px; margin-bottom:8px;">
-                        <h2 style="margin:0;">🧭 हेडर नेविगेशन मेनू (Header Bar Order & Links)</h2>
-                        <span id="header-count-badge" class="pill">0 items</span>
-                    </div>
-                    <p class="subtext">यहाँ तय करें कि वेबसाइट के टॉप हेडर में कौन-कौन से लिंक किस क्रम में दिखेंगे। किसी श्रेणी को हेडर से हटाने पर उसकी श्रेणी या पुराने लेख डिलीट नहीं होते।</p>
-
-                    <div id="header-menu-list"></div>
-
-                    <div style="background: var(--card-subtle); padding: 14px; border-radius: 4px; margin-top: 14px;">
-                        <h3>➕ हेडर में नया लिंक जोड़ें (Add Link to Header)</h3>
-                        <div class="grid-3">
-                            <div>
-                                <label>त्वरित चयन (Quick Pick)</label>
-                                <select id="header-quick-pick" onchange="applyHeaderQuickPick()"></select>
-                            </div>
-                            <div>
-                                <label>हेडर में दिखने वाला नाम (Label)</label>
-                                <input type="text" id="new-header-label" placeholder="जैसे: खेल या YouTube">
-                            </div>
-                            <div>
-                                <label>लिंक / फ़ाइल (Href / URL)</label>
-                                <input type="text" id="new-header-href" placeholder="sports.html या https://...">
-                            </div>
-                        </div>
-                        <div style="display:flex; justify-content:space-between; align-items:center; margin-top:10px; flex-wrap:wrap; gap:10px;">
-                            <label class="checkbox-row" style="margin:0;">
-                                <input type="checkbox" id="new-header-newtab" checked> बाहरी लिंक (http/https) नए टैब में खोलें
-                            </label>
-                            <button type="button" class="btn btn-dark btn-sm" onclick="addHeaderItem()">+ हेडर में जोड़ें</button>
-                        </div>
-                    </div>
+                <div class="hint-banner" style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px;">
+                    <span>🧭 वेबसाइट की हेडर थीम (Light/Dark), मोबाइल हैमबर्गर डिज़ाइन, स्लाइड-इन ड्रॉअर और नेविगेशन लिंक अब नए <strong>हेडर (Header)</strong> टैब में हैं।</span>
+                    <button type="button" class="btn btn-dark btn-sm" onclick="switchTab('header')">🧭 हेडर मैनेजर खोलें</button>
                 </div>
 
-                <div class="card secondary">
+                <div class="card">
                     <h2>🗂️ समाचार श्रेणियाँ (Categories & AI Rules)</h2>
                     <p class="subtext">यहाँ नई श्रेणी जोड़ें, नाम बदलें (पुराने लेखों के लिए पुराने aliases सुरक्षित रहते हैं), या AI ऑटो-चयन चालू/बंद करें।</p>
 
@@ -649,7 +1200,7 @@
                     </div>
 
                     <div style="margin-top: 20px; padding-top: 16px; border-top: 2px solid var(--border);">
-                        <button type="button" class="btn btn-primary btn-full" id="save-config-btn" onclick="commitSiteConfig()">💾 श्रेणियाँ और हेडर सेव करें एवं वेबसाइट अपडेट करें (Save & Rebuild)</button>
+                        <button type="button" class="btn btn-primary btn-full" id="save-config-btn" onclick="commitSiteConfig()">💾 श्रेणियाँ और वेबसाइट कॉन्फ़िगरेशन सेव करें (Save & Rebuild)</button>
                         <div id="config-status" class="status-box"></div>
                     </div>
                 </div>
@@ -725,7 +1276,315 @@
                 </div>
             </div>
 
-            <!-- ==================== TAB 4: FOOTER MANAGER ==================== -->
+            <!-- ==================== TAB 4: HEADER MANAGER ==================== -->
+            <div id="tab-header" class="tab-panel">
+                <!-- Card 1: Interactive Live Preview -->
+                <div class="card">
+                    <div class="preview-toolbar">
+                        <div>
+                            <h2 style="margin:0;">👁️ लाइव हेडर एवं मोबाइल ड्रॉअर प्रीव्यू (Live Header Preview)</h2>
+                        </div>
+                        <div class="actions-group">
+                            <span id="header-preview-badge" class="pill green">Active Across All Pages</span>
+                            <div class="seg-control" role="group" aria-label="प्रीव्यू डिवाइस चुनें">
+                                <button type="button" id="preview-device-desktop" class="seg-btn active" onclick="setHeaderPreviewDevice('desktop')">🖥️ डेस्कटॉप</button>
+                                <button type="button" id="preview-device-mobile" class="seg-btn" onclick="setHeaderPreviewDevice('mobile')">📱 मोबाइल (375px)</button>
+                            </div>
+                            <button type="button" id="preview-drawer-toggle-btn" class="btn btn-dark btn-sm hidden" onclick="toggleHeaderPreviewDrawer()">☰ ड्रॉअर खोलें / बंद करें</button>
+                        </div>
+                    </div>
+                    <p class="subtext">यह लाइव प्रीव्यू दिखाता है कि होमपेज, श्रेणियों, कस्टम पेजों और सभी समाचार लेखों के ऊपर हेडर कैसा दिखेगा। <strong>📱 मोबाइल</strong> पर स्विच करके हैमबर्गर बटन दबाएं या स्लाइड-इन मेनू ड्रॉअर टेस्ट करें।</p>
+                    <div id="header-live-preview" class="preview-header-stage"></div>
+                </div>
+
+                <!-- Card 2: Theme, Layout & Top Utility Bar -->
+                <div class="card secondary">
+                    <h2>🎨 हेडर थीम, लेआउट, लोगो और टॉप बार (Theme, Layout &amp; Top Bar)</h2>
+                    <p class="subtext">यहाँ से पूरी वेबसाइट के हेडर की डार्क/लाइट थीम, लेआउट स्टाइल, स्टिकी व्यवहार, लोगो व टॉप बार सेटिंग्स बदलें।</p>
+
+                    <div style="display:flex; gap:20px; flex-wrap:wrap; margin-bottom:16px;">
+                        <label class="checkbox-row" style="margin-top:0;">
+                            <input type="checkbox" id="hd-enabled" checked onchange="syncHeaderFieldsFromUI()"> पूरी वेबसाइट पर हेडर दिखाएं (Enable Header)
+                        </label>
+                        <label class="checkbox-row" style="margin-top:0;">
+                            <input type="checkbox" id="hd-sticky" checked onchange="syncHeaderFieldsFromUI()"> स्क्रॉल करने पर हेडर ऊपर चिपका रहे (Sticky Header)
+                        </label>
+                        <label class="checkbox-row" style="margin-top:0;">
+                            <input type="checkbox" id="hd-show-logo" checked onchange="syncHeaderFieldsFromUI()"> हेडर में ब्रांड लोगो (SVG) दिखाएं
+                        </label>
+                    </div>
+
+                    <div class="grid-3">
+                        <div class="form-group">
+                            <label for="hd-theme">हेडर थीम (Header Theme)</label>
+                            <select id="hd-theme" onchange="syncHeaderFieldsFromUI()">
+                                <option value="light">लाइट एडिटोरियल (Warm Paper — Default)</option>
+                                <option value="dark">डार्क एडिटोरियल (Dark Masthead)</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="hd-layout">हेडर लेआउट (Layout)</label>
+                            <select id="hd-layout" onchange="syncHeaderFieldsFromUI()">
+                                <option value="inline">इनलाइन (Inline Brand Left + Nav Right)</option>
+                                <option value="centered">सेंटर्ड मास्टहेड (Centered Newspaper Masthead)</option>
+                                <option value="compact">कॉम्पैक्ट स्लिम (Compact Slim Bar)</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="hd-nav-style">नेविगेशन लिंक स्टाइल (Nav Link Style)</label>
+                            <select id="hd-nav-style" onchange="syncHeaderFieldsFromUI()">
+                                <option value="underline">अंडरलाइन एक्सेंट (Editorial Underline)</option>
+                                <option value="pills">पिल्स / टैब (Filled Pills)</option>
+                                <option value="minimal">मिनिमल क्लीन (Clean Minimal)</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="grid-2">
+                        <div class="form-group">
+                            <label for="hd-brand-title">ब्रांड शीर्षक (Brand Title / Logo Alt Text)</label>
+                            <input type="text" id="hd-brand-title" oninput="syncHeaderFieldsFromUI()" placeholder="अबतक24.in (Aabtak24.in)">
+                        </div>
+                        <div class="form-group">
+                            <label for="hd-brand-tagline">सब-टैगलाइन (Optional Brand Tagline Under Logo)</label>
+                            <input type="text" id="hd-brand-tagline" oninput="syncHeaderFieldsFromUI()" placeholder="जैसे: निष्पक्ष एवं तेज़ हिंदी समाचार">
+                        </div>
+                    </div>
+
+                    <div style="background: var(--card-subtle); padding: 14px; border-radius: 5px; margin-bottom: 14px;">
+                        <h3 style="margin-bottom:8px;">📢 टॉप यूटिलिटी बार (Top Utility Bar Above Header)</h3>
+                        <div style="display:flex; gap:20px; flex-wrap:wrap; margin-bottom:12px;">
+                            <label class="checkbox-row" style="margin-top:0;">
+                                <input type="checkbox" id="hd-topbar-enabled" checked onchange="syncHeaderFieldsFromUI()"> हेडर के ऊपर टॉप बार दिखाएं (Enable Top Bar)
+                            </label>
+                            <label class="checkbox-row" style="margin-top:0;">
+                                <input type="checkbox" id="hd-topbar-show-date" checked onchange="syncHeaderFieldsFromUI()"> आज की तारीख (📅 Date) दिखाएं
+                            </label>
+                        </div>
+                        <div class="grid-2">
+                            <div class="form-group" style="margin-bottom:0;">
+                                <label for="hd-topbar-text">कस्टम टॉप-बार संदेश / टिकर नोट (Optional Notice)</label>
+                                <input type="text" id="hd-topbar-text" oninput="syncHeaderFieldsFromUI()" placeholder="जैसे: 24x7 ताज़ा राष्ट्रीय एवं तकनीकी समाचार">
+                            </div>
+                            <div class="form-group" style="margin-bottom:0;">
+                                <label for="hd-edition-tag">दायाँ संस्करण बैज (Edition Tag)</label>
+                                <input type="text" id="hd-edition-tag" oninput="syncHeaderFieldsFromUI()" placeholder="डिजिटल संस्करण • INDIA">
+                            </div>
+                        </div>
+                    </div>
+
+                    <details style="background: var(--card-subtle); padding: 12px 14px; border-radius: 4px;">
+                        <summary style="cursor:pointer; font-weight:700; font-size:14px;">🖌️ कस्टम रंग ओवरराइड (Optional Custom Colors — खाली छोड़ने पर थीम डिफ़ॉल्ट लागू रहता है)</summary>
+                        <div class="color-grid">
+                            <div>
+                                <label>हेडर पृष्ठभूमि (Header Bg)</label>
+                                <div class="color-field">
+                                    <input type="color" id="hd-col-pick-bg" value="#faf6f0" oninput="onHeaderColorPick('bg', this.value)">
+                                    <input type="text" id="hd-col-bg" placeholder="Default (#FAF6F0)" oninput="onHeaderColorText('bg', this.value)">
+                                </div>
+                            </div>
+                            <div>
+                                <label>हेडर टेक्स्ट (Header Text)</label>
+                                <div class="color-field">
+                                    <input type="color" id="hd-col-pick-text" value="#141210" oninput="onHeaderColorPick('text', this.value)">
+                                    <input type="text" id="hd-col-text" placeholder="Default (#141210)" oninput="onHeaderColorText('text', this.value)">
+                                </div>
+                            </div>
+                            <div>
+                                <label>एक्सेंट / सक्रिय रंग (Accent)</label>
+                                <div class="color-field">
+                                    <input type="color" id="hd-col-pick-accent" value="#ff4c00" oninput="onHeaderColorPick('accent', this.value)">
+                                    <input type="text" id="hd-col-accent" placeholder="Default (#FF4C00)" oninput="onHeaderColorText('accent', this.value)">
+                                </div>
+                            </div>
+                            <div>
+                                <label>बॉर्डर / डिवाइडर (Border)</label>
+                                <div class="color-field">
+                                    <input type="color" id="hd-col-pick-border" value="#141210" oninput="onHeaderColorPick('border', this.value)">
+                                    <input type="text" id="hd-col-border" placeholder="Default (#141210)" oninput="onHeaderColorText('border', this.value)">
+                                </div>
+                            </div>
+                            <div>
+                                <label>टॉप बार बैकग्राउंड (Topbar Bg)</label>
+                                <div class="color-field">
+                                    <input type="color" id="hd-col-pick-topbar_bg" value="#141210" oninput="onHeaderColorPick('topbar_bg', this.value)">
+                                    <input type="text" id="hd-col-topbar_bg" placeholder="Default (#141210)" oninput="onHeaderColorText('topbar_bg', this.value)">
+                                </div>
+                            </div>
+                            <div>
+                                <label>टॉप बार टेक्स्ट (Topbar Text)</label>
+                                <div class="color-field">
+                                    <input type="color" id="hd-col-pick-topbar_text" value="#eae3dc" oninput="onHeaderColorPick('topbar_text', this.value)">
+                                    <input type="text" id="hd-col-topbar_text" placeholder="Default (#EAE3DC)" oninput="onHeaderColorText('topbar_text', this.value)">
+                                </div>
+                            </div>
+                            <div>
+                                <label>मोबाइल ड्रॉअर बैकग्राउंड (Drawer Bg)</label>
+                                <div class="color-field">
+                                    <input type="color" id="hd-col-pick-drawer_bg" value="#ffffff" oninput="onHeaderColorPick('drawer_bg', this.value)">
+                                    <input type="text" id="hd-col-drawer_bg" placeholder="Default (#FFFFFF)" oninput="onHeaderColorText('drawer_bg', this.value)">
+                                </div>
+                            </div>
+                            <div>
+                                <label>मोबाइल ड्रॉअर टेक्स्ट (Drawer Text)</label>
+                                <div class="color-field">
+                                    <input type="color" id="hd-col-pick-drawer_text" value="#141210" oninput="onHeaderColorPick('drawer_text', this.value)">
+                                    <input type="text" id="hd-col-drawer_text" placeholder="Default (#141210)" oninput="onHeaderColorText('drawer_text', this.value)">
+                                </div>
+                            </div>
+                        </div>
+                        <div style="margin-top:12px;">
+                            <button type="button" class="btn btn-outline btn-sm" onclick="resetHeaderColors()">↺ सभी कस्टम रंग रीसेट करें (Use Theme Default)</button>
+                        </div>
+                    </details>
+                </div>
+
+                <!-- Card 3: Mobile Hamburger & Drawer Designer -->
+                <div class="card">
+                    <h2>📱 मोबाइल हैमबर्गर और स्लाइड-इन मेनू डिज़ाइन (Mobile Hamburger &amp; Drawer)</h2>
+                    <p class="subtext">फ़ोन व टैबलेट के लिए हैमबर्गर आइकन का डिज़ाइन, स्लाइड-इन मेनू की दिशा और मोबाइल ड्रॉअर की डार्क/लाइट थीम चुनें।</p>
+
+                    <label style="margin-bottom:8px;">1. मोबाइल हैमबर्गर आइकन स्टाइल (Hamburger Button Design)</label>
+                    <div class="hb-option-grid" id="hamburger-style-cards">
+                        <button type="button" class="hb-option-card active" data-hb-style="staggered" onclick="selectHamburgerStyle('staggered')">
+                            <span class="hb-preview-glyph staggered"><span class="hb-mini-lines"><span></span><span></span><span></span></span></span>
+                            <span>
+                                <strong style="display:block; font-size:14px;">स्टैगर्ड मॉडर्न</strong>
+                                <span style="font-size:12px; color:var(--text-muted);">असमान 3 रेखाएं + सॉफ्ट बॉक्स</span>
+                            </span>
+                        </button>
+                        <button type="button" class="hb-option-card" data-hb-style="bars" onclick="selectHamburgerStyle('bars')">
+                            <span class="hb-preview-glyph bars"><span class="hb-mini-lines"><span></span><span></span><span></span></span></span>
+                            <span>
+                                <strong style="display:block; font-size:14px;">मिनिमल बार्स</strong>
+                                <span style="font-size:12px; color:var(--text-muted);">साफ़ 3 समानांतर रेखाएं</span>
+                            </span>
+                        </button>
+                        <button type="button" class="hb-option-card" data-hb-style="boxed" onclick="selectHamburgerStyle('boxed')">
+                            <span class="hb-preview-glyph boxed"><span class="hb-mini-lines"><span></span><span></span><span></span></span></span>
+                            <span>
+                                <strong style="display:block; font-size:14px;">बॉक्स्ड एडिटोरियल</strong>
+                                <span style="font-size:12px; color:var(--text-muted);">बोल्ड बॉर्डर व प्रिंट शैडो</span>
+                            </span>
+                        </button>
+                        <button type="button" class="hb-option-card" data-hb-style="pill" onclick="selectHamburgerStyle('pill')">
+                            <span class="hb-preview-glyph pill"><span class="hb-mini-lines"><span></span><span></span><span></span></span><span style="font-size:11px; font-weight:800;">मेनू</span></span>
+                            <span>
+                                <strong style="display:block; font-size:14px;">पिल + लेबल</strong>
+                                <span style="font-size:12px; color:var(--text-muted);">राउंड पिल आइकन व टेक्स्ट</span>
+                            </span>
+                        </button>
+                    </div>
+
+                    <div class="grid-3">
+                        <div class="form-group">
+                            <label for="hd-mobile-menu-style">2. मोबाइल मेनू एनीमेशन / ड्रॉअर (Drawer Style)</label>
+                            <select id="hd-mobile-menu-style" onchange="syncHeaderFieldsFromUI({ openMobileDrawer: true })">
+                                <option value="slide-right">दाएँ से स्लाइड-इन ड्रॉअर (Slide-In Right)</option>
+                                <option value="slide-left">बाएँ से स्लाइड-इन ड्रॉअर (Slide-In Left)</option>
+                                <option value="fullscreen">फुल-स्क्रीन ओवरले (Full-Screen Overlay)</option>
+                                <option value="dropdown">कॉम्पैक्ट ड्रॉपडाउन कार्ड (Compact Dropdown)</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="hd-mobile-theme">3. मोबाइल मेनू थीम (Mobile Drawer Theme)</label>
+                            <select id="hd-mobile-theme" onchange="syncHeaderFieldsFromUI({ openMobileDrawer: true })">
+                                <option value="auto">ऑटो — डेस्कटॉप हेडर जैसी थीम (Auto)</option>
+                                <option value="dark">हमेशा डार्क ड्रॉअर (Force Dark Mode Drawer)</option>
+                                <option value="light">हमेशा लाइट ड्रॉअर (Force Light Drawer)</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="hd-mobile-label">पिल बटन / ARIA लेबल (Menu Label)</label>
+                            <input type="text" id="hd-mobile-label" oninput="syncHeaderFieldsFromUI()" placeholder="मेनू">
+                        </div>
+                    </div>
+
+                    <label class="checkbox-row" style="margin-top:0;">
+                        <input type="checkbox" id="hd-mobile-show-tagline" checked onchange="syncHeaderFieldsFromUI()"> स्लाइड-इन ड्रॉअर के अंदर ब्रांड टैगलाइन और संस्करण फ़ुटर दिखाएं
+                    </label>
+                </div>
+
+                <!-- Card 4: Header Navigation Links (header_menu) -->
+                <div class="card secondary">
+                    <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px; margin-bottom:8px;">
+                        <h2 style="margin:0;">🔗 हेडर नेविगेशन मेनू लिंक (Header Navigation Links)</h2>
+                        <span id="header-count-badge" class="pill">0 links</span>
+                    </div>
+                    <p class="subtext">यहाँ तय करें कि वेबसाइट के टॉप हेडर व मोबाइल ड्रॉअर में कौन-कौन से लिंक किस क्रम में दिखेंगे। किसी श्रेणी को यहाँ से हटाने पर उसकी श्रेणी या पुराने लेख डिलीट नहीं होते।</p>
+
+                    <div id="header-menu-list"></div>
+
+                    <div style="background: var(--card-subtle); padding: 14px; border-radius: 4px; margin-top: 14px;">
+                        <h3>➕ हेडर में नया लिंक जोड़ें (Add Link to Header)</h3>
+                        <div class="grid-3">
+                            <div>
+                                <label>त्वरित चयन (Quick Pick)</label>
+                                <select id="header-quick-pick" onchange="applyHeaderQuickPick()"></select>
+                            </div>
+                            <div>
+                                <label>हेडर में दिखने वाला नाम (Label)</label>
+                                <input type="text" id="new-header-label" placeholder="जैसे: खेल या YouTube">
+                            </div>
+                            <div>
+                                <label>लिंक / फ़ाइल (Href / URL)</label>
+                                <input type="text" id="new-header-href" placeholder="sports.html या https://...">
+                            </div>
+                        </div>
+                        <div style="display:flex; justify-content:space-between; align-items:center; margin-top:10px; flex-wrap:wrap; gap:10px;">
+                            <label class="checkbox-row" style="margin:0;">
+                                <input type="checkbox" id="new-header-newtab" checked> बाहरी लिंक (http/https) नए टैब में खोलें
+                            </label>
+                            <button type="button" class="btn btn-dark btn-sm" onclick="addHeaderItem()">+ हेडर में जोड़ें</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 5: Right-Side CTA / Action Pills + Save Button -->
+                <div class="card">
+                    <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px; margin-bottom:8px;">
+                        <h2 style="margin:0;">⚡ हेडर एक्शन / CTA बटन (Quick Action Buttons)</h2>
+                        <span id="header-actions-badge" class="pill muted">0 buttons</span>
+                    </div>
+                    <p class="subtext">हेडर के दाएँ कोने और मोबाइल ड्रॉअर के नीचे दिखने वाले विशेष बटन (जैसे: ई-पेपर, संपर्क करें, न्यूज़लेटर, YouTube चैनल)।</p>
+
+                    <div id="header-actions-list"></div>
+
+                    <div style="background: var(--card-subtle); padding: 14px; border-radius: 4px; margin-top: 14px;">
+                        <h3>➕ नया एक्शन बटन जोड़ें (Add Header CTA Pill)</h3>
+                        <div class="grid-3">
+                            <div>
+                                <label>बटन का नाम (Label)</label>
+                                <input type="text" id="new-hd-action-label" placeholder="जैसे: ✉️ संपर्क करें">
+                            </div>
+                            <div>
+                                <label>URL / लिंक (Href)</label>
+                                <input type="text" id="new-hd-action-href" placeholder="contact.html या https://...">
+                            </div>
+                            <div>
+                                <label>बटन स्टाइल (Button Style)</label>
+                                <select id="new-hd-action-style">
+                                    <option value="accent">नारंगी हाइलाइट बटन (Primary Accent)</option>
+                                    <option value="outline">आउटलाइन / पिल बटन (Subtle Outline)</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div style="display:flex; justify-content:space-between; align-items:center; margin-top:10px; flex-wrap:wrap; gap:10px;">
+                            <label class="checkbox-row" style="margin:0;">
+                                <input type="checkbox" id="new-hd-action-newtab" checked> बाहरी लिंक (http/https) नए टैब में खोलें
+                            </label>
+                            <button type="button" class="btn btn-dark btn-sm" onclick="addHeaderActionLink()">+ एक्शन बटन जोड़ें</button>
+                        </div>
+                    </div>
+
+                    <div style="margin-top: 20px; padding-top: 16px; border-top: 2px solid var(--border);">
+                        <button type="button" class="btn btn-primary btn-full" id="save-header-btn" onclick="commitHeaderConfig()">💾 हेडर बदलाव सेव करें एवं पूरी वेबसाइट अपडेट करें (Save Header &amp; Rebuild)</button>
+                        <div id="header-status" class="status-box"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ==================== TAB 5: FOOTER MANAGER ==================== -->
             <div id="tab-footer" class="tab-panel">
                 <!-- Live Preview -->
                 <div class="card">
@@ -956,6 +1815,27 @@
                     changefreq: "yearly"
                 }
             ],
+            header: {
+                enabled: true,
+                theme: "light",
+                layout: "inline",
+                sticky: true,
+                show_logo: true,
+                brand_title: "अबतक24.in (Aabtak24.in)",
+                brand_tagline: "",
+                nav_style: "underline",
+                top_bar_enabled: true,
+                top_bar_show_date: true,
+                top_bar_text: "",
+                edition_tag: "डिजिटल संस्करण • INDIA",
+                hamburger_style: "staggered",
+                mobile_menu_style: "slide-right",
+                mobile_theme: "auto",
+                mobile_menu_label: "मेनू",
+                mobile_show_tagline: true,
+                action_links: [],
+                colors: {}
+            },
             header_menu: [
                 { label: "मुख्य खबरें", href: "index.html" },
                 { label: "देश-विदेश", href: "desh-videsh.html" },
@@ -1007,6 +1887,30 @@
             }
         };
 
+        const HEADER_COLOR_KEYS = ["bg", "text", "accent", "border", "topbar_bg", "topbar_text", "drawer_bg", "drawer_text"];
+        const HEADER_DEFAULT_COLORS = {
+            light: {
+                bg: "#FAF6F0",
+                text: "#141210",
+                accent: "#FF4C00",
+                border: "#141210",
+                topbar_bg: "#141210",
+                topbar_text: "#EAE3DC",
+                drawer_bg: "#FFFFFF",
+                drawer_text: "#141210"
+            },
+            dark: {
+                bg: "#141210",
+                text: "#FAF6F0",
+                accent: "#FF4C00",
+                border: "#2C2723",
+                topbar_bg: "#0D0B0A",
+                topbar_text: "#B8AFA6",
+                drawer_bg: "#141210",
+                drawer_text: "#FAF6F0"
+            }
+        };
+
         const FOOTER_COLOR_KEYS = ["bg", "bottom_bg", "text", "muted", "accent", "border"];
         const FOOTER_DEFAULT_COLORS = {
             dark: {
@@ -1038,6 +1942,8 @@
         let EDITING_SLUG = null;
         let EDITING_CAT_INDEX = null;
         let EDITING_PAGE_ID = null;
+        let HEADER_PREVIEW_DEVICE = "desktop";
+        let HEADER_PREVIEW_DRAWER_OPEN = false;
 
         const quillToolbar = [
             [{ header: [3, false] }],
@@ -1330,6 +2236,65 @@
             };
         }
 
+        function normalizeHeaderConfig(raw) {
+            const defs = JSON.parse(JSON.stringify(DEFAULT_SITE_CONFIG.header));
+            if (!raw || typeof raw !== "object" || Array.isArray(raw)) return defs;
+
+            const theme = String(raw.theme || defs.theme).trim().toLowerCase() === "dark" ? "dark" : "light";
+            const rawLayout = String(raw.layout || defs.layout).trim().toLowerCase();
+            const layout = ["inline", "centered", "compact"].includes(rawLayout) ? rawLayout : "inline";
+            const rawNavStyle = String(raw.nav_style || defs.nav_style).trim().toLowerCase();
+            const nav_style = ["underline", "pills", "minimal"].includes(rawNavStyle) ? rawNavStyle : "underline";
+            const rawHb = String(raw.hamburger_style || defs.hamburger_style).trim().toLowerCase();
+            const hamburger_style = ["staggered", "bars", "boxed", "pill"].includes(rawHb) ? rawHb : "staggered";
+            const rawDrawer = String(raw.mobile_menu_style || defs.mobile_menu_style).trim().toLowerCase();
+            const mobile_menu_style = ["slide-right", "slide-left", "fullscreen", "dropdown"].includes(rawDrawer) ? rawDrawer : "slide-right";
+            const rawMobileTheme = String(raw.mobile_theme || defs.mobile_theme).trim().toLowerCase();
+            const mobile_theme = ["auto", "dark", "light"].includes(rawMobileTheme) ? rawMobileTheme : "auto";
+
+            const action_links = Array.isArray(raw.action_links)
+                ? raw.action_links.filter(a => a && typeof a === "object").map(a => {
+                    const item = {
+                        label: String(a.label || ""),
+                        href: String(a.href || ""),
+                        style: String(a.style || "accent").trim().toLowerCase() === "outline" ? "outline" : "accent"
+                    };
+                    if (typeof a.new_tab === "boolean") item.new_tab = a.new_tab;
+                    return item;
+                })
+                : [];
+
+            const colors = {};
+            if (raw.colors && typeof raw.colors === "object" && !Array.isArray(raw.colors)) {
+                [...HEADER_COLOR_KEYS, "muted"].forEach(k => {
+                    const v = String(raw.colors[k] || "").trim();
+                    if (/^#[0-9a-fA-F]{3,8}$/.test(v)) colors[k] = v;
+                });
+            }
+
+            return {
+                enabled: raw.enabled !== undefined ? Boolean(raw.enabled) : defs.enabled,
+                theme,
+                layout,
+                sticky: raw.sticky !== undefined ? Boolean(raw.sticky) : defs.sticky,
+                show_logo: raw.show_logo !== undefined ? Boolean(raw.show_logo) : defs.show_logo,
+                brand_title: typeof raw.brand_title === "string" ? raw.brand_title : defs.brand_title,
+                brand_tagline: typeof raw.brand_tagline === "string" ? raw.brand_tagline : defs.brand_tagline,
+                nav_style,
+                top_bar_enabled: raw.top_bar_enabled !== undefined ? Boolean(raw.top_bar_enabled) : defs.top_bar_enabled,
+                top_bar_show_date: raw.top_bar_show_date !== undefined ? Boolean(raw.top_bar_show_date) : defs.top_bar_show_date,
+                top_bar_text: typeof raw.top_bar_text === "string" ? raw.top_bar_text : defs.top_bar_text,
+                edition_tag: typeof raw.edition_tag === "string" ? raw.edition_tag : defs.edition_tag,
+                hamburger_style,
+                mobile_menu_style,
+                mobile_theme,
+                mobile_menu_label: typeof raw.mobile_menu_label === "string" ? raw.mobile_menu_label : defs.mobile_menu_label,
+                mobile_show_tagline: raw.mobile_show_tagline !== undefined ? Boolean(raw.mobile_show_tagline) : defs.mobile_show_tagline,
+                action_links,
+                colors
+            };
+        }
+
         function buildSiteConfigPayload(latestRawContent = null) {
             let latestExtra = {};
             if (latestRawContent) {
@@ -1337,7 +2302,7 @@
                     const parsedLatest = JSON.parse(latestRawContent);
                     if (parsedLatest && typeof parsedLatest === "object" && !Array.isArray(parsedLatest)) {
                         Object.keys(parsedLatest).forEach(k => {
-                            if (!["categories", "custom_pages", "header_menu", "footer"].includes(k)) {
+                            if (!["categories", "custom_pages", "header", "header_menu", "footer"].includes(k)) {
                                 latestExtra[k] = parsedLatest[k];
                             }
                         });
@@ -1349,6 +2314,7 @@
                 ...latestExtra,
                 categories: SITE_CONFIG.categories,
                 custom_pages: SITE_CONFIG.custom_pages,
+                header: normalizeHeaderConfig(SITE_CONFIG.header),
                 header_menu: SITE_CONFIG.header_menu,
                 footer: normalizeFooterConfig(SITE_CONFIG.footer)
             };
@@ -1362,13 +2328,14 @@
                     const parsed = JSON.parse(cfgFile.content);
                     SITE_CONFIG_EXTRA = {};
                     Object.keys(parsed).forEach(k => {
-                        if (!["categories", "custom_pages", "header_menu", "footer"].includes(k)) {
+                        if (!["categories", "custom_pages", "header", "header_menu", "footer"].includes(k)) {
                             SITE_CONFIG_EXTRA[k] = parsed[k];
                         }
                     });
                     SITE_CONFIG = {
                         categories: Array.isArray(parsed.categories) ? parsed.categories : JSON.parse(JSON.stringify(DEFAULT_SITE_CONFIG.categories)),
                         custom_pages: Array.isArray(parsed.custom_pages) ? parsed.custom_pages : [],
+                        header: normalizeHeaderConfig(parsed.header),
                         header_menu: Array.isArray(parsed.header_menu) ? parsed.header_menu : JSON.parse(JSON.stringify(DEFAULT_SITE_CONFIG.header_menu)),
                         footer: normalizeFooterConfig(parsed.footer)
                     };
@@ -1381,6 +2348,7 @@
 
                 populateArticleCategoryDropdown();
                 renderHeaderMenuList();
+                renderHeaderManager();
                 renderCategoriesList();
                 renderCustomPagesList();
                 renderFooterManager();
@@ -1397,6 +2365,9 @@
         function switchTab(tabName) {
             document.querySelectorAll(".tab-btn").forEach(b => b.classList.toggle("active", b.dataset.tab === tabName));
             document.querySelectorAll(".tab-panel").forEach(p => p.classList.toggle("active", p.id === `tab-${tabName}`));
+            if (tabName === "header" && typeof renderHeaderLivePreview === "function") {
+                renderHeaderLivePreview();
+            }
         }
 
         function cleanSlug(text) {
@@ -1677,6 +2648,9 @@
             }).join("");
 
             refreshHeaderQuickPick();
+            if (typeof renderHeaderLivePreview === "function") {
+                renderHeaderLivePreview();
+            }
         }
 
         function refreshHeaderQuickPick() {
@@ -1720,12 +2694,18 @@
 
         function editHeaderItem(idx) {
             const item = SITE_CONFIG.header_menu[idx];
+            if (!item) return;
             const newLabel = prompt("हेडर में दिखने वाला नया नाम (Label):", item.label);
             if (newLabel === null || !newLabel.trim()) return;
             const newHref = prompt("लिंक / फ़ाइल का नाम (Href):", item.href);
             if (newHref === null || !newHref.trim()) return;
             item.label = newLabel.trim();
             item.href = newHref.trim();
+            if (/^https?:\/\//i.test(item.href)) {
+                item.new_tab = confirm("क्या इस बाहरी लिंक को नए टैब में खोलें?\n(OK = नया टैब, Cancel = उसी टैब में)");
+            } else {
+                delete item.new_tab;
+            }
             renderHeaderMenuList();
         }
 
@@ -2160,20 +3140,8 @@
         }
 
         // =========================================================================
-        // 9. TAB 4: FOOTER MANAGER & LIVE PREVIEW
+        // 8B. TAB 4: HEADER MANAGER & LIVE PREVIEW
         // =========================================================================
-        function ensureFooterConfig() {
-            if (!SITE_CONFIG.footer || typeof SITE_CONFIG.footer !== "object" || Array.isArray(SITE_CONFIG.footer)) {
-                SITE_CONFIG.footer = JSON.parse(JSON.stringify(DEFAULT_SITE_CONFIG.footer));
-            }
-            if (!Array.isArray(SITE_CONFIG.footer.columns)) SITE_CONFIG.footer.columns = [];
-            if (!Array.isArray(SITE_CONFIG.footer.social_links)) SITE_CONFIG.footer.social_links = [];
-            if (!SITE_CONFIG.footer.colors || typeof SITE_CONFIG.footer.colors !== "object" || Array.isArray(SITE_CONFIG.footer.colors)) {
-                SITE_CONFIG.footer.colors = {};
-            }
-            return SITE_CONFIG.footer;
-        }
-
         function isValidHexColor(val) {
             return /^#[0-9a-fA-F]{3,8}$/.test(String(val || "").trim());
         }
@@ -2185,6 +3153,596 @@
                 return "#" + v[1] + v[1] + v[2] + v[2] + v[3] + v[3];
             }
             return fallback;
+        }
+
+        function sanitizePreviewHref(href) {
+            const cleaned = String(href || "").trim();
+            if (!cleaned) return "";
+            if (/^(?:javascript|vbscript|data):/i.test(cleaned)) return "";
+            return cleaned;
+        }
+
+        function ensureHeaderConfig() {
+            if (!SITE_CONFIG.header || typeof SITE_CONFIG.header !== "object" || Array.isArray(SITE_CONFIG.header)) {
+                SITE_CONFIG.header = JSON.parse(JSON.stringify(DEFAULT_SITE_CONFIG.header));
+            }
+            const defs = DEFAULT_SITE_CONFIG.header;
+            if (SITE_CONFIG.header.theme !== "dark") SITE_CONFIG.header.theme = "light";
+            if (!["inline", "centered", "compact"].includes(SITE_CONFIG.header.layout)) SITE_CONFIG.header.layout = defs.layout;
+            if (!["underline", "pills", "minimal"].includes(SITE_CONFIG.header.nav_style)) SITE_CONFIG.header.nav_style = defs.nav_style;
+            if (!["staggered", "bars", "boxed", "pill"].includes(SITE_CONFIG.header.hamburger_style)) SITE_CONFIG.header.hamburger_style = defs.hamburger_style;
+            if (!["slide-right", "slide-left", "fullscreen", "dropdown"].includes(SITE_CONFIG.header.mobile_menu_style)) SITE_CONFIG.header.mobile_menu_style = defs.mobile_menu_style;
+            if (!["auto", "dark", "light"].includes(SITE_CONFIG.header.mobile_theme)) SITE_CONFIG.header.mobile_theme = defs.mobile_theme;
+            if (!Array.isArray(SITE_CONFIG.header.action_links)) SITE_CONFIG.header.action_links = [];
+            if (!SITE_CONFIG.header.colors || typeof SITE_CONFIG.header.colors !== "object" || Array.isArray(SITE_CONFIG.header.colors)) {
+                SITE_CONFIG.header.colors = {};
+            }
+            return SITE_CONFIG.header;
+        }
+
+        function getResolvedHeaderMobileTheme(header) {
+            const hTheme = header.theme === "dark" ? "dark" : "light";
+            const mTheme = header.mobile_theme || "auto";
+            return (mTheme === "dark" || mTheme === "light") ? mTheme : hTheme;
+        }
+
+        function getHeaderDefaultColor(header, key) {
+            const hTheme = header.theme === "dark" ? "dark" : "light";
+            const mTheme = getResolvedHeaderMobileTheme(header);
+            if (key === "drawer_bg" || key === "drawer_text") {
+                return HEADER_DEFAULT_COLORS[mTheme][key];
+            }
+            return HEADER_DEFAULT_COLORS[hTheme][key];
+        }
+
+        function syncHamburgerCardsUI(activeStyle) {
+            document.querySelectorAll("#hamburger-style-cards .hb-option-card").forEach(btn => {
+                btn.classList.toggle("active", btn.dataset.hbStyle === activeStyle);
+            });
+        }
+
+        function syncPreviewToolbarButtons() {
+            const deskBtn = document.getElementById("preview-device-desktop");
+            const mobBtn = document.getElementById("preview-device-mobile");
+            const toggleBtn = document.getElementById("preview-drawer-toggle-btn");
+            const isMobile = HEADER_PREVIEW_DEVICE === "mobile";
+            if (deskBtn) deskBtn.classList.toggle("active", !isMobile);
+            if (mobBtn) mobBtn.classList.toggle("active", isMobile);
+            if (toggleBtn) {
+                toggleBtn.classList.toggle("hidden", !isMobile);
+                toggleBtn.textContent = HEADER_PREVIEW_DRAWER_OPEN ? "✕ ड्रॉअर बंद करें" : "☰ ड्रॉअर खोलें / बंद करें";
+            }
+        }
+
+        function renderHeaderManager() {
+            ensureHeaderConfig();
+            populateHeaderFormFields();
+            renderHeaderActionsList();
+            syncPreviewToolbarButtons();
+            renderHeaderLivePreview();
+        }
+
+        function populateHeaderFormFields() {
+            const header = ensureHeaderConfig();
+            document.getElementById("hd-enabled").checked = header.enabled !== false;
+            document.getElementById("hd-sticky").checked = header.sticky !== false;
+            document.getElementById("hd-show-logo").checked = header.show_logo !== false;
+            document.getElementById("hd-theme").value = header.theme === "dark" ? "dark" : "light";
+            document.getElementById("hd-layout").value = header.layout || "inline";
+            document.getElementById("hd-nav-style").value = header.nav_style || "underline";
+            document.getElementById("hd-brand-title").value = header.brand_title ?? "";
+            document.getElementById("hd-brand-tagline").value = header.brand_tagline ?? "";
+            document.getElementById("hd-topbar-enabled").checked = header.top_bar_enabled !== false;
+            document.getElementById("hd-topbar-show-date").checked = header.top_bar_show_date !== false;
+            document.getElementById("hd-topbar-text").value = header.top_bar_text ?? "";
+            document.getElementById("hd-edition-tag").value = header.edition_tag ?? "";
+            document.getElementById("hd-mobile-menu-style").value = header.mobile_menu_style || "slide-right";
+            document.getElementById("hd-mobile-theme").value = header.mobile_theme || "auto";
+            document.getElementById("hd-mobile-label").value = header.mobile_menu_label ?? "मेनू";
+            document.getElementById("hd-mobile-show-tagline").checked = header.mobile_show_tagline !== false;
+            syncHamburgerCardsUI(header.hamburger_style || "staggered");
+            syncHeaderColorInputs();
+        }
+
+        function syncHeaderColorInputs() {
+            const header = ensureHeaderConfig();
+            const colors = header.colors || {};
+            HEADER_COLOR_KEYS.forEach(key => {
+                const defaultHex = getHeaderDefaultColor(header, key);
+                const textEl = document.getElementById(`hd-col-${key}`);
+                const pickEl = document.getElementById(`hd-col-pick-${key}`);
+                const curVal = colors[key] || "";
+                if (textEl) {
+                    textEl.value = curVal;
+                    textEl.placeholder = `Default (${defaultHex})`;
+                }
+                if (pickEl) {
+                    pickEl.value = toColorPickerHex(curVal, defaultHex);
+                }
+            });
+        }
+
+        function selectHamburgerStyle(style) {
+            const header = ensureHeaderConfig();
+            header.hamburger_style = ["staggered", "bars", "boxed", "pill"].includes(style) ? style : "staggered";
+            syncHamburgerCardsUI(header.hamburger_style);
+            HEADER_PREVIEW_DEVICE = "mobile";
+            HEADER_PREVIEW_DRAWER_OPEN = false;
+            syncPreviewToolbarButtons();
+            renderHeaderLivePreview();
+        }
+
+        function syncHeaderFieldsFromUI(opts = {}) {
+            const header = ensureHeaderConfig();
+            const prevTheme = header.theme;
+            const prevMobileTheme = header.mobile_theme;
+
+            header.enabled = document.getElementById("hd-enabled").checked;
+            header.sticky = document.getElementById("hd-sticky").checked;
+            header.show_logo = document.getElementById("hd-show-logo").checked;
+            header.theme = document.getElementById("hd-theme").value === "dark" ? "dark" : "light";
+
+            const rawLayout = document.getElementById("hd-layout").value;
+            header.layout = ["inline", "centered", "compact"].includes(rawLayout) ? rawLayout : "inline";
+
+            const rawNavStyle = document.getElementById("hd-nav-style").value;
+            header.nav_style = ["underline", "pills", "minimal"].includes(rawNavStyle) ? rawNavStyle : "underline";
+
+            header.brand_title = document.getElementById("hd-brand-title").value;
+            header.brand_tagline = document.getElementById("hd-brand-tagline").value;
+            header.top_bar_enabled = document.getElementById("hd-topbar-enabled").checked;
+            header.top_bar_show_date = document.getElementById("hd-topbar-show-date").checked;
+            header.top_bar_text = document.getElementById("hd-topbar-text").value;
+            header.edition_tag = document.getElementById("hd-edition-tag").value;
+
+            const rawDrawerStyle = document.getElementById("hd-mobile-menu-style").value;
+            header.mobile_menu_style = ["slide-right", "slide-left", "fullscreen", "dropdown"].includes(rawDrawerStyle) ? rawDrawerStyle : "slide-right";
+
+            const rawMobileTheme = document.getElementById("hd-mobile-theme").value;
+            header.mobile_theme = ["auto", "dark", "light"].includes(rawMobileTheme) ? rawMobileTheme : "auto";
+
+            header.mobile_menu_label = document.getElementById("hd-mobile-label").value;
+            header.mobile_show_tagline = document.getElementById("hd-mobile-show-tagline").checked;
+
+            if (prevTheme !== header.theme || prevMobileTheme !== header.mobile_theme) {
+                syncHeaderColorInputs();
+            }
+            if (opts && opts.openMobileDrawer) {
+                HEADER_PREVIEW_DEVICE = "mobile";
+                HEADER_PREVIEW_DRAWER_OPEN = true;
+            }
+            syncPreviewToolbarButtons();
+            renderHeaderLivePreview();
+        }
+
+        function onHeaderColorPick(key, val) {
+            const header = ensureHeaderConfig();
+            const normalized = String(val || "").trim().toUpperCase();
+            if (!isValidHexColor(normalized)) return;
+            header.colors[key] = normalized;
+            const textEl = document.getElementById(`hd-col-${key}`);
+            if (textEl) textEl.value = normalized;
+            renderHeaderLivePreview();
+        }
+
+        function onHeaderColorText(key, val) {
+            const header = ensureHeaderConfig();
+            const trimmed = String(val || "").trim();
+            const defaultHex = getHeaderDefaultColor(header, key);
+            const pickEl = document.getElementById(`hd-col-pick-${key}`);
+
+            if (!trimmed) {
+                delete header.colors[key];
+                if (pickEl) pickEl.value = defaultHex;
+                renderHeaderLivePreview();
+                return;
+            }
+
+            if (isValidHexColor(trimmed)) {
+                header.colors[key] = trimmed;
+                if (pickEl) pickEl.value = toColorPickerHex(trimmed, defaultHex);
+                renderHeaderLivePreview();
+            }
+        }
+
+        function resetHeaderColors() {
+            const header = ensureHeaderConfig();
+            header.colors = {};
+            syncHeaderColorInputs();
+            renderHeaderLivePreview();
+        }
+
+        function positionPreviewDropdown() {
+            const header = ensureHeaderConfig();
+            if (HEADER_PREVIEW_DEVICE !== "mobile" || header.mobile_menu_style !== "dropdown") return;
+            const phHeaderEl = document.querySelector("#header-live-preview .ph-header");
+            const phDrawerPanel = document.querySelector("#header-live-preview .ph-drawer-panel");
+            if (phHeaderEl && phDrawerPanel) {
+                const computedTop = phHeaderEl.offsetTop + phHeaderEl.offsetHeight + 6;
+                if (computedTop > 20) {
+                    phDrawerPanel.style.top = `${computedTop}px`;
+                }
+            }
+        }
+
+        function setHeaderPreviewDevice(device) {
+            HEADER_PREVIEW_DEVICE = device === "mobile" ? "mobile" : "desktop";
+            if (HEADER_PREVIEW_DEVICE === "desktop") {
+                HEADER_PREVIEW_DRAWER_OPEN = false;
+            }
+            syncPreviewToolbarButtons();
+            renderHeaderLivePreview();
+        }
+
+        function toggleHeaderPreviewDrawer() {
+            if (HEADER_PREVIEW_DEVICE !== "mobile") {
+                HEADER_PREVIEW_DEVICE = "mobile";
+                HEADER_PREVIEW_DRAWER_OPEN = true;
+                syncPreviewToolbarButtons();
+                renderHeaderLivePreview();
+                return;
+            }
+            HEADER_PREVIEW_DRAWER_OPEN = !HEADER_PREVIEW_DRAWER_OPEN;
+            syncPreviewToolbarButtons();
+
+            const drawerWrap = document.getElementById("preview-ph-drawer-wrap");
+            const hbBtn = document.getElementById("preview-ph-hamburger");
+            if (drawerWrap && hbBtn) {
+                if (HEADER_PREVIEW_DRAWER_OPEN) {
+                    positionPreviewDropdown();
+                }
+                drawerWrap.classList.toggle("is-open", HEADER_PREVIEW_DRAWER_OPEN);
+                drawerWrap.setAttribute("aria-hidden", HEADER_PREVIEW_DRAWER_OPEN ? "false" : "true");
+                hbBtn.classList.toggle("is-open", HEADER_PREVIEW_DRAWER_OPEN);
+                hbBtn.setAttribute("aria-expanded", HEADER_PREVIEW_DRAWER_OPEN ? "true" : "false");
+            } else {
+                renderHeaderLivePreview();
+            }
+        }
+
+        function closeHeaderPreviewDrawer() {
+            if (!HEADER_PREVIEW_DRAWER_OPEN) return;
+            HEADER_PREVIEW_DRAWER_OPEN = false;
+            syncPreviewToolbarButtons();
+            const drawerWrap = document.getElementById("preview-ph-drawer-wrap");
+            const hbBtn = document.getElementById("preview-ph-hamburger");
+            if (drawerWrap && hbBtn) {
+                drawerWrap.classList.remove("is-open");
+                drawerWrap.setAttribute("aria-hidden", "true");
+                hbBtn.classList.remove("is-open");
+                hbBtn.setAttribute("aria-expanded", "false");
+            } else {
+                renderHeaderLivePreview();
+            }
+        }
+
+        function renderHeaderActionsList() {
+            const actions = ensureHeaderConfig().action_links || [];
+            const container = document.getElementById("header-actions-list");
+            const badge = document.getElementById("header-actions-badge");
+            if (badge) {
+                badge.textContent = `${actions.length} ${actions.length === 1 ? "button" : "buttons"}`;
+                badge.className = actions.length ? "pill green" : "pill muted";
+            }
+            if (!container) return;
+            if (!actions.length) {
+                container.innerHTML = `<p class="subtext">अभी कोई हेडर CTA / एक्शन बटन नहीं जुड़ा है। आप नीचे से "संपर्क करें", "ई-पेपर", या "YouTube" जैसे बटन जोड़ सकते हैं।</p>`;
+                return;
+            }
+            container.innerHTML = actions.map((act, idx) => {
+                const isOutline = act.style === "outline";
+                return `
+                <div class="list-item">
+                    <div style="flex:1; min-width:200px;">
+                        <span class="pill muted">#${idx + 1}</span>
+                        <strong>${escapeHtml(act.label)}</strong>
+                        <span style="color:var(--text-muted); font-size:13px;">→ <code class="inline">${escapeHtml(act.href)}</code></span>
+                        <span class="pill ${isOutline ? "muted" : ""}">${isOutline ? "Outline" : "Accent"}</span>
+                        ${act.new_tab ? '<span class="pill">New Tab</span>' : ''}
+                    </div>
+                    <div class="actions-group">
+                        <button type="button" class="btn btn-outline btn-sm" ${idx === 0 ? "disabled" : ""} onclick="moveHeaderActionLink(${idx}, -1)" title="ऊपर ले जाएं">↑</button>
+                        <button type="button" class="btn btn-outline btn-sm" ${idx === actions.length - 1 ? "disabled" : ""} onclick="moveHeaderActionLink(${idx}, 1)" title="नीचे ले जाएं">↓</button>
+                        <button type="button" class="btn btn-outline btn-sm" onclick="editHeaderActionLink(${idx})">✏️ संपादित करें</button>
+                        <button type="button" class="btn btn-danger btn-sm" onclick="removeHeaderActionLink(${idx})">✕ हटाएं</button>
+                    </div>
+                </div>`;
+            }).join("");
+        }
+
+        function addHeaderActionLink() {
+            const labelEl = document.getElementById("new-hd-action-label");
+            const hrefEl = document.getElementById("new-hd-action-href");
+            const styleEl = document.getElementById("new-hd-action-style");
+            const ntEl = document.getElementById("new-hd-action-newtab");
+
+            const label = (labelEl.value || "").trim();
+            const href = (hrefEl.value || "").trim();
+            if (!label || !href) {
+                alert("कृपया एक्शन बटन का नाम (Label) और Href / URL दोनों भरें।");
+                return;
+            }
+            const style = styleEl && styleEl.value === "outline" ? "outline" : "accent";
+            const entry = { label, href, style };
+            if (/^https?:\/\//i.test(href) && ntEl) {
+                entry.new_tab = ntEl.checked;
+            }
+            ensureHeaderConfig().action_links.push(entry);
+
+            labelEl.value = "";
+            hrefEl.value = "";
+            renderHeaderActionsList();
+            renderHeaderLivePreview();
+        }
+
+        function moveHeaderActionLink(idx, dir) {
+            const actions = ensureHeaderConfig().action_links;
+            const target = idx + dir;
+            if (target < 0 || target >= actions.length) return;
+            [actions[idx], actions[target]] = [actions[target], actions[idx]];
+            renderHeaderActionsList();
+            renderHeaderLivePreview();
+        }
+
+        function editHeaderActionLink(idx) {
+            const item = ensureHeaderConfig().action_links[idx];
+            if (!item) return;
+            const newLabel = prompt("एक्शन बटन का नया नाम (Label):", item.label);
+            if (newLabel === null || !newLabel.trim()) return;
+            const newHref = prompt("नया URL / लिंक (Href):", item.href);
+            if (newHref === null || !newHref.trim()) return;
+            const stylePrompt = prompt("बटन स्टाइल ('accent' या 'outline'):", item.style === "outline" ? "outline" : "accent");
+            item.label = newLabel.trim();
+            item.href = newHref.trim();
+            if (stylePrompt !== null) {
+                item.style = stylePrompt.trim().toLowerCase() === "outline" ? "outline" : "accent";
+            }
+            if (/^https?:\/\//i.test(item.href)) {
+                item.new_tab = confirm("क्या इस बाहरी लिंक को नए टैब में खोलें?\n(OK = नया टैब, Cancel = उसी टैब में)");
+            } else {
+                delete item.new_tab;
+            }
+            renderHeaderActionsList();
+            renderHeaderLivePreview();
+        }
+
+        function removeHeaderActionLink(idx) {
+            ensureHeaderConfig().action_links.splice(idx, 1);
+            renderHeaderActionsList();
+            renderHeaderLivePreview();
+        }
+
+        function renderHeaderLivePreview() {
+            const header = ensureHeaderConfig();
+            const previewEl = document.getElementById("header-live-preview");
+            const badgeEl = document.getElementById("header-preview-badge");
+            if (!previewEl) return;
+
+            const isEnabled = header.enabled !== false;
+            const isDarkHeader = header.theme === "dark";
+            const layout = ["inline", "centered", "compact"].includes(header.layout) ? header.layout : "inline";
+            const navStyle = ["underline", "pills", "minimal"].includes(header.nav_style) ? header.nav_style : "underline";
+            const hbStyle = ["staggered", "bars", "boxed", "pill"].includes(header.hamburger_style) ? header.hamburger_style : "staggered";
+            const drawerStyle = ["slide-right", "slide-left", "fullscreen", "dropdown"].includes(header.mobile_menu_style) ? header.mobile_menu_style : "slide-right";
+            const resolvedMobileTheme = getResolvedHeaderMobileTheme(header);
+            const isDarkDrawer = resolvedMobileTheme === "dark";
+            const isMobile = HEADER_PREVIEW_DEVICE === "mobile";
+
+            if (badgeEl) {
+                if (!isEnabled) {
+                    badgeEl.className = "pill muted";
+                    badgeEl.textContent = "Header Disabled Site-Wide";
+                } else {
+                    badgeEl.className = "pill green";
+                    badgeEl.textContent = `${isDarkHeader ? "Dark" : "Light"} Header • ${layout} • Hb: ${hbStyle} • Drawer: ${drawerStyle} (${resolvedMobileTheme})`;
+                }
+            }
+
+            if (!isEnabled) {
+                previewEl.innerHTML = `<div style="padding:26px; text-align:center; background:#FAF6F0; color:var(--text-muted); font-weight:600; border-radius:4px;">🚫 हेडर और टॉप बार अभी पूरी वेबसाइट पर बंद हैं (<code>enabled: false</code>)। पुनः चालू करने के लिए ऊपर "Enable Header" चुनें।</div>`;
+                return;
+            }
+
+            const colors = header.colors || {};
+            const formatVars = (entries) => {
+                const vars = entries
+                    .filter(([, val]) => isValidHexColor(val))
+                    .map(([cssVar, val]) => `${cssVar}: ${String(val).trim()}`);
+                return vars.length ? ` style="${vars.join("; ")};"` : "";
+            };
+
+            const topBarStyleAttr = formatVars([
+                ["--ph-topbar-bg", colors.topbar_bg],
+                ["--ph-topbar-text", colors.topbar_text],
+                ["--ph-accent", colors.accent],
+                ["--ph-border", colors.border]
+            ]);
+
+            const headerStyleAttr = formatVars([
+                ["--ph-bg", colors.bg],
+                ["--ph-text", colors.text],
+                ["--ph-muted", colors.muted],
+                ["--ph-accent", colors.accent],
+                ["--ph-border", colors.border],
+                ["--ph-divider", colors.border]
+            ]);
+
+            const drawerColorMap = {};
+            if (header.mobile_theme === "auto") {
+                if (colors.bg) drawerColorMap.drawer_bg = colors.bg;
+                if (colors.text) drawerColorMap.drawer_text = colors.text;
+                if (colors.border) drawerColorMap.drawer_border = colors.border;
+            }
+            if (colors.drawer_bg) drawerColorMap.drawer_bg = colors.drawer_bg;
+            if (colors.drawer_text) drawerColorMap.drawer_text = colors.drawer_text;
+            if (colors.accent) drawerColorMap.accent = colors.accent;
+
+            const drawerStyleAttr = formatVars([
+                ["--ph-drawer-bg", drawerColorMap.drawer_bg],
+                ["--ph-drawer-text", drawerColorMap.drawer_text],
+                ["--ph-drawer-border", drawerColorMap.drawer_border],
+                ["--ph-drawer-accent", drawerColorMap.accent]
+            ]);
+
+            // Top Utility Bar
+            const todayLabel = new Date().toLocaleDateString("en-IN", {
+                day: "2-digit", month: "short", year: "numeric"
+            });
+            const topBarNote = String(header.top_bar_text || "").trim();
+            const editionTag = String(header.edition_tag || "").trim();
+            const topLeftParts = [];
+            if (header.top_bar_show_date !== false) {
+                topLeftParts.push(`<span>📅 ${escapeHtml(todayLabel)}</span>`);
+            }
+            if (topBarNote) {
+                topLeftParts.push(`<span style="opacity:0.92;">${escapeHtml(topBarNote)}</span>`);
+            }
+            const showTopBar = header.top_bar_enabled !== false && (topLeftParts.length > 0 || editionTag);
+            const topBarHtml = showTopBar
+                ? `<div class="ph-topbar${isDarkHeader ? " dark" : ""}"${topBarStyleAttr}>
+                    ${topLeftParts.length ? `<div style="display:inline-flex; align-items:center; gap:10px; flex-wrap:wrap;">${topLeftParts.join("")}</div>` : ""}
+                    ${editionTag ? `<span class="ph-topbar-edition">${escapeHtml(editionTag)}</span>` : ""}
+                   </div>`
+                : "";
+
+            // Brand Logo / Title
+            const brandTitle = String(header.brand_title || "अबतक24.in (Aabtak24.in)").trim();
+            const brandTagline = String(header.brand_tagline || "").trim();
+            const headerLogoFile = isDarkHeader ? "logo-light.svg" : "logo.svg";
+            const drawerLogoFile = isDarkDrawer ? "logo-light.svg" : "logo.svg";
+
+            const headerBrandInner = header.show_logo !== false
+                ? `<img src="https://aabtak24.in/${headerLogoFile}" alt="${escapeHtml(brandTitle)}" class="ph-logo-img" onerror="this.style.display='none'; if(this.nextElementSibling) this.nextElementSibling.style.display='inline-block';">
+                   <span class="ph-brand-title" style="display:none;">${escapeHtml(brandTitle)}</span>`
+                : `<span class="ph-brand-title">${escapeHtml(brandTitle)}</span>`;
+
+            const drawerBrandInner = header.show_logo !== false
+                ? `<img src="https://aabtak24.in/${drawerLogoFile}" alt="${escapeHtml(brandTitle)}" style="height:24px; width:auto; display:block;" onerror="this.style.display='none'; if(this.nextElementSibling) this.nextElementSibling.style.display='inline-block';">
+                   <span class="ph-brand-title" style="display:none; font-size:17px; color:var(--ph-drawer-text);">${escapeHtml(brandTitle)}</span>`
+                : `<span class="ph-brand-title" style="font-size:17px; color:var(--ph-drawer-text);">${escapeHtml(brandTitle)}</span>`;
+
+            const validMenu = (SITE_CONFIG.header_menu || []).filter(item =>
+                item && String(item.label || "").trim() && sanitizePreviewHref(item.href)
+            );
+            const navLinksHtml = validMenu.map((item, idx) =>
+                `<a href="#" onclick="return false;" class="${idx === 0 ? "active" : ""}" title="${escapeHtml(item.href)}">${escapeHtml(item.label)}</a>`
+            ).join("");
+
+            const validActions = (header.action_links || []).filter(act =>
+                act && String(act.label || "").trim() && sanitizePreviewHref(act.href)
+            );
+            const actionsHtml = validActions.map(act => {
+                const cls = act.style === "outline" ? "outline" : "accent";
+                return `<a href="#" onclick="return false;" class="ph-action-btn ${cls}" title="${escapeHtml(act.href)}">${escapeHtml(act.label)}</a>`;
+            }).join("");
+
+            const mobileLabel = String(header.mobile_menu_label || "मेनू").trim() || "मेनू";
+            const pillLabelSpan = hbStyle === "pill" ? `<span>${escapeHtml(mobileLabel)}</span>` : "";
+
+            const headerRightDesktopHtml = !isMobile
+                ? `<div class="ph-desktop-group">
+                        <nav class="ph-nav nav-${navStyle}">${navLinksHtml || '<span style="font-size:12px; color:var(--ph-muted);">कोई मेनू लिंक नहीं</span>'}</nav>
+                        ${actionsHtml ? `<div class="ph-actions">${actionsHtml}</div>` : ""}
+                   </div>`
+                : `<button type="button" id="preview-ph-hamburger" class="ph-hamburger hb-${hbStyle}${HEADER_PREVIEW_DRAWER_OPEN ? " is-open" : ""}" aria-label="${escapeHtml(mobileLabel)}" aria-expanded="${HEADER_PREVIEW_DRAWER_OPEN ? "true" : "false"}" onclick="toggleHeaderPreviewDrawer()">
+                        <span class="ph-hamburger-lines"><span></span><span></span><span></span></span>
+                        ${pillLabelSpan}
+                   </button>`;
+
+            const drawerTaglineHtml = (header.mobile_show_tagline !== false && brandTagline)
+                ? `<div class="ph-drawer-tagline">${escapeHtml(brandTagline)}</div>`
+                : "";
+            const drawerFootHtml = (header.mobile_show_tagline !== false && editionTag)
+                ? `<div class="ph-drawer-foot">${escapeHtml(editionTag)}</div>`
+                : "";
+
+            const mobileDrawerHtml = isMobile
+                ? `<div id="preview-ph-drawer-wrap" class="ph-drawer-wrap style-${drawerStyle}${isDarkDrawer ? " dark" : ""}${HEADER_PREVIEW_DRAWER_OPEN ? " is-open" : ""}" aria-hidden="${HEADER_PREVIEW_DRAWER_OPEN ? "false" : "true"}"${drawerStyleAttr}>
+                        <div class="ph-drawer-backdrop" onclick="closeHeaderPreviewDrawer()"></div>
+                        <div class="ph-drawer-panel">
+                            <div class="ph-drawer-head">
+                                <div>${drawerBrandInner}</div>
+                                <button type="button" class="ph-drawer-close" aria-label="मेनू बंद करें" onclick="closeHeaderPreviewDrawer()">✕</button>
+                            </div>
+                            ${drawerTaglineHtml}
+                            <nav class="ph-drawer-links">
+                                ${navLinksHtml || '<div style="padding:12px 14px; font-size:12.5px; color:var(--ph-drawer-muted);">कोई नेविगेशन लिंक नहीं</div>'}
+                            </nav>
+                            ${actionsHtml ? `<div class="ph-drawer-actions">${actionsHtml}</div>` : ""}
+                            ${drawerFootHtml}
+                        </div>
+                   </div>`
+                : "";
+
+            previewEl.innerHTML = `
+                <div class="ph-viewport${isMobile ? " mobile-frame" : ""}">
+                    ${topBarHtml}
+                    <div class="ph-header${isDarkHeader ? " dark" : ""} layout-${layout}"${headerStyleAttr}>
+                        <div class="ph-header-inner">
+                            <div class="ph-brand-wrap">
+                                <div>${headerBrandInner}</div>
+                                ${brandTagline ? `<span class="ph-tagline">${escapeHtml(brandTagline)}</span>` : ""}
+                            </div>
+                            ${headerRightDesktopHtml}
+                        </div>
+                    </div>
+                    <div class="ph-mock-page">
+                        <div class="ph-mock-card">
+                            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px; font-size:11px; font-weight:700; color:var(--accent); text-transform:uppercase;">
+                                <span>🔥 मुख्य समाचार (Page Content Preview)</span>
+                                ${header.sticky !== false ? '<span style="color:var(--text-muted);">Sticky Header</span>' : '<span style="color:var(--text-muted);">Static Header</span>'}
+                            </div>
+                            <div class="ph-mock-line title"></div>
+                            <div class="ph-mock-line" style="width:94%;"></div>
+                            <div class="ph-mock-line" style="width:82%; margin-bottom:0;"></div>
+                        </div>
+                    </div>
+                    ${mobileDrawerHtml}
+                </div>`;
+
+            positionPreviewDropdown();
+        }
+
+        async function commitHeaderConfig() {
+            const btn = document.getElementById("save-header-btn");
+            btn.disabled = true;
+            syncHeaderFieldsFromUI();
+            showStatus("header-status", "info", "हेडर सेटिंग्स site_config.json में सेव हो रही हैं और वेबसाइट रीबिल्ड शुरू हो रही है...");
+
+            try {
+                const latest = await ghGetFile("site_config.json");
+                const payload = buildSiteConfigPayload(latest ? latest.content : null);
+                const res = await ghPutFile(
+                    "site_config.json",
+                    JSON.stringify(payload, null, 2),
+                    "Update header configuration and navigation menu via Admin CMS",
+                    latest ? latest.sha : SITE_CONFIG_SHA
+                );
+                SITE_CONFIG_SHA = res.content.sha;
+                SITE_CONFIG.header = normalizeHeaderConfig(payload.header);
+                renderHeaderManager();
+                await triggerRebuild();
+                showStatus("header-status", "success", "✅ हेडर सेटिंग्स और नेविगेशन मेनू सेव हो गए हैं! लगभग 15–20 सेकंड में पूरी वेबसाइट (होमपेज, श्रेणियाँ, कस्टम पेज व सभी समाचार) नए हेडर और मोबाइल ड्रॉअर के साथ अपडेट हो जाएगी।");
+            } catch (e) {
+                showStatus("header-status", "error", `सेव करने में त्रुटि: ${e.message}`);
+            } finally {
+                btn.disabled = false;
+            }
+        }
+
+        // =========================================================================
+        // 9. TAB 5: FOOTER MANAGER & LIVE PREVIEW
+        // =========================================================================
+        function ensureFooterConfig() {
+            if (!SITE_CONFIG.footer || typeof SITE_CONFIG.footer !== "object" || Array.isArray(SITE_CONFIG.footer)) {
+                SITE_CONFIG.footer = JSON.parse(JSON.stringify(DEFAULT_SITE_CONFIG.footer));
+            }
+            if (!Array.isArray(SITE_CONFIG.footer.columns)) SITE_CONFIG.footer.columns = [];
+            if (!Array.isArray(SITE_CONFIG.footer.social_links)) SITE_CONFIG.footer.social_links = [];
+            if (!SITE_CONFIG.footer.colors || typeof SITE_CONFIG.footer.colors !== "object" || Array.isArray(SITE_CONFIG.footer.colors)) {
+                SITE_CONFIG.footer.colors = {};
+            }
+            return SITE_CONFIG.footer;
         }
 
         function renderFooterManager() {
