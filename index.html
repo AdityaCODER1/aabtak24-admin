@@ -313,6 +313,142 @@
             border-radius: 3px;
             font-size: 13px;
         }
+        /* Footer Manager & Preview */
+        .footer-col-card {
+            border: 1px solid var(--border);
+            border-top: 3px solid var(--border-heavy);
+            border-radius: var(--radius);
+            background: #FFF;
+            padding: 16px;
+            margin-bottom: 16px;
+        }
+        .footer-col-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 10px;
+            flex-wrap: wrap;
+            padding-bottom: 12px;
+            margin-bottom: 12px;
+            border-bottom: 1px solid var(--border);
+        }
+        .footer-add-row {
+            background: var(--card-subtle);
+            padding: 12px;
+            border-radius: 4px;
+            margin-top: 10px;
+        }
+        .color-field {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .color-field input[type="color"] {
+            width: 40px;
+            height: 36px;
+            padding: 2px;
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            background: #FFF;
+            cursor: pointer;
+            flex-shrink: 0;
+        }
+        .color-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+            gap: 12px;
+            margin-top: 10px;
+        }
+        .preview-shell {
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: 0 10px 24px -10px rgba(20, 18, 16, 0.14);
+        }
+        .preview-footer {
+            --pf-bg: #141210;
+            --pf-bottom-bg: #0D0B0A;
+            --pf-text: #FAF6F0;
+            --pf-muted: #B8AFA6;
+            --pf-accent: #FF4C00;
+            --pf-border: #2C2723;
+            --pf-pill-bg: rgba(255, 255, 255, 0.06);
+            background: var(--pf-bg);
+            color: var(--pf-text);
+            border-top: 4px solid var(--pf-accent);
+            font-size: 13.5px;
+            line-height: 1.6;
+        }
+        .preview-footer.light {
+            --pf-bg: #F3EDE2;
+            --pf-bottom-bg: #FFFFFF;
+            --pf-text: #141210;
+            --pf-muted: #6E655F;
+            --pf-accent: #FF4C00;
+            --pf-border: #E2D9CC;
+            --pf-pill-bg: #FFFFFF;
+            border-top-color: #141210;
+        }
+        .preview-footer-inner {
+            padding: 28px 24px 22px;
+            display: grid;
+            grid-template-columns: minmax(210px, 1.2fr) minmax(0, 2fr);
+            gap: 28px;
+        }
+        @media (max-width: 720px) {
+            .preview-footer-inner { grid-template-columns: 1fr; }
+        }
+        .preview-footer-cols {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 20px;
+        }
+        .preview-col-title {
+            font-family: 'Mukta', sans-serif;
+            font-size: 13.5px;
+            font-weight: 800;
+            text-transform: uppercase;
+            color: var(--pf-text);
+            padding-bottom: 6px;
+            margin-bottom: 10px;
+            border-bottom: 2px solid var(--pf-border);
+            position: relative;
+        }
+        .preview-col-title::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -2px;
+            width: 30px;
+            height: 2px;
+            background: var(--pf-accent);
+        }
+        .preview-footer-links { list-style: none; display: flex; flex-direction: column; gap: 6px; }
+        .preview-footer-links a { color: var(--pf-muted); text-decoration: none; font-weight: 600; font-size: 13px; }
+        .preview-footer-links a:hover { color: var(--pf-accent); }
+        .preview-pill {
+            display: inline-block;
+            padding: 4px 10px;
+            border-radius: 4px;
+            border: 1px solid var(--pf-border);
+            background: var(--pf-pill-bg);
+            color: var(--pf-text);
+            font-size: 12px;
+            font-weight: 700;
+            text-decoration: none;
+            margin: 4px 6px 0 0;
+        }
+        .preview-footer-bottom {
+            background: var(--pf-bottom-bg);
+            border-top: 1px solid var(--pf-border);
+            padding: 12px 24px;
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 8px;
+            font-size: 12px;
+            color: var(--pf-muted);
+        }
     </style>
 </head>
 <body>
@@ -370,6 +506,7 @@
                 <button type="button" class="tab-btn active" data-tab="articles" onclick="switchTab('articles')">📝 समाचार (Articles)</button>
                 <button type="button" class="tab-btn" data-tab="nav-cats" onclick="switchTab('nav-cats')">🗂️ श्रेणियाँ और हेडर (Categories & Header)</button>
                 <button type="button" class="tab-btn" data-tab="custom-pages" onclick="switchTab('custom-pages')">📄 कस्टम पेज (Custom Pages)</button>
+                <button type="button" class="tab-btn" data-tab="footer" onclick="switchTab('footer')">📌 फ़ुटर (Footer)</button>
             </div>
 
             <!-- ==================== TAB 1: ARTICLES ==================== -->
@@ -502,6 +639,7 @@
                             <div>
                                 <label class="checkbox-row"><input type="checkbox" id="cat-ai-active" checked> Gemini AI इस श्रेणी में नए लेख लिख सके (Active for AI)</label>
                                 <label class="checkbox-row" id="cat-add-header-wrap"><input type="checkbox" id="cat-add-header" checked> इसे हेडर मेनू में भी जोड़ें</label>
+                                <label class="checkbox-row" id="cat-add-footer-wrap"><input type="checkbox" id="cat-add-footer" checked> इसे फ़ुटर कॉलम में भी जोड़ें (Add to Footer)</label>
                             </div>
                             <div class="actions-group">
                                 <button type="button" id="cat-cancel-btn" class="btn btn-outline btn-sm hidden" onclick="resetCategoryForm()">रद्द करें</button>
@@ -558,10 +696,14 @@
                         <div id="page-editor"></div>
                     </div>
 
-                    <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px; margin-bottom:16px;">
+                    <div style="display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:12px; margin-bottom:16px;">
                         <div>
                             <label class="checkbox-row"><input type="checkbox" id="cp-sitemap" checked> Google Sitemap (sitemap.xml) में शामिल करें</label>
-                            <label class="checkbox-row" id="cp-header-wrap"><input type="checkbox" id="cp-add-header" checked> हेडर मेनू में भी जोड़ें</label>
+                            <label class="checkbox-row" id="cp-header-wrap"><input type="checkbox" id="cp-add-header"> हेडर मेनू में भी जोड़ें</label>
+                            <div id="cp-footer-wrap" style="display:flex; align-items:center; gap:8px; flex-wrap:wrap; margin-top:6px;">
+                                <label class="checkbox-row" style="margin-top:0;"><input type="checkbox" id="cp-add-footer" checked> फ़ुटर में जोड़ें:</label>
+                                <select id="cp-footer-col" style="width:auto; padding:5px 10px; font-size:13px;"></select>
+                            </div>
                         </div>
                         <div style="min-width: 180px;">
                             <label>Update Frequency</label>
@@ -580,6 +722,178 @@
                 <div class="card secondary">
                     <h2>📚 मौजूदा कस्टम पेज (Existing Custom Pages)</h2>
                     <div id="custom-pages-list">लोड हो रहा है...</div>
+                </div>
+            </div>
+
+            <!-- ==================== TAB 4: FOOTER MANAGER ==================== -->
+            <div id="tab-footer" class="tab-panel">
+                <!-- Live Preview -->
+                <div class="card">
+                    <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px; margin-bottom:10px;">
+                        <h2 style="margin:0;">👁️ लाइव फ़ुटर प्रीव्यू (Live Footer Preview)</h2>
+                        <span id="footer-preview-badge" class="pill green">Active Across All Pages</span>
+                    </div>
+                    <p class="subtext">यह प्रीव्यू दिखाता है कि मुख्य पृष्ठ, श्रेणियों, कस्टम पेजों और सभी समाचार लेखों के नीचे फ़ुटर कैसा दिखेगा।</p>
+                    <div id="footer-live-preview" class="preview-shell"></div>
+                </div>
+
+                <!-- General Branding & Theme -->
+                <div class="card secondary">
+                    <h2>🎨 फ़ुटर ब्रांडिंग, थीम और कॉपीराइट (General & Theme)</h2>
+                    <p class="subtext">यहाँ से पूरे वेबसाइट के फ़ुटर की थीम, लोगो, परिचय, संपर्क ईमेल और कॉपीराइट टेक्स्ट बदलें।</p>
+
+                    <div style="display:flex; gap:20px; flex-wrap:wrap; margin-bottom:16px;">
+                        <label class="checkbox-row" style="margin-top:0;">
+                            <input type="checkbox" id="ft-enabled" checked onchange="syncFooterFieldsFromUI()"> पूरी वेबसाइट पर फ़ुटर दिखाएं (Enable Footer)
+                        </label>
+                        <label class="checkbox-row" style="margin-top:0;">
+                            <input type="checkbox" id="ft-show-logo" checked onchange="syncFooterFieldsFromUI()"> फ़ुटर में लोगो (SVG) दिखाएं
+                        </label>
+                    </div>
+
+                    <div class="grid-2">
+                        <div class="form-group">
+                            <label for="ft-theme">फ़ुटर थीम (Footer Style)</label>
+                            <select id="ft-theme" onchange="syncFooterFieldsFromUI()">
+                                <option value="dark">डार्क एडिटोरियल (Dark Editorial — Default)</option>
+                                <option value="light">लाइट एडिटोरियल (Light Surface)</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="ft-brand-title">ब्रांड शीर्षक (Brand Title / Fallback)</label>
+                            <input type="text" id="ft-brand-title" oninput="syncFooterFieldsFromUI()" placeholder="अबतक24.in (Aabtak24.in)">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="ft-brand-tagline">संक्षिप्त परिचय / टैगलाइन (Brand Tagline)</label>
+                        <textarea id="ft-brand-tagline" rows="2" oninput="syncFooterFieldsFromUI()" placeholder="भारत का आधुनिक डिजिटल हिंदी समाचार पोर्टल..."></textarea>
+                    </div>
+
+                    <div class="grid-2">
+                        <div class="form-group">
+                            <label for="ft-contact-label">संपर्क लेबल (Contact Label)</label>
+                            <input type="text" id="ft-contact-label" oninput="syncFooterFieldsFromUI()" placeholder="संपादकीय संपर्क:">
+                        </div>
+                        <div class="form-group">
+                            <label for="ft-contact-email">संपर्क ईमेल (Contact Email)</label>
+                            <input type="text" id="ft-contact-email" oninput="syncFooterFieldsFromUI()" placeholder="contact@aabtak24.in">
+                        </div>
+                    </div>
+
+                    <div class="grid-2">
+                        <div class="form-group">
+                            <label for="ft-copyright">कॉपीराइट टेक्स्ट (Copyright — <code class="inline">{year}</code> स्वतः वर्ष दिखाता है)</label>
+                            <input type="text" id="ft-copyright" oninput="syncFooterFieldsFromUI()" placeholder="© {year} अबतक24.in (Aabtak24.in) • सर्वाधिकार सुरक्षित।">
+                        </div>
+                        <div class="form-group">
+                            <label for="ft-bottom-note">दायाँ बॉटम नोट (Bottom Right Tag)</label>
+                            <input type="text" id="ft-bottom-note" oninput="syncFooterFieldsFromUI()" placeholder="डिजिटल संस्करण • INDIA">
+                        </div>
+                    </div>
+
+                    <details style="background: var(--card-subtle); padding: 12px 14px; border-radius: 4px; margin-top: 6px;">
+                        <summary style="cursor:pointer; font-weight:700; font-size:14px;">🖌️ कस्टम रंग ओवरराइड (Optional Custom Colors — खाली छोड़ने पर style.css थीम लागू रहती है)</summary>
+                        <div class="color-grid">
+                            <div>
+                                <label>पृष्ठभूमि (Background)</label>
+                                <div class="color-field">
+                                    <input type="color" id="ft-col-pick-bg" value="#141210" oninput="onFooterColorPick('bg', this.value)">
+                                    <input type="text" id="ft-col-bg" placeholder="Default (#141210)" oninput="onFooterColorText('bg', this.value)">
+                                </div>
+                            </div>
+                            <div>
+                                <label>बॉटम बार (Bottom Bar)</label>
+                                <div class="color-field">
+                                    <input type="color" id="ft-col-pick-bottom_bg" value="#0d0b0a" oninput="onFooterColorPick('bottom_bg', this.value)">
+                                    <input type="text" id="ft-col-bottom_bg" placeholder="Default (#0D0B0A)" oninput="onFooterColorText('bottom_bg', this.value)">
+                                </div>
+                            </div>
+                            <div>
+                                <label>मुख्य टेक्स्ट (Text)</label>
+                                <div class="color-field">
+                                    <input type="color" id="ft-col-pick-text" value="#faf6f0" oninput="onFooterColorPick('text', this.value)">
+                                    <input type="text" id="ft-col-text" placeholder="Default (#FAF6F0)" oninput="onFooterColorText('text', this.value)">
+                                </div>
+                            </div>
+                            <div>
+                                <label>लिंक / सब-टेक्स्ट (Muted)</label>
+                                <div class="color-field">
+                                    <input type="color" id="ft-col-pick-muted" value="#b8afa6" oninput="onFooterColorPick('muted', this.value)">
+                                    <input type="text" id="ft-col-muted" placeholder="Default (#B8AFA6)" oninput="onFooterColorText('muted', this.value)">
+                                </div>
+                            </div>
+                            <div>
+                                <label>हाइलाइट / एक्सेंट (Accent)</label>
+                                <div class="color-field">
+                                    <input type="color" id="ft-col-pick-accent" value="#ff4c00" oninput="onFooterColorPick('accent', this.value)">
+                                    <input type="text" id="ft-col-accent" placeholder="Default (#FF4C00)" oninput="onFooterColorText('accent', this.value)">
+                                </div>
+                            </div>
+                            <div>
+                                <label>बॉर्डर (Border)</label>
+                                <div class="color-field">
+                                    <input type="color" id="ft-col-pick-border" value="#2c2723" oninput="onFooterColorPick('border', this.value)">
+                                    <input type="text" id="ft-col-border" placeholder="Default (#2C2723)" oninput="onFooterColorText('border', this.value)">
+                                </div>
+                            </div>
+                        </div>
+                        <div style="margin-top:12px;">
+                            <button type="button" class="btn btn-outline btn-sm" onclick="resetFooterColors()">↺ सभी कस्टम रंग रीसेट करें (Use Theme Default)</button>
+                        </div>
+                    </details>
+                </div>
+
+                <!-- Columns & Links Manager -->
+                <div class="card">
+                    <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px; margin-bottom:8px;">
+                        <h2 style="margin:0;">📚 फ़ुटर कॉलम और लिंक (Columns & Links)</h2>
+                        <span id="footer-cols-badge" class="pill green">0 columns</span>
+                    </div>
+                    <p class="subtext">कस्टम पेज, समाचार श्रेणियाँ या बाहरी लिंक किसी भी फ़ुटर कॉलम में जोड़ें, संपादित करें या क्रम बदलें।</p>
+
+                    <div id="footer-columns-list"></div>
+
+                    <div style="background: var(--card-subtle); padding: 14px; border-radius: 4px; margin-top: 14px;">
+                        <h3>➕ नया फ़ुटर कॉलम जोड़ें (Add Footer Column)</h3>
+                        <div style="display:flex; gap:10px; flex-wrap:wrap; align-items:center;">
+                            <input type="text" id="new-footer-col-title" placeholder="जैसे: विशेष सेवाएँ या सोशल मीडिया" style="flex:1; min-width:220px;">
+                            <button type="button" class="btn btn-dark btn-sm" onclick="addFooterColumn()">+ नया कॉलम जोड़ें</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Social / Action Pills Manager -->
+                <div class="card secondary">
+                    <h2>🔗 ब्रांड एक्शन / सोशल पिल्स (Quick Action Pills)</h2>
+                    <p class="subtext">फ़ुटर के ब्रांड ब्लॉक के नीचे दिखने वाले बटन/लिंक (जैसे वेबसाइट, WhatsApp, YouTube, ईमेल आदि)।</p>
+
+                    <div id="footer-social-list"></div>
+
+                    <div style="background: var(--card-subtle); padding: 14px; border-radius: 4px; margin-top: 14px;">
+                        <h3>➕ नया सोशल / एक्शन लिंक जोड़ें</h3>
+                        <div class="grid-2">
+                            <div class="form-group" style="margin-bottom:8px;">
+                                <label>बटन का नाम (Label)</label>
+                                <input type="text" id="new-ft-social-label" placeholder="जैसे: ▶️ YouTube या ✉️ ईमेल">
+                            </div>
+                            <div class="form-group" style="margin-bottom:8px;">
+                                <label>URL / लिंक (Href)</label>
+                                <input type="text" id="new-ft-social-href" placeholder="https://... या contact.html">
+                            </div>
+                        </div>
+                        <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px;">
+                            <label class="checkbox-row" style="margin:0;">
+                                <input type="checkbox" id="new-ft-social-newtab" checked> बाहरी लिंक (http/https) नए टैब में खोलें
+                            </label>
+                            <button type="button" class="btn btn-dark btn-sm" onclick="addFooterSocial()">+ पिल लिंक जोड़ें</button>
+                        </div>
+                    </div>
+
+                    <div style="margin-top: 20px; padding-top: 16px; border-top: 2px solid var(--border);">
+                        <button type="button" class="btn btn-primary btn-full" id="save-footer-btn" onclick="commitFooterConfig()">💾 फ़ुटर बदलाव सेव करें एवं पूरी वेबसाइट अपडेट करें (Save Footer & Rebuild)</button>
+                        <div id="footer-status" class="status-box"></div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -607,12 +921,39 @@
             custom_pages: [
                 {
                     id: "about",
-                    title: "हमारे बारे में (About Us) | अबतक24.in",
-                    meta_description: "अबतक24.in (Aabtak24.in) — भारत का आधुनिक डिजिटल हिंदी समाचार पोर्टल।",
+                    title: "हमारे बारे में (About Us) | Aabtak24.in",
+                    meta_description: "अबतक24.in (Aabtak24.in) — भारत का आधुनिक डिजिटल हिंदी समाचार पोर्टल। जानें हमारे संपादकीय मानक और संपर्क सूत्र।",
                     source_fragment: "pages/about.html",
                     output_file: "about.html",
                     include_in_sitemap: true,
                     changefreq: "monthly"
+                },
+                {
+                    id: "contact",
+                    title: "संपर्क करें (Contact Us) | Aabtak24.in",
+                    meta_description: "Aabtak24.in की संपादकीय टीम से संपर्क करें।",
+                    source_fragment: "pages/contact.html",
+                    output_file: "contact.html",
+                    include_in_sitemap: true,
+                    changefreq: "monthly"
+                },
+                {
+                    id: "editorial-policy",
+                    title: "Editorial Policy | Aabtak24.in",
+                    meta_description: "जानें Aabtak24.in की संपादकीय नीति और तथ्य-जांच मानक।",
+                    source_fragment: "pages/editorial-policy.html",
+                    output_file: "editorial-policy.html",
+                    include_in_sitemap: true,
+                    changefreq: "yearly"
+                },
+                {
+                    id: "privacy-policy",
+                    title: "गोपनीयता नीति (Privacy Policy) | Aabtak24.in",
+                    meta_description: "Aabtak24.in की गोपनीयता नीति पढ़िए।",
+                    source_fragment: "pages/privacy-policy.html",
+                    output_file: "privacy-policy.html",
+                    include_in_sitemap: true,
+                    changefreq: "yearly"
                 }
             ],
             header_menu: [
@@ -623,7 +964,67 @@
                 { label: "राजनीति", href: "politics.html" },
                 { label: "मनोरंजन", href: "entertainment.html" },
                 { label: "हमारे बारे में", href: "about.html" }
-            ]
+            ],
+            footer: {
+                enabled: true,
+                theme: "dark",
+                show_logo: true,
+                brand_title: "अबतक24.in (Aabtak24.in)",
+                brand_tagline: "भारत का आधुनिक डिजिटल हिंदी समाचार पोर्टल। देश-विदेश, टेक्नोलॉजी, अर्थव्यवस्था, राजनीति और मनोरंजन की सटीक एवं तथ्यपूर्ण खबरें।",
+                contact_label: "संपादकीय संपर्क:",
+                contact_email: "contact@aabtak24.in",
+                columns: [
+                    {
+                        id: "categories",
+                        title: "प्रमुख श्रेणियाँ",
+                        links: [
+                            { label: "मुख्य खबरें", href: "index.html" },
+                            { label: "देश-विदेश", href: "desh-videsh.html" },
+                            { label: "टेक्नोलॉजी", href: "technology.html" },
+                            { label: "अर्थव्यवस्था", href: "economy.html" },
+                            { label: "राजनीति", href: "politics.html" },
+                            { label: "मनोरंजन", href: "entertainment.html" }
+                        ]
+                    },
+                    {
+                        id: "pages",
+                        title: "संस्थान एवं नीतियाँ",
+                        links: [
+                            { label: "हमारे बारे में (About Us)", href: "about.html" },
+                            { label: "संपर्क करें (Contact Us)", href: "contact.html" },
+                            { label: "संपादकीय नीति (Editorial Policy)", href: "editorial-policy.html" },
+                            { label: "गोपनीयता नीति (Privacy Policy)", href: "privacy-policy.html" }
+                        ]
+                    }
+                ],
+                social_links: [
+                    { label: "🌐 वेबसाइट", href: "https://aabtak24.in", new_tab: true },
+                    { label: "✉️ ईमेल संपर्क", href: "mailto:contact@aabtak24.in", new_tab: false }
+                ],
+                copyright_text: "© {year} अबतक24.in (Aabtak24.in) • सर्वाधिकार सुरक्षित।",
+                bottom_note: "डिजिटल संस्करण • INDIA",
+                colors: {}
+            }
+        };
+
+        const FOOTER_COLOR_KEYS = ["bg", "bottom_bg", "text", "muted", "accent", "border"];
+        const FOOTER_DEFAULT_COLORS = {
+            dark: {
+                bg: "#141210",
+                bottom_bg: "#0D0B0A",
+                text: "#FAF6F0",
+                muted: "#B8AFA6",
+                accent: "#FF4C00",
+                border: "#2C2723"
+            },
+            light: {
+                bg: "#F3EDE2",
+                bottom_bg: "#FFFFFF",
+                text: "#141210",
+                muted: "#6E655F",
+                accent: "#FF4C00",
+                border: "#E2D9CC"
+            }
         };
 
         // =========================================================================
@@ -632,6 +1033,7 @@
         let GITHUB_TOKEN = "";
         let ALL_ARTICLES = [];
         let SITE_CONFIG = JSON.parse(JSON.stringify(DEFAULT_SITE_CONFIG));
+        let SITE_CONFIG_EXTRA = {};
         let SITE_CONFIG_SHA = null;
         let EDITING_SLUG = null;
         let EDITING_CAT_INDEX = null;
@@ -868,19 +1270,111 @@
         // =========================================================================
         // 5. LOAD & RENDER DATA (site_config.json + articles_db.json)
         // =========================================================================
+        function escapeHtml(str) {
+            return String(str ?? "")
+                .replace(/&/g, "&amp;")
+                .replace(/</g, "&lt;")
+                .replace(/>/g, "&gt;")
+                .replace(/"/g, "&quot;")
+                .replace(/'/g, "&#39;");
+        }
+
+        function normalizeFooterConfig(raw) {
+            const defs = JSON.parse(JSON.stringify(DEFAULT_SITE_CONFIG.footer));
+            if (!raw || typeof raw !== "object" || Array.isArray(raw)) return defs;
+
+            const theme = String(raw.theme || defs.theme).trim().toLowerCase() === "light" ? "light" : "dark";
+            const columns = Array.isArray(raw.columns)
+                ? raw.columns.filter(c => c && typeof c === "object").map((c, idx) => ({
+                    id: (typeof c.id === "string" && c.id.trim()) ? c.id.trim() : `col-${idx + 1}`,
+                    title: typeof c.title === "string" ? c.title : "",
+                    links: Array.isArray(c.links)
+                        ? c.links.filter(l => l && typeof l === "object").map(l => {
+                            const item = { label: String(l.label || ""), href: String(l.href || "") };
+                            if (typeof l.new_tab === "boolean") item.new_tab = l.new_tab;
+                            return item;
+                        })
+                        : []
+                }))
+                : defs.columns;
+
+            const socialLinks = Array.isArray(raw.social_links)
+                ? raw.social_links.filter(s => s && typeof s === "object").map(s => {
+                    const item = { label: String(s.label || ""), href: String(s.href || "") };
+                    if (typeof s.new_tab === "boolean") item.new_tab = s.new_tab;
+                    return item;
+                })
+                : defs.social_links;
+
+            const colors = {};
+            if (raw.colors && typeof raw.colors === "object" && !Array.isArray(raw.colors)) {
+                [...FOOTER_COLOR_KEYS, "pill_bg"].forEach(k => {
+                    const v = String(raw.colors[k] || "").trim();
+                    if (/^#[0-9a-fA-F]{3,8}$/.test(v)) colors[k] = v;
+                });
+            }
+
+            return {
+                enabled: raw.enabled !== undefined ? Boolean(raw.enabled) : defs.enabled,
+                theme,
+                show_logo: raw.show_logo !== undefined ? Boolean(raw.show_logo) : defs.show_logo,
+                brand_title: typeof raw.brand_title === "string" ? raw.brand_title : defs.brand_title,
+                brand_tagline: typeof raw.brand_tagline === "string" ? raw.brand_tagline : defs.brand_tagline,
+                contact_label: typeof raw.contact_label === "string" ? raw.contact_label : defs.contact_label,
+                contact_email: typeof raw.contact_email === "string" ? raw.contact_email : defs.contact_email,
+                columns,
+                social_links: socialLinks,
+                copyright_text: typeof raw.copyright_text === "string" ? raw.copyright_text : defs.copyright_text,
+                bottom_note: typeof raw.bottom_note === "string" ? raw.bottom_note : defs.bottom_note,
+                colors
+            };
+        }
+
+        function buildSiteConfigPayload(latestRawContent = null) {
+            let latestExtra = {};
+            if (latestRawContent) {
+                try {
+                    const parsedLatest = JSON.parse(latestRawContent);
+                    if (parsedLatest && typeof parsedLatest === "object" && !Array.isArray(parsedLatest)) {
+                        Object.keys(parsedLatest).forEach(k => {
+                            if (!["categories", "custom_pages", "header_menu", "footer"].includes(k)) {
+                                latestExtra[k] = parsedLatest[k];
+                            }
+                        });
+                    }
+                } catch (_) {}
+            }
+            return {
+                ...SITE_CONFIG_EXTRA,
+                ...latestExtra,
+                categories: SITE_CONFIG.categories,
+                custom_pages: SITE_CONFIG.custom_pages,
+                header_menu: SITE_CONFIG.header_menu,
+                footer: normalizeFooterConfig(SITE_CONFIG.footer)
+            };
+        }
+
         async function loadAllData() {
             try {
                 // 1. Load site_config.json
                 const cfgFile = await ghGetFile("site_config.json");
                 if (cfgFile) {
                     const parsed = JSON.parse(cfgFile.content);
+                    SITE_CONFIG_EXTRA = {};
+                    Object.keys(parsed).forEach(k => {
+                        if (!["categories", "custom_pages", "header_menu", "footer"].includes(k)) {
+                            SITE_CONFIG_EXTRA[k] = parsed[k];
+                        }
+                    });
                     SITE_CONFIG = {
-                        categories: parsed.categories || DEFAULT_SITE_CONFIG.categories,
-                        custom_pages: parsed.custom_pages || [],
-                        header_menu: parsed.header_menu || DEFAULT_SITE_CONFIG.header_menu
+                        categories: Array.isArray(parsed.categories) ? parsed.categories : JSON.parse(JSON.stringify(DEFAULT_SITE_CONFIG.categories)),
+                        custom_pages: Array.isArray(parsed.custom_pages) ? parsed.custom_pages : [],
+                        header_menu: Array.isArray(parsed.header_menu) ? parsed.header_menu : JSON.parse(JSON.stringify(DEFAULT_SITE_CONFIG.header_menu)),
+                        footer: normalizeFooterConfig(parsed.footer)
                     };
                     SITE_CONFIG_SHA = cfgFile.sha;
                 } else {
+                    SITE_CONFIG_EXTRA = {};
                     SITE_CONFIG = JSON.parse(JSON.stringify(DEFAULT_SITE_CONFIG));
                     SITE_CONFIG_SHA = null;
                 }
@@ -889,6 +1383,7 @@
                 renderHeaderMenuList();
                 renderCategoriesList();
                 renderCustomPagesList();
+                renderFooterManager();
 
                 // 2. Load articles_db.json
                 const dbFile = await ghGetFile("articles_db.json");
@@ -1138,6 +1633,19 @@
         // =========================================================================
         // 7. TAB 2: CATEGORIES & HEADER MENU MANAGER
         // =========================================================================
+        function buildQuickPickOptionsHtml() {
+            let opts = `<option value="">-- कस्टम / बाहरी लिंक (Custom Link) --</option>`;
+            opts += `<option value="${encodeURIComponent("मुख्य खबरें")}|${encodeURIComponent("index.html")}">🏠 मुख्य खबरें (index.html)</option>`;
+            SITE_CONFIG.categories.forEach(c => {
+                opts += `<option value="${encodeURIComponent(c.name)}|${encodeURIComponent(c.file)}">🗂️ श्रेणी: ${escapeHtml(c.name)} (${escapeHtml(c.file)})</option>`;
+            });
+            SITE_CONFIG.custom_pages.forEach(p => {
+                const shortLabel = (p.title || "").split("|")[0].trim() || p.output_file;
+                opts += `<option value="${encodeURIComponent(shortLabel)}|${encodeURIComponent(p.output_file)}">📄 पेज: ${escapeHtml(shortLabel)} (${escapeHtml(p.output_file)})</option>`;
+            });
+            return opts;
+        }
+
         function renderHeaderMenuList() {
             const container = document.getElementById("header-menu-list");
             const countBadge = document.getElementById("header-count-badge");
@@ -1155,8 +1663,8 @@
                 <div class="list-item">
                     <div style="flex:1; min-width:220px;">
                         <span class="pill muted">#${idx + 1}</span>
-                        <strong>${item.label}</strong>
-                        <span style="color:var(--text-muted); font-size:13px;">→ <code class="inline">${item.href}</code></span>
+                        <strong>${escapeHtml(item.label)}</strong>
+                        <span style="color:var(--text-muted); font-size:13px;">→ <code class="inline">${escapeHtml(item.href)}</code></span>
                         ${isExt ? '<span class="pill">External</span>' : ''}
                     </div>
                     <div class="actions-group">
@@ -1173,24 +1681,15 @@
 
         function refreshHeaderQuickPick() {
             const sel = document.getElementById("header-quick-pick");
-            let opts = `<option value="">-- कस्टम / बाहरी लिंक (Custom Link) --</option>`;
-            opts += `<option value="मुख्य खबरें|index.html">🏠 मुख्य खबरें (index.html)</option>`;
-            SITE_CONFIG.categories.forEach(c => {
-                opts += `<option value="${c.name}|${c.file}">🗂️ श्रेणी: ${c.name} (${c.file})</option>`;
-            });
-            SITE_CONFIG.custom_pages.forEach(p => {
-                const shortLabel = p.title.split("|")[0].trim();
-                opts += `<option value="${shortLabel}|${p.output_file}">📄 पेज: ${shortLabel} (${p.output_file})</option>`;
-            });
-            sel.innerHTML = opts;
+            if (sel) sel.innerHTML = buildQuickPickOptionsHtml();
         }
 
         function applyHeaderQuickPick() {
             const val = document.getElementById("header-quick-pick").value;
             if (!val) return;
-            const [label, href] = val.split("|");
-            document.getElementById("new-header-label").value = label;
-            document.getElementById("new-header-href").value = href;
+            const [rawLabel, rawHref] = val.split("|");
+            document.getElementById("new-header-label").value = decodeURIComponent(rawLabel || "");
+            document.getElementById("new-header-href").value = decodeURIComponent(rawHref || "");
         }
 
         function addHeaderItem() {
@@ -1241,14 +1740,14 @@
                 <div class="list-item">
                     <div style="flex:1; min-width:240px;">
                         <div style="margin-bottom:4px;">
-                            <strong style="font-size:16px;">${cat.name}</strong>
-                            <code class="inline">${cat.file}</code>
+                            <strong style="font-size:16px;">${escapeHtml(cat.name)}</strong>
+                            <code class="inline">${escapeHtml(cat.file)}</code>
                             ${cat.active_for_ai !== false
                                 ? '<span class="pill green">AI Active</span>'
                                 : '<span class="pill muted">AI Paused</span>'}
                         </div>
                         <div style="font-size:12px; color:var(--text-muted);">
-                            Aliases: ${(cat.aliases || []).join(", ")}
+                            Aliases: ${escapeHtml((cat.aliases || []).join(", "))}
                         </div>
                     </div>
                     <div class="actions-group">
@@ -1268,6 +1767,7 @@
             document.getElementById("cat-aliases").value = (cat.aliases || []).join(", ");
             document.getElementById("cat-ai-active").checked = cat.active_for_ai !== false;
             document.getElementById("cat-add-header-wrap").classList.add("hidden");
+            document.getElementById("cat-add-footer-wrap").classList.add("hidden");
             document.getElementById("cat-cancel-btn").classList.remove("hidden");
             document.getElementById("cat-save-btn").textContent = "✓ श्रेणी अपडेट करें";
         }
@@ -1279,7 +1779,10 @@
             document.getElementById("cat-file").value = "";
             document.getElementById("cat-aliases").value = "";
             document.getElementById("cat-ai-active").checked = true;
+            document.getElementById("cat-add-header").checked = true;
+            document.getElementById("cat-add-footer").checked = true;
             document.getElementById("cat-add-header-wrap").classList.remove("hidden");
+            document.getElementById("cat-add-footer-wrap").classList.remove("hidden");
             document.getElementById("cat-cancel-btn").classList.add("hidden");
             document.getElementById("cat-save-btn").textContent = "+ सूची में जोड़ें";
         }
@@ -1290,6 +1793,7 @@
             const rawAliases = document.getElementById("cat-aliases").value;
             const activeForAi = document.getElementById("cat-ai-active").checked;
             const addToHeader = document.getElementById("cat-add-header").checked;
+            const addToFooter = document.getElementById("cat-add-footer").checked;
 
             if (!name || !file) {
                 alert("कृपया श्रेणी का नाम और HTML फ़ाइल का नाम दोनों भरें।");
@@ -1305,6 +1809,17 @@
                 // Automatically preserve legacy category name in aliases when renaming
                 if (oldCat.name && !aliases.includes(oldCat.name)) {
                     aliases.push(oldCat.name);
+                }
+                if (oldCat.file && oldCat.file !== file) {
+                    SITE_CONFIG.header_menu.forEach(h => {
+                        if (h.href === oldCat.file) h.href = file;
+                    });
+                    const footer = ensureFooterConfig();
+                    (footer.columns || []).forEach(col => {
+                        (col.links || []).forEach(l => {
+                            if (l.href === oldCat.file) l.href = file;
+                        });
+                    });
                 }
                 SITE_CONFIG.categories[EDITING_CAT_INDEX] = {
                     ...oldCat,
@@ -1325,11 +1840,23 @@
                 if (addToHeader && !SITE_CONFIG.header_menu.some(h => h.href === file)) {
                     SITE_CONFIG.header_menu.push({ label: name, href: file });
                 }
+                if (addToFooter) {
+                    const footer = ensureFooterConfig();
+                    let catCol = footer.columns.find(c => c.id === "categories") || footer.columns[0];
+                    if (!catCol) {
+                        catCol = { id: "categories", title: "प्रमुख श्रेणियाँ", links: [] };
+                        footer.columns.unshift(catCol);
+                    }
+                    if (!catCol.links.some(l => l.href === file)) {
+                        catCol.links.push({ label: name, href: file });
+                    }
+                }
             }
 
             resetCategoryForm();
             renderCategoriesList();
             renderHeaderMenuList();
+            renderFooterManager();
             populateArticleCategoryDropdown();
             showStatus("config-status", "info", "⚠️ बदलाव सूची में जुड़ गए हैं। वेबसाइट पर लागू करने के लिए नीचे <strong>Save & Rebuild</strong> बटन दबाएं।");
         }
@@ -1339,8 +1866,13 @@
             if (!confirm(`क्या आप "${cat.name}" (${cat.file}) श्रेणी को हटाना चाहते हैं? Save & Rebuild दबाने पर इसकी पुरानी HTML फ़ाइल भी वेबसाइट से हट जाएगी।`)) return;
             SITE_CONFIG.categories.splice(idx, 1);
             SITE_CONFIG.header_menu = SITE_CONFIG.header_menu.filter(h => h.href !== cat.file);
+            const footer = ensureFooterConfig();
+            (footer.columns || []).forEach(col => {
+                col.links = (col.links || []).filter(l => l.href !== cat.file);
+            });
             renderCategoriesList();
             renderHeaderMenuList();
+            renderFooterManager();
             populateArticleCategoryDropdown();
         }
 
@@ -1351,9 +1883,10 @@
 
             try {
                 const latest = await ghGetFile("site_config.json");
+                const payload = buildSiteConfigPayload(latest ? latest.content : null);
                 const res = await ghPutFile(
                     "site_config.json",
-                    JSON.stringify(SITE_CONFIG, null, 2),
+                    JSON.stringify(payload, null, 2),
                     "Update categories and header navigation via Admin CMS",
                     latest ? latest.sha : SITE_CONFIG_SHA
                 );
@@ -1370,6 +1903,30 @@
         // =========================================================================
         // 8. TAB 3: CUSTOM STATIC PAGES BUILDER
         // =========================================================================
+        function populatePageFooterColSelect(preserveSelection = true) {
+            const sel = document.getElementById("cp-footer-col");
+            if (!sel) return;
+            const prevVal = preserveSelection ? sel.value : "";
+            const footer = ensureFooterConfig();
+            const cols = footer.columns || [];
+
+            if (!cols.length) {
+                sel.innerHTML = `<option value="-1">+ नया फ़ुटर कॉलम ("संस्थान एवं नीतियाँ")</option>`;
+                return;
+            }
+
+            sel.innerHTML = cols.map((col, idx) =>
+                `<option value="${idx}">${escapeHtml(col.title || `Column ${idx + 1}`)}</option>`
+            ).join("");
+
+            if (preserveSelection && prevVal !== "" && Array.from(sel.options).some(o => o.value === prevVal)) {
+                sel.value = prevVal;
+            } else {
+                const pagesIdx = cols.findIndex(c => c.id === "pages");
+                sel.value = String(pagesIdx !== -1 ? pagesIdx : cols.length - 1);
+            }
+        }
+
         function renderCustomPagesList() {
             const container = document.getElementById("custom-pages-list");
             if (!SITE_CONFIG.custom_pages.length) {
@@ -1379,14 +1936,14 @@
             container.innerHTML = SITE_CONFIG.custom_pages.map(p => `
                 <div class="list-item">
                     <div style="flex:1; min-width:240px;">
-                        <div style="font-weight:700; font-size:16px;">${p.title}</div>
+                        <div style="font-weight:700; font-size:16px;">${escapeHtml(p.title)}</div>
                         <div style="font-size:12px; color:var(--text-muted);">
-                            URL: <code class="inline">/${p.output_file}</code> • Fragment: <code class="inline">${p.source_fragment}</code>
+                            URL: <code class="inline">/${escapeHtml(p.output_file)}</code> • Fragment: <code class="inline">${escapeHtml(p.source_fragment)}</code>
                         </div>
                     </div>
                     <div class="actions-group">
-                        <button type="button" class="btn btn-outline btn-sm" onclick="startEditCustomPage('${p.id}')">✏️ संपादित करें</button>
-                        <button type="button" class="btn btn-danger btn-sm" onclick="deleteCustomPage('${p.id}')">🗑️ हटाएं</button>
+                        <button type="button" class="btn btn-outline btn-sm" onclick="startEditCustomPage('${escapeHtml(p.id)}')">✏️ संपादित करें</button>
+                        <button type="button" class="btn btn-danger btn-sm" onclick="deleteCustomPage('${escapeHtml(p.id)}')">🗑️ हटाएं</button>
                     </div>
                 </div>
             `).join("");
@@ -1396,7 +1953,7 @@
             const page = SITE_CONFIG.custom_pages.find(p => p.id === pageId);
             if (!page) return;
 
-            showStatus("page-status", "info", `${page.source_fragment} लोड हो रहा है...`);
+            showStatus("page-status", "info", `${escapeHtml(page.source_fragment)} लोड हो रहा है...`);
             try {
                 const fragFile = await ghGetFile(page.source_fragment);
                 EDITING_PAGE_ID = pageId;
@@ -1410,6 +1967,7 @@
                 document.getElementById("cp-sitemap").checked = page.include_in_sitemap !== false;
                 document.getElementById("cp-freq").value = page.changefreq || "monthly";
                 document.getElementById("cp-header-wrap").classList.add("hidden");
+                document.getElementById("cp-footer-wrap").classList.add("hidden");
 
                 if (fragFile) {
                     const parser = new DOMParser();
@@ -1443,7 +2001,11 @@
             document.getElementById("cp-desc").value = "";
             document.getElementById("cp-sitemap").checked = true;
             document.getElementById("cp-freq").value = "monthly";
+            document.getElementById("cp-add-header").checked = false;
+            document.getElementById("cp-add-footer").checked = true;
             document.getElementById("cp-header-wrap").classList.remove("hidden");
+            document.getElementById("cp-footer-wrap").classList.remove("hidden");
+            populatePageFooterColSelect(false);
             pageQuill.root.innerHTML = "";
         }
 
@@ -1456,6 +2018,8 @@
             const includeSitemap = document.getElementById("cp-sitemap").checked;
             const changefreq = document.getElementById("cp-freq").value;
             const addToHeader = document.getElementById("cp-add-header").checked;
+            const addToFooter = document.getElementById("cp-add-footer").checked;
+            const footerColVal = document.getElementById("cp-footer-col").value;
 
             if (!title || !outputFile || !h1Text) {
                 showStatus("page-status", "error", "⚠️ कृपया Page Title, HTML फ़ाइल का नाम, और H1 Heading भरें।");
@@ -1514,12 +2078,30 @@
                         const navLabel = badgeText.split("/")[0].trim() || title.split("|")[0].trim();
                         SITE_CONFIG.header_menu.push({ label: navLabel, href: outputFile });
                     }
+                    if (addToFooter) {
+                        const footer = ensureFooterConfig();
+                        let targetCol = null;
+                        const colIdx = parseInt(footerColVal, 10);
+                        if (!Number.isNaN(colIdx) && colIdx >= 0 && footer.columns[colIdx]) {
+                            targetCol = footer.columns[colIdx];
+                        } else if (footer.columns.length) {
+                            targetCol = footer.columns.find(c => c.id === "pages") || footer.columns[footer.columns.length - 1];
+                        } else {
+                            targetCol = { id: "pages", title: "संस्थान एवं नीतियाँ", links: [] };
+                            footer.columns.push(targetCol);
+                        }
+                        if (!targetCol.links.some(l => l.href === outputFile)) {
+                            const footerLabel = title.split("|")[0].trim() || badgeText.split("/")[0].trim() || outputFile;
+                            targetCol.links.push({ label: footerLabel, href: outputFile });
+                        }
+                    }
                 }
 
                 const latestCfg = await ghGetFile("site_config.json");
+                const payload = buildSiteConfigPayload(latestCfg ? latestCfg.content : null);
                 const cfgRes = await ghPutFile(
                     "site_config.json",
-                    JSON.stringify(SITE_CONFIG, null, 2),
+                    JSON.stringify(payload, null, 2),
                     `Register custom page ${outputFile} in site_config.json`,
                     latestCfg ? latestCfg.sha : SITE_CONFIG_SHA
                 );
@@ -1528,8 +2110,9 @@
                 await triggerRebuild();
                 renderCustomPagesList();
                 renderHeaderMenuList();
+                renderFooterManager();
                 resetCustomPageForm();
-                showStatus("page-status", "success", `🎉 कस्टम पेज <code class="inline">${outputFile}</code> सेव हो गया है! 20 सेकंड में लाइव हो जाएगा।`);
+                showStatus("page-status", "success", `🎉 कस्टम पेज <code class="inline">${escapeHtml(outputFile)}</code> सेव हो गया है! 20 सेकंड में लाइव हो जाएगा।`);
             } catch (e) {
                 showStatus("page-status", "error", `त्रुटि: ${e.message}`);
             } finally {
@@ -1551,11 +2134,16 @@
 
                 SITE_CONFIG.custom_pages = SITE_CONFIG.custom_pages.filter(p => p.id !== pageId);
                 SITE_CONFIG.header_menu = SITE_CONFIG.header_menu.filter(h => h.href !== page.output_file);
+                const footer = ensureFooterConfig();
+                (footer.columns || []).forEach(col => {
+                    col.links = (col.links || []).filter(l => l.href !== page.output_file);
+                });
 
                 const latestCfg = await ghGetFile("site_config.json");
+                const payload = buildSiteConfigPayload(latestCfg ? latestCfg.content : null);
                 const cfgRes = await ghPutFile(
                     "site_config.json",
-                    JSON.stringify(SITE_CONFIG, null, 2),
+                    JSON.stringify(payload, null, 2),
                     `Remove custom page ${page.output_file}`,
                     latestCfg ? latestCfg.sha : SITE_CONFIG_SHA
                 );
@@ -1564,9 +2152,559 @@
                 await triggerRebuild();
                 renderCustomPagesList();
                 renderHeaderMenuList();
-                showStatus("page-status", "success", `🗑️ कस्टम पेज ${page.output_file} हटा दिया गया है।`);
+                renderFooterManager();
+                showStatus("page-status", "success", `🗑️ कस्टम पेज ${escapeHtml(page.output_file)} हटा दिया गया है।`);
             } catch (e) {
                 showStatus("page-status", "error", `त्रुटि: ${e.message}`);
+            }
+        }
+
+        // =========================================================================
+        // 9. TAB 4: FOOTER MANAGER & LIVE PREVIEW
+        // =========================================================================
+        function ensureFooterConfig() {
+            if (!SITE_CONFIG.footer || typeof SITE_CONFIG.footer !== "object" || Array.isArray(SITE_CONFIG.footer)) {
+                SITE_CONFIG.footer = JSON.parse(JSON.stringify(DEFAULT_SITE_CONFIG.footer));
+            }
+            if (!Array.isArray(SITE_CONFIG.footer.columns)) SITE_CONFIG.footer.columns = [];
+            if (!Array.isArray(SITE_CONFIG.footer.social_links)) SITE_CONFIG.footer.social_links = [];
+            if (!SITE_CONFIG.footer.colors || typeof SITE_CONFIG.footer.colors !== "object" || Array.isArray(SITE_CONFIG.footer.colors)) {
+                SITE_CONFIG.footer.colors = {};
+            }
+            return SITE_CONFIG.footer;
+        }
+
+        function isValidHexColor(val) {
+            return /^#[0-9a-fA-F]{3,8}$/.test(String(val || "").trim());
+        }
+
+        function toColorPickerHex(val, fallback) {
+            const v = String(val || "").trim();
+            if (/^#[0-9a-fA-F]{6}$/.test(v)) return v;
+            if (/^#[0-9a-fA-F]{3}$/.test(v)) {
+                return "#" + v[1] + v[1] + v[2] + v[2] + v[3] + v[3];
+            }
+            return fallback;
+        }
+
+        function renderFooterManager() {
+            ensureFooterConfig();
+            populateFooterFormFields();
+            renderFooterColumnsList();
+            renderFooterSocialList();
+            renderFooterLivePreview();
+            populatePageFooterColSelect();
+        }
+
+        function populateFooterFormFields() {
+            const footer = ensureFooterConfig();
+            document.getElementById("ft-enabled").checked = footer.enabled !== false;
+            document.getElementById("ft-show-logo").checked = footer.show_logo !== false;
+            document.getElementById("ft-theme").value = footer.theme === "light" ? "light" : "dark";
+            document.getElementById("ft-brand-title").value = footer.brand_title || "";
+            document.getElementById("ft-brand-tagline").value = footer.brand_tagline || "";
+            document.getElementById("ft-contact-label").value = footer.contact_label || "";
+            document.getElementById("ft-contact-email").value = footer.contact_email || "";
+            document.getElementById("ft-copyright").value = footer.copyright_text || "";
+            document.getElementById("ft-bottom-note").value = footer.bottom_note || "";
+            syncFooterColorInputs();
+        }
+
+        function syncFooterColorInputs() {
+            const footer = ensureFooterConfig();
+            const themeKey = footer.theme === "light" ? "light" : "dark";
+            const defaults = FOOTER_DEFAULT_COLORS[themeKey];
+            const colors = footer.colors || {};
+
+            FOOTER_COLOR_KEYS.forEach(key => {
+                const textEl = document.getElementById(`ft-col-${key}`);
+                const pickEl = document.getElementById(`ft-col-pick-${key}`);
+                const curVal = colors[key] || "";
+                if (textEl) {
+                    textEl.value = curVal;
+                    textEl.placeholder = `Default (${defaults[key]})`;
+                }
+                if (pickEl) {
+                    pickEl.value = toColorPickerHex(curVal, defaults[key]);
+                }
+            });
+        }
+
+        function syncFooterFieldsFromUI() {
+            const footer = ensureFooterConfig();
+            const prevTheme = footer.theme;
+            footer.enabled = document.getElementById("ft-enabled").checked;
+            footer.show_logo = document.getElementById("ft-show-logo").checked;
+            footer.theme = document.getElementById("ft-theme").value === "light" ? "light" : "dark";
+            footer.brand_title = document.getElementById("ft-brand-title").value;
+            footer.brand_tagline = document.getElementById("ft-brand-tagline").value;
+            footer.contact_label = document.getElementById("ft-contact-label").value;
+            footer.contact_email = document.getElementById("ft-contact-email").value;
+            footer.copyright_text = document.getElementById("ft-copyright").value;
+            footer.bottom_note = document.getElementById("ft-bottom-note").value;
+
+            if (prevTheme !== footer.theme) {
+                syncFooterColorInputs();
+            }
+            renderFooterLivePreview();
+        }
+
+        function onFooterColorPick(key, val) {
+            const footer = ensureFooterConfig();
+            const normalized = String(val || "").trim().toUpperCase();
+            if (!isValidHexColor(normalized)) return;
+            footer.colors[key] = normalized;
+            const textEl = document.getElementById(`ft-col-${key}`);
+            if (textEl) textEl.value = normalized;
+            renderFooterLivePreview();
+        }
+
+        function onFooterColorText(key, val) {
+            const footer = ensureFooterConfig();
+            const trimmed = String(val || "").trim();
+            const themeKey = footer.theme === "light" ? "light" : "dark";
+            const defaults = FOOTER_DEFAULT_COLORS[themeKey];
+            const pickEl = document.getElementById(`ft-col-pick-${key}`);
+
+            if (!trimmed) {
+                delete footer.colors[key];
+                if (pickEl) pickEl.value = defaults[key];
+                renderFooterLivePreview();
+                return;
+            }
+
+            if (isValidHexColor(trimmed)) {
+                footer.colors[key] = trimmed;
+                if (pickEl) pickEl.value = toColorPickerHex(trimmed, defaults[key]);
+                renderFooterLivePreview();
+            }
+        }
+
+        function resetFooterColors() {
+            const footer = ensureFooterConfig();
+            footer.colors = {};
+            syncFooterColorInputs();
+            renderFooterLivePreview();
+        }
+
+        function renderFooterColumnsList() {
+            const footer = ensureFooterConfig();
+            const cols = footer.columns || [];
+            const container = document.getElementById("footer-columns-list");
+            const badge = document.getElementById("footer-cols-badge");
+            if (badge) {
+                const totalLinks = cols.reduce((acc, c) => acc + (c.links ? c.links.length : 0), 0);
+                badge.textContent = `${cols.length} columns • ${totalLinks} links`;
+                badge.className = cols.length ? "pill green" : "pill muted";
+            }
+
+            if (!cols.length) {
+                container.innerHTML = `<p class="subtext">अभी कोई फ़ुटर कॉलम नहीं है। नीचे से नया कॉलम जोड़ें।</p>`;
+                return;
+            }
+
+            const qpOptions = buildQuickPickOptionsHtml();
+            container.innerHTML = cols.map((col, colIdx) => {
+                const links = col.links || [];
+                const linksHtml = links.length
+                    ? links.map((link, linkIdx) => {
+                        const isExt = /^https?:\/\/|^mailto:|^tel:/i.test(link.href);
+                        return `
+                        <div class="list-item">
+                            <div style="flex:1; min-width:200px;">
+                                <span class="pill muted">#${linkIdx + 1}</span>
+                                <strong>${escapeHtml(link.label)}</strong>
+                                <span style="color:var(--text-muted); font-size:13px;">→ <code class="inline">${escapeHtml(link.href)}</code></span>
+                                ${isExt ? '<span class="pill">External</span>' : ''}
+                            </div>
+                            <div class="actions-group">
+                                <button type="button" class="btn btn-outline btn-sm" ${linkIdx === 0 ? "disabled" : ""} onclick="moveFooterColLink(${colIdx}, ${linkIdx}, -1)" title="ऊपर ले जाएं">↑</button>
+                                <button type="button" class="btn btn-outline btn-sm" ${linkIdx === links.length - 1 ? "disabled" : ""} onclick="moveFooterColLink(${colIdx}, ${linkIdx}, 1)" title="नीचे ले जाएं">↓</button>
+                                <button type="button" class="btn btn-outline btn-sm" onclick="editFooterColLink(${colIdx}, ${linkIdx})">✏️ संपादित करें</button>
+                                <button type="button" class="btn btn-danger btn-sm" onclick="removeFooterColLink(${colIdx}, ${linkIdx})">✕ हटाएं</button>
+                            </div>
+                        </div>`;
+                    }).join("")
+                    : `<p class="subtext" style="margin-bottom:8px;">इस कॉलम में अभी कोई लिंक नहीं है। नीचे से जोड़ें।</p>`;
+
+                return `
+                <div class="footer-col-card">
+                    <div class="footer-col-header">
+                        <div>
+                            <strong style="font-size:17px;">${escapeHtml(col.title || `Column ${colIdx + 1}`)}</strong>
+                            <code class="inline" style="margin-left:6px;">${escapeHtml(col.id || `col-${colIdx + 1}`)}</code>
+                            <span class="pill green" style="margin-left:6px;">${links.length} links</span>
+                        </div>
+                        <div class="actions-group">
+                            <button type="button" class="btn btn-outline btn-sm" ${colIdx === 0 ? "disabled" : ""} onclick="moveFooterColumn(${colIdx}, -1)" title="कॉलम पहले लाएं">↑</button>
+                            <button type="button" class="btn btn-outline btn-sm" ${colIdx === cols.length - 1 ? "disabled" : ""} onclick="moveFooterColumn(${colIdx}, 1)" title="कॉलम बाद में भेजें">↓</button>
+                            <button type="button" class="btn btn-outline btn-sm" onclick="editFooterColumnTitle(${colIdx})">✏️ शीर्षक बदलें</button>
+                            <button type="button" class="btn btn-danger btn-sm" onclick="removeFooterColumn(${colIdx})">🗑️ कॉलम हटाएं</button>
+                        </div>
+                    </div>
+
+                    ${linksHtml}
+
+                    <div class="footer-add-row">
+                        <div class="grid-3">
+                            <div>
+                                <label>त्वरित चयन (Quick Pick)</label>
+                                <select id="ft-col-qp-${colIdx}" onchange="applyFooterColQuickPick(${colIdx})">${qpOptions}</select>
+                            </div>
+                            <div>
+                                <label>लिंक का नाम (Label)</label>
+                                <input type="text" id="ft-col-lbl-${colIdx}" placeholder="जैसे: हमारे बारे में">
+                            </div>
+                            <div>
+                                <label>लिंक / फ़ाइल (Href / URL)</label>
+                                <input type="text" id="ft-col-href-${colIdx}" placeholder="about.html या https://...">
+                            </div>
+                        </div>
+                        <div style="display:flex; justify-content:space-between; align-items:center; margin-top:10px; flex-wrap:wrap; gap:10px;">
+                            <label class="checkbox-row" style="margin:0;">
+                                <input type="checkbox" id="ft-col-newtab-${colIdx}" checked> बाहरी लिंक (http/https) नए टैब में खोलें
+                            </label>
+                            <button type="button" class="btn btn-dark btn-sm" onclick="addFooterColLink(${colIdx})">+ इस कॉलम में जोड़ें</button>
+                        </div>
+                    </div>
+                </div>`;
+            }).join("");
+        }
+
+        function addFooterColumn() {
+            const footer = ensureFooterConfig();
+            const titleEl = document.getElementById("new-footer-col-title");
+            const title = (titleEl.value || "").trim();
+            if (!title) {
+                alert("कृपया नए फ़ुटर कॉलम का शीर्षक भरें।");
+                return;
+            }
+            const baseId = cleanSlug(title) || `col-${Date.now()}`;
+            let id = baseId;
+            let suffix = 2;
+            while (footer.columns.some(c => c.id === id)) {
+                id = `${baseId}-${suffix++}`;
+            }
+            footer.columns.push({ id, title, links: [] });
+            titleEl.value = "";
+            renderFooterColumnsList();
+            renderFooterLivePreview();
+            populatePageFooterColSelect();
+        }
+
+        function moveFooterColumn(idx, dir) {
+            const cols = ensureFooterConfig().columns;
+            const target = idx + dir;
+            if (target < 0 || target >= cols.length) return;
+            [cols[idx], cols[target]] = [cols[target], cols[idx]];
+            renderFooterColumnsList();
+            renderFooterLivePreview();
+            populatePageFooterColSelect();
+        }
+
+        function editFooterColumnTitle(idx) {
+            const col = ensureFooterConfig().columns[idx];
+            if (!col) return;
+            const newTitle = prompt("फ़ुटर कॉलम का नया शीर्षक (Title):", col.title);
+            if (newTitle === null || !newTitle.trim()) return;
+            col.title = newTitle.trim();
+            renderFooterColumnsList();
+            renderFooterLivePreview();
+            populatePageFooterColSelect();
+        }
+
+        function removeFooterColumn(idx) {
+            const cols = ensureFooterConfig().columns;
+            const col = cols[idx];
+            if (!col) return;
+            if (!confirm(`क्या आप वाकई "${col.title || "Column"}" कॉलम और इसके सभी लिंक हटाना चाहते हैं?`)) return;
+            cols.splice(idx, 1);
+            renderFooterColumnsList();
+            renderFooterLivePreview();
+            populatePageFooterColSelect();
+        }
+
+        function applyFooterColQuickPick(colIdx) {
+            const sel = document.getElementById(`ft-col-qp-${colIdx}`);
+            if (!sel || !sel.value) return;
+            const [rawLabel, rawHref] = sel.value.split("|");
+            document.getElementById(`ft-col-lbl-${colIdx}`).value = decodeURIComponent(rawLabel || "");
+            document.getElementById(`ft-col-href-${colIdx}`).value = decodeURIComponent(rawHref || "");
+        }
+
+        function addFooterColLink(colIdx) {
+            const col = ensureFooterConfig().columns[colIdx];
+            if (!col) return;
+            const lblEl = document.getElementById(`ft-col-lbl-${colIdx}`);
+            const hrefEl = document.getElementById(`ft-col-href-${colIdx}`);
+            const ntEl = document.getElementById(`ft-col-newtab-${colIdx}`);
+            const qpEl = document.getElementById(`ft-col-qp-${colIdx}`);
+
+            const label = (lblEl.value || "").trim();
+            const href = (hrefEl.value || "").trim();
+            if (!label || !href) {
+                alert("कृपया लिंक का नाम (Label) और Href दोनों भरें।");
+                return;
+            }
+            const entry = { label, href };
+            if (/^https?:\/\//i.test(href) && ntEl) {
+                entry.new_tab = ntEl.checked;
+            }
+            if (!Array.isArray(col.links)) col.links = [];
+            col.links.push(entry);
+
+            lblEl.value = "";
+            hrefEl.value = "";
+            if (qpEl) qpEl.value = "";
+            renderFooterColumnsList();
+            renderFooterLivePreview();
+        }
+
+        function moveFooterColLink(colIdx, linkIdx, dir) {
+            const col = ensureFooterConfig().columns[colIdx];
+            if (!col || !Array.isArray(col.links)) return;
+            const target = linkIdx + dir;
+            if (target < 0 || target >= col.links.length) return;
+            [col.links[linkIdx], col.links[target]] = [col.links[target], col.links[linkIdx]];
+            renderFooterColumnsList();
+            renderFooterLivePreview();
+        }
+
+        function editFooterColLink(colIdx, linkIdx) {
+            const col = ensureFooterConfig().columns[colIdx];
+            if (!col || !col.links || !col.links[linkIdx]) return;
+            const item = col.links[linkIdx];
+            const newLabel = prompt("लिंक का नया नाम (Label):", item.label);
+            if (newLabel === null || !newLabel.trim()) return;
+            const newHref = prompt("लिंक / फ़ाइल का नाम (Href):", item.href);
+            if (newHref === null || !newHref.trim()) return;
+            item.label = newLabel.trim();
+            item.href = newHref.trim();
+            if (/^https?:\/\//i.test(item.href)) {
+                item.new_tab = confirm("क्या इस बाहरी लिंक को नए टैब में खोलें?\n(OK = नया टैब, Cancel = उसी टैब में)");
+            } else {
+                delete item.new_tab;
+            }
+            renderFooterColumnsList();
+            renderFooterLivePreview();
+        }
+
+        function removeFooterColLink(colIdx, linkIdx) {
+            const col = ensureFooterConfig().columns[colIdx];
+            if (!col || !Array.isArray(col.links)) return;
+            col.links.splice(linkIdx, 1);
+            renderFooterColumnsList();
+            renderFooterLivePreview();
+        }
+
+        function renderFooterSocialList() {
+            const pills = ensureFooterConfig().social_links || [];
+            const container = document.getElementById("footer-social-list");
+            if (!pills.length) {
+                container.innerHTML = `<p class="subtext">अभी कोई सोशल / क्विक एक्शन पिल नहीं जुड़ी है।</p>`;
+                return;
+            }
+            container.innerHTML = pills.map((item, idx) => `
+                <div class="list-item">
+                    <div style="flex:1; min-width:200px;">
+                        <span class="pill muted">#${idx + 1}</span>
+                        <strong>${escapeHtml(item.label)}</strong>
+                        <span style="color:var(--text-muted); font-size:13px;">→ <code class="inline">${escapeHtml(item.href)}</code></span>
+                        ${item.new_tab ? '<span class="pill">New Tab</span>' : ''}
+                    </div>
+                    <div class="actions-group">
+                        <button type="button" class="btn btn-outline btn-sm" ${idx === 0 ? "disabled" : ""} onclick="moveFooterSocial(${idx}, -1)" title="ऊपर ले जाएं">↑</button>
+                        <button type="button" class="btn btn-outline btn-sm" ${idx === pills.length - 1 ? "disabled" : ""} onclick="moveFooterSocial(${idx}, 1)" title="नीचे ले जाएं">↓</button>
+                        <button type="button" class="btn btn-outline btn-sm" onclick="editFooterSocial(${idx})">✏️ संपादित करें</button>
+                        <button type="button" class="btn btn-danger btn-sm" onclick="removeFooterSocial(${idx})">✕ हटाएं</button>
+                    </div>
+                </div>
+            `).join("");
+        }
+
+        function addFooterSocial() {
+            const labelEl = document.getElementById("new-ft-social-label");
+            const hrefEl = document.getElementById("new-ft-social-href");
+            const ntEl = document.getElementById("new-ft-social-newtab");
+            const label = (labelEl.value || "").trim();
+            const href = (hrefEl.value || "").trim();
+            if (!label || !href) {
+                alert("कृपया बटन का नाम (Label) और URL / Href दोनों भरें।");
+                return;
+            }
+            const isHttp = /^https?:\/\//i.test(href);
+            ensureFooterConfig().social_links.push({
+                label,
+                href,
+                new_tab: isHttp ? ntEl.checked : false
+            });
+            labelEl.value = "";
+            hrefEl.value = "";
+            renderFooterSocialList();
+            renderFooterLivePreview();
+        }
+
+        function moveFooterSocial(idx, dir) {
+            const pills = ensureFooterConfig().social_links;
+            const target = idx + dir;
+            if (target < 0 || target >= pills.length) return;
+            [pills[idx], pills[target]] = [pills[target], pills[idx]];
+            renderFooterSocialList();
+            renderFooterLivePreview();
+        }
+
+        function editFooterSocial(idx) {
+            const item = ensureFooterConfig().social_links[idx];
+            if (!item) return;
+            const newLabel = prompt("बटन का नया नाम (Label):", item.label);
+            if (newLabel === null || !newLabel.trim()) return;
+            const newHref = prompt("नया URL / लिंक (Href):", item.href);
+            if (newHref === null || !newHref.trim()) return;
+            item.label = newLabel.trim();
+            item.href = newHref.trim();
+            if (/^https?:\/\//i.test(item.href)) {
+                item.new_tab = confirm("क्या इस बाहरी लिंक को नए टैब में खोलें?\n(OK = नया टैब, Cancel = उसी टैब में)");
+            } else {
+                item.new_tab = false;
+            }
+            renderFooterSocialList();
+            renderFooterLivePreview();
+        }
+
+        function removeFooterSocial(idx) {
+            ensureFooterConfig().social_links.splice(idx, 1);
+            renderFooterSocialList();
+            renderFooterLivePreview();
+        }
+
+        function renderFooterLivePreview() {
+            const footer = ensureFooterConfig();
+            const previewEl = document.getElementById("footer-live-preview");
+            const badgeEl = document.getElementById("footer-preview-badge");
+            if (!previewEl) return;
+
+            const isEnabled = footer.enabled !== false;
+            const isLight = footer.theme === "light";
+            const colCount = (footer.columns || []).length;
+
+            if (badgeEl) {
+                if (!isEnabled) {
+                    badgeEl.className = "pill muted";
+                    badgeEl.textContent = "Footer Disabled Site-Wide";
+                } else {
+                    badgeEl.className = "pill green";
+                    badgeEl.textContent = `Active • ${isLight ? "Light Theme" : "Dark Theme"} • ${colCount} Columns`;
+                }
+            }
+
+            if (!isEnabled) {
+                previewEl.innerHTML = `<div style="padding:26px; text-align:center; background:var(--card-subtle); color:var(--text-muted); font-weight:600;">🚫 फ़ुटर अभी पूरी वेबसाइट पर बंद है (<code>enabled: false</code>)। पुनः चालू करने के लिए ऊपर "Enable Footer" चुनें।</div>`;
+                return;
+            }
+
+            const cssVarMap = {
+                bg: "--pf-bg",
+                bottom_bg: "--pf-bottom-bg",
+                text: "--pf-text",
+                muted: "--pf-muted",
+                accent: "--pf-accent",
+                border: "--pf-border",
+                pill_bg: "--pf-pill-bg"
+            };
+            const inlineVars = [];
+            const colors = footer.colors || {};
+            Object.keys(cssVarMap).forEach(k => {
+                const val = String(colors[k] || "").trim();
+                if (isValidHexColor(val)) {
+                    inlineVars.push(`${cssVarMap[k]}: ${val}`);
+                }
+            });
+            const styleAttr = inlineVars.length ? ` style="${inlineVars.join("; ")};"` : "";
+
+            const brandTitle = String(footer.brand_title || "अबतक24.in (Aabtak24.in)").trim();
+            const brandTagline = String(footer.brand_tagline || "").trim();
+            const contactLabel = String(footer.contact_label || "").trim();
+            const contactEmail = String(footer.contact_email || "").trim();
+
+            const logoUrl = isLight ? "https://aabtak24.in/logo.svg" : "https://aabtak24.in/logo-light.svg";
+            const brandHeadHtml = footer.show_logo !== false
+                ? `<div style="margin-bottom:10px;">
+                    <img src="${logoUrl}" alt="${escapeHtml(brandTitle)}" style="height:30px; width:auto; display:block;" onerror="this.style.display='none'; if(this.nextElementSibling) this.nextElementSibling.style.display='inline-block';">
+                    <span style="display:none; font-family:'Mukta',sans-serif; font-size:21px; font-weight:800; color:var(--pf-text);">${escapeHtml(brandTitle)}</span>
+                   </div>`
+                : `<div style="font-family:'Mukta',sans-serif; font-size:21px; font-weight:800; color:var(--pf-text); margin-bottom:8px;">${escapeHtml(brandTitle)}</div>`;
+
+            const taglineHtml = brandTagline
+                ? `<p style="color:var(--pf-muted); font-size:13.5px; line-height:1.65; margin-bottom:12px;">${escapeHtml(brandTagline)}</p>`
+                : "";
+
+            const contactHtml = contactEmail
+                ? `<p style="color:var(--pf-muted); font-size:13px; margin-bottom:10px;">${contactLabel ? escapeHtml(contactLabel) + " " : ""}<a href="#" onclick="return false;" style="color:var(--pf-text); font-weight:700; text-decoration:none; border-bottom:1px dashed var(--pf-accent);">${escapeHtml(contactEmail)}</a></p>`
+                : "";
+
+            const pillsHtml = (footer.social_links || [])
+                .filter(s => s && String(s.label || "").trim() && String(s.href || "").trim() && !/^(?:javascript|vbscript|data):/i.test(String(s.href).trim()))
+                .map(s => `<a href="#" onclick="return false;" class="preview-pill" title="${escapeHtml(s.href)}">${escapeHtml(s.label)}</a>`)
+                .join("");
+
+            const colsHtml = (footer.columns || []).map(col => {
+                const links = (col.links || []).filter(l => l && String(l.label || "").trim() && String(l.href || "").trim() && !/^(?:javascript|vbscript|data):/i.test(String(l.href).trim()));
+                if (!String(col.title || "").trim() && !links.length) return "";
+                const linksList = links.map(l => `<li><a href="#" onclick="return false;" title="${escapeHtml(l.href)}">${escapeHtml(l.label)}</a></li>`).join("");
+                return `
+                <div>
+                    ${String(col.title || "").trim() ? `<div class="preview-col-title">${escapeHtml(col.title)}</div>` : ""}
+                    ${linksList ? `<ul class="preview-footer-links">${linksList}</ul>` : ""}
+                </div>`;
+            }).filter(Boolean).join("");
+
+            const innerGridStyle = colsHtml ? "" : ' style="grid-template-columns:1fr;"';
+            const yearStr = String(new Date().getFullYear());
+            const copyrightText = String(footer.copyright_text || "").trim().replace(/\{year\}/g, yearStr);
+            const bottomNote = String(footer.bottom_note || "").trim();
+
+            previewEl.innerHTML = `
+            <div class="preview-footer${isLight ? " light" : ""}"${styleAttr}>
+                <div class="preview-footer-inner"${innerGridStyle}>
+                    <div>
+                        ${brandHeadHtml}
+                        ${taglineHtml}
+                        ${contactHtml}
+                        ${pillsHtml ? `<div style="display:flex; flex-wrap:wrap; margin-top:4px;">${pillsHtml}</div>` : ""}
+                    </div>
+                    ${colsHtml ? `<div class="preview-footer-cols">${colsHtml}</div>` : ""}
+                </div>
+                <div class="preview-footer-bottom">
+                    <span>${escapeHtml(copyrightText)}</span>
+                    ${bottomNote ? `<span style="color:var(--pf-accent); font-weight:700; text-transform:uppercase;">${escapeHtml(bottomNote)}</span>` : ""}
+                </div>
+            </div>`;
+        }
+
+        async function commitFooterConfig() {
+            const btn = document.getElementById("save-footer-btn");
+            btn.disabled = true;
+            syncFooterFieldsFromUI();
+            showStatus("footer-status", "info", "फ़ुटर सेटिंग्स site_config.json में सेव हो रही हैं और वेबसाइट रीबिल्ड शुरू हो रही है...");
+
+            try {
+                const latest = await ghGetFile("site_config.json");
+                const payload = buildSiteConfigPayload(latest ? latest.content : null);
+                const res = await ghPutFile(
+                    "site_config.json",
+                    JSON.stringify(payload, null, 2),
+                    "Update footer configuration via Admin CMS",
+                    latest ? latest.sha : SITE_CONFIG_SHA
+                );
+                SITE_CONFIG_SHA = res.content.sha;
+                SITE_CONFIG.footer = normalizeFooterConfig(payload.footer);
+                renderFooterManager();
+                await triggerRebuild();
+                showStatus("footer-status", "success", "✅ फ़ुटर सेटिंग्स सेव हो गई हैं! लगभग 15–20 सेकंड में पूरी वेबसाइट (होमपेज, श्रेणियाँ, कस्टम पेज व सभी समाचार) नए फ़ुटर के साथ अपडेट हो जाएगी।");
+            } catch (e) {
+                showStatus("footer-status", "error", `सेव करने में त्रुटि: ${e.message}`);
+            } finally {
+                btn.disabled = false;
             }
         }
 
