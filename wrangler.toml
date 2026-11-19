@@ -1,4 +1,4 @@
-name = "aabtak24-editor"
+name = "aabtak24-admin"
 main = "src/index.js"
 compatibility_date = "2025-09-01"
 
