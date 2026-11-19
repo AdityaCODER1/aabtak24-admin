@@ -150,7 +150,7 @@
             font-size: 14px;
             margin-bottom: 6px;
         }
-        input[type="text"], input[type="password"], input[type="url"], select, textarea {
+        input[type="text"], input[type="email"], input[type="password"], input[type="url"], select, textarea {
             width: 100%;
             padding: 10px 12px;
             border: 1px solid var(--border);
@@ -1663,6 +1663,190 @@
         .hp-preview-viewport.mobile-frame .hp-pv-strip {
             grid-template-columns: 1fr;
         }
+
+        /* Multi-Editor Auth, Role Badges & Security UI */
+        .user-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 4px 10px;
+            border-radius: 999px;
+            font-size: 12.5px;
+            font-weight: 700;
+            background: var(--card-subtle);
+            border: 1px solid var(--border-heavy);
+            color: var(--text-main);
+            max-width: 280px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+        .user-badge.admin {
+            background: #141210;
+            color: #FAF6F0;
+            border-color: var(--accent);
+        }
+        .user-badge.editor {
+            background: var(--accent-tint);
+            color: var(--accent-dark);
+            border-color: var(--accent);
+        }
+        .pill.danger { background: var(--danger-bg); color: var(--danger); }
+        .pill.blue { background: #DBEAFE; color: #1D4ED8; }
+        .pill.dark { background: #141210; color: #FAF6F0; }
+        .field-hint {
+            font-size: 12px;
+            color: var(--text-muted);
+            margin-top: 4px;
+            line-height: 1.45;
+        }
+        .password-wrap {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+        .password-wrap input {
+            padding-right: 44px;
+        }
+        .pwd-toggle-btn {
+            position: absolute;
+            right: 6px;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            padding: 4px 8px;
+            font-size: 15px;
+            color: var(--text-muted);
+            border-radius: 4px;
+        }
+        .pwd-toggle-btn:hover {
+            background: var(--card-subtle);
+            color: var(--text-main);
+        }
+        .login-link-row {
+            margin-top: 14px;
+            text-align: center;
+        }
+        .text-link-btn {
+            background: none;
+            border: none;
+            color: var(--accent-dark);
+            font-family: inherit;
+            font-size: 13.5px;
+            font-weight: 700;
+            cursor: pointer;
+            text-decoration: underline;
+            padding: 4px 6px;
+        }
+        .text-link-btn:hover { color: var(--accent); }
+        .recovery-box {
+            margin-top: 18px;
+            padding: 18px;
+            background: var(--card-subtle);
+            border: 1px solid var(--border);
+            border-left: 4px solid var(--border-heavy);
+            border-radius: 5px;
+        }
+        .role-banner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-left: 4px solid var(--accent);
+            border-radius: var(--radius);
+            padding: 12px 16px;
+            margin-bottom: 18px;
+            font-size: 14px;
+        }
+        .editor-card {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 14px;
+            padding: 14px 16px;
+            border: 1px solid var(--border);
+            border-left: 4px solid var(--success);
+            border-radius: 5px;
+            margin-bottom: 10px;
+            background: #FFF;
+            flex-wrap: wrap;
+        }
+        .editor-card.suspended {
+            border-left-color: var(--danger);
+            background: #FFF8F8;
+            opacity: 0.92;
+        }
+        .editor-card.unreadable {
+            border-left-color: var(--text-muted);
+            background: var(--card-subtle);
+        }
+        .editor-pills-row {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 6px;
+            margin-bottom: 6px;
+        }
+        .editor-pills-row .pill,
+        .editor-pills-row .editor-count-btn {
+            margin-right: 0;
+        }
+        .editor-count-btn {
+            appearance: none;
+            border: 1px solid var(--border);
+            background: var(--card-subtle);
+            color: var(--text-main);
+            font-family: inherit;
+            font-size: 11.5px;
+            font-weight: 700;
+            padding: 2px 8px;
+            border-radius: 3px;
+            cursor: pointer;
+            margin-right: 6px;
+        }
+        .editor-count-btn:hover {
+            border-color: var(--accent);
+            background: var(--accent-tint);
+            color: var(--accent-dark);
+        }
+        .security-summary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+            gap: 10px;
+            margin-bottom: 18px;
+        }
+        .security-stat-box {
+            background: var(--card-subtle);
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            padding: 10px 12px;
+            font-size: 12.5px;
+        }
+        .security-stat-box strong {
+            display: block;
+            font-size: 13.5px;
+            margin-bottom: 2px;
+            color: var(--text-main);
+        }
+        details.advanced-details {
+            background: var(--card-subtle);
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            padding: 10px 14px;
+            margin-bottom: 16px;
+        }
+        details.advanced-details summary {
+            cursor: pointer;
+            font-weight: 700;
+            font-size: 13.5px;
+            color: var(--text-main);
+        }
+        details.advanced-details[open] summary {
+            margin-bottom: 12px;
+        }
     </style>
 </head>
 <body>
@@ -1674,9 +1858,10 @@
     <header>
         <div class="brand notranslate" translate="no">
             <img src="https://aabtak24.in/logo.svg" alt="अबतक24.in" width="206" height="36" decoding="sync">
-            <span class="badge-cms">ADMIN CMS</span>
+            <span class="badge-cms" id="brand-role-badge">ADMIN CMS</span>
         </div>
         <div class="actions-group hidden" id="header-actions">
+            <span id="current-user-badge" class="user-badge hidden"></span>
             <a href="https://aabtak24.in" target="_blank" rel="noopener" class="btn btn-outline btn-sm">🌐 लाइव वेबसाइट देखें</a>
             <button type="button" class="btn btn-dark btn-sm" onclick="logout()">🔒 लॉगआउट</button>
         </div>
@@ -1684,15 +1869,64 @@
 
     <div class="container">
         <!-- ==================== LOGIN VIEW ==================== -->
-        <div id="login-view" class="card" style="max-width: 480px; margin: 36px auto;">
+        <div id="login-view" class="card" style="max-width: 500px; margin: 36px auto;">
             <h2 style="text-align:center;">🔒 संपादक एवं एडमिन लॉगिन</h2>
-            <p class="subtext" style="text-align:center;">लेख लिखने, श्रेणियाँ बदलने या कस्टम पेज बनाने के लिए पासवर्ड दर्ज करें।</p>
+            <p class="subtext" style="text-align:center;">मुख्य एडमिन केवल पासवर्ड से लॉगिन कर सकते हैं। अन्य संपादक अपना ईमेल/यूज़रनेम और पासवर्ड दोनों दर्ज करें।</p>
+
+            <div class="form-group">
+                <label for="login-username">ईमेल / यूज़रनेम (Username / Email)</label>
+                <input type="text" id="login-username" autocomplete="username" placeholder="जैसे: reporter@aabtak24.in (मुख्य एडमिन के लिए खाली छोड़ें)" onkeydown="if(event.key==='Enter') document.getElementById('login-password').focus()">
+                <div class="field-hint">👑 मुख्य एडमिन (Main Admin) लॉगिन के लिए इस बॉक्स को खाली छोड़ें।</div>
+            </div>
+
             <div class="form-group">
                 <label for="login-password">पासवर्ड (Password)</label>
-                <input type="password" id="login-password" placeholder="अपना पासवर्ड दर्ज करें..." onkeydown="if(event.key==='Enter') handleLogin()">
+                <div class="password-wrap">
+                    <input type="password" id="login-password" autocomplete="current-password" placeholder="अपना पासवर्ड दर्ज करें..." onkeydown="if(event.key==='Enter') handleLogin()">
+                    <button type="button" class="pwd-toggle-btn" onclick="togglePasswordVisibility('login-password', this)" aria-label="Show or hide password" title="पासवर्ड दिखाएं / छुपाएं">👁️</button>
+                </div>
             </div>
+
             <button type="button" class="btn btn-primary btn-full" id="login-btn" onclick="handleLogin()">लॉगिन करें (Unlock Portal)</button>
             <div id="login-status" class="status-box"></div>
+
+            <div class="login-link-row">
+                <button type="button" class="text-link-btn" id="toggle-recovery-btn" onclick="toggleAdminRecoveryBox()">🔑 मुख्य एडमिन पासवर्ड भूल गए? (Forgot Main Admin Password?)</button>
+            </div>
+
+            <!-- Forgot Main Admin Password Recovery Box -->
+            <div id="admin-recovery-box" class="recovery-box hidden">
+                <h3 style="margin-bottom:6px;">🔑 मुख्य एडमिन पासवर्ड रीसेट करें (Admin Recovery)</h3>
+                <p class="subtext" style="margin-bottom:14px; font-size:13px;">
+                    यदि आप मुख्य एडमिन का पासवर्ड भूल गए हैं, तो अपना मान्य <strong>GitHub Fine-Grained Token</strong> (<code class="inline">AdityaCODER1/auto-news-bot</code> पर Write अनुमति सहित) दर्ज करें और एक नया मजबूत पासवर्ड सेट करें। नया पासवर्ड तुरंत लाइव हो जाएगा और पुराना पासवर्ड काम करना बंद कर देगा।
+                </p>
+                <div class="form-group">
+                    <label for="recovery-token">GitHub Fine-Grained Token (github_pat_... / ghp_...) *</label>
+                    <div class="password-wrap">
+                        <input type="password" id="recovery-token" autocomplete="off" placeholder="github_pat_...">
+                        <button type="button" class="pwd-toggle-btn" onclick="togglePasswordVisibility('recovery-token', this)" aria-label="Show or hide token">👁️</button>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="recovery-new-pass">नया मुख्य एडमिन पासवर्ड (New Password — कम से कम 8 अक्षर) *</label>
+                    <div class="password-wrap">
+                        <input type="password" id="recovery-new-pass" autocomplete="new-password" placeholder="कम से कम 8 अक्षरों का मजबूत पासवर्ड">
+                        <button type="button" class="pwd-toggle-btn" onclick="togglePasswordVisibility('recovery-new-pass', this)" aria-label="Show or hide password">👁️</button>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="recovery-confirm-pass">नया पासवर्ड पुनः दर्ज करें (Confirm New Password) *</label>
+                    <div class="password-wrap">
+                        <input type="password" id="recovery-confirm-pass" autocomplete="new-password" placeholder="पासवर्ड दोबारा लिखें" onkeydown="if(event.key==='Enter') handleAdminPasswordRecovery()">
+                        <button type="button" class="pwd-toggle-btn" onclick="togglePasswordVisibility('recovery-confirm-pass', this)" aria-label="Show or hide password">👁️</button>
+                    </div>
+                </div>
+                <div style="display:flex; gap:8px; flex-wrap:wrap;">
+                    <button type="button" class="btn btn-dark" style="flex:1;" id="recovery-submit-btn" onclick="handleAdminPasswordRecovery()">🔐 सत्यापित करें एवं नया पासवर्ड सेव करें</button>
+                    <button type="button" class="btn btn-outline btn-sm" onclick="toggleAdminRecoveryBox(false)">रद्द करें</button>
+                </div>
+                <div id="recovery-status" class="status-box"></div>
+            </div>
 
             <!-- One-Time Setup Box (Shown automatically if ENCRYPTED_TOKEN is empty) -->
             <div id="setup-box" class="hidden" style="margin-top: 26px; padding-top: 20px; border-top: 2px dashed var(--border);">
@@ -1703,10 +1937,10 @@
                     <input type="password" id="setup-token" placeholder="github_pat_...">
                 </div>
                 <div class="form-group">
-                    <label>Choose Editor Password</label>
-                    <input type="text" id="setup-pass" placeholder="जैसे: aabtak2026">
+                    <label>Choose Admin Password (min 8 chars)</label>
+                    <input type="text" id="setup-pass" placeholder="कम से कम 8 अक्षरों का मजबूत पासवर्ड">
                 </div>
-                <button type="button" class="btn btn-dark btn-full" onclick="generateEncryptedLock()">🔐 Generate Encrypted Lock String</button>
+                <button type="button" class="btn btn-dark btn-full" onclick="generateEncryptedLock()">🔐 Generate Encrypted Lock String (PBKDF2-600k)</button>
                 <div id="setup-output-wrap" class="hidden" style="margin-top: 12px;">
                     <label>इस कोड को कॉपी करके index.html में ENCRYPTED_TOKEN के अंदर पेस्ट करें:</label>
                     <textarea id="setup-output" rows="3" readonly onclick="this.select()"></textarea>
@@ -1716,17 +1950,19 @@
 
         <!-- ==================== MAIN DASHBOARD VIEW ==================== -->
         <div id="dashboard-view" class="hidden">
-            <div class="tabs">
+            <div class="tabs" id="main-tabs">
                 <button type="button" class="tab-btn active" data-tab="articles" onclick="switchTab('articles')">📝 समाचार (Articles)</button>
-                <button type="button" class="tab-btn" data-tab="homepage" onclick="switchTab('homepage')">🏠 होमपेज (Homepage)</button>
-                <button type="button" class="tab-btn" data-tab="nav-cats" onclick="switchTab('nav-cats')">🗂️ श्रेणियाँ (Categories)</button>
-                <button type="button" class="tab-btn" data-tab="custom-pages" onclick="switchTab('custom-pages')">📄 कस्टम पेज (Custom Pages)</button>
-                <button type="button" class="tab-btn" data-tab="header" onclick="switchTab('header')">🧭 हेडर (Header)</button>
-                <button type="button" class="tab-btn" data-tab="footer" onclick="switchTab('footer')">📌 फ़ुटर (Footer)</button>
+                <button type="button" class="tab-btn admin-only-tab" data-tab="homepage" onclick="switchTab('homepage')">🏠 होमपेज (Homepage)</button>
+                <button type="button" class="tab-btn admin-only-tab" data-tab="nav-cats" onclick="switchTab('nav-cats')">🗂️ श्रेणियाँ (Categories)</button>
+                <button type="button" class="tab-btn admin-only-tab" data-tab="custom-pages" onclick="switchTab('custom-pages')">📄 कस्टम पेज (Custom Pages)</button>
+                <button type="button" class="tab-btn admin-only-tab" data-tab="header" onclick="switchTab('header')">🧭 हेडर (Header)</button>
+                <button type="button" class="tab-btn admin-only-tab" data-tab="footer" onclick="switchTab('footer')">📌 फ़ुटर (Footer)</button>
+                <button type="button" class="tab-btn admin-only-tab" data-tab="editors" onclick="switchTab('editors')">👥 संपादक एवं सुरक्षा (Editors)</button>
             </div>
 
             <!-- ==================== TAB 1: ARTICLES ==================== -->
             <div id="tab-articles" class="tab-panel active">
+                <div id="editor-role-banner" class="role-banner hidden"></div>
                 <div class="card">
                     <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px; margin-bottom:10px;">
                         <h2 id="article-form-heading" style="margin:0;">✍️ नया समाचार लिखें (Create New Article)</h2>
@@ -2595,6 +2831,145 @@
                     </div>
                 </div>
             </div>
+
+            <!-- ==================== TAB 7: EDITORS & SECURITY (MAIN ADMIN ONLY) ==================== -->
+            <div id="tab-editors" class="tab-panel">
+                <!-- Card 1: Add / Edit Sub-Editor -->
+                <div class="card">
+                    <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px; margin-bottom:10px;">
+                        <h2 id="editor-form-heading" style="margin:0;">➕ नया संपादक जोड़ें (Add Sub-Editor)</h2>
+                        <button type="button" id="cancel-editor-edit-btn" class="btn btn-outline btn-sm hidden" onclick="resetEditorForm()">✕ संपादन रद्द करें (Cancel Edit)</button>
+                    </div>
+                    <p class="subtext">संपादक <code class="inline">editor.aabtak24.in</code> पर अपने ईमेल/यूज़रनेम और पासवर्ड से लॉगिन कर सकेंगे। सभी क्रेडेंशियल्स <strong>SHA-256 + PBKDF2 (600,000 iterations) + AES-GCM-256</strong> एन्क्रिप्शन से सुरक्षित रहते हैं।</p>
+
+                    <div class="grid-2">
+                        <div class="form-group">
+                            <label for="editor-username">1. ईमेल या यूज़रनेम (Editor Email / Username) *</label>
+                            <input type="text" id="editor-username" autocomplete="off" placeholder="उदाहरण: reporter@aabtak24.in">
+                            <div class="field-hint">लॉगिन के लिए उपयोग होगा (केस-इनसेंसिटिव, सुरक्षित SHA-256 हैश में सेव होता है)।</div>
+                        </div>
+                        <div class="form-group">
+                            <label for="editor-display-name">2. संपादक का नाम (Display Name — Optional)</label>
+                            <input type="text" id="editor-display-name" autocomplete="off" placeholder="उदाहरण: राहुल शर्मा">
+                            <div class="field-hint">केवल CMS डैशबोर्ड में पहचान के लिए। वेबसाइट पर "अबतक24 न्यूज़ डेस्क" ही दिखेगा।</div>
+                        </div>
+                    </div>
+
+                    <div class="grid-2">
+                        <div class="form-group">
+                            <label for="editor-password" id="editor-password-label">3. कस्टम पासवर्ड (Custom Password — कम से कम 8 अक्षर) *</label>
+                            <div style="display:flex; gap:6px; align-items:center;">
+                                <div class="password-wrap" style="flex:1;">
+                                    <input type="password" id="editor-password" autocomplete="new-password" placeholder="कम से कम 8 अक्षरों का मजबूत पासवर्ड">
+                                    <button type="button" class="pwd-toggle-btn" onclick="togglePasswordVisibility('editor-password', this)" aria-label="Show or hide password">👁️</button>
+                                </div>
+                                <button type="button" class="btn btn-outline btn-sm" style="white-space:nowrap; padding:10px 10px;" onclick="fillGeneratedEditorPassword()" title="मजबूत रैंडम पासवर्ड बनाएं">🎲 जनरेट</button>
+                            </div>
+                            <div class="field-hint" id="editor-password-hint">संपादक के साथ सुरक्षित रूप से साझा करें। पासवर्ड कभी सादे टेक्स्ट में सेव नहीं होता।</div>
+                        </div>
+                        <div class="form-group">
+                            <label for="editor-permission">4. अनुमति स्तर (Access Permission) *</label>
+                            <select id="editor-permission">
+                                <option value="own_only">🔒 केवल नए लेख जोड़ें व स्वयं के लेख प्रबंधित करें (Own Articles Only)</option>
+                                <option value="all_articles">🌐 नए लेख जोड़ें व सभी वेबसाइट लेख सुधारें (Add &amp; Edit All Articles)</option>
+                            </select>
+                            <div class="field-hint">संपादकों को होमपेज, श्रेणियाँ, हेडर, फ़ुटर या अन्य सेटिंग्स कभी नहीं दिखतीं।</div>
+                        </div>
+                    </div>
+
+                    <details class="advanced-details" id="editor-advanced-token-wrap">
+                        <summary>🔧 उन्नत सुरक्षा: इस संपादक के लिए अलग GitHub Fine-Grained Token सेट करें (Optional)</summary>
+                        <p class="field-hint" style="margin-top:0; margin-bottom:10px;">
+                            डिफ़ॉल्ट रूप से संपादक आपके मुख्य GitHub टोकन का एन्क्रिप्टेड रूप उपयोग करते हैं। यदि आप इस संपादक के लिए एक अलग <strong>Revocable GitHub Fine-Grained Token</strong> देना चाहते हैं (जिसे आप GitHub से अलग से रद्द कर सकें), तो नीचे दर्ज करें; अन्यथा खाली छोड़ दें।
+                        </p>
+                        <div class="form-group" style="margin-bottom:8px;">
+                            <label for="editor-custom-token">कस्टम GitHub Token (Optional — github_pat_...)</label>
+                            <div class="password-wrap">
+                                <input type="password" id="editor-custom-token" autocomplete="off" placeholder="खाली छोड़ें = मुख्य एडमिन टोकन उपयोग होगा">
+                                <button type="button" class="pwd-toggle-btn" onclick="togglePasswordVisibility('editor-custom-token', this)" aria-label="Show or hide token">👁️</button>
+                            </div>
+                        </div>
+                        <label class="checkbox-row hidden" id="editor-clear-custom-token-wrap">
+                            <input type="checkbox" id="editor-clear-custom-token"> कस्टम टोकन हटाएं और मुख्य एडमिन टोकन पर वापस लौटें
+                        </label>
+                    </details>
+
+                    <button type="button" class="btn btn-primary btn-full" id="save-editor-btn" onclick="saveEditorForm()">➕ संपादक जोड़ें और सुरक्षित वॉल्ट सेव करें (Save Editor)</button>
+                    <div id="editor-form-status" class="status-box"></div>
+                </div>
+
+                <!-- Card 2: Registered Editors List -->
+                <div class="card secondary">
+                    <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px; margin-bottom:12px;">
+                        <h2 style="margin:0;">📋 पंजीकृत संपादक सूची (Registered Editors)</h2>
+                        <div class="actions-group">
+                            <span id="editors-count-badge" class="pill green">0 संपादक</span>
+                            <button type="button" class="btn btn-outline btn-sm" onclick="loadAllData()">🔄 रीफ़्रेश</button>
+                        </div>
+                    </div>
+                    <p class="subtext">आप किसी भी समय संपादक की अनुमति बदल सकते हैं, पासवर्ड रीसेट कर सकते हैं, खाता निलंबित (Suspend) कर सकते हैं या हमेशा के लिए हटा सकते हैं। निलंबित करने पर संपादक का एन्क्रिप्टेड टोकन वॉल्ट से तुरंत हट जाता है।</p>
+                    <div id="editors-list">लोड हो रहा है...</div>
+                    <div id="editors-list-status" class="status-box"></div>
+                </div>
+
+                <!-- Card 3: Main Admin Password Change & Security Hardening -->
+                <div class="card">
+                    <h2>🔐 मुख्य एडमिन पासवर्ड बदलें एवं सुरक्षा स्थिति (Admin Password &amp; Security)</h2>
+                    <p class="subtext">यहाँ से आप मुख्य एडमिन का पासवर्ड कभी भी बदल सकते हैं। नया पासवर्ड सीधे <code class="inline">site_config.json</code> में <strong>PBKDF2-SHA256 (600,000 iterations) + AES-256-GCM</strong> के साथ लाइव सेव होता है और पुराना पासवर्ड तुरंत निष्क्रिय हो जाता है।</p>
+
+                    <div id="admin-security-info" class="security-summary-grid"></div>
+
+                    <div class="form-group">
+                        <label for="admin-current-pass">वर्तमान मुख्य एडमिन पासवर्ड (Current Admin Password) *</label>
+                        <div class="password-wrap">
+                            <input type="password" id="admin-current-pass" autocomplete="current-password" placeholder="अपना वर्तमान एडमिन पासवर्ड दर्ज करें">
+                            <button type="button" class="pwd-toggle-btn" onclick="togglePasswordVisibility('admin-current-pass', this)" aria-label="Show or hide password">👁️</button>
+                        </div>
+                    </div>
+
+                    <div class="grid-2">
+                        <div class="form-group">
+                            <label for="admin-new-pass">नया मुख्य एडमिन पासवर्ड (New Password — कम से कम 8 अक्षर) *</label>
+                            <div style="display:flex; gap:6px; align-items:center;">
+                                <div class="password-wrap" style="flex:1;">
+                                    <input type="password" id="admin-new-pass" autocomplete="new-password" placeholder="कम से कम 8 अक्षरों का मजबूत पासवर्ड">
+                                    <button type="button" class="pwd-toggle-btn" onclick="togglePasswordVisibility('admin-new-pass', this)" aria-label="Show or hide password">👁️</button>
+                                </div>
+                                <button type="button" class="btn btn-outline btn-sm" style="white-space:nowrap; padding:10px 10px;" onclick="fillGeneratedAdminPassword()" title="मजबूत रैंडम पासवर्ड बनाएं">🎲 जनरेट</button>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="admin-confirm-pass">नया पासवर्ड पुनः दर्ज करें (Confirm New Password) *</label>
+                            <div class="password-wrap">
+                                <input type="password" id="admin-confirm-pass" autocomplete="new-password" placeholder="नया पासवर्ड दोबारा लिखें">
+                                <button type="button" class="pwd-toggle-btn" onclick="togglePasswordVisibility('admin-confirm-pass', this)" aria-label="Show or hide password">👁️</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <details class="advanced-details">
+                        <summary>🔄 वैकल्पिक: मुख्य GitHub Fine-Grained Token भी रोटेट/अपडेट करें (Rotate GitHub PAT)</summary>
+                        <p class="field-hint" style="margin-top:0; margin-bottom:10px;">
+                            यदि आपने GitHub पर नया टोकन बनाया है, तो यहाँ दर्ज करें। मुख्य एडमिन लॉक के साथ-साथ मुख्य टोकन उपयोग करने वाले सभी संपादकों का वॉल्ट अपने-आप नए टोकन से री-एन्क्रिप्ट हो जाएगा (संपादकों का पासवर्ड नहीं बदलेगा)।
+                        </p>
+                        <div class="form-group" style="margin-bottom:0;">
+                            <label for="admin-new-token">नया GitHub Fine-Grained Token (Optional)</label>
+                            <div class="password-wrap">
+                                <input type="password" id="admin-new-token" autocomplete="off" placeholder="खाली छोड़ें = वर्तमान टोकन बना रहेगा">
+                                <button type="button" class="pwd-toggle-btn" onclick="togglePasswordVisibility('admin-new-token', this)" aria-label="Show or hide token">👁️</button>
+                            </div>
+                        </div>
+                    </details>
+
+                    <button type="button" class="btn btn-dark btn-full" id="change-admin-pass-btn" onclick="changeAdminPassword()">🔐 मुख्य एडमिन पासवर्ड अपडेट करें (Save New Admin Password)</button>
+                    <div id="admin-pass-status" class="status-box"></div>
+
+                    <div id="admin-new-lock-copy-wrap" class="hidden" style="margin-top:14px;">
+                        <label>वैकल्पिक बैकअप (New PBKDF2-600k Encrypted Token String — पहले ही लाइव सेव हो चुका है):</label>
+                        <textarea id="admin-new-lock-copy" rows="3" readonly onclick="this.select()"></textarea>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -2787,7 +3162,9 @@
                         bg_theme: "amber"
                     }
                 ]
-            }
+            },
+            admin_lock: null,
+            editors_vault: []
         };
 
         const HOMEPAGE_LAYOUTS = ["editorial-desk", "bento", "grid", "magazine", "compact-list", "strip"];
@@ -2864,9 +3241,19 @@
         };
 
         // =========================================================================
-        // 2. STATE & QUILL INITIALIZATION
+        // 2. SECURITY CONSTANTS, STATE & QUILL INITIALIZATION
         // =========================================================================
+        const PBKDF2_ITERATIONS_NEW = 600000;
+        const PBKDF2_ITERATIONS_LEGACY = 100000;
+        const MIN_PASSWORD_LENGTH = 8;
+        const MAX_LOGIN_ATTEMPTS = 5;
+        const LOGIN_COOLDOWN_MS = 30000;
+        const INACTIVITY_TIMEOUT_MS = 60 * 60 * 1000; // 60 minutes
+        const LOGIN_GUARD_STORAGE_KEY = "aabtak_login_guard";
+
         let GITHUB_TOKEN = "";
+        let CURRENT_USER = null;
+        let DECRYPTED_EDITORS = [];
         let ALL_ARTICLES = [];
         let SITE_CONFIG = JSON.parse(JSON.stringify(DEFAULT_SITE_CONFIG));
         let SITE_CONFIG_EXTRA = {};
@@ -2874,11 +3261,16 @@
         let EDITING_SLUG = null;
         let EDITING_CAT_INDEX = null;
         let EDITING_PAGE_ID = null;
+        let EDITING_EDITOR_ID = null;
         let HEADER_PREVIEW_DEVICE = "desktop";
         let HEADER_PREVIEW_DRAWER_OPEN = false;
         let HEADER_PREVIEW_READER_DARK = true;
         let HP_PREVIEW_DEVICE = "desktop";
         let HP_PREVIEW_THEME = "dark";
+        let LAST_ACTIVITY_TS = Date.now();
+        let INACTIVITY_CHECK_INTERVAL = null;
+        let INACTIVITY_LISTENERS_ATTACHED = false;
+        let COOLDOWN_TIMER_INTERVAL = null;
 
         const quillToolbar = [
             [{ header: [3, false] }],
@@ -2904,7 +3296,7 @@
         }
 
         // =========================================================================
-        // 3. UTF-8 SAFE BASE64 & AES-GCM CRYPTO HELPERS
+        // 3. UTF-8 SAFE BASE64, HARDENED AES-GCM CRYPTO, SANITIZATION & AUTH
         // =========================================================================
         function utf8ToBase64(str) {
             const bytes = new TextEncoder().encode(str);
@@ -2934,18 +3326,101 @@
             return bytes;
         }
 
-        async function deriveAesKey(password, salt) {
+        function normalizeUsername(raw) {
+            return String(raw || "").trim().toLowerCase();
+        }
+
+        function isValidGithubTokenFormat(token) {
+            const t = String(token || "").trim();
+            return t.length >= 12 && (t.startsWith("gh") || t.startsWith("github_pat_"));
+        }
+
+        async function sha256Hex(str) {
+            const data = new TextEncoder().encode(String(str ?? ""));
+            const hashBuf = await crypto.subtle.digest("SHA-256", data);
+            return Array.from(new Uint8Array(hashBuf))
+                .map(b => b.toString(16).padStart(2, "0"))
+                .join("");
+        }
+
+        async function deriveAesKey(password, salt, iterations = PBKDF2_ITERATIONS_NEW) {
             const enc = new TextEncoder();
             const keyMaterial = await crypto.subtle.importKey(
                 "raw", enc.encode(password), "PBKDF2", false, ["deriveKey"]
             );
             return crypto.subtle.deriveKey(
-                { name: "PBKDF2", salt, iterations: 100000, hash: "SHA-256" },
+                { name: "PBKDF2", salt, iterations, hash: "SHA-256" },
                 keyMaterial,
                 { name: "AES-GCM", length: 256 },
                 false,
                 ["encrypt", "decrypt"]
             );
+        }
+
+        async function encryptWithPassword(plaintext, password, iterations = PBKDF2_ITERATIONS_NEW) {
+            const salt = crypto.getRandomValues(new Uint8Array(16));
+            const iv = crypto.getRandomValues(new Uint8Array(12));
+            const key = await deriveAesKey(password, salt, iterations);
+            const cipherBuf = await crypto.subtle.encrypt(
+                { name: "AES-GCM", iv },
+                key,
+                new TextEncoder().encode(plaintext)
+            );
+            const payload = JSON.stringify({
+                v: 2,
+                iter: iterations,
+                s: bytesToB64(salt),
+                i: bytesToB64(iv),
+                c: bytesToB64(new Uint8Array(cipherBuf))
+            });
+            return btoa(payload);
+        }
+
+        async function decryptWithPassword(encryptedStr, password) {
+            const parsed = JSON.parse(atob(String(encryptedStr || "").trim()));
+            const salt = b64ToBytes(parsed.s);
+            const iv = b64ToBytes(parsed.i);
+            const cipher = b64ToBytes(parsed.c);
+            const iter = Number.isInteger(parsed.iter) && parsed.iter >= PBKDF2_ITERATIONS_LEGACY
+                ? parsed.iter
+                : PBKDF2_ITERATIONS_LEGACY;
+            const key = await deriveAesKey(password, salt, iter);
+            const plainBuf = await crypto.subtle.decrypt({ name: "AES-GCM", iv }, key, cipher);
+            return new TextDecoder().decode(plainBuf);
+        }
+
+        function generateRandomKeyB64() {
+            return bytesToB64(crypto.getRandomValues(new Uint8Array(32)));
+        }
+
+        async function encryptWithRawKey(plaintext, rawKeyB64) {
+            const keyBytes = b64ToBytes(rawKeyB64);
+            const cryptoKey = await crypto.subtle.importKey(
+                "raw", keyBytes, { name: "AES-GCM", length: 256 }, false, ["encrypt"]
+            );
+            const iv = crypto.getRandomValues(new Uint8Array(12));
+            const cipherBuf = await crypto.subtle.encrypt(
+                { name: "AES-GCM", iv },
+                cryptoKey,
+                new TextEncoder().encode(plaintext)
+            );
+            return btoa(JSON.stringify({
+                v: 2,
+                i: bytesToB64(iv),
+                c: bytesToB64(new Uint8Array(cipherBuf))
+            }));
+        }
+
+        async function decryptWithRawKey(envelopeStr, rawKeyB64) {
+            const parsed = JSON.parse(atob(String(envelopeStr || "").trim()));
+            const keyBytes = b64ToBytes(rawKeyB64);
+            const cryptoKey = await crypto.subtle.importKey(
+                "raw", keyBytes, { name: "AES-GCM", length: 256 }, false, ["decrypt"]
+            );
+            const iv = b64ToBytes(parsed.i);
+            const cipher = b64ToBytes(parsed.c);
+            const plainBuf = await crypto.subtle.decrypt({ name: "AES-GCM", iv }, cryptoKey, cipher);
+            return new TextDecoder().decode(plainBuf);
         }
 
         async function generateEncryptedLock() {
@@ -2955,67 +3430,517 @@
                 alert("कृपया GitHub Token और Password दोनों भरें।");
                 return;
             }
-            const salt = crypto.getRandomValues(new Uint8Array(16));
-            const iv = crypto.getRandomValues(new Uint8Array(12));
-            const key = await deriveAesKey(pass, salt);
-            const cipherBuf = await crypto.subtle.encrypt(
-                { name: "AES-GCM", iv },
-                key,
-                new TextEncoder().encode(token)
-            );
-            const payload = JSON.stringify({
-                s: bytesToB64(salt),
-                i: bytesToB64(iv),
-                c: bytesToB64(new Uint8Array(cipherBuf))
-            });
-            document.getElementById("setup-output").value = btoa(payload);
+            if (pass.length < MIN_PASSWORD_LENGTH) {
+                alert(`कृपया कम से कम ${MIN_PASSWORD_LENGTH} अक्षरों का मजबूत पासवर्ड चुनें।`);
+                return;
+            }
+            document.getElementById("setup-output").value = await encryptWithPassword(token, pass, PBKDF2_ITERATIONS_NEW);
             document.getElementById("setup-output-wrap").classList.remove("hidden");
         }
 
         async function decryptToken(encryptedStr, password) {
-            const parsed = JSON.parse(atob(encryptedStr.trim()));
-            const salt = b64ToBytes(parsed.s);
-            const iv = b64ToBytes(parsed.i);
-            const cipher = b64ToBytes(parsed.c);
-            const key = await deriveAesKey(password, salt);
-            const plainBuf = await crypto.subtle.decrypt({ name: "AES-GCM", iv }, key, cipher);
-            return new TextDecoder().decode(plainBuf);
+            return decryptWithPassword(encryptedStr, password);
+        }
+
+        function generateStrongPassword(length = 14) {
+            const charset = "ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz23456789!@#$%&*";
+            const bytes = crypto.getRandomValues(new Uint8Array(length));
+            let out = "";
+            for (let i = 0; i < length; i++) {
+                out += charset[bytes[i] % charset.length];
+            }
+            return out;
+        }
+
+        function togglePasswordVisibility(inputId, btnEl) {
+            const inp = document.getElementById(inputId);
+            if (!inp) return;
+            const isHidden = inp.type === "password";
+            inp.type = isHidden ? "text" : "password";
+            if (btnEl) btnEl.textContent = isHidden ? "🙈" : "👁️";
+        }
+
+        function sanitizeImageUrl(rawUrl) {
+            const u = String(rawUrl || "").trim();
+            if (!u) return "";
+            if (/^https?:\/\//i.test(u)) {
+                try {
+                    const parsed = new URL(u);
+                    if (parsed.protocol === "http:" || parsed.protocol === "https:") return parsed.href;
+                } catch (_) {
+                    return "";
+                }
+            }
+            if (/^[a-zA-Z0-9_\-./]+$/.test(u) && !u.includes("..")) {
+                return u.replace(/^\/+/, "");
+            }
+            return "";
+        }
+
+        function sanitizeArticleHtml(dirtyHtml) {
+            const tpl = document.createElement("template");
+            tpl.innerHTML = String(dirtyHtml || "");
+            const blockedTags = new Set([
+                "script", "iframe", "object", "embed", "form", "input", "button",
+                "textarea", "select", "style", "link", "meta", "base", "svg", "math", "template"
+            ]);
+            const walk = (node) => {
+                const children = Array.from(node.childNodes || []);
+                for (const child of children) {
+                    if (child.nodeType === 8) {
+                        child.remove();
+                        continue;
+                    }
+                    if (child.nodeType !== 1) continue;
+                    const tag = child.tagName.toLowerCase();
+                    if (blockedTags.has(tag)) {
+                        child.remove();
+                        continue;
+                    }
+                    for (const attr of Array.from(child.attributes)) {
+                        const name = attr.name.toLowerCase();
+                        const val = String(attr.value || "").trim();
+                        if (name.startsWith("on") || name === "srcdoc" || name === "formaction") {
+                            child.removeAttribute(attr.name);
+                            continue;
+                        }
+                        if (name === "style") {
+                            if (/expression\s*\(|javascript:|vbscript:|url\s*\(/i.test(val)) {
+                                child.removeAttribute(attr.name);
+                            }
+                            continue;
+                        }
+                        if (name === "href" || name === "src") {
+                            const normalizedVal = val.replace(/[\u0000-\u001F\s]+/g, "").toLowerCase();
+                            const isSafeUrl =
+                                normalizedVal.startsWith("https://") ||
+                                normalizedVal.startsWith("http://") ||
+                                normalizedVal.startsWith("mailto:") ||
+                                normalizedVal.startsWith("#") ||
+                                (/^[a-z0-9_\-./]+$/i.test(val) && !val.includes(".."));
+                            if (!isSafeUrl) {
+                                child.removeAttribute(attr.name);
+                            }
+                        }
+                    }
+                    if (tag === "a" && child.getAttribute("target") === "_blank") {
+                        child.setAttribute("rel", "noopener noreferrer");
+                    }
+                    walk(child);
+                }
+            };
+            walk(tpl.content);
+            return tpl.innerHTML;
+        }
+
+        // Login Rate-Limiting / Cooldown Guard (5 failed attempts -> 30s cooldown)
+        function getLoginGuardState() {
+            try {
+                const raw = localStorage.getItem(LOGIN_GUARD_STORAGE_KEY);
+                if (raw) {
+                    const parsed = JSON.parse(raw);
+                    return {
+                        count: Number(parsed.count) || 0,
+                        lockedUntil: Number(parsed.lockedUntil) || 0
+                    };
+                }
+            } catch (_) {}
+            return { count: 0, lockedUntil: 0 };
+        }
+
+        function saveLoginGuardState(state) {
+            try {
+                localStorage.setItem(LOGIN_GUARD_STORAGE_KEY, JSON.stringify(state));
+            } catch (_) {}
+        }
+
+        function clearLoginGuard() {
+            if (COOLDOWN_TIMER_INTERVAL) {
+                clearInterval(COOLDOWN_TIMER_INTERVAL);
+                COOLDOWN_TIMER_INTERVAL = null;
+            }
+            try {
+                localStorage.removeItem(LOGIN_GUARD_STORAGE_KEY);
+            } catch (_) {}
+            const btn = document.getElementById("login-btn");
+            if (btn) btn.disabled = false;
+        }
+
+        function recordFailedLoginAttempt() {
+            const state = getLoginGuardState();
+            state.count += 1;
+            if (state.count >= MAX_LOGIN_ATTEMPTS) {
+                state.count = 0;
+                state.lockedUntil = Date.now() + LOGIN_COOLDOWN_MS;
+            }
+            saveLoginGuardState(state);
+            return state;
+        }
+
+        function checkAndRenderLoginCooldown() {
+            const state = getLoginGuardState();
+            const remainingMs = state.lockedUntil - Date.now();
+            const btn = document.getElementById("login-btn");
+            if (remainingMs <= 0) {
+                if (COOLDOWN_TIMER_INTERVAL) {
+                    clearInterval(COOLDOWN_TIMER_INTERVAL);
+                    COOLDOWN_TIMER_INTERVAL = null;
+                }
+                if (btn) btn.disabled = false;
+                return false;
+            }
+            if (btn) btn.disabled = true;
+            const updateMsg = () => {
+                const leftSec = Math.ceil((getLoginGuardState().lockedUntil - Date.now()) / 1000);
+                if (leftSec <= 0) {
+                    clearInterval(COOLDOWN_TIMER_INTERVAL);
+                    COOLDOWN_TIMER_INTERVAL = null;
+                    if (btn) btn.disabled = false;
+                    showStatus("login-status", "info", "अब आप पुनः लॉगिन का प्रयास कर सकते हैं।");
+                } else {
+                    if (btn) btn.disabled = true;
+                    showStatus("login-status", "error", `⏳ बहुत अधिक गलत प्रयास! सुरक्षा के लिए कृपया <strong>${leftSec} सेकंड</strong> प्रतीक्षा करें।`);
+                }
+            };
+            updateMsg();
+            if (!COOLDOWN_TIMER_INTERVAL) {
+                COOLDOWN_TIMER_INTERVAL = setInterval(updateMsg, 1000);
+            }
+            return true;
+        }
+
+        // Session & Role Helpers + 60-Minute Inactivity Auto-Logout
+        function isAdmin() {
+            return Boolean(CURRENT_USER && CURRENT_USER.role === "admin");
+        }
+
+        function canManageAllArticles() {
+            return isAdmin() || Boolean(CURRENT_USER && CURRENT_USER.role === "editor" && CURRENT_USER.permission === "all_articles");
+        }
+
+        function canEditArticle(art) {
+            if (!art || !CURRENT_USER) return false;
+            if (canManageAllArticles()) return true;
+            const artAuthor = normalizeUsername(art.author_username);
+            const curUser = normalizeUsername(CURRENT_USER.username);
+            return Boolean(artAuthor && curUser && artAuthor === curUser);
+        }
+
+        function requireAdminAction(statusId = null) {
+            if (isAdmin()) return true;
+            const msg = "⛔ यह क्रिया केवल मुख्य एडमिन (Main Admin) के लिए अनुमति प्राप्त है।";
+            if (statusId) showStatus(statusId, "error", msg);
+            else alert(msg);
+            return false;
+        }
+
+        function persistSession() {
+            if (!GITHUB_TOKEN || !CURRENT_USER) return;
+            sessionStorage.setItem("aabtak_gh_token", GITHUB_TOKEN);
+            sessionStorage.setItem("aabtak_user_session", JSON.stringify(CURRENT_USER));
+            LAST_ACTIVITY_TS = Date.now();
+            sessionStorage.setItem("aabtak_last_activity", String(LAST_ACTIVITY_TS));
+        }
+
+        function clearSessionStorage() {
+            sessionStorage.removeItem("aabtak_gh_token");
+            sessionStorage.removeItem("aabtak_user_session");
+            sessionStorage.removeItem("aabtak_last_activity");
+        }
+
+        function touchActivity() {
+            const now = Date.now();
+            if (now - LAST_ACTIVITY_TS > 10000) {
+                LAST_ACTIVITY_TS = now;
+                if (GITHUB_TOKEN) {
+                    sessionStorage.setItem("aabtak_last_activity", String(now));
+                }
+            }
+        }
+
+        function startInactivityWatchdog() {
+            LAST_ACTIVITY_TS = Date.now();
+            sessionStorage.setItem("aabtak_last_activity", String(LAST_ACTIVITY_TS));
+            if (!INACTIVITY_LISTENERS_ATTACHED) {
+                ["mousemove", "keydown", "click", "scroll", "touchstart"].forEach(evt => {
+                    window.addEventListener(evt, touchActivity, { passive: true });
+                });
+                INACTIVITY_LISTENERS_ATTACHED = true;
+            }
+            if (INACTIVITY_CHECK_INTERVAL) clearInterval(INACTIVITY_CHECK_INTERVAL);
+            INACTIVITY_CHECK_INTERVAL = setInterval(() => {
+                if (!GITHUB_TOKEN) return;
+                const storedTs = Number(sessionStorage.getItem("aabtak_last_activity")) || LAST_ACTIVITY_TS;
+                if (Date.now() - Math.max(LAST_ACTIVITY_TS, storedTs) >= INACTIVITY_TIMEOUT_MS) {
+                    logout("⏱️ 60 मिनट की निष्क्रियता के कारण सुरक्षा हेतु आपका सत्र स्वतः लॉगआउट हो गया है। कृपया पुनः लॉगिन करें।");
+                }
+            }, 30000);
+        }
+
+        function stopInactivityWatchdog() {
+            if (INACTIVITY_CHECK_INTERVAL) {
+                clearInterval(INACTIVITY_CHECK_INTERVAL);
+                INACTIVITY_CHECK_INTERVAL = null;
+            }
+        }
+
+        function toggleAdminRecoveryBox(forceState = null) {
+            const box = document.getElementById("admin-recovery-box");
+            if (!box) return;
+            const shouldShow = forceState !== null ? forceState : box.classList.contains("hidden");
+            box.classList.toggle("hidden", !shouldShow);
+            if (!shouldShow) {
+                const st = document.getElementById("recovery-status");
+                if (st) st.className = "status-box";
+            }
+        }
+
+        async function fetchPublicSiteConfig() {
+            // Try GitHub Contents API first (always fresh, no CDN delay)
+            try {
+                const apiRes = await fetch(
+                    `https://api.github.com/repos/${CONFIG.GITHUB_REPO}/contents/site_config.json?ref=${encodeURIComponent(CONFIG.BRANCH)}&t=${Date.now()}`,
+                    {
+                        cache: "no-store",
+                        headers: {
+                            "Accept": "application/vnd.github+json",
+                            "X-GitHub-Api-Version": "2022-11-28"
+                        }
+                    }
+                );
+                if (apiRes.status === 404) {
+                    return { config: null, found: false };
+                }
+                if (apiRes.ok) {
+                    const data = await apiRes.json();
+                    return { config: JSON.parse(base64ToUtf8(data.content)), found: true };
+                }
+            } catch (_) {
+                // Fall through to raw.githubusercontent.com fallback
+            }
+
+            // Fallback to raw.githubusercontent.com (e.g., if unauthenticated API rate limit reached)
+            const rawRes = await fetch(
+                `https://raw.githubusercontent.com/${CONFIG.GITHUB_REPO}/${encodeURIComponent(CONFIG.BRANCH)}/site_config.json?t=${Date.now()}`,
+                { cache: "no-store" }
+            );
+            if (rawRes.status === 404) {
+                return { config: null, found: false };
+            }
+            if (!rawRes.ok) {
+                throw new Error(`GitHub से site_config.json लोड नहीं हो सका (HTTP ${rawRes.status})।`);
+            }
+            return { config: await rawRes.json(), found: true };
+        }
+
+        async function enterDashboard() {
+            document.getElementById("login-view").classList.add("hidden");
+            document.getElementById("dashboard-view").classList.remove("hidden");
+            document.getElementById("header-actions").classList.remove("hidden");
+            applyRolePermissionsToUI();
+            startInactivityWatchdog();
+            await loadAllData();
         }
 
         async function handleLogin() {
-            const pwd = document.getElementById("login-password").value;
-            if (!pwd) return;
+            if (checkAndRenderLoginCooldown()) return;
 
-            if (!CONFIG.ENCRYPTED_TOKEN || !CONFIG.ENCRYPTED_TOKEN.trim()) {
-                showStatus("login-status", "error", "पहले नीचे दिए गए One-Time Setup बॉक्स से ENCRYPTED_TOKEN जनरेट करके index.html में सेव करें।");
+            const rawUsername = document.getElementById("login-username").value;
+            const normalizedUser = normalizeUsername(rawUsername);
+            const pwd = document.getElementById("login-password").value;
+            if (!pwd) {
+                showStatus("login-status", "error", "⚠️ कृपया अपना पासवर्ड दर्ज करें।");
                 return;
             }
 
             const btn = document.getElementById("login-btn");
             btn.disabled = true;
-            showStatus("login-status", "info", "सत्यापन हो रहा है...");
+            showStatus("login-status", "info", "सुरक्षित सत्यापन हो रहा है (PBKDF2 + AES-GCM)...");
 
             try {
-                const token = await decryptToken(CONFIG.ENCRYPTED_TOKEN, pwd);
-                if (!token.startsWith("gh") && !token.startsWith("github_pat_")) {
-                    throw new Error("Invalid token format");
+                // 1. Fetch live site_config.json to check live admin_lock & editors_vault
+                const { config: remoteCfg } = await fetchPublicSiteConfig();
+
+                if (!normalizedUser) {
+                    // ==================== MAIN ADMIN LOGIN ====================
+                    const liveAdminLock = remoteCfg && remoteCfg.admin_lock && typeof remoteCfg.admin_lock === "object" && remoteCfg.admin_lock.encrypted_token
+                        ? String(remoteCfg.admin_lock.encrypted_token).trim()
+                        : "";
+                    const activeLockStr = liveAdminLock || String(CONFIG.ENCRYPTED_TOKEN || "").trim();
+
+                    if (!activeLockStr) {
+                        showStatus("login-status", "error", "पहले नीचे दिए गए One-Time Setup बॉक्स से ENCRYPTED_TOKEN जनरेट करके index.html में सेव करें।");
+                        return;
+                    }
+
+                    const token = await decryptToken(activeLockStr, pwd);
+                    if (!isValidGithubTokenFormat(token)) {
+                        throw new Error("Invalid token format");
+                    }
+
+                    GITHUB_TOKEN = token;
+                    CURRENT_USER = {
+                        role: "admin",
+                        id: "admin",
+                        user_hash: null,
+                        username: "admin",
+                        display_name: "मुख्य एडमिन",
+                        permission: "admin"
+                    };
+                    clearLoginGuard();
+                    persistSession();
+                    document.getElementById("login-password").value = "";
+                    await enterDashboard();
+                } else {
+                    // ==================== SUB-EDITOR LOGIN ====================
+                    const vault = remoteCfg && Array.isArray(remoteCfg.editors_vault) ? remoteCfg.editors_vault : [];
+                    const userHash = await sha256Hex(normalizedUser);
+                    const entry = vault.find(e => e && typeof e === "object" && String(e.user_hash || "").toLowerCase() === userHash);
+
+                    if (!entry || !entry.encrypted_lock) {
+                        throw new Error("INVALID_CREDENTIALS");
+                    }
+
+                    // Step 1: Prove username + password before checking active status (prevents account enumeration)
+                    let editorMasterKey = "";
+                    try {
+                        editorMasterKey = await decryptWithPassword(entry.encrypted_lock, `${normalizedUser}:${pwd}`);
+                    } catch (_) {
+                        throw new Error("INVALID_CREDENTIALS");
+                    }
+
+                    // Step 2: Check suspension status (suspended editors also have token_envelope cleared)
+                    if (entry.active === false || !entry.token_envelope) {
+                        showStatus("login-status", "error", "⛔ आपका संपादक खाता फिलहाल निलंबित (Suspended) है। कृपया मुख्य एडमिन से संपर्क करें।");
+                        return;
+                    }
+
+                    // Step 3: Decrypt token_envelope with editorMasterKey
+                    const envelopeJson = await decryptWithRawKey(entry.token_envelope, editorMasterKey);
+                    const envelope = JSON.parse(envelopeJson);
+                    if (!envelope || !isValidGithubTokenFormat(envelope.token)) {
+                        throw new Error("INVALID_CREDENTIALS");
+                    }
+
+                    GITHUB_TOKEN = envelope.token;
+                    CURRENT_USER = {
+                        role: "editor",
+                        id: String(entry.id || userHash.slice(0, 12)),
+                        user_hash: userHash,
+                        username: normalizeUsername(envelope.username || normalizedUser),
+                        display_name: String(envelope.display_name || "").trim() || normalizedUser,
+                        permission: entry.permission === "all_articles" ? "all_articles" : "own_only"
+                    };
+                    clearLoginGuard();
+                    persistSession();
+                    document.getElementById("login-password").value = "";
+                    await enterDashboard();
                 }
-                GITHUB_TOKEN = token;
-                sessionStorage.setItem("aabtak_gh_token", token);
-                document.getElementById("login-view").classList.add("hidden");
-                document.getElementById("dashboard-view").classList.remove("hidden");
-                document.getElementById("header-actions").classList.remove("hidden");
-                await loadAllData();
             } catch (e) {
-                showStatus("login-status", "error", "❌ गलत पासवर्ड! कृपया सही पासवर्ड दर्ज करें।");
+                const msg = String(e && e.message ? e.message : "");
+                if (msg.includes("site_config.json")) {
+                    showStatus("login-status", "error", `⚠️ ${escapeHtml(msg)}`);
+                } else {
+                    const guard = recordFailedLoginAttempt();
+                    if (guard.lockedUntil > Date.now()) {
+                        checkAndRenderLoginCooldown();
+                    } else {
+                        const leftAttempts = MAX_LOGIN_ATTEMPTS - guard.count;
+                        const credMsg = normalizedUser
+                            ? "❌ गलत ईमेल/यूज़रनेम या पासवर्ड! कृपया पुनः जांचें।"
+                            : "❌ गलत मुख्य एडमिन पासवर्ड! कृपया सही पासवर्ड दर्ज करें।";
+                        showStatus("login-status", "error", `${credMsg} (${leftAttempts} प्रयास शेष)`);
+                    }
+                }
+            } finally {
+                if (getLoginGuardState().lockedUntil <= Date.now()) {
+                    btn.disabled = false;
+                }
+            }
+        }
+
+        async function handleAdminPasswordRecovery() {
+            const token = document.getElementById("recovery-token").value.trim();
+            const newPass = document.getElementById("recovery-new-pass").value;
+            const confirmPass = document.getElementById("recovery-confirm-pass").value;
+
+            if (!isValidGithubTokenFormat(token)) {
+                showStatus("recovery-status", "error", "⚠️ कृपया एक मान्य GitHub Fine-Grained Token (github_pat_... या ghp_...) दर्ज करें।");
+                return;
+            }
+            if (newPass.length < MIN_PASSWORD_LENGTH) {
+                showStatus("recovery-status", "error", `⚠️ नया पासवर्ड कम से कम ${MIN_PASSWORD_LENGTH} अक्षरों का होना चाहिए।`);
+                return;
+            }
+            if (newPass !== confirmPass) {
+                showStatus("recovery-status", "error", "⚠️ दोनों पासवर्ड मेल नहीं खाते। कृपया सही से पुनः दर्ज करें।");
+                return;
+            }
+
+            const btn = document.getElementById("recovery-submit-btn");
+            btn.disabled = true;
+            showStatus("recovery-status", "info", "GitHub टोकन की Write अनुमति सत्यापित की जा रही है...");
+
+            try {
+                const repoInfo = await ghRequest("", {}, token);
+                if (repoInfo && repoInfo.permissions && repoInfo.permissions.push === false) {
+                    throw new Error("इस GitHub टोकन के पास रिपॉजिटरी पर Write (Contents) अनुमति नहीं है।");
+                }
+
+                showStatus("recovery-status", "info", "नया 600,000-iteration एन्क्रिप्टेड एडमिन लॉक बनाया जा रहा है...");
+                const newEncryptedToken = await encryptWithPassword(token, newPass, PBKDF2_ITERATIONS_NEW);
+                const newAdminLock = {
+                    v: 2,
+                    encrypted_token: newEncryptedToken,
+                    updated_at: new Date().toISOString()
+                };
+
+                await saveSecurityConfigPatch(
+                    { admin_lock: newAdminLock },
+                    "Reset main admin password via token recovery flow",
+                    token
+                );
+
+                GITHUB_TOKEN = token;
+                CURRENT_USER = {
+                    role: "admin",
+                    id: "admin",
+                    user_hash: null,
+                    username: "admin",
+                    display_name: "मुख्य एडमिन",
+                    permission: "admin"
+                };
+                clearLoginGuard();
+                persistSession();
+
+                document.getElementById("recovery-token").value = "";
+                document.getElementById("recovery-new-pass").value = "";
+                document.getElementById("recovery-confirm-pass").value = "";
+                toggleAdminRecoveryBox(false);
+
+                await enterDashboard();
+                switchTab("editors");
+                showStatus(
+                    "admin-pass-status",
+                    "success",
+                    "✅ मुख्य एडमिन का पासवर्ड सफलतापूर्वक रीसेट होकर लाइव सेव हो गया है! पुराना पासवर्ड अब निष्क्रिय है।"
+                );
+            } catch (e) {
+                showStatus("recovery-status", "error", `❌ रीसेट विफल: ${escapeHtml(e.message)}`);
             } finally {
                 btn.disabled = false;
             }
         }
 
-        function logout() {
+        function logout(noticeMessage = "") {
+            stopInactivityWatchdog();
             GITHUB_TOKEN = "";
-            sessionStorage.removeItem("aabtak_gh_token");
+            CURRENT_USER = null;
+            DECRYPTED_EDITORS = [];
+            clearSessionStorage();
+            if (noticeMessage) {
+                sessionStorage.setItem("aabtak_session_expired_notice", noticeMessage);
+            }
             location.reload();
         }
 
@@ -3024,15 +3949,19 @@
         // =========================================================================
         function showStatus(id, type, msg) {
             const el = document.getElementById(id);
+            if (!el) return;
             el.className = `status-box ${type}`;
             el.innerHTML = msg;
         }
 
-        async function ghRequest(endpoint, options = {}) {
+        async function ghRequest(endpoint, options = {}, overrideToken = null) {
+            const activeToken = overrideToken || GITHUB_TOKEN;
+            const method = (options.method || "GET").toUpperCase();
             const res = await fetch(`https://api.github.com/repos/${CONFIG.GITHUB_REPO}${endpoint}`, {
                 ...options,
+                cache: method === "GET" ? "no-store" : options.cache,
                 headers: {
-                    "Authorization": `Bearer ${GITHUB_TOKEN}`,
+                    "Authorization": `Bearer ${activeToken}`,
                     "Accept": "application/vnd.github+json",
                     "X-GitHub-Api-Version": "2022-11-28",
                     ...(options.headers || {})
@@ -3050,9 +3979,9 @@
             return res.json();
         }
 
-        async function ghGetFile(path) {
+        async function ghGetFile(path, overrideToken = null) {
             try {
-                const data = await ghRequest(`/contents/${path}?ref=${CONFIG.BRANCH}&t=${Date.now()}`);
+                const data = await ghRequest(`/contents/${path}?ref=${CONFIG.BRANCH}&t=${Date.now()}`, {}, overrideToken);
                 return {
                     content: base64ToUtf8(data.content),
                     sha: data.sha
@@ -3063,7 +3992,7 @@
             }
         }
 
-        async function ghPutFile(path, utf8Text, message, sha = null) {
+        async function ghPutFile(path, utf8Text, message, sha = null, overrideToken = null) {
             const body = {
                 message,
                 content: utf8ToBase64(utf8Text),
@@ -3073,7 +4002,7 @@
             return ghRequest(`/contents/${path}`, {
                 method: "PUT",
                 body: JSON.stringify(body)
-            });
+            }, overrideToken);
         }
 
         async function ghPutBinaryFile(path, base64Content, message) {
@@ -3096,6 +4025,35 @@
                     branch: CONFIG.BRANCH
                 })
             });
+        }
+
+        async function saveSecurityConfigPatch(patchObj, commitMessage, overrideToken = null) {
+            const latest = await ghGetFile("site_config.json", overrideToken);
+            let baseObj = JSON.parse(JSON.stringify(DEFAULT_SITE_CONFIG));
+            if (latest && latest.content) {
+                try {
+                    const parsed = JSON.parse(latest.content);
+                    if (parsed && typeof parsed === "object" && !Array.isArray(parsed)) {
+                        baseObj = parsed;
+                    }
+                } catch (_) {}
+            }
+            const merged = { ...baseObj, ...patchObj };
+            const res = await ghPutFile(
+                "site_config.json",
+                JSON.stringify(merged, null, 2),
+                commitMessage,
+                latest ? latest.sha : null,
+                overrideToken
+            );
+            SITE_CONFIG_SHA = res && res.content ? res.content.sha : SITE_CONFIG_SHA;
+            if (Object.prototype.hasOwnProperty.call(patchObj, "admin_lock")) {
+                SITE_CONFIG.admin_lock = normalizeAdminLock(patchObj.admin_lock);
+            }
+            if (Object.prototype.hasOwnProperty.call(patchObj, "editors_vault")) {
+                SITE_CONFIG.editors_vault = normalizeEditorsVault(patchObj.editors_vault);
+            }
+            return res;
         }
 
         async function triggerRebuild() {
@@ -3279,22 +4237,61 @@
             };
         }
 
-        function buildSiteConfigPayload(latestRawContent = null) {
-            const managedKeys = ["categories", "custom_pages", "header", "header_menu", "footer", "homepage"];
-            let latestExtra = {};
+        function normalizeAdminLock(raw) {
+            if (!raw || typeof raw !== "object" || Array.isArray(raw)) return null;
+            const encrypted_token = typeof raw.encrypted_token === "string" ? raw.encrypted_token.trim() : "";
+            if (!encrypted_token) return null;
+            return {
+                v: Number(raw.v) || 2,
+                encrypted_token,
+                updated_at: typeof raw.updated_at === "string" ? raw.updated_at : ""
+            };
+        }
+
+        function normalizeEditorsVault(raw) {
+            if (!Array.isArray(raw)) return [];
+            return raw
+                .filter(e => e && typeof e === "object" && typeof e.user_hash === "string" && e.user_hash.trim())
+                .map((e, idx) => ({
+                    id: (typeof e.id === "string" && e.id.trim()) ? e.id.trim() : `ed-${idx + 1}`,
+                    user_hash: e.user_hash.trim().toLowerCase(),
+                    permission: e.permission === "all_articles" ? "all_articles" : "own_only",
+                    active: e.active !== false,
+                    encrypted_lock: typeof e.encrypted_lock === "string" ? e.encrypted_lock.trim() : "",
+                    token_envelope: typeof e.token_envelope === "string" && e.token_envelope.trim() ? e.token_envelope.trim() : null,
+                    admin_meta: typeof e.admin_meta === "string" ? e.admin_meta.trim() : "",
+                    created_at: typeof e.created_at === "string" ? e.created_at : "",
+                    updated_at: typeof e.updated_at === "string" ? e.updated_at : ""
+                }));
+        }
+
+        function buildSiteConfigPayload(latestRawContent = null, options = {}) {
+            const baseManagedKeys = ["categories", "custom_pages", "header", "header_menu", "footer", "homepage"];
+            const securityKeys = ["admin_lock", "editors_vault"];
+            let latestParsed = {};
             if (latestRawContent) {
                 try {
                     const parsedLatest = JSON.parse(latestRawContent);
                     if (parsedLatest && typeof parsedLatest === "object" && !Array.isArray(parsedLatest)) {
-                        Object.keys(parsedLatest).forEach(k => {
-                            if (!managedKeys.includes(k)) {
-                                latestExtra[k] = parsedLatest[k];
-                            }
-                        });
+                        latestParsed = parsedLatest;
                     }
                 } catch (_) {}
             }
-            return {
+            const latestExtra = {};
+            Object.keys(latestParsed).forEach(k => {
+                if (!baseManagedKeys.includes(k) && !securityKeys.includes(k)) {
+                    latestExtra[k] = latestParsed[k];
+                }
+            });
+
+            const resolvedAdminLock = options.includeAdminLock
+                ? normalizeAdminLock(SITE_CONFIG.admin_lock)
+                : normalizeAdminLock(latestParsed.admin_lock !== undefined ? latestParsed.admin_lock : SITE_CONFIG.admin_lock);
+            const resolvedEditorsVault = options.includeEditorsVault
+                ? normalizeEditorsVault(SITE_CONFIG.editors_vault)
+                : normalizeEditorsVault(Array.isArray(latestParsed.editors_vault) ? latestParsed.editors_vault : SITE_CONFIG.editors_vault);
+
+            const payload = {
                 ...SITE_CONFIG_EXTRA,
                 ...latestExtra,
                 categories: SITE_CONFIG.categories,
@@ -3304,28 +4301,115 @@
                 footer: normalizeFooterConfig(SITE_CONFIG.footer),
                 homepage: normalizeHomepageConfig(SITE_CONFIG.homepage)
             };
+            if (resolvedAdminLock) payload.admin_lock = resolvedAdminLock;
+            if (resolvedEditorsVault.length || options.includeEditorsVault) {
+                payload.editors_vault = resolvedEditorsVault;
+            }
+            return payload;
+        }
+
+        function applyRolePermissionsToUI() {
+            const userBadge = document.getElementById("current-user-badge");
+            const brandBadge = document.getElementById("brand-role-badge");
+            const tabsEl = document.getElementById("main-tabs");
+            const roleBanner = document.getElementById("editor-role-banner");
+
+            if (!CURRENT_USER) return;
+
+            if (isAdmin()) {
+                if (brandBadge) brandBadge.textContent = "ADMIN CMS";
+                if (userBadge) {
+                    userBadge.className = "user-badge admin";
+                    userBadge.textContent = "👑 मुख्य एडमिन (Main Admin)";
+                }
+                if (tabsEl) tabsEl.classList.remove("hidden");
+                document.querySelectorAll(".admin-only-tab").forEach(el => el.classList.remove("hidden"));
+                if (roleBanner) roleBanner.classList.add("hidden");
+            } else {
+                const permLabel = CURRENT_USER.permission === "all_articles"
+                    ? "🌐 सभी लेख (Add & Edit All Articles)"
+                    : "🔒 केवल अपने लेख (Add & Own Articles Only)";
+                const labelName = CURRENT_USER.display_name && CURRENT_USER.display_name !== CURRENT_USER.username
+                    ? `${CURRENT_USER.display_name} (${CURRENT_USER.username})`
+                    : CURRENT_USER.username;
+
+                if (brandBadge) brandBadge.textContent = "EDITOR PORTAL";
+                if (userBadge) {
+                    userBadge.className = "user-badge editor";
+                    userBadge.textContent = `✍️ ${CURRENT_USER.display_name || CURRENT_USER.username}`;
+                    userBadge.title = `${labelName} • ${permLabel}`;
+                }
+                if (tabsEl) tabsEl.classList.add("hidden");
+                document.querySelectorAll(".admin-only-tab").forEach(el => el.classList.add("hidden"));
+                document.querySelectorAll(".tab-panel").forEach(p => {
+                    p.classList.toggle("active", p.id === "tab-articles");
+                });
+                if (roleBanner) {
+                    roleBanner.classList.remove("hidden");
+                    roleBanner.innerHTML = `
+                        <div>
+                            <strong>✍️ संपादक पोर्टल:</strong> ${escapeHtml(labelName)}
+                        </div>
+                        <div>
+                            <span class="pill ${CURRENT_USER.permission === "all_articles" ? "blue" : "green"}">${permLabel}</span>
+                        </div>
+                    `;
+                }
+            }
+        }
+
+        async function verifyActiveEditorSession(parsedSiteConfig = null) {
+            if (!CURRENT_USER || isAdmin()) return true;
+            let cfg = parsedSiteConfig;
+            if (!cfg) {
+                const cfgFile = await ghGetFile("site_config.json");
+                cfg = cfgFile ? JSON.parse(cfgFile.content) : null;
+            }
+            const vault = cfg && Array.isArray(cfg.editors_vault) ? cfg.editors_vault : [];
+            const entry = vault.find(e => e && (
+                (CURRENT_USER.user_hash && String(e.user_hash || "").toLowerCase() === CURRENT_USER.user_hash) ||
+                (CURRENT_USER.id && e.id === CURRENT_USER.id)
+            ));
+
+            if (!entry || entry.active === false || !entry.token_envelope) {
+                logout("⛔ आपका संपादक खाता मुख्य एडमिन द्वारा निलंबित या हटा दिया गया है। कृपया पुनः लॉगिन करें या एडमिन से संपर्क करें।");
+                throw new Error("Editor account suspended or removed");
+            }
+
+            const latestPerm = entry.permission === "all_articles" ? "all_articles" : "own_only";
+            if (CURRENT_USER.permission !== latestPerm) {
+                CURRENT_USER.permission = latestPerm;
+                persistSession();
+                applyRolePermissionsToUI();
+                populatePostFilterDropdown(false);
+                renderPostsList();
+            }
+            return true;
         }
 
         async function loadAllData() {
-            const managedKeys = ["categories", "custom_pages", "header", "header_menu", "footer", "homepage"];
+            const managedKeys = ["categories", "custom_pages", "header", "header_menu", "footer", "homepage", "admin_lock", "editors_vault"];
             try {
                 // 1. Load site_config.json
                 const cfgFile = await ghGetFile("site_config.json");
+                let parsedCfg = null;
                 if (cfgFile) {
-                    const parsed = JSON.parse(cfgFile.content);
+                    parsedCfg = JSON.parse(cfgFile.content);
                     SITE_CONFIG_EXTRA = {};
-                    Object.keys(parsed).forEach(k => {
+                    Object.keys(parsedCfg).forEach(k => {
                         if (!managedKeys.includes(k)) {
-                            SITE_CONFIG_EXTRA[k] = parsed[k];
+                            SITE_CONFIG_EXTRA[k] = parsedCfg[k];
                         }
                     });
                     SITE_CONFIG = {
-                        categories: Array.isArray(parsed.categories) ? parsed.categories : JSON.parse(JSON.stringify(DEFAULT_SITE_CONFIG.categories)),
-                        custom_pages: Array.isArray(parsed.custom_pages) ? parsed.custom_pages : [],
-                        header: normalizeHeaderConfig(parsed.header),
-                        header_menu: Array.isArray(parsed.header_menu) ? parsed.header_menu : JSON.parse(JSON.stringify(DEFAULT_SITE_CONFIG.header_menu)),
-                        footer: normalizeFooterConfig(parsed.footer),
-                        homepage: normalizeHomepageConfig(parsed.homepage)
+                        categories: Array.isArray(parsedCfg.categories) ? parsedCfg.categories : JSON.parse(JSON.stringify(DEFAULT_SITE_CONFIG.categories)),
+                        custom_pages: Array.isArray(parsedCfg.custom_pages) ? parsedCfg.custom_pages : [],
+                        header: normalizeHeaderConfig(parsedCfg.header),
+                        header_menu: Array.isArray(parsedCfg.header_menu) ? parsedCfg.header_menu : JSON.parse(JSON.stringify(DEFAULT_SITE_CONFIG.header_menu)),
+                        footer: normalizeFooterConfig(parsedCfg.footer),
+                        homepage: normalizeHomepageConfig(parsedCfg.homepage),
+                        admin_lock: normalizeAdminLock(parsedCfg.admin_lock),
+                        editors_vault: normalizeEditorsVault(parsedCfg.editors_vault)
                     };
                     SITE_CONFIG_SHA = cfgFile.sha;
                 } else {
@@ -3334,29 +4418,46 @@
                     SITE_CONFIG_SHA = null;
                 }
 
+                // Live re-verification for sub-editors (suspension & permission sync)
+                if (!isAdmin()) {
+                    await verifyActiveEditorSession(parsedCfg || SITE_CONFIG);
+                }
+
                 HEADER_PREVIEW_READER_DARK = SITE_CONFIG.header.default_color_mode === "dark";
                 HP_PREVIEW_THEME = SITE_CONFIG.header.default_color_mode === "dark" ? "dark" : "light";
 
                 populateArticleCategoryDropdown();
-                renderHeaderMenuList();
-                renderHeaderManager();
-                renderCategoriesList();
-                renderCustomPagesList();
-                renderFooterManager();
-                renderHomepageManager();
+
+                if (isAdmin()) {
+                    renderHeaderMenuList();
+                    renderHeaderManager();
+                    renderCategoriesList();
+                    renderCustomPagesList();
+                    renderFooterManager();
+                    renderHomepageManager();
+                    await decryptEditorsVaultForAdmin();
+                }
 
                 // 2. Load articles_db.json
                 const dbFile = await ghGetFile("articles_db.json");
                 ALL_ARTICLES = dbFile ? JSON.parse(dbFile.content) : [];
+                populatePostFilterDropdown(true);
                 renderPostsList();
-                renderHomepageSectionsList();
-                renderHomepageLivePreview();
+
+                if (isAdmin()) {
+                    renderHomepageSectionsList();
+                    renderHomepageLivePreview();
+                    renderEditorsManager();
+                }
             } catch (e) {
-                showStatus("article-status", "error", `डेटा लोड करने में त्रुटि: ${e.message}`);
+                showStatus("article-status", "error", `डेटा लोड करने में त्रुटि: ${escapeHtml(e.message)}`);
             }
         }
 
         function switchTab(tabName) {
+            if (!isAdmin() && tabName !== "articles") {
+                tabName = "articles";
+            }
             document.querySelectorAll(".tab-btn").forEach(b => b.classList.toggle("active", b.dataset.tab === tabName));
             document.querySelectorAll(".tab-panel").forEach(p => p.classList.toggle("active", p.id === `tab-${tabName}`));
             if (tabName === "header" && typeof renderHeaderLivePreview === "function") {
@@ -3365,6 +4466,9 @@
             }
             if (tabName === "homepage" && typeof renderHomepageManager === "function") {
                 renderHomepageManager();
+            }
+            if (tabName === "editors" && typeof renderEditorsManager === "function") {
+                renderEditorsManager();
             }
         }
 
@@ -3377,7 +4481,7 @@
         }
 
         // =========================================================================
-        // 6. TAB 1: ARTICLES (Create, Edit by Slug, Delete)
+        // 6. TAB 1: ARTICLES (Create, Edit by Slug, Delete, Ownership & Filtering)
         // =========================================================================
         function populateArticleCategoryDropdown(selectedVal = null) {
             const sel = document.getElementById("art-category");
@@ -3396,36 +4500,180 @@
             }
         }
 
-        function renderPostsList() {
-            const container = document.getElementById("posts-list");
-            const filter = document.getElementById("post-filter").value;
-            const list = filter === "editor"
-                ? ALL_ARTICLES.filter(a => (a.source_name || "").includes("अबतक24"))
-                : ALL_ARTICLES;
+        function isManualArticle(art) {
+            if (!art || typeof art !== "object") return false;
+            if (normalizeUsername(art.author_username)) return true;
+            return (art.source_name || "").includes("अबतक24") || (art.source_name || "").toLowerCase().includes("aabtak24");
+        }
 
-            if (!list.length) {
-                container.innerHTML = `<p class="subtext">इस फ़िल्टर में कोई लेख नहीं मिला।</p>`;
+        function countArticlesByAuthor(username) {
+            const target = normalizeUsername(username);
+            if (!target) return 0;
+            return ALL_ARTICLES.filter(a => {
+                const auth = normalizeUsername(a.author_username);
+                if (target === "admin") {
+                    return auth === "admin" || (!auth && isManualArticle(a));
+                }
+                return auth === target;
+            }).length;
+        }
+
+        function populatePostFilterDropdown(preserveSelection = true) {
+            const sel = document.getElementById("post-filter");
+            if (!sel || !CURRENT_USER) return;
+            const prev = preserveSelection ? sel.value : "";
+            sel.innerHTML = "";
+
+            const addOpt = (val, label) => {
+                const o = document.createElement("option");
+                o.value = val;
+                o.textContent = label;
+                sel.appendChild(o);
+            };
+
+            if (!isAdmin() && CURRENT_USER.permission === "own_only") {
+                const myCount = countArticlesByAuthor(CURRENT_USER.username);
+                addOpt("mine", `🔒 मेरे प्रकाशित लेख (${myCount})`);
+                sel.value = "mine";
                 return;
             }
 
+            if (!isAdmin() && CURRENT_USER.permission === "all_articles") {
+                const myCount = countArticlesByAuthor(CURRENT_USER.username);
+                addOpt("mine", `✍️ मेरे लेख (${myCount})`);
+                addOpt("editor", "📝 सभी संपादकों के लेख (Editor Posts)");
+                addOpt("all", `🌐 सभी वेबसाइट लेख (${ALL_ARTICLES.length})`);
+                if (prev && Array.from(sel.options).some(o => o.value === prev)) {
+                    sel.value = prev;
+                } else {
+                    sel.value = "editor";
+                }
+                return;
+            }
+
+            // Main Admin filters: All Editor Posts, All Posts, Main Admin Only, + each sub-editor
+            const manualCount = ALL_ARTICLES.filter(isManualArticle).length;
+            const adminCount = countArticlesByAuthor("admin");
+            addOpt("editor", `📝 सभी संपादकों के लेख (${manualCount})`);
+            addOpt("all", `🌐 सभी वेबसाइट लेख (${ALL_ARTICLES.length})`);
+            addOpt("author:admin", `👑 मुख्य एडमिन के लेख (${adminCount})`);
+
+            const seenAuthors = new Map();
+            DECRYPTED_EDITORS.forEach(ed => {
+                if (ed.meta_readable && ed.username) {
+                    seenAuthors.set(normalizeUsername(ed.username), ed.display_name || ed.username);
+                }
+            });
+            ALL_ARTICLES.forEach(art => {
+                const u = normalizeUsername(art.author_username);
+                if (u && u !== "admin" && !seenAuthors.has(u)) {
+                    seenAuthors.set(u, String(art.author_name || "").trim() || u);
+                }
+            });
+            seenAuthors.forEach((dispName, uname) => {
+                const cnt = countArticlesByAuthor(uname);
+                const label = dispName && dispName.toLowerCase() !== uname
+                    ? `👤 ${dispName} (${uname}) — ${cnt}`
+                    : `👤 ${uname} — ${cnt}`;
+                addOpt(`author:${uname}`, label);
+            });
+
+            if (prev && Array.from(sel.options).some(o => o.value === prev)) {
+                sel.value = prev;
+            } else {
+                sel.value = "editor";
+            }
+        }
+
+        function filterArticlesByEditor(username) {
+            const target = normalizeUsername(username);
+            if (!target) return;
+            switchTab("articles");
+            populatePostFilterDropdown(false);
+            const sel = document.getElementById("post-filter");
+            const optVal = `author:${target}`;
+            if (sel && Array.from(sel.options).some(o => o.value === optVal)) {
+                sel.value = optVal;
+            }
+            renderPostsList();
+            const listEl = document.getElementById("posts-list");
+            if (listEl) listEl.scrollIntoView({ behavior: "smooth", block: "start" });
+        }
+
+        function renderPostsList() {
+            const container = document.getElementById("posts-list");
+            if (!container) return;
+            const filterEl = document.getElementById("post-filter");
+            const filter = filterEl ? filterEl.value : "editor";
+
+            let list = [];
+            if (!isAdmin() && CURRENT_USER && CURRENT_USER.permission === "own_only") {
+                const curUser = normalizeUsername(CURRENT_USER.username);
+                list = ALL_ARTICLES.filter(a => normalizeUsername(a.author_username) === curUser);
+            } else if (filter === "mine" && CURRENT_USER) {
+                const curUser = normalizeUsername(CURRENT_USER.username);
+                list = ALL_ARTICLES.filter(a => normalizeUsername(a.author_username) === curUser);
+            } else if (filter.startsWith("author:")) {
+                const target = normalizeUsername(filter.slice("author:".length));
+                list = ALL_ARTICLES.filter(a => {
+                    const auth = normalizeUsername(a.author_username);
+                    if (target === "admin") {
+                        return auth === "admin" || (!auth && isManualArticle(a));
+                    }
+                    return auth === target;
+                });
+            } else if (filter === "editor") {
+                list = ALL_ARTICLES.filter(isManualArticle);
+            } else {
+                list = ALL_ARTICLES;
+            }
+
+            if (!list.length) {
+                const emptyText = (!isAdmin() && CURRENT_USER && CURRENT_USER.permission === "own_only")
+                    ? "आपने अभी तक कोई लेख प्रकाशित नहीं किया है। ऊपर दिए गए फ़ॉर्म से अपना पहला समाचार लिखें।"
+                    : "इस फ़िल्टर में कोई लेख नहीं मिला।";
+                container.innerHTML = `<p class="subtext">${escapeHtml(emptyText)}</p>`;
+                return;
+            }
+
+            const fallbackThumb = "https://images.unsplash.com/photo-1504711434969-e33886168f5c?auto=format&fit=crop&w=400&q=60";
+
             container.innerHTML = list.map(art => {
-                const thumbSrc = (art.image_url || "").startsWith("http")
-                    ? art.image_url
-                    : `https://aabtak24.in/${art.image_url}`;
+                const safeImg = sanitizeImageUrl(art.image_url);
+                const thumbSrc = safeImg
+                    ? (/^https?:\/\//i.test(safeImg) ? safeImg : `https://aabtak24.in/${safeImg}`)
+                    : fallbackThumb;
+                const authUser = normalizeUsername(art.author_username);
+                const authDisplay = String(art.author_name || "").trim();
+                let authorPillHtml = "";
+                if (authUser && authUser !== "admin") {
+                    const authorText = authDisplay && authDisplay.toLowerCase() !== authUser
+                        ? `${authDisplay} (${authUser})`
+                        : authUser;
+                    authorPillHtml = `<span class="pill blue">👤 ${escapeHtml(authorText)}</span>`;
+                } else if (authUser === "admin" || isManualArticle(art)) {
+                    authorPillHtml = `<span class="pill dark">👑 मुख्य एडमिन</span>`;
+                }
+                const allowed = canEditArticle(art);
+                const safeSlugAttr = escapeHtml(art.slug || "");
+
                 return `
                 <div class="post-row">
-                    <img src="${thumbSrc}" alt="" loading="lazy">
+                    <img src="${escapeHtml(thumbSrc)}" alt="" loading="lazy">
                     <div>
                         <div style="margin-bottom:4px;">
-                            <span class="pill">${art.category || "समाचार"}</span>
-                            <span class="pill muted">${art.source_name || "News Desk"}</span>
+                            <span class="pill">${escapeHtml(art.category || "समाचार")}</span>
+                            <span class="pill muted">${escapeHtml(art.source_name || "News Desk")}</span>
+                            ${authorPillHtml}
                         </div>
-                        <div style="font-weight:700; font-size:16px;">${art.title}</div>
-                        <div style="font-size:12px; color:var(--text-muted);">${art.date} • <code class="inline">/news/${art.slug}.html</code></div>
+                        <div style="font-weight:700; font-size:16px;">${escapeHtml(art.title || "")}</div>
+                        <div style="font-size:12px; color:var(--text-muted);">${escapeHtml(art.date || "")} • <code class="inline">/news/${safeSlugAttr}.html</code></div>
                     </div>
                     <div class="actions-group">
-                        <button type="button" class="btn btn-outline btn-sm" onclick="startEditArticle('${art.slug}')">✏️ सुधारें</button>
-                        <button type="button" class="btn btn-danger btn-sm" onclick="deleteArticle('${art.slug}')">🗑️ हटाएं</button>
+                        ${allowed ? `
+                            <button type="button" class="btn btn-outline btn-sm" data-slug="${safeSlugAttr}" onclick="startEditArticle(this.dataset.slug)">✏️ सुधारें</button>
+                            <button type="button" class="btn btn-danger btn-sm" data-slug="${safeSlugAttr}" onclick="deleteArticle(this.dataset.slug)">🗑️ हटाएं</button>
+                        ` : `<span class="pill muted">केवल पढ़ें</span>`}
                     </div>
                 </div>`;
             }).join("");
@@ -3434,6 +4682,10 @@
         function startEditArticle(slug) {
             const art = ALL_ARTICLES.find(a => a.slug === slug);
             if (!art) return;
+            if (!canEditArticle(art)) {
+                showStatus("article-status", "error", "⛔ आपको केवल अपने द्वारा प्रकाशित लेखों में सुधार करने की अनुमति है।");
+                return;
+            }
 
             EDITING_SLUG = slug;
             document.getElementById("article-form-heading").textContent = "✏️ लेख में सुधार करें (Editing Post)";
@@ -3447,10 +4699,12 @@
             document.getElementById("art-image-url").value = art.image_url || "";
             document.getElementById("art-courtesy").value = art.image_courtesy || "फोटो साभार: अबतक24 न्यूज़ डेस्क";
 
-            // Convert <h2> back to <h3> for Quill toolbar compatibility
-            const editorHtml = (art.content_html || "")
-                .replace(/<h2>/gi, "<h3>")
-                .replace(/<\/h2>/gi, "</h3>");
+            // Convert <h2> back to <h3> for Quill toolbar compatibility and sanitize before loading into editor
+            const editorHtml = sanitizeArticleHtml(
+                (art.content_html || "")
+                    .replace(/<h2>/gi, "<h3>")
+                    .replace(/<\/h2>/gi, "</h3>")
+            );
             articleQuill.root.innerHTML = editorHtml;
 
             window.scrollTo({ top: 0, behavior: "smooth" });
@@ -3493,41 +4747,63 @@
                 showStatus("article-status", "error", "⚠️ कृपया समाचार का शीर्षक और सामग्री दोनों भरें।");
                 return;
             }
+            if (urlInput && !sanitizeImageUrl(urlInput)) {
+                showStatus("article-status", "error", "⚠️ कृपया एक मान्य फ़ोटो लिंक (https://... या uploads/...) दर्ज करें।");
+                return;
+            }
 
             const btn = document.getElementById("publish-btn");
             btn.disabled = true;
             showStatus("article-status", "info", "वेबसाइट पर सेव और प्रकाशित किया जा रहा है... कृपया प्रतीक्षा करें...");
 
             try {
+                // Re-verify live sub-editor status and permissions before writing
+                if (!isAdmin()) {
+                    await verifyActiveEditorSession();
+                }
+
                 // Always fetch fresh articles_db.json to prevent concurrent cron conflicts
                 const dbFile = await ghGetFile("articles_db.json");
                 let freshArticles = dbFile ? JSON.parse(dbFile.content) : [];
 
                 let slug = EDITING_SLUG || cleanSlug(rawSlug) || `report-${Math.floor(Date.now() / 1000)}`;
-                if (!EDITING_SLUG && freshArticles.some(a => a.slug === slug)) {
+                while (!EDITING_SLUG && freshArticles.some(a => a.slug === slug)) {
                     slug = `${slug}-${Math.floor(100 + Math.random() * 900)}`;
                 }
 
-                // Handle image upload (saved as relative uploads/... path) or URL
-                let finalImageUrl = urlInput || "https://images.unsplash.com/photo-1504711434969-e33886168f5c?auto=format&fit=crop&w=1200&q=80";
+                if (EDITING_SLUG) {
+                    const targetArt = freshArticles.find(a => a.slug === EDITING_SLUG);
+                    if (!targetArt) throw new Error("संपादित किया जाने वाला लेख नहीं मिला।");
+                    if (!canEditArticle(targetArt)) {
+                        throw new Error("⛔ आपको इस लेख में सुधार करने की अनुमति नहीं है।");
+                    }
+                }
+
+                // Handle image upload (saved as relative uploads/... path) or validated URL
+                let finalImageUrl = sanitizeImageUrl(urlInput) || "https://images.unsplash.com/photo-1504711434969-e33886168f5c?auto=format&fit=crop&w=1200&q=80";
                 if (fileInput.files && fileInput.files[0]) {
                     const file = fileInput.files[0];
-                    const ext = (file.name.split(".").pop() || "jpg").toLowerCase();
+                    const extRaw = (file.name.split(".").pop() || "jpg").toLowerCase().replace(/[^a-z0-9]/g, "");
+                    const ext = ["jpg", "jpeg", "png", "webp"].includes(extRaw) ? extRaw : "jpg";
                     const imgPath = `uploads/${slug}-${Math.floor(Date.now() / 1000)}.${ext}`;
                     const b64 = await readFileAsBase64(file);
                     await ghPutBinaryFile(imgPath, b64, `Upload image for ${slug}`);
                     finalImageUrl = imgPath;
                 }
 
-                const cleanedHtml = rawHtml
-                    .replace(/<h[12]>/gi, "<h3>")
-                    .replace(/<\/h[12]>/gi, "</h3>");
+                const cleanedHtml = sanitizeArticleHtml(
+                    rawHtml
+                        .replace(/<h[12]>/gi, "<h3>")
+                        .replace(/<\/h[12]>/gi, "</h3>")
+                );
 
                 const nowStr = new Date().toLocaleString("en-IN", {
                     day: "2-digit", month: "short", year: "numeric",
                     hour: "2-digit", minute: "2-digit", hour12: true
                 });
                 const isoNow = new Date().toISOString();
+                const actorUsername = CURRENT_USER ? CURRENT_USER.username : "admin";
+                const actorDisplayName = CURRENT_USER ? (CURRENT_USER.display_name || CURRENT_USER.username) : "मुख्य एडमिन";
 
                 if (EDITING_SLUG) {
                     const targetIdx = freshArticles.findIndex(a => a.slug === EDITING_SLUG);
@@ -3538,7 +4814,9 @@
                         category,
                         content_html: cleanedHtml,
                         image_url: finalImageUrl,
-                        image_courtesy: courtesy
+                        image_courtesy: courtesy,
+                        updated_by: actorUsername,
+                        updated_at: isoNow
                     };
                 } else {
                     freshArticles.unshift({
@@ -3550,6 +4828,8 @@
                         image_courtesy: courtesy,
                         original_link: `https://aabtak24.in/news/${slug}.html`,
                         source_name: "अबतक24 न्यूज़ डेस्क",
+                        author_username: actorUsername,
+                        author_name: actorDisplayName,
                         date: nowStr,
                         iso_date: isoNow
                     });
@@ -3565,22 +4845,40 @@
                 await triggerRebuild();
 
                 ALL_ARTICLES = freshArticles.slice(0, 100);
+                populatePostFilterDropdown(true);
                 renderPostsList();
+                if (isAdmin() && typeof renderEditorsManager === "function") renderEditorsManager();
                 resetArticleForm();
-                showStatus("article-status", "success", `🎉 लेख सफलतापूर्वक सेव हो गया है! लगभग 20 सेकंड में <a href="https://aabtak24.in/news/${slug}.html" target="_blank">aabtak24.in/news/${slug}.html</a> पर लाइव दिखेगा।`);
+                const safeSlugLink = encodeURIComponent(slug);
+                showStatus("article-status", "success", `🎉 लेख सफलतापूर्वक सेव हो गया है! लगभग 20 सेकंड में <a href="https://aabtak24.in/news/${safeSlugLink}.html" target="_blank" rel="noopener">aabtak24.in/news/${escapeHtml(slug)}.html</a> पर लाइव दिखेगा।`);
             } catch (e) {
-                showStatus("article-status", "error", `त्रुटि: ${e.message}`);
+                showStatus("article-status", "error", `त्रुटि: ${escapeHtml(e.message)}`);
             } finally {
                 btn.disabled = false;
             }
         }
 
         async function deleteArticle(slug) {
+            const localArt = ALL_ARTICLES.find(a => a.slug === slug);
+            if (localArt && !canEditArticle(localArt)) {
+                showStatus("article-status", "error", "⛔ आपको केवल अपने द्वारा प्रकाशित लेखों को हटाने की अनुमति है।");
+                return;
+            }
             if (!confirm("क्या आप वाकई इस लेख को वेबसाइट से हमेशा के लिए हटाना चाहते हैं?")) return;
             showStatus("article-status", "info", "लेख हटाया जा रहा है...");
             try {
+                if (!isAdmin()) {
+                    await verifyActiveEditorSession();
+                }
+
                 const dbFile = await ghGetFile("articles_db.json");
                 let freshArticles = dbFile ? JSON.parse(dbFile.content) : [];
+                const targetArt = freshArticles.find(a => a.slug === slug);
+                if (!targetArt) throw new Error("लेख पहले ही हटाया जा चुका है।");
+                if (!canEditArticle(targetArt)) {
+                    throw new Error("⛔ आपको इस लेख को हटाने की अनुमति नहीं है।");
+                }
+
                 freshArticles = freshArticles.filter(a => a.slug !== slug);
 
                 await ghPutFile(
@@ -3592,10 +4890,12 @@
                 await triggerRebuild();
 
                 ALL_ARTICLES = freshArticles;
+                populatePostFilterDropdown(true);
                 renderPostsList();
+                if (isAdmin() && typeof renderEditorsManager === "function") renderEditorsManager();
                 showStatus("article-status", "success", "🗑️ लेख हटा दिया गया है और वेबसाइट का रीबिल्ड शुरू हो गया है।");
             } catch (e) {
-                showStatus("article-status", "error", `हटाने में त्रुटि: ${e.message}`);
+                showStatus("article-status", "error", `हटाने में त्रुटि: ${escapeHtml(e.message)}`);
             }
         }
 
@@ -3864,6 +5164,7 @@
         }
 
         async function commitSiteConfig() {
+            if (!requireAdminAction("config-status")) return;
             const btn = document.getElementById("save-config-btn");
             btn.disabled = true;
             showStatus("config-status", "info", "site_config.json सेव हो रहा है और वेबसाइट रीबिल्ड शुरू हो रही है...");
@@ -3997,6 +5298,7 @@
         }
 
         async function saveCustomPage() {
+            if (!requireAdminAction("page-status")) return;
             const title = document.getElementById("cp-title").value.trim();
             let outputFile = document.getElementById("cp-file").value.trim().toLowerCase();
             const h1Text = document.getElementById("cp-h1").value.trim();
@@ -4025,14 +5327,16 @@
             try {
                 const pageId = EDITING_PAGE_ID || cleanSlug(outputFile.replace(".html", "")) || `page-${Date.now()}`;
                 const fragmentPath = `pages/${outputFile}`;
-                const innerHtml = pageQuill.root.innerHTML
-                    .replace(/<h3>/gi, "<h2>")
-                    .replace(/<\/h3>/gi, "</h2>");
+                const innerHtml = sanitizeArticleHtml(
+                    pageQuill.root.innerHTML
+                        .replace(/<h3>/gi, "<h2>")
+                        .replace(/<\/h3>/gi, "</h2>")
+                );
 
                 const fragmentHtml = `<article class="article-box">
     <a href="index.html" class="back-btn">← मुख्य पृष्ठ पर वापस जाएं</a>
-    ${badgeText ? `<div><span class="badge">${badgeText}</span></div>` : ""}
-    <h1 class="single-title">${h1Text}</h1>
+    ${badgeText ? `<div><span class="badge">${escapeHtml(badgeText)}</span></div>` : ""}
+    <h1 class="single-title">${escapeHtml(h1Text)}</h1>
     <div class="article-content">
         ${innerHtml}
     </div>
@@ -4101,13 +5405,14 @@
                 resetCustomPageForm();
                 showStatus("page-status", "success", `🎉 कस्टम पेज <code class="inline">${escapeHtml(outputFile)}</code> सेव हो गया है! 20 सेकंड में लाइव हो जाएगा।`);
             } catch (e) {
-                showStatus("page-status", "error", `त्रुटि: ${e.message}`);
+                showStatus("page-status", "error", `त्रुटि: ${escapeHtml(e.message)}`);
             } finally {
                 btn.disabled = false;
             }
         }
 
         async function deleteCustomPage(pageId) {
+            if (!requireAdminAction("page-status")) return;
             const page = SITE_CONFIG.custom_pages.find(p => p.id === pageId);
             if (!page) return;
             if (!confirm(`क्या आप वाकई "${page.output_file}" पेज को हटाना चाहते हैं?`)) return;
@@ -4766,6 +6071,7 @@
         }
 
         async function commitHeaderConfig() {
+            if (!requireAdminAction("header-status")) return;
             const btn = document.getElementById("save-header-btn");
             btn.disabled = true;
             syncHeaderFieldsFromUI();
@@ -5302,6 +6608,7 @@
         }
 
         async function commitFooterConfig() {
+            if (!requireAdminAction("footer-status")) return;
             const btn = document.getElementById("save-footer-btn");
             btn.disabled = true;
             syncFooterFieldsFromUI();
@@ -6372,6 +7679,7 @@
         }
 
         async function commitHomepageConfig() {
+            if (!requireAdminAction("homepage-status")) return;
             const btn = document.getElementById("save-homepage-btn");
             btn.disabled = true;
             syncHomepageGlobalFields();
@@ -6407,21 +7715,708 @@
                     "✅ होमपेज लेआउट और लाइट/डार्क मोड सेटिंग्स सेव हो गई हैं! लगभग 15–20 सेकंड में <strong>aabtak24.in</strong> का नया होमपेज लाइव अपडेट हो जाएगा।"
                 );
             } catch (e) {
-                showStatus("homepage-status", "error", `सेव करने में त्रुटि: ${e.message}`);
+                showStatus("homepage-status", "error", `सेव करने में त्रुटि: ${escapeHtml(e.message)}`);
             } finally {
                 btn.disabled = false;
             }
         }
 
-        // Auto-unlock if token is still active in current browser tab session
+        // =========================================================================
+        // 11. TAB 7: EDITORS MANAGEMENT & MAIN ADMIN PASSWORD / SECURITY
+        // =========================================================================
+        async function decryptEditorsVaultForAdmin(vaultOverride = null, tokenOverride = null) {
+            const vault = normalizeEditorsVault(vaultOverride || SITE_CONFIG.editors_vault);
+            const adminToken = tokenOverride || GITHUB_TOKEN;
+            const results = [];
+
+            for (const entry of vault) {
+                let meta = null;
+                let metaReadable = false;
+                if (entry.admin_meta && adminToken) {
+                    try {
+                        const rawMeta = await decryptWithPassword(entry.admin_meta, adminToken);
+                        const parsed = JSON.parse(rawMeta);
+                        if (parsed && typeof parsed === "object") {
+                            meta = parsed;
+                            metaReadable = true;
+                        }
+                    } catch (_) {
+                        metaReadable = false;
+                    }
+                }
+                results.push({
+                    id: entry.id,
+                    user_hash: entry.user_hash,
+                    permission: entry.permission,
+                    active: entry.active !== false,
+                    has_token_envelope: Boolean(entry.token_envelope),
+                    created_at: entry.created_at || "",
+                    updated_at: entry.updated_at || "",
+                    meta_readable: metaReadable,
+                    username: metaReadable ? normalizeUsername(meta.username) : "",
+                    display_name: metaReadable ? String(meta.display_name || "").trim() : "",
+                    has_custom_token: metaReadable ? Boolean(meta.has_custom_token) : false,
+                    custom_token: metaReadable ? String(meta.custom_token || "").trim() : "",
+                    editor_master_key: metaReadable ? String(meta.editor_master_key || "").trim() : ""
+                });
+            }
+
+            if (!vaultOverride && !tokenOverride) {
+                DECRYPTED_EDITORS = results;
+            }
+            return results;
+        }
+
+        function fillGeneratedEditorPassword() {
+            const inp = document.getElementById("editor-password");
+            if (!inp) return;
+            inp.value = generateStrongPassword(14);
+            inp.type = "text";
+        }
+
+        function fillGeneratedAdminPassword() {
+            const p1 = document.getElementById("admin-new-pass");
+            const p2 = document.getElementById("admin-confirm-pass");
+            const pwd = generateStrongPassword(16);
+            if (p1) {
+                p1.value = pwd;
+                p1.type = "text";
+            }
+            if (p2) {
+                p2.value = pwd;
+                p2.type = "text";
+            }
+        }
+
+        function renderAdminSecurityInfo() {
+            const box = document.getElementById("admin-security-info");
+            if (!box) return;
+            const hasLiveLock = Boolean(SITE_CONFIG.admin_lock && SITE_CONFIG.admin_lock.encrypted_token);
+            const updatedAt = hasLiveLock && SITE_CONFIG.admin_lock.updated_at
+                ? new Date(SITE_CONFIG.admin_lock.updated_at).toLocaleString("en-IN", { day: "2-digit", month: "short", year: "numeric", hour: "2-digit", minute: "2-digit" })
+                : "";
+            const totalEditors = DECRYPTED_EDITORS.length;
+            const activeEditors = DECRYPTED_EDITORS.filter(e => e.active && e.has_token_envelope).length;
+
+            box.innerHTML = `
+                <div class="security-stat-box">
+                    <strong>🔑 एडमिन लॉक स्रोत (Admin Lock)</strong>
+                    ${hasLiveLock
+                        ? `✅ लाइव <code class="inline">site_config.json</code> सक्रिय${updatedAt ? ` (${escapeHtml(updatedAt)})` : ""}`
+                        : `ℹ️ प्रारंभिक <code class="inline">index.html</code> लॉक (नीचे से नया पासवर्ड सेट कर 600k अपग्रेड करें)`}
+                </div>
+                <div class="security-stat-box">
+                    <strong>🛡️ एन्क्रिप्शन मानक (Cipher)</strong>
+                    PBKDF2-SHA256 (600,000 iter) + AES-256-GCM • SHA-256 हैश्ड ईमेल
+                </div>
+                <div class="security-stat-box">
+                    <strong>⏱️ ब्रूट-फ़ोर्स व सत्र सुरक्षा</strong>
+                    5 गलत प्रयास → 30s कूलडाउन • 60 मिनट निष्क्रियता ऑटो-लॉगआउट
+                </div>
+                <div class="security-stat-box">
+                    <strong>👥 पंजीकृत संपादक</strong>
+                    ${activeEditors} सक्रिय / ${totalEditors} कुल संपादक खाते
+                </div>
+            `;
+        }
+
+        function renderEditorsManager() {
+            if (!isAdmin()) return;
+            renderAdminSecurityInfo();
+
+            const listEl = document.getElementById("editors-list");
+            const badgeEl = document.getElementById("editors-count-badge");
+            if (!listEl) return;
+
+            const activeCount = DECRYPTED_EDITORS.filter(e => e.active).length;
+            if (badgeEl) {
+                badgeEl.textContent = `${activeCount} सक्रिय / ${DECRYPTED_EDITORS.length} कुल संपादक`;
+                badgeEl.className = DECRYPTED_EDITORS.length ? "pill green" : "pill muted";
+            }
+
+            if (!DECRYPTED_EDITORS.length) {
+                listEl.innerHTML = `<p class="subtext">अभी कोई अतिरिक्त संपादक नहीं जोड़ा गया है। ऊपर दिए गए फ़ॉर्म से अपना पहला संपादक जोड़ें।</p>`;
+                return;
+            }
+
+            listEl.innerHTML = DECRYPTED_EDITORS.map(ed => {
+                const safeId = escapeHtml(ed.id);
+                const permPill = ed.permission === "all_articles"
+                    ? `<span class="pill blue">🌐 सभी लेख (Add &amp; Edit All)</span>`
+                    : `<span class="pill">🔒 केवल अपने लेख (Own Only)</span>`;
+                const statusPill = ed.active && ed.has_token_envelope
+                    ? `<span class="pill green">✅ सक्रिय (Active)</span>`
+                    : `<span class="pill danger">⛔ निलंबित (Suspended)</span>`;
+                const tokenPill = ed.has_custom_token
+                    ? `<span class="pill muted">🔑 अलग GitHub टोकन</span>`
+                    : "";
+
+                if (!ed.meta_readable) {
+                    return `
+                    <div class="editor-card unreadable">
+                        <div style="flex:1; min-width:300px;">
+                            <div class="editor-pills-row">
+                                ${statusPill}
+                                ${permPill}
+                                <span class="pill muted">🔒 पुराना टोकन वॉल्ट (Unreadable Metadata)</span>
+                            </div>
+                            <div style="font-weight:700; font-size:15px;">संपादक ID: <code class="inline">${safeId}</code></div>
+                            <div style="font-size:12px; color:var(--text-muted);">
+                                यह खाता पिछले GitHub टोकन से एन्क्रिप्ट हुआ था। आप इसे हटा सकते हैं या "सुधारें / पासवर्ड रीसेट" से नया ईमेल व पासवर्ड सेट कर सकते हैं।
+                            </div>
+                        </div>
+                        <div class="actions-group">
+                            <button type="button" class="btn btn-outline btn-sm" data-editor-id="${safeId}" onclick="startEditEditor(this.dataset.editorId)">✏️ रीसेट करें</button>
+                            <button type="button" class="btn btn-danger btn-sm" data-editor-id="${safeId}" onclick="deleteEditor(this.dataset.editorId)">🗑️ हटाएं</button>
+                        </div>
+                    </div>`;
+                }
+
+                const artCount = countArticlesByAuthor(ed.username);
+                const safeUser = escapeHtml(ed.username);
+                const titleLine = ed.display_name && ed.display_name.toLowerCase() !== ed.username
+                    ? `${escapeHtml(ed.display_name)} <span style="font-weight:500; color:var(--text-muted); font-size:13.5px;">(${safeUser})</span>`
+                    : safeUser;
+                const togglePermLabel = ed.permission === "all_articles"
+                    ? "🔒 केवल अपने लेख करें"
+                    : "🌐 सभी लेख अनुमति दें";
+                const toggleActiveLabel = ed.active ? "⏸️ निलंबित करें" : "▶️ सक्रिय करें";
+
+                return `
+                <div class="editor-card${ed.active ? "" : " suspended"}">
+                    <div style="flex:1; min-width:300px;">
+                        <div class="editor-pills-row">
+                            ${statusPill}
+                            ${permPill}
+                            ${tokenPill}
+                            <button type="button" class="editor-count-btn" data-author="${safeUser}" onclick="filterArticlesByEditor(this.dataset.author)" title="इस संपादक के लेख देखें">📝 ${artCount} लेख</button>
+                        </div>
+                        <div style="font-weight:700; font-size:16px;">${titleLine}</div>
+                        <div style="font-size:12px; color:var(--text-muted);">
+                            लॉगिन यूज़रनेम: <code class="inline">${safeUser}</code>${ed.updated_at ? ` • अपडेट: ${escapeHtml(new Date(ed.updated_at).toLocaleDateString("en-IN"))}` : ""}
+                        </div>
+                    </div>
+                    <div class="actions-group">
+                        <button type="button" class="btn btn-outline btn-sm" data-editor-id="${safeId}" onclick="toggleEditorPermission(this.dataset.editorId)">${togglePermLabel}</button>
+                        <button type="button" class="btn btn-outline btn-sm" data-editor-id="${safeId}" onclick="startEditEditor(this.dataset.editorId)">✏️ सुधारें / पासवर्ड</button>
+                        <button type="button" class="btn btn-outline btn-sm" data-editor-id="${safeId}" onclick="toggleEditorActive(this.dataset.editorId)">${toggleActiveLabel}</button>
+                        <button type="button" class="btn btn-danger btn-sm" data-editor-id="${safeId}" onclick="deleteEditor(this.dataset.editorId)">🗑️ हटाएं</button>
+                    </div>
+                </div>`;
+            }).join("");
+        }
+
+        function startEditEditor(editorId) {
+            if (!requireAdminAction("editors-list-status")) return;
+            const ed = DECRYPTED_EDITORS.find(e => e.id === editorId);
+            if (!ed) return;
+
+            EDITING_EDITOR_ID = ed.id;
+            document.getElementById("editor-form-heading").textContent = ed.meta_readable
+                ? `✏️ संपादक संपादित करें: ${ed.display_name || ed.username}`
+                : `✏️ संपादक खाता रीसेट करें (${ed.id})`;
+            document.getElementById("cancel-editor-edit-btn").classList.remove("hidden");
+            document.getElementById("save-editor-btn").textContent = "💾 संपादक विवरण अपडेट करें (Update Editor)";
+
+            document.getElementById("editor-username").value = ed.meta_readable ? ed.username : "";
+            document.getElementById("editor-display-name").value = ed.meta_readable ? ed.display_name : "";
+            document.getElementById("editor-password").value = "";
+            document.getElementById("editor-password").type = "password";
+            document.getElementById("editor-password-label").textContent = ed.meta_readable
+                ? "3. नया पासवर्ड (Optional — खाली छोड़ें यदि पासवर्ड नहीं बदलना है)"
+                : "3. नया पासवर्ड (Required — कम से कम 8 अक्षर) *";
+            document.getElementById("editor-password-hint").textContent = ed.meta_readable
+                ? "यदि आप केवल नाम या अनुमति बदल रहे हैं तो पासवर्ड खाली छोड़ें। ईमेल बदलने या पासवर्ड रीसेट करने के लिए नया 8+ अक्षरों का पासवर्ड लिखें।"
+                : "पुराने टोकन से बने खाते को पुनः सक्रिय करने के लिए ईमेल और नया पासवर्ड दर्ज करें।";
+            document.getElementById("editor-permission").value = ed.permission === "all_articles" ? "all_articles" : "own_only";
+            document.getElementById("editor-custom-token").value = "";
+            document.getElementById("editor-clear-custom-token").checked = false;
+            document.getElementById("editor-clear-custom-token-wrap").classList.toggle("hidden", !ed.has_custom_token);
+
+            document.getElementById("tab-editors").scrollIntoView({ behavior: "smooth", block: "start" });
+        }
+
+        function resetEditorForm() {
+            EDITING_EDITOR_ID = null;
+            document.getElementById("editor-form-heading").textContent = "➕ नया संपादक जोड़ें (Add Sub-Editor)";
+            document.getElementById("cancel-editor-edit-btn").classList.add("hidden");
+            document.getElementById("save-editor-btn").textContent = "➕ संपादक जोड़ें और सुरक्षित वॉल्ट सेव करें (Save Editor)";
+
+            document.getElementById("editor-username").value = "";
+            document.getElementById("editor-display-name").value = "";
+            document.getElementById("editor-password").value = "";
+            document.getElementById("editor-password").type = "password";
+            document.getElementById("editor-password-label").textContent = "3. कस्टम पासवर्ड (Custom Password — कम से कम 8 अक्षर) *";
+            document.getElementById("editor-password-hint").textContent = "संपादक के साथ सुरक्षित रूप से साझा करें। पासवर्ड कभी सादे टेक्स्ट में सेव नहीं होता।";
+            document.getElementById("editor-permission").value = "own_only";
+            document.getElementById("editor-custom-token").value = "";
+            document.getElementById("editor-clear-custom-token").checked = false;
+            document.getElementById("editor-clear-custom-token-wrap").classList.add("hidden");
+            const adv = document.getElementById("editor-advanced-token-wrap");
+            if (adv) adv.open = false;
+        }
+
+        async function saveEditorForm() {
+            if (!requireAdminAction("editor-form-status")) return;
+
+            const normalizedUser = normalizeUsername(document.getElementById("editor-username").value);
+            const displayName = document.getElementById("editor-display-name").value.trim();
+            const password = document.getElementById("editor-password").value;
+            const permission = document.getElementById("editor-permission").value === "all_articles" ? "all_articles" : "own_only";
+            const customTokenInput = document.getElementById("editor-custom-token").value.trim();
+            const clearCustomToken = document.getElementById("editor-clear-custom-token").checked;
+
+            if (!normalizedUser || normalizedUser.length < 3 || /\s/.test(normalizedUser)) {
+                showStatus("editor-form-status", "error", "⚠️ कृपया एक मान्य ईमेल या यूज़रनेम (बिना स्पेस, कम से कम 3 अक्षर) दर्ज करें।");
+                return;
+            }
+            if (normalizedUser === "admin") {
+                showStatus("editor-form-status", "error", "⚠️ 'admin' यूज़रनेम मुख्य एडमिन के लिए आरक्षित है। कृपया संपादक का ईमेल या अन्य यूज़रनेम चुनें।");
+                return;
+            }
+            if (customTokenInput && !isValidGithubTokenFormat(customTokenInput)) {
+                showStatus("editor-form-status", "error", "⚠️ कस्टम GitHub टोकन अमान्य है (github_pat_... या ghp_... से शुरू होना चाहिए)।");
+                return;
+            }
+
+            const existingDecrypted = EDITING_EDITOR_ID
+                ? DECRYPTED_EDITORS.find(e => e.id === EDITING_EDITOR_ID)
+                : null;
+            const isCreating = !EDITING_EDITOR_ID || !existingDecrypted || !existingDecrypted.meta_readable;
+            const usernameChanged = Boolean(existingDecrypted && existingDecrypted.meta_readable && existingDecrypted.username !== normalizedUser);
+
+            if (isCreating && password.length < MIN_PASSWORD_LENGTH) {
+                showStatus("editor-form-status", "error", `⚠️ संपादक के लिए कम से कम ${MIN_PASSWORD_LENGTH} अक्षरों का मजबूत पासवर्ड दर्ज करें।`);
+                return;
+            }
+            if (usernameChanged && password.length < MIN_PASSWORD_LENGTH) {
+                showStatus("editor-form-status", "error", `⚠️ ईमेल/यूज़रनेम बदलने के लिए नया पासवर्ड (कम से कम ${MIN_PASSWORD_LENGTH} अक्षर) दर्ज करना आवश्यक है।`);
+                return;
+            }
+            if (!isCreating && password && password.length < MIN_PASSWORD_LENGTH) {
+                showStatus("editor-form-status", "error", `⚠️ नया पासवर्ड कम से कम ${MIN_PASSWORD_LENGTH} अक्षरों का होना चाहिए।`);
+                return;
+            }
+
+            const btn = document.getElementById("save-editor-btn");
+            btn.disabled = true;
+            showStatus("editor-form-status", "info", "PBKDF2-600k + AES-GCM-256 एन्क्रिप्शन के साथ संपादक वॉल्ट सेव हो रहा है...");
+
+            try {
+                // Fetch latest site_config.json to avoid concurrent overwrites
+                const latestCfg = await ghGetFile("site_config.json");
+                let freshVault = [];
+                if (latestCfg && latestCfg.content) {
+                    const parsedLatest = JSON.parse(latestCfg.content);
+                    freshVault = normalizeEditorsVault(parsedLatest.editors_vault);
+                }
+
+                const userHash = await sha256Hex(normalizedUser);
+                const duplicate = freshVault.find(e => e.user_hash === userHash && e.id !== EDITING_EDITOR_ID);
+                if (duplicate) {
+                    throw new Error("इस ईमेल/यूज़रनेम से पहले से एक संपादक खाता मौजूद है।");
+                }
+
+                const existingVaultEntry = EDITING_EDITOR_ID
+                    ? freshVault.find(e => e.id === EDITING_EDITOR_ID)
+                    : null;
+
+                let editorMasterKey = "";
+                let encryptedLock = "";
+                if (isCreating || Boolean(password)) {
+                    // Fresh 256-bit master key for new editor or password reset
+                    editorMasterKey = generateRandomKeyB64();
+                    encryptedLock = await encryptWithPassword(editorMasterKey, `${normalizedUser}:${password}`, PBKDF2_ITERATIONS_NEW);
+                } else {
+                    editorMasterKey = existingDecrypted.editor_master_key;
+                    encryptedLock = existingVaultEntry ? existingVaultEntry.encrypted_lock : "";
+                    if (!editorMasterKey || !encryptedLock) {
+                        throw new Error("मौजूदा संपादक कुंजी नहीं मिली। कृपया नया पासवर्ड दर्ज करके पुनः सेव करें।");
+                    }
+                }
+
+                let hasCustomToken = false;
+                let customTokenVal = "";
+                if (customTokenInput) {
+                    hasCustomToken = true;
+                    customTokenVal = customTokenInput;
+                } else if (clearCustomToken) {
+                    hasCustomToken = false;
+                    customTokenVal = "";
+                } else if (existingDecrypted && existingDecrypted.meta_readable && existingDecrypted.has_custom_token) {
+                    hasCustomToken = true;
+                    customTokenVal = existingDecrypted.custom_token;
+                }
+
+                const effectiveToken = hasCustomToken && customTokenVal ? customTokenVal : GITHUB_TOKEN;
+                const isActive = existingVaultEntry ? existingVaultEntry.active !== false : true;
+                const nowIso = new Date().toISOString();
+
+                const tokenEnvelope = isActive
+                    ? await encryptWithRawKey(
+                        JSON.stringify({
+                            token: effectiveToken,
+                            username: normalizedUser,
+                            display_name: displayName || normalizedUser
+                        }),
+                        editorMasterKey
+                    )
+                    : null;
+
+                const adminMeta = await encryptWithPassword(
+                    JSON.stringify({
+                        username: normalizedUser,
+                        display_name: displayName,
+                        has_custom_token: hasCustomToken,
+                        custom_token: hasCustomToken ? customTokenVal : "",
+                        editor_master_key: editorMasterKey
+                    }),
+                    GITHUB_TOKEN,
+                    PBKDF2_ITERATIONS_NEW
+                );
+
+                const newEntry = {
+                    id: existingVaultEntry ? existingVaultEntry.id : `ed-${Date.now()}-${Math.random().toString(36).slice(2, 7)}`,
+                    user_hash: userHash,
+                    permission,
+                    active: isActive,
+                    encrypted_lock: encryptedLock,
+                    token_envelope: tokenEnvelope,
+                    admin_meta: adminMeta,
+                    created_at: existingVaultEntry && existingVaultEntry.created_at ? existingVaultEntry.created_at : nowIso,
+                    updated_at: nowIso
+                };
+
+                if (existingVaultEntry) {
+                    const idx = freshVault.findIndex(e => e.id === existingVaultEntry.id);
+                    freshVault[idx] = newEntry;
+                } else {
+                    freshVault.push(newEntry);
+                }
+
+                await saveSecurityConfigPatch(
+                    { editors_vault: freshVault },
+                    existingVaultEntry ? `Update editor entry ${newEntry.id}` : `Add new sub-editor ${newEntry.id}`
+                );
+
+                await decryptEditorsVaultForAdmin();
+                renderEditorsManager();
+                populatePostFilterDropdown(true);
+                renderPostsList();
+                resetEditorForm();
+
+                showStatus(
+                    "editor-form-status",
+                    "success",
+                    existingVaultEntry
+                        ? `✅ संपादक <strong>${escapeHtml(displayName || normalizedUser)}</strong> का विवरण सुरक्षित रूप से अपडेट हो गया है!`
+                        : `🎉 नया संपादक <strong>${escapeHtml(displayName || normalizedUser)}</strong> सफलतापूर्वक जुड़ गया है! वे अब <code class="inline">editor.aabtak24.in</code> पर अपने ईमेल और पासवर्ड से लॉगिन कर सकते हैं।`
+                );
+            } catch (e) {
+                showStatus("editor-form-status", "error", `त्रुटि: ${escapeHtml(e.message)}`);
+            } finally {
+                btn.disabled = false;
+            }
+        }
+
+        async function toggleEditorPermission(editorId) {
+            if (!requireAdminAction("editors-list-status")) return;
+            showStatus("editors-list-status", "info", "संपादक की अनुमति बदली जा रही है...");
+            try {
+                const latestCfg = await ghGetFile("site_config.json");
+                const freshVault = latestCfg && latestCfg.content
+                    ? normalizeEditorsVault(JSON.parse(latestCfg.content).editors_vault)
+                    : [];
+                const target = freshVault.find(e => e.id === editorId);
+                if (!target) throw new Error("संपादक रिकॉर्ड नहीं मिला।");
+
+                target.permission = target.permission === "all_articles" ? "own_only" : "all_articles";
+                target.updated_at = new Date().toISOString();
+
+                await saveSecurityConfigPatch(
+                    { editors_vault: freshVault },
+                    `Update editor ${editorId} permission to ${target.permission}`
+                );
+                await decryptEditorsVaultForAdmin();
+                renderEditorsManager();
+                showStatus(
+                    "editors-list-status",
+                    "success",
+                    `✅ अनुमति अपडेट हो गई: अब यह संपादक <strong>${target.permission === "all_articles" ? "सभी वेबसाइट लेख (All Articles)" : "केवल अपने लेख (Own Articles Only)"}</strong> प्रबंधित कर सकता है।`
+                );
+            } catch (e) {
+                showStatus("editors-list-status", "error", `अनुमति बदलने में त्रुटि: ${escapeHtml(e.message)}`);
+            }
+        }
+
+        async function toggleEditorActive(editorId) {
+            if (!requireAdminAction("editors-list-status")) return;
+            const localEd = DECRYPTED_EDITORS.find(e => e.id === editorId);
+            if (!localEd) return;
+
+            const willSuspend = localEd.active;
+            if (willSuspend && !confirm(`क्या आप वाकई "${localEd.display_name || localEd.username}" का खाता निलंबित (Suspend) करना चाहते हैं? उनका एन्क्रिप्टेड टोकन वॉल्ट से तुरंत हटा दिया जाएगा।`)) {
+                return;
+            }
+
+            showStatus("editors-list-status", "info", willSuspend ? "संपादक खाता निलंबित किया जा रहा है..." : "संपादक खाता पुनः सक्रिय किया जा रहा है...");
+            try {
+                const latestCfg = await ghGetFile("site_config.json");
+                const freshVault = latestCfg && latestCfg.content
+                    ? normalizeEditorsVault(JSON.parse(latestCfg.content).editors_vault)
+                    : [];
+                const target = freshVault.find(e => e.id === editorId);
+                if (!target) throw new Error("संपादक रिकॉर्ड नहीं मिला।");
+
+                if (willSuspend) {
+                    target.active = false;
+                    target.token_envelope = null; // Cryptographically revokes token access from live site_config.json
+                } else {
+                    const meta = JSON.parse(await decryptWithPassword(target.admin_meta, GITHUB_TOKEN));
+                    const effectiveToken = meta.has_custom_token && meta.custom_token ? meta.custom_token : GITHUB_TOKEN;
+                    target.token_envelope = await encryptWithRawKey(
+                        JSON.stringify({
+                            token: effectiveToken,
+                            username: normalizeUsername(meta.username),
+                            display_name: String(meta.display_name || "").trim() || normalizeUsername(meta.username)
+                        }),
+                        meta.editor_master_key
+                    );
+                    target.active = true;
+                }
+                target.updated_at = new Date().toISOString();
+
+                await saveSecurityConfigPatch(
+                    { editors_vault: freshVault },
+                    `${willSuspend ? "Suspend" : "Activate"} editor ${editorId}`
+                );
+                await decryptEditorsVaultForAdmin();
+                renderEditorsManager();
+                showStatus(
+                    "editors-list-status",
+                    "success",
+                    willSuspend
+                        ? "⛔ संपादक खाता निलंबित कर दिया गया है और टोकन एनवलप हटा दिया गया है।"
+                        : "✅ संपादक खाता पुनः सक्रिय कर दिया गया है।"
+                );
+            } catch (e) {
+                showStatus("editors-list-status", "error", `स्थिति बदलने में त्रुटि: ${escapeHtml(e.message)}`);
+            }
+        }
+
+        async function deleteEditor(editorId) {
+            if (!requireAdminAction("editors-list-status")) return;
+            const localEd = DECRYPTED_EDITORS.find(e => e.id === editorId);
+            const label = localEd && localEd.meta_readable ? (localEd.display_name || localEd.username) : editorId;
+            if (!confirm(`क्या आप वाकई संपादक "${label}" को हमेशा के लिए हटाना चाहते हैं?\n\nनोट: उनके द्वारा पहले से प्रकाशित लेख वेबसाइट पर सुरक्षित रहेंगे, लेकिन वे लॉगिन नहीं कर पाएंगे।`)) {
+                return;
+            }
+
+            showStatus("editors-list-status", "info", "संपादक खाता हटाया जा रहा है...");
+            try {
+                const latestCfg = await ghGetFile("site_config.json");
+                let freshVault = latestCfg && latestCfg.content
+                    ? normalizeEditorsVault(JSON.parse(latestCfg.content).editors_vault)
+                    : [];
+                freshVault = freshVault.filter(e => e.id !== editorId);
+
+                await saveSecurityConfigPatch(
+                    { editors_vault: freshVault },
+                    `Delete sub-editor ${editorId}`
+                );
+                if (EDITING_EDITOR_ID === editorId) resetEditorForm();
+                await decryptEditorsVaultForAdmin();
+                renderEditorsManager();
+                populatePostFilterDropdown(true);
+                showStatus("editors-list-status", "success", "🗑️ संपादक खाता वॉल्ट से स्थायी रूप से हटा दिया गया है।");
+            } catch (e) {
+                showStatus("editors-list-status", "error", `हटाने में त्रुटि: ${escapeHtml(e.message)}`);
+            }
+        }
+
+        async function changeAdminPassword() {
+            if (!requireAdminAction("admin-pass-status")) return;
+
+            const currentPass = document.getElementById("admin-current-pass").value;
+            const newPass = document.getElementById("admin-new-pass").value;
+            const confirmPass = document.getElementById("admin-confirm-pass").value;
+            const newTokenInput = document.getElementById("admin-new-token").value.trim();
+
+            if (!currentPass) {
+                showStatus("admin-pass-status", "error", "⚠️ कृपया अपना वर्तमान मुख्य एडमिन पासवर्ड दर्ज करें।");
+                return;
+            }
+            if (newPass.length < MIN_PASSWORD_LENGTH) {
+                showStatus("admin-pass-status", "error", `⚠️ नया पासवर्ड कम से कम ${MIN_PASSWORD_LENGTH} अक्षरों का होना चाहिए।`);
+                return;
+            }
+            if (newPass !== confirmPass) {
+                showStatus("admin-pass-status", "error", "⚠️ नया पासवर्ड और कन्फ़र्म पासवर्ड मेल नहीं खाते।");
+                return;
+            }
+            if (newTokenInput && !isValidGithubTokenFormat(newTokenInput)) {
+                showStatus("admin-pass-status", "error", "⚠️ नया GitHub टोकन अमान्य है (github_pat_... या ghp_... से शुरू होना चाहिए)।");
+                return;
+            }
+
+            const btn = document.getElementById("change-admin-pass-btn");
+            btn.disabled = true;
+            showStatus("admin-pass-status", "info", "वर्तमान एडमिन पासवर्ड सत्यापित किया जा रहा है...");
+
+            try {
+                const latestCfg = await ghGetFile("site_config.json");
+                const parsedLatest = latestCfg && latestCfg.content ? JSON.parse(latestCfg.content) : {};
+                const activeLockStr = (parsedLatest.admin_lock && parsedLatest.admin_lock.encrypted_token)
+                    ? String(parsedLatest.admin_lock.encrypted_token).trim()
+                    : String(CONFIG.ENCRYPTED_TOKEN || "").trim();
+
+                if (!activeLockStr) {
+                    throw new Error("वर्तमान एडमिन लॉक नहीं मिला।");
+                }
+
+                try {
+                    const verifiedToken = await decryptToken(activeLockStr, currentPass);
+                    if (!isValidGithubTokenFormat(verifiedToken)) throw new Error("Invalid");
+                } catch (_) {
+                    throw new Error("वर्तमान मुख्य एडमिन पासवर्ड गलत है। कृपया सही पासवर्ड दर्ज करें।");
+                }
+
+                const targetToken = newTokenInput || GITHUB_TOKEN;
+                const isTokenRotated = Boolean(newTokenInput && newTokenInput !== GITHUB_TOKEN);
+                const patchObj = {};
+
+                if (isTokenRotated) {
+                    showStatus("admin-pass-status", "info", "नए GitHub टोकन की Write अनुमति जांची जा रही है...");
+                    const repoInfo = await ghRequest("", {}, targetToken);
+                    if (repoInfo && repoInfo.permissions && repoInfo.permissions.push === false) {
+                        throw new Error("नए GitHub टोकन के पास रिपॉजिटरी पर Write अनुमति नहीं है।");
+                    }
+
+                    // Re-wrap all readable editors to seamlessly migrate them to the rotated PAT
+                    showStatus("admin-pass-status", "info", "सभी संपादकों का एन्क्रिप्टेड वॉल्ट नए टोकन के साथ अपडेट किया जा रहा है...");
+                    const freshVault = normalizeEditorsVault(parsedLatest.editors_vault);
+                    const decryptedFresh = await decryptEditorsVaultForAdmin(freshVault, GITHUB_TOKEN);
+                    const migratedVault = [];
+                    const nowIso = new Date().toISOString();
+
+                    for (let i = 0; i < freshVault.length; i++) {
+                        const rawEntry = freshVault[i];
+                        const meta = decryptedFresh[i];
+                        if (!meta || !meta.meta_readable) {
+                            migratedVault.push(rawEntry);
+                            continue;
+                        }
+                        const effectiveEditorToken = meta.has_custom_token && meta.custom_token
+                            ? meta.custom_token
+                            : targetToken;
+                        const newTokenEnv = rawEntry.active !== false
+                            ? await encryptWithRawKey(
+                                JSON.stringify({
+                                    token: effectiveEditorToken,
+                                    username: meta.username,
+                                    display_name: meta.display_name || meta.username
+                                }),
+                                meta.editor_master_key
+                            )
+                            : null;
+                        const newAdminMeta = await encryptWithPassword(
+                            JSON.stringify({
+                                username: meta.username,
+                                display_name: meta.display_name,
+                                has_custom_token: meta.has_custom_token,
+                                custom_token: meta.has_custom_token ? meta.custom_token : "",
+                                editor_master_key: meta.editor_master_key
+                            }),
+                            targetToken,
+                            PBKDF2_ITERATIONS_NEW
+                        );
+                        migratedVault.push({
+                            ...rawEntry,
+                            token_envelope: newTokenEnv,
+                            admin_meta: newAdminMeta,
+                            updated_at: nowIso
+                        });
+                    }
+                    patchObj.editors_vault = migratedVault;
+                }
+
+                showStatus("admin-pass-status", "info", "नया PBKDF2-600k एडमिन लॉक जनरेट करके सेव किया जा रहा है...");
+                const newEncryptedToken = await encryptWithPassword(targetToken, newPass, PBKDF2_ITERATIONS_NEW);
+                patchObj.admin_lock = {
+                    v: 2,
+                    encrypted_token: newEncryptedToken,
+                    updated_at: new Date().toISOString()
+                };
+
+                await saveSecurityConfigPatch(
+                    patchObj,
+                    isTokenRotated
+                        ? "Update main admin password and rotate GitHub token"
+                        : "Update main admin password (PBKDF2-600k)",
+                    targetToken
+                );
+
+                if (isTokenRotated) {
+                    GITHUB_TOKEN = targetToken;
+                    persistSession();
+                    await decryptEditorsVaultForAdmin();
+                }
+
+                renderEditorsManager();
+                document.getElementById("admin-current-pass").value = "";
+                document.getElementById("admin-new-pass").value = "";
+                document.getElementById("admin-confirm-pass").value = "";
+                document.getElementById("admin-new-token").value = "";
+                document.getElementById("admin-new-lock-copy").value = newEncryptedToken;
+                document.getElementById("admin-new-lock-copy-wrap").classList.remove("hidden");
+
+                showStatus(
+                    "admin-pass-status",
+                    "success",
+                    isTokenRotated
+                        ? "✅ मुख्य एडमिन पासवर्ड और GitHub टोकन दोनों सफलतापूर्वक अपडेट हो गए हैं! पुराना पासवर्ड अब निष्क्रिय है।"
+                        : "✅ मुख्य एडमिन का पासवर्ड सफलतापूर्वक बदल गया है! नया 600,000-iteration एन्क्रिप्टेड लॉक तुरंत लाइव हो गया है और पुराना पासवर्ड निष्क्रिय हो चुका है।"
+                );
+            } catch (e) {
+                showStatus("admin-pass-status", "error", `❌ पासवर्ड अपडेट विफल: ${escapeHtml(e.message)}`);
+            } finally {
+                btn.disabled = false;
+            }
+        }
+
+        // =========================================================================
+        // 12. SESSION RESTORATION & LOGIN GUARD INITIALIZATION
+        // =========================================================================
         (async function initSession() {
-            const saved = sessionStorage.getItem("aabtak_gh_token");
-            if (saved && CONFIG.ENCRYPTED_TOKEN) {
-                GITHUB_TOKEN = saved;
-                document.getElementById("login-view").classList.add("hidden");
-                document.getElementById("dashboard-view").classList.remove("hidden");
-                document.getElementById("header-actions").classList.remove("hidden");
-                await loadAllData();
+            const notice = sessionStorage.getItem("aabtak_session_expired_notice");
+            if (notice) {
+                sessionStorage.removeItem("aabtak_session_expired_notice");
+                showStatus("login-status", "info", escapeHtml(notice));
+            }
+
+            checkAndRenderLoginCooldown();
+
+            const savedToken = sessionStorage.getItem("aabtak_gh_token");
+            const savedUserRaw = sessionStorage.getItem("aabtak_user_session");
+            const savedActivity = Number(sessionStorage.getItem("aabtak_last_activity")) || 0;
+
+            if (savedToken && savedUserRaw) {
+                if (savedActivity && (Date.now() - savedActivity >= INACTIVITY_TIMEOUT_MS)) {
+                    clearSessionStorage();
+                    showStatus("login-status", "info", "⏱️ 60 मिनट की निष्क्रियता के कारण आपका पिछला सत्र समाप्त हो गया है। कृपया पुनः लॉगिन करें।");
+                    return;
+                }
+                try {
+                    const parsedUser = JSON.parse(savedUserRaw);
+                    if (parsedUser && (parsedUser.role === "admin" || parsedUser.role === "editor")) {
+                        GITHUB_TOKEN = savedToken;
+                        CURRENT_USER = parsedUser;
+                        await enterDashboard();
+                        return;
+                    }
+                } catch (_) {
+                    clearSessionStorage();
+                }
             }
         })();
     </script>
