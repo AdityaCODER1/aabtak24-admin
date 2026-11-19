@@ -15,11 +15,10 @@ routes = [
 ]
 
 # Private Cloudflare D1 SQLite database for Admin auth, Editors, Sessions, Rate Limits, and Audit Logs
-# Run `npx wrangler d1 create aabtak24-cms` and replace the database_id below before deploying.
 [[d1_databases]]
 binding = "CMS_DB"
 database_name = "aabtak24-cms"
-database_id = "REPLACE_WITH_YOUR_D1_DATABASE_ID"
+database_id = "936dfc16-195f-4487-a16e-c30e2df48ed9"
 
 [vars]
 GITHUB_REPO = "AdityaCODER1/auto-news-bot"
