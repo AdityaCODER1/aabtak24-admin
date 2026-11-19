@@ -1028,6 +1028,459 @@
             margin-top: auto;
             text-transform: uppercase;
         }
+        .ph-theme-toggle {
+            appearance: none;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            padding: 4px 10px;
+            border-radius: 999px;
+            background: var(--ph-pill-bg);
+            color: var(--ph-text);
+            border: 1.5px solid var(--ph-divider);
+            font-family: 'Mukta', sans-serif;
+            font-size: 11.5px;
+            font-weight: 800;
+            white-space: nowrap;
+        }
+        .ph-theme-toggle:hover {
+            border-color: var(--ph-accent);
+            color: var(--ph-accent);
+        }
+        .ph-drawer-theme {
+            padding: 9px 14px;
+            border-top: 1px solid var(--ph-drawer-border);
+        }
+        .ph-drawer-theme-btn {
+            width: 100%;
+            appearance: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 8px;
+            padding: 8px 10px;
+            border-radius: 4px;
+            background: var(--ph-drawer-pill-bg);
+            border: 1px solid var(--ph-drawer-border);
+            color: var(--ph-drawer-text);
+            font-family: 'Mukta', sans-serif;
+            text-align: left;
+        }
+        .ph-drawer-theme-btn:hover {
+            border-color: var(--ph-drawer-accent);
+        }
+        .ph-drawer-theme-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            padding: 3px 9px;
+            border-radius: 999px;
+            background: var(--ph-drawer-bg);
+            border: 1px solid var(--ph-drawer-border);
+            color: var(--ph-drawer-text);
+            font-size: 11px;
+            font-weight: 800;
+            white-space: nowrap;
+        }
+        .ph-drawer-wrap.style-dropdown .ph-drawer-theme { padding: 8px 10px; }
+        .ph-drawer-wrap.style-dropdown .ph-drawer-theme-sub { display: none; }
+        .ph-viewport.reader-dark .ph-mock-page { background: #12100E; }
+        .ph-viewport.reader-dark .ph-mock-card { background: #1C1916; border-color: #2E2924; }
+        .ph-viewport.reader-dark .ph-mock-line { background: #2E2924; }
+        .ph-viewport.reader-dark .ph-mock-line.title { background: #4A423B; }
+
+        /* Homepage Manager & Live Preview */
+        .preset-card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 12px;
+            margin-top: 10px;
+        }
+        .preset-card {
+            appearance: none;
+            width: 100%;
+            text-align: left;
+            cursor: pointer;
+            background: #FFFFFF;
+            border: 2px solid var(--border);
+            border-radius: 6px;
+            padding: 14px;
+            display: flex;
+            flex-direction: column;
+            gap: 9px;
+            font-family: inherit;
+            color: var(--text-main);
+            transition: border-color 0.2s ease, background-color 0.2s ease, transform 0.15s ease, box-shadow 0.2s ease;
+        }
+        .preset-card:hover {
+            border-color: var(--accent);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 18px -8px rgba(20, 18, 16, 0.14);
+        }
+        .preset-card.active {
+            border-color: var(--accent);
+            background: #FFF6F1;
+            box-shadow: 0 0 0 2px rgba(255, 76, 0, 0.18);
+        }
+        .preset-thumb {
+            height: 62px;
+            border-radius: 4px;
+            background: #FAF6F0;
+            border: 1px solid #E2D9CC;
+            padding: 6px;
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+        .preset-thumb-row {
+            display: grid;
+            gap: 4px;
+            flex: 1;
+        }
+        .preset-thumb-block {
+            background: #D9CFC2;
+            border-radius: 2px;
+        }
+        .preset-thumb-block.accent {
+            background: rgba(255, 76, 0, 0.72);
+        }
+        .preset-card-title {
+            font-family: 'Mukta', sans-serif;
+            font-size: 16px;
+            font-weight: 800;
+            line-height: 1.2;
+            color: var(--text-main);
+        }
+        .preset-card-desc {
+            font-size: 12.5px;
+            line-height: 1.45;
+            color: var(--text-muted);
+        }
+
+        .hp-sec-card {
+            background: #FFFFFF;
+            border: 1.5px solid var(--border);
+            border-left: 4px solid var(--accent);
+            border-radius: 6px;
+            padding: 15px 16px;
+            margin-bottom: 14px;
+            transition: border-color 0.2s ease, opacity 0.2s ease;
+        }
+        .hp-sec-card.is-disabled {
+            opacity: 0.65;
+            border-left-color: #9CA3AF;
+            border-style: dashed;
+            border-left-style: solid;
+            background: #FAF8F5;
+        }
+        .hp-sec-head {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 10px;
+            flex-wrap: wrap;
+            padding-bottom: 11px;
+            margin-bottom: 12px;
+            border-bottom: 1px solid var(--border);
+        }
+        .hp-sec-meta-left {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+        .hp-sec-grid-top {
+            display: grid;
+            grid-template-columns: 1.3fr 1fr 1fr;
+            gap: 12px;
+            margin-bottom: 10px;
+        }
+        .hp-sec-grid-bottom {
+            display: grid;
+            grid-template-columns: 1.2fr 0.75fr 1fr;
+            gap: 12px;
+            align-items: end;
+        }
+        @media (max-width: 780px) {
+            .hp-sec-grid-top,
+            .hp-sec-grid-bottom {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .hp-preview-stage {
+            background: #EAE4DA;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 16px;
+            overflow: hidden;
+        }
+        .hp-preview-viewport {
+            --hp-bg: #FAF6F0;
+            --hp-card: #FFFFFF;
+            --hp-subtle: #F3EDE2;
+            --hp-text: #141210;
+            --hp-muted: #6E655F;
+            --hp-accent: #FF4C00;
+            --hp-accent-tint: #FFE8DC;
+            --hp-accent-dark: #C83700;
+            --hp-border: #E2D9CC;
+            --hp-border-heavy: #141210;
+            background: var(--hp-bg);
+            color: var(--hp-text);
+            border: 1px solid rgba(20, 18, 16, 0.16);
+            border-radius: 6px;
+            overflow: hidden;
+            box-shadow: 0 14px 30px -12px rgba(20, 18, 16, 0.25);
+            margin: 0 auto;
+            transition: max-width 0.25s ease, background-color 0.2s ease, color 0.2s ease;
+        }
+        .hp-preview-viewport.hp-theme-dark {
+            --hp-bg: #12100E;
+            --hp-card: #1C1916;
+            --hp-subtle: #26221E;
+            --hp-text: #FAF6F0;
+            --hp-muted: #A89F96;
+            --hp-accent: #FF5A1F;
+            --hp-accent-tint: rgba(255, 90, 31, 0.18);
+            --hp-accent-dark: #FF8A5C;
+            --hp-border: #2E2924;
+            --hp-border-heavy: #4A423B;
+        }
+        .hp-preview-viewport.mobile-frame {
+            max-width: 375px;
+            border: 6px solid #1C1917;
+            border-radius: 22px;
+        }
+        .hp-pv-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+            padding: 10px 16px;
+            background: var(--hp-card);
+            border-bottom: 2px solid var(--hp-border-heavy);
+        }
+        .hp-pv-brand {
+            font-family: 'Mukta', sans-serif;
+            font-weight: 800;
+            font-size: 15px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .hp-pv-brand img { height: 22px; width: auto; display: block; }
+        .hp-pv-nav {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 11px;
+            font-weight: 700;
+            color: var(--hp-muted);
+        }
+        .hp-pv-theme-chip {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            padding: 3px 8px;
+            border-radius: 999px;
+            background: var(--hp-subtle);
+            border: 1px solid var(--hp-border);
+            color: var(--hp-text);
+            font-size: 10.5px;
+            font-weight: 800;
+        }
+        .hp-pv-main {
+            padding: 16px;
+            max-height: 540px;
+            overflow-y: auto;
+        }
+        .hp-pv-sec { margin-bottom: 22px; }
+        .hp-pv-sec:last-child { margin-bottom: 0; }
+        .hp-pv-rule {
+            border-top: 3px solid var(--hp-border-heavy);
+            border-bottom: 1px solid var(--hp-border);
+            padding: 5px 0;
+            margin-bottom: 12px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+        .hp-pv-rule-title {
+            font-family: 'Mukta', sans-serif;
+            font-size: 12.5px;
+            font-weight: 800;
+            color: var(--hp-accent);
+            text-transform: uppercase;
+            letter-spacing: 0.4px;
+        }
+        .hp-pv-rule-right {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 10.5px;
+            color: var(--hp-muted);
+            font-weight: 700;
+        }
+        .hp-pv-viewall {
+            background: var(--hp-accent-tint);
+            color: var(--hp-accent-dark);
+            padding: 1px 7px;
+            border-radius: 3px;
+            font-weight: 800;
+        }
+        .hp-pv-img {
+            width: 100%;
+            object-fit: cover;
+            display: block;
+            background: linear-gradient(135deg, #2C2621, #43372E);
+        }
+        .hp-pv-badge {
+            display: inline-block;
+            background: var(--hp-accent-tint);
+            color: var(--hp-accent-dark);
+            border-left: 2.5px solid var(--hp-accent);
+            font-size: 9.5px;
+            font-weight: 800;
+            padding: 1px 6px;
+            margin-bottom: 5px;
+        }
+        .hp-pv-title {
+            font-family: 'Mukta', sans-serif;
+            font-weight: 800;
+            color: var(--hp-text);
+            line-height: 1.25;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+        .hp-pv-meta {
+            font-size: 10px;
+            color: var(--hp-muted);
+            margin-top: 4px;
+        }
+        .hp-pv-bento {
+            display: grid;
+            grid-template-columns: 1.65fr 1fr;
+            gap: 12px;
+        }
+        .hp-pv-bento.single { grid-template-columns: 1fr; }
+        .hp-pv-hero {
+            background: var(--hp-card);
+            border: 1px solid var(--hp-border);
+            border-top: 3px solid var(--hp-accent);
+            border-radius: 4px;
+            overflow: hidden;
+        }
+        .hp-pv-hero .hp-pv-img { height: 150px; }
+        .hp-pv-hero-body { padding: 10px 12px; }
+        .hp-pv-hero .hp-pv-title { font-size: 15px; }
+        .hp-pv-side-stack { display: flex; flex-direction: column; gap: 8px; }
+        .hp-pv-side {
+            background: var(--hp-card);
+            border: 1px solid var(--hp-border);
+            border-top: 2px solid var(--hp-border-heavy);
+            border-radius: 4px;
+            padding: 7px;
+            display: grid;
+            grid-template-columns: 62px 1fr;
+            gap: 8px;
+            align-items: center;
+        }
+        .hp-pv-side .hp-pv-img { width: 62px; height: 46px; border-radius: 2px; }
+        .hp-pv-side .hp-pv-title { font-size: 11.5px; }
+
+        .hp-pv-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 10px;
+        }
+        .hp-pv-card {
+            background: var(--hp-card);
+            border: 1px solid var(--hp-border);
+            border-top: 2px solid var(--hp-border-heavy);
+            border-radius: 4px;
+            overflow: hidden;
+        }
+        .hp-pv-card .hp-pv-img { height: 84px; }
+        .hp-pv-card-body { padding: 8px; }
+        .hp-pv-card .hp-pv-title { font-size: 11.5px; }
+
+        .hp-pv-mag {
+            display: grid;
+            grid-template-columns: 1.3fr 1fr;
+            gap: 12px;
+            align-items: start;
+        }
+        .hp-pv-mag.single { grid-template-columns: 1fr; }
+        .hp-pv-mag-lead {
+            background: var(--hp-card);
+            border: 1px solid var(--hp-border);
+            border-top: 3px solid var(--hp-accent);
+            border-radius: 4px;
+            overflow: hidden;
+        }
+        .hp-pv-mag-lead .hp-pv-img { height: 126px; }
+        .hp-pv-mag-lead-body { padding: 10px 12px; }
+        .hp-pv-mag-lead .hp-pv-title { font-size: 14px; }
+        .hp-pv-mag-excerpt {
+            font-size: 10.5px;
+            color: var(--hp-muted);
+            margin-top: 4px;
+            line-height: 1.45;
+        }
+        .hp-pv-mag-list {
+            background: var(--hp-card);
+            border: 1px solid var(--hp-border);
+            border-top: 2px solid var(--hp-border-heavy);
+            border-radius: 4px;
+            overflow: hidden;
+        }
+        .hp-pv-mag-item {
+            display: grid;
+            grid-template-columns: 56px 1fr;
+            gap: 8px;
+            padding: 7px 9px;
+            align-items: center;
+            border-bottom: 1px solid var(--hp-border);
+        }
+        .hp-pv-mag-item:last-child { border-bottom: none; }
+        .hp-pv-mag-item .hp-pv-img { width: 56px; height: 42px; border-radius: 2px; }
+        .hp-pv-mag-item .hp-pv-title { font-size: 11px; }
+
+        .hp-pv-compact {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 8px;
+        }
+        .hp-pv-strip {
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: 9px;
+        }
+        .hp-pv-strip-card {
+            background: var(--hp-card);
+            border: 1px solid var(--hp-border);
+            border-top: 2.5px solid var(--hp-accent);
+            border-radius: 4px;
+            overflow: hidden;
+        }
+        .hp-pv-strip-card .hp-pv-img { height: 68px; }
+        .hp-pv-strip-card .hp-pv-card-body { padding: 7px; }
+        .hp-pv-strip-card .hp-pv-title { font-size: 11px; }
+
+        .hp-preview-viewport.mobile-frame .hp-pv-bento,
+        .hp-preview-viewport.mobile-frame .hp-pv-grid,
+        .hp-preview-viewport.mobile-frame .hp-pv-mag,
+        .hp-preview-viewport.mobile-frame .hp-pv-compact,
+        .hp-preview-viewport.mobile-frame .hp-pv-strip {
+            grid-template-columns: 1fr;
+        }
     </style>
 </head>
 <body>
@@ -1083,6 +1536,7 @@
         <div id="dashboard-view" class="hidden">
             <div class="tabs">
                 <button type="button" class="tab-btn active" data-tab="articles" onclick="switchTab('articles')">📝 समाचार (Articles)</button>
+                <button type="button" class="tab-btn" data-tab="homepage" onclick="switchTab('homepage')">🏠 होमपेज (Homepage)</button>
                 <button type="button" class="tab-btn" data-tab="nav-cats" onclick="switchTab('nav-cats')">🗂️ श्रेणियाँ (Categories)</button>
                 <button type="button" class="tab-btn" data-tab="custom-pages" onclick="switchTab('custom-pages')">📄 कस्टम पेज (Custom Pages)</button>
                 <button type="button" class="tab-btn" data-tab="header" onclick="switchTab('header')">🧭 हेडर (Header)</button>
@@ -1369,6 +1823,24 @@
                             <div class="form-group" style="margin-bottom:0;">
                                 <label for="hd-edition-tag">दायाँ संस्करण बैज (Edition Tag)</label>
                                 <input type="text" id="hd-edition-tag" oninput="syncHeaderFieldsFromUI()" placeholder="डिजिटल संस्करण • INDIA">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div style="background: var(--card-subtle); padding: 14px; border-radius: 5px; margin-bottom: 14px;">
+                        <h3 style="margin-bottom:8px;">🌗 पाठक लाइट / डार्क मोड स्विच (Reader Light / Dark Mode)</h3>
+                        <p class="subtext" style="margin-bottom:10px;">डेस्कटॉप पर यह बटन हेडर में और मोबाइल फ़ोन पर हैमबर्गर मेनू के अंदर दिखाई देगा। पाठक की पसंद ब्राउज़र में सेव रहती है।</p>
+                        <div class="grid-2" style="align-items:center;">
+                            <label class="checkbox-row" style="margin:0;">
+                                <input type="checkbox" id="hd-theme-toggle-enabled" checked onchange="syncHeaderFieldsFromUI()"> पाठकों के लिए लाइट / डार्क मोड बटन दिखाएं (Enable Theme Toggle)
+                            </label>
+                            <div class="form-group" style="margin-bottom:0;">
+                                <label for="hd-default-color-mode">डिफ़ॉल्ट रंग मोड (Default Reader Color Mode)</label>
+                                <select id="hd-default-color-mode" onchange="syncHeaderFieldsFromUI()">
+                                    <option value="light">लाइट मोड (Warm Paper — Default)</option>
+                                    <option value="dark">डार्क मोड (Warm Carbon Dark)</option>
+                                    <option value="system">डिवाइस थीम के अनुसार (Follow System)</option>
+                                </select>
                             </div>
                         </div>
                     </div>
@@ -1755,6 +2227,168 @@
                     </div>
                 </div>
             </div>
+
+            <!-- ==================== TAB 6: HOMEPAGE LAYOUT BUILDER ==================== -->
+            <div id="tab-homepage" class="tab-panel">
+                <!-- Card 1: Live Homepage Preview -->
+                <div class="card">
+                    <div class="preview-toolbar">
+                        <div>
+                            <h2 style="margin:0;">👁️ लाइव होमपेज प्रीव्यू (Live Homepage Preview)</h2>
+                        </div>
+                        <div class="actions-group">
+                            <span id="homepage-preview-badge" class="pill green">Classic Bento • 2 sections</span>
+                            <div class="seg-control" role="group" aria-label="प्रीव्यू डिवाइस चुनें">
+                                <button type="button" id="hp-preview-desktop" class="seg-btn active" onclick="setHomepagePreviewDevice('desktop')">🖥️ डेस्कटॉप</button>
+                                <button type="button" id="hp-preview-mobile" class="seg-btn" onclick="setHomepagePreviewDevice('mobile')">📱 मोबाइल</button>
+                            </div>
+                            <div class="seg-control" role="group" aria-label="प्रीव्यू रंग मोड चुनें">
+                                <button type="button" id="hp-preview-light" class="seg-btn active" onclick="setHomepagePreviewTheme('light')">☀️ लाइट</button>
+                                <button type="button" id="hp-preview-dark" class="seg-btn" onclick="setHomepagePreviewTheme('dark')">🌙 डार्क</button>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="subtext">यह लाइव प्रीव्यू आपके मौजूदा लेखों के आधार पर दिखाता है कि <code>index.html</code> डेस्कटॉप व मोबाइल और लाइट व डार्क मोड में कैसा दिखेगा।</p>
+                    <div id="homepage-live-preview" class="hp-preview-stage"></div>
+                </div>
+
+                <!-- Card 2: Ready-Made Homepage Presets -->
+                <div class="card secondary">
+                    <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px; margin-bottom:6px;">
+                        <h2 style="margin:0;">🧩 रेडी-मेड होमपेज कॉन्फ़िगरेशन (Ready-Made Presets)</h2>
+                        <span id="homepage-preset-pill" class="pill">classic-bento</span>
+                    </div>
+                    <p class="subtext">नीचे दिए किसी भी तैयार लेआउट पर क्लिक करें — वह नीचे सेक्शन बिल्डर में लोड हो जाएगा, और फिर आप उसमें अपने अनुसार सेक्शन, श्रेणी, स्टाइल और लेखों की संख्या बदल सकते हैं।</p>
+
+                    <div class="preset-card-grid" id="homepage-presets-grid">
+                        <button type="button" class="preset-card active" data-preset="classic-bento" onclick="applyHomepagePreset('classic-bento')">
+                            <div class="preset-thumb" aria-hidden="true">
+                                <div class="preset-thumb-row" style="grid-template-columns: 1.7fr 1fr;">
+                                    <div class="preset-thumb-block accent"></div>
+                                    <div style="display:grid; gap:3px;">
+                                        <div class="preset-thumb-block"></div>
+                                        <div class="preset-thumb-block"></div>
+                                    </div>
+                                </div>
+                                <div class="preset-thumb-row" style="grid-template-columns: repeat(3, 1fr);">
+                                    <div class="preset-thumb-block"></div>
+                                    <div class="preset-thumb-block"></div>
+                                    <div class="preset-thumb-block"></div>
+                                </div>
+                            </div>
+                            <div class="preset-card-title">1. क्लासिक बेंटो + ग्रिड (Default)</div>
+                            <div class="preset-card-desc">मौजूदा मुख्य लेआउट: ऊपर प्रमुख बेंटो (5 लेख) और नीचे अन्य खबरों की ग्रिड (12 लेख)।</div>
+                        </button>
+
+                        <button type="button" class="preset-card" data-preset="category-showcase" onclick="applyHomepagePreset('category-showcase')">
+                            <div class="preset-thumb" aria-hidden="true">
+                                <div class="preset-thumb-row" style="grid-template-columns: 1.6fr 1fr;">
+                                    <div class="preset-thumb-block accent"></div>
+                                    <div class="preset-thumb-block"></div>
+                                </div>
+                                <div class="preset-thumb-row" style="grid-template-columns: repeat(4, 1fr);">
+                                    <div class="preset-thumb-block"></div>
+                                    <div class="preset-thumb-block"></div>
+                                    <div class="preset-thumb-block"></div>
+                                    <div class="preset-thumb-block"></div>
+                                </div>
+                                <div class="preset-thumb-row" style="grid-template-columns: repeat(3, 1fr);">
+                                    <div class="preset-thumb-block"></div>
+                                    <div class="preset-thumb-block"></div>
+                                    <div class="preset-thumb-block"></div>
+                                </div>
+                            </div>
+                            <div class="preset-card-title">2. कैटेगरी शोकेस (Category Desk)</div>
+                            <div class="preset-card-desc">ऊपर ताज़ा बेंटो, फिर हर प्रमुख श्रेणी (देश-विदेश, टेक्नोलॉजी, अर्थव्यवस्था, राजनीति) का अलग ब्लॉक और "सभी देखें →" लिंक।</div>
+                        </button>
+
+                        <button type="button" class="preset-card" data-preset="magazine-editorial" onclick="applyHomepagePreset('magazine-editorial')">
+                            <div class="preset-thumb" aria-hidden="true">
+                                <div class="preset-thumb-row" style="grid-template-columns: 1.35fr 1fr;">
+                                    <div class="preset-thumb-block accent"></div>
+                                    <div style="display:grid; gap:3px;">
+                                        <div class="preset-thumb-block"></div>
+                                        <div class="preset-thumb-block"></div>
+                                        <div class="preset-thumb-block"></div>
+                                    </div>
+                                </div>
+                                <div class="preset-thumb-row" style="grid-template-columns: repeat(2, 1fr);">
+                                    <div class="preset-thumb-block"></div>
+                                    <div class="preset-thumb-block"></div>
+                                </div>
+                            </div>
+                            <div class="preset-card-title">3. मैगज़ीन एडिटोरियल (Magazine)</div>
+                            <div class="preset-card-desc">बड़े फ़ीचर लीड + सारांश वाला मैगज़ीन स्प्लिट, हाइलाइट स्ट्रिप और कॉम्पैक्ट न्यूज़ लिस्ट का संपादकीय संतुलन।</div>
+                        </button>
+
+                        <button type="button" class="preset-card" data-preset="compact-wire" onclick="applyHomepagePreset('compact-wire')">
+                            <div class="preset-thumb" aria-hidden="true">
+                                <div class="preset-thumb-row" style="grid-template-columns: repeat(4, 1fr);">
+                                    <div class="preset-thumb-block accent"></div>
+                                    <div class="preset-thumb-block accent"></div>
+                                    <div class="preset-thumb-block accent"></div>
+                                    <div class="preset-thumb-block accent"></div>
+                                </div>
+                                <div class="preset-thumb-row" style="grid-template-columns: repeat(2, 1fr);">
+                                    <div class="preset-thumb-block"></div>
+                                    <div class="preset-thumb-block"></div>
+                                </div>
+                                <div class="preset-thumb-row" style="grid-template-columns: repeat(2, 1fr);">
+                                    <div class="preset-thumb-block"></div>
+                                    <div class="preset-thumb-block"></div>
+                                </div>
+                            </div>
+                            <div class="preset-card-title">4. कॉम्पैक्ट न्यूज़ वायर (News Wire)</div>
+                            <div class="preset-card-desc">तेज़ स्कैनिंग के लिए ऊपर 4-कॉलम ब्रेकिंग स्ट्रिप और नीचे 2-कॉलम कॉम्पैक्ट हेडलाइन फ़ीड।</div>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Card 3: Modular Section Builder, Article Limits & Display Controls -->
+                <div class="card">
+                    <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px; margin-bottom:8px;">
+                        <h2 style="margin:0;">🧱 होमपेज सेक्शन और लेख संख्या नियंत्रण (Section Builder &amp; Limits)</h2>
+                        <span id="homepage-sections-badge" class="pill green">0 sections</span>
+                    </div>
+                    <p class="subtext">हर सेक्शन का क्रम बदलें, किसी भी श्रेणी को बाँधें, 5 में से कोई भी लेआउट चुनें, और प्रत्येक सेक्शन में दिखने वाले अधिकतम लेखों की सीमा (Max Articles) तय करें।</p>
+
+                    <div style="background: var(--card-subtle); padding: 14px; border-radius: 5px; margin-bottom: 16px;">
+                        <div class="grid-2" style="align-items:center; margin-bottom:10px;">
+                            <label class="checkbox-row" style="margin:0;">
+                                <input type="checkbox" id="hp-deduplicate" checked onchange="syncHomepageGlobalFields()"> दोहराव रोकें — ऊपर के सेक्शन में दिख चुके लेख नीचे न दोहराएं (Deduplicate Across Sections)
+                            </label>
+                            <label class="checkbox-row" style="margin:0;">
+                                <input type="checkbox" id="hp-theme-toggle-enabled" checked onchange="syncThemeSettingsFromHomepage()"> पाठकों के लिए लाइट / डार्क मोड बटन चालू रखें (Header &amp; Mobile Menu)
+                            </label>
+                        </div>
+                        <div class="grid-2" style="align-items:center;">
+                            <div class="form-group" style="margin-bottom:0;">
+                                <label for="hp-default-color-mode">साइट का डिफ़ॉल्ट रंग मोड (Default Reader Color Mode)</label>
+                                <select id="hp-default-color-mode" onchange="syncThemeSettingsFromHomepage()">
+                                    <option value="light">लाइट मोड (Warm Paper — Default)</option>
+                                    <option value="dark">डार्क मोड (Warm Carbon Dark)</option>
+                                    <option value="system">डिवाइस थीम के अनुसार (Follow System)</option>
+                                </select>
+                            </div>
+                            <div style="font-size:12.5px; color:var(--text-muted); line-height:1.5;">
+                                💡 लाइट/डार्क मोड की ये सेटिंग्स <strong>🧭 हेडर (Header)</strong> टैब के साथ ऑटो-सिंक रहती हैं। डेस्कटॉप पर बटन हेडर में और फ़ोन पर हैमबर्गर मेनू में दिखता है।
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="homepage-sections-list"></div>
+
+                    <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:14px;">
+                        <button type="button" class="btn btn-dark btn-sm" onclick="addHomepageSection()">➕ नया होमपेज सेक्शन जोड़ें (Add Section)</button>
+                        <button type="button" class="btn btn-outline btn-sm" onclick="applyHomepagePreset('classic-bento')">↺ डिफ़ॉल्ट क्लासिक लेआउट रीसेट करें</button>
+                    </div>
+
+                    <div style="margin-top: 20px; padding-top: 16px; border-top: 2px solid var(--border);">
+                        <button type="button" class="btn btn-primary btn-full" id="save-homepage-btn" onclick="commitHomepageConfig()">💾 होमपेज लेआउट सेव करें एवं वेबसाइट अपडेट करें (Save Homepage &amp; Rebuild)</button>
+                        <div id="homepage-status" class="status-box"></div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -1833,6 +2467,8 @@
                 mobile_theme: "auto",
                 mobile_menu_label: "मेनू",
                 mobile_show_tagline: true,
+                theme_toggle_enabled: true,
+                default_color_mode: "light",
                 action_links: [],
                 colors: {}
             },
@@ -1884,7 +2520,49 @@
                 copyright_text: "© {year} अबतक24.in (Aabtak24.in) • सर्वाधिकार सुरक्षित।",
                 bottom_note: "डिजिटल संस्करण • INDIA",
                 colors: {}
+            },
+            homepage: {
+                preset: "classic-bento",
+                deduplicate_across_sections: true,
+                sections: [
+                    {
+                        id: "top-stories",
+                        title: "प्रमुख सुर्खियां / Top Stories",
+                        subtitle: "ताज़ा अपडेट्स",
+                        category: "all",
+                        layout: "bento",
+                        max_articles: 5,
+                        show_view_all: false,
+                        enabled: true
+                    },
+                    {
+                        id: "more-news",
+                        title: "अन्य खबरें / More News",
+                        subtitle: "सभी समाचार",
+                        category: "all",
+                        layout: "grid",
+                        max_articles: 12,
+                        show_view_all: false,
+                        enabled: true
+                    }
+                ]
             }
+        };
+
+        const HOMEPAGE_LAYOUTS = ["bento", "grid", "magazine", "compact-list", "strip"];
+        const HOMEPAGE_LAYOUT_META = {
+            "bento": { label: "बेंटो हीरो + साइड स्टैक (Bento Hero + Stack)", short: "Bento" },
+            "grid": { label: "3-कॉलम कार्ड ग्रिड (3-Column Card Grid)", short: "Grid" },
+            "magazine": { label: "मैगज़ीन स्प्लिट — लीड + सूची (Magazine Split)", short: "Magazine" },
+            "compact-list": { label: "कॉम्पैक्ट 2-कॉलम सूची (Compact 2-Col List)", short: "Compact List" },
+            "strip": { label: "4-कॉलम हाइलाइट स्ट्रिप (4-Col Visual Strip)", short: "4-Col Strip" }
+        };
+        const HOMEPAGE_PRESET_LABELS = {
+            "classic-bento": "Classic Bento + Grid",
+            "category-showcase": "Category Showcase",
+            "magazine-editorial": "Magazine Editorial",
+            "compact-wire": "Compact News Wire",
+            "custom": "Custom Configuration"
         };
 
         const HEADER_COLOR_KEYS = ["bg", "text", "accent", "border", "topbar_bg", "topbar_text", "drawer_bg", "drawer_text"];
@@ -1944,6 +2622,9 @@
         let EDITING_PAGE_ID = null;
         let HEADER_PREVIEW_DEVICE = "desktop";
         let HEADER_PREVIEW_DRAWER_OPEN = false;
+        let HEADER_PREVIEW_READER_DARK = false;
+        let HP_PREVIEW_DEVICE = "desktop";
+        let HP_PREVIEW_THEME = "light";
 
         const quillToolbar = [
             [{ header: [3, false] }],
@@ -2272,6 +2953,9 @@
                 });
             }
 
+            const rawDefaultColor = String(raw.default_color_mode || defs.default_color_mode).trim().toLowerCase();
+            const default_color_mode = ["light", "dark", "system"].includes(rawDefaultColor) ? rawDefaultColor : "light";
+
             return {
                 enabled: raw.enabled !== undefined ? Boolean(raw.enabled) : defs.enabled,
                 theme,
@@ -2290,19 +2974,63 @@
                 mobile_theme,
                 mobile_menu_label: typeof raw.mobile_menu_label === "string" ? raw.mobile_menu_label : defs.mobile_menu_label,
                 mobile_show_tagline: raw.mobile_show_tagline !== undefined ? Boolean(raw.mobile_show_tagline) : defs.mobile_show_tagline,
+                theme_toggle_enabled: raw.theme_toggle_enabled !== undefined ? Boolean(raw.theme_toggle_enabled) : defs.theme_toggle_enabled,
+                default_color_mode,
                 action_links,
                 colors
             };
         }
 
+        function normalizeHomepageConfig(raw) {
+            const defs = JSON.parse(JSON.stringify(DEFAULT_SITE_CONFIG.homepage));
+            if (!raw || typeof raw !== "object" || Array.isArray(raw)) return defs;
+
+            const rawPreset = String(raw.preset || defs.preset).trim().toLowerCase();
+            const preset = Object.prototype.hasOwnProperty.call(HOMEPAGE_PRESET_LABELS, rawPreset) ? rawPreset : "custom";
+            const deduplicate_across_sections = raw.deduplicate_across_sections !== undefined
+                ? Boolean(raw.deduplicate_across_sections)
+                : defs.deduplicate_across_sections;
+
+            let sections = [];
+            if (Array.isArray(raw.sections)) {
+                sections = raw.sections.filter(s => s && typeof s === "object").map((s, idx) => {
+                    const rawLayout = String(s.layout || "grid").trim().toLowerCase();
+                    const layout = HOMEPAGE_LAYOUTS.includes(rawLayout) ? rawLayout : "grid";
+                    let maxArt = parseInt(s.max_articles, 10);
+                    if (isNaN(maxArt)) maxArt = 6;
+                    maxArt = Math.max(1, Math.min(30, maxArt));
+                    const category = String(s.category || "all").trim() || "all";
+                    return {
+                        id: (typeof s.id === "string" && s.id.trim()) ? s.id.trim() : `section-${idx + 1}`,
+                        title: typeof s.title === "string" && s.title.trim() ? s.title.trim() : `सेक्शन ${idx + 1}`,
+                        subtitle: typeof s.subtitle === "string" ? s.subtitle : "",
+                        category,
+                        layout,
+                        max_articles: maxArt,
+                        show_view_all: s.show_view_all !== undefined ? Boolean(s.show_view_all) : (category.toLowerCase() !== "all"),
+                        enabled: s.enabled !== undefined ? Boolean(s.enabled) : true
+                    };
+                });
+            } else {
+                sections = defs.sections;
+            }
+
+            return {
+                preset,
+                deduplicate_across_sections,
+                sections
+            };
+        }
+
         function buildSiteConfigPayload(latestRawContent = null) {
+            const managedKeys = ["categories", "custom_pages", "header", "header_menu", "footer", "homepage"];
             let latestExtra = {};
             if (latestRawContent) {
                 try {
                     const parsedLatest = JSON.parse(latestRawContent);
                     if (parsedLatest && typeof parsedLatest === "object" && !Array.isArray(parsedLatest)) {
                         Object.keys(parsedLatest).forEach(k => {
-                            if (!["categories", "custom_pages", "header", "header_menu", "footer"].includes(k)) {
+                            if (!managedKeys.includes(k)) {
                                 latestExtra[k] = parsedLatest[k];
                             }
                         });
@@ -2316,11 +3044,13 @@
                 custom_pages: SITE_CONFIG.custom_pages,
                 header: normalizeHeaderConfig(SITE_CONFIG.header),
                 header_menu: SITE_CONFIG.header_menu,
-                footer: normalizeFooterConfig(SITE_CONFIG.footer)
+                footer: normalizeFooterConfig(SITE_CONFIG.footer),
+                homepage: normalizeHomepageConfig(SITE_CONFIG.homepage)
             };
         }
 
         async function loadAllData() {
+            const managedKeys = ["categories", "custom_pages", "header", "header_menu", "footer", "homepage"];
             try {
                 // 1. Load site_config.json
                 const cfgFile = await ghGetFile("site_config.json");
@@ -2328,7 +3058,7 @@
                     const parsed = JSON.parse(cfgFile.content);
                     SITE_CONFIG_EXTRA = {};
                     Object.keys(parsed).forEach(k => {
-                        if (!["categories", "custom_pages", "header", "header_menu", "footer"].includes(k)) {
+                        if (!managedKeys.includes(k)) {
                             SITE_CONFIG_EXTRA[k] = parsed[k];
                         }
                     });
@@ -2337,7 +3067,8 @@
                         custom_pages: Array.isArray(parsed.custom_pages) ? parsed.custom_pages : [],
                         header: normalizeHeaderConfig(parsed.header),
                         header_menu: Array.isArray(parsed.header_menu) ? parsed.header_menu : JSON.parse(JSON.stringify(DEFAULT_SITE_CONFIG.header_menu)),
-                        footer: normalizeFooterConfig(parsed.footer)
+                        footer: normalizeFooterConfig(parsed.footer),
+                        homepage: normalizeHomepageConfig(parsed.homepage)
                     };
                     SITE_CONFIG_SHA = cfgFile.sha;
                 } else {
@@ -2346,17 +3077,23 @@
                     SITE_CONFIG_SHA = null;
                 }
 
+                HEADER_PREVIEW_READER_DARK = SITE_CONFIG.header.default_color_mode === "dark";
+                HP_PREVIEW_THEME = SITE_CONFIG.header.default_color_mode === "dark" ? "dark" : "light";
+
                 populateArticleCategoryDropdown();
                 renderHeaderMenuList();
                 renderHeaderManager();
                 renderCategoriesList();
                 renderCustomPagesList();
                 renderFooterManager();
+                renderHomepageManager();
 
                 // 2. Load articles_db.json
                 const dbFile = await ghGetFile("articles_db.json");
                 ALL_ARTICLES = dbFile ? JSON.parse(dbFile.content) : [];
                 renderPostsList();
+                renderHomepageSectionsList();
+                renderHomepageLivePreview();
             } catch (e) {
                 showStatus("article-status", "error", `डेटा लोड करने में त्रुटि: ${e.message}`);
             }
@@ -2366,7 +3103,11 @@
             document.querySelectorAll(".tab-btn").forEach(b => b.classList.toggle("active", b.dataset.tab === tabName));
             document.querySelectorAll(".tab-panel").forEach(p => p.classList.toggle("active", p.id === `tab-${tabName}`));
             if (tabName === "header" && typeof renderHeaderLivePreview === "function") {
+                populateHeaderFormFields();
                 renderHeaderLivePreview();
+            }
+            if (tabName === "homepage" && typeof renderHomepageManager === "function") {
+                renderHomepageManager();
             }
         }
 
@@ -2838,6 +3579,7 @@
             renderHeaderMenuList();
             renderFooterManager();
             populateArticleCategoryDropdown();
+            if (typeof renderHomepageManager === "function") renderHomepageManager();
             showStatus("config-status", "info", "⚠️ बदलाव सूची में जुड़ गए हैं। वेबसाइट पर लागू करने के लिए नीचे <strong>Save & Rebuild</strong> बटन दबाएं।");
         }
 
@@ -2850,10 +3592,18 @@
             (footer.columns || []).forEach(col => {
                 col.links = (col.links || []).filter(l => l.href !== cat.file);
             });
+            const hp = ensureHomepageConfig();
+            (hp.sections || []).forEach(sec => {
+                if (sec.category === cat.id || sec.category === cat.name) {
+                    sec.category = "all";
+                    sec.show_view_all = false;
+                }
+            });
             renderCategoriesList();
             renderHeaderMenuList();
             renderFooterManager();
             populateArticleCategoryDropdown();
+            if (typeof renderHomepageManager === "function") renderHomepageManager();
         }
 
         async function commitSiteConfig() {
@@ -3240,6 +3990,14 @@
             document.getElementById("hd-mobile-theme").value = header.mobile_theme || "auto";
             document.getElementById("hd-mobile-label").value = header.mobile_menu_label ?? "मेनू";
             document.getElementById("hd-mobile-show-tagline").checked = header.mobile_show_tagline !== false;
+            const hdToggleEl = document.getElementById("hd-theme-toggle-enabled");
+            const hdModeEl = document.getElementById("hd-default-color-mode");
+            if (hdToggleEl) hdToggleEl.checked = header.theme_toggle_enabled !== false;
+            if (hdModeEl) hdModeEl.value = ["light", "dark", "system"].includes(header.default_color_mode) ? header.default_color_mode : "light";
+            const hpToggleEl = document.getElementById("hp-theme-toggle-enabled");
+            const hpModeEl = document.getElementById("hp-default-color-mode");
+            if (hpToggleEl) hpToggleEl.checked = header.theme_toggle_enabled !== false;
+            if (hpModeEl) hpModeEl.value = ["light", "dark", "system"].includes(header.default_color_mode) ? header.default_color_mode : "light";
             syncHamburgerCardsUI(header.hamburger_style || "staggered");
             syncHeaderColorInputs();
         }
@@ -3276,6 +4034,7 @@
             const header = ensureHeaderConfig();
             const prevTheme = header.theme;
             const prevMobileTheme = header.mobile_theme;
+            const prevDefaultColor = header.default_color_mode;
 
             header.enabled = document.getElementById("hd-enabled").checked;
             header.sticky = document.getElementById("hd-sticky").checked;
@@ -3304,6 +4063,22 @@
             header.mobile_menu_label = document.getElementById("hd-mobile-label").value;
             header.mobile_show_tagline = document.getElementById("hd-mobile-show-tagline").checked;
 
+            const hdToggleEl = document.getElementById("hd-theme-toggle-enabled");
+            const hdModeEl = document.getElementById("hd-default-color-mode");
+            if (hdToggleEl) header.theme_toggle_enabled = hdToggleEl.checked;
+            if (hdModeEl) {
+                const rawMode = hdModeEl.value;
+                header.default_color_mode = ["light", "dark", "system"].includes(rawMode) ? rawMode : "light";
+            }
+            const hpToggleEl = document.getElementById("hp-theme-toggle-enabled");
+            const hpModeEl = document.getElementById("hp-default-color-mode");
+            if (hpToggleEl) hpToggleEl.checked = header.theme_toggle_enabled !== false;
+            if (hpModeEl) hpModeEl.value = header.default_color_mode;
+
+            if (prevDefaultColor !== header.default_color_mode) {
+                HEADER_PREVIEW_READER_DARK = header.default_color_mode === "dark";
+                HP_PREVIEW_THEME = header.default_color_mode === "dark" ? "dark" : "light";
+            }
             if (prevTheme !== header.theme || prevMobileTheme !== header.mobile_theme) {
                 syncHeaderColorInputs();
             }
@@ -3313,6 +4088,9 @@
             }
             syncPreviewToolbarButtons();
             renderHeaderLivePreview();
+            if (typeof renderHomepageLivePreview === "function") {
+                renderHomepageLivePreview();
+            }
         }
 
         function onHeaderColorPick(key, val) {
@@ -3512,6 +4290,11 @@
             renderHeaderLivePreview();
         }
 
+        function toggleHeaderPreviewReaderTheme() {
+            HEADER_PREVIEW_READER_DARK = !HEADER_PREVIEW_READER_DARK;
+            renderHeaderLivePreview();
+        }
+
         function renderHeaderLivePreview() {
             const header = ensureHeaderConfig();
             const previewEl = document.getElementById("header-live-preview");
@@ -3527,6 +4310,10 @@
             const resolvedMobileTheme = getResolvedHeaderMobileTheme(header);
             const isDarkDrawer = resolvedMobileTheme === "dark";
             const isMobile = HEADER_PREVIEW_DEVICE === "mobile";
+            const themeToggleEnabled = header.theme_toggle_enabled !== false;
+            const readerDark = HEADER_PREVIEW_READER_DARK;
+            const effectiveDarkHeader = isDarkHeader || readerDark;
+            const effectiveDarkDrawer = isDarkDrawer || readerDark;
 
             if (badgeEl) {
                 if (!isEnabled) {
@@ -3534,7 +4321,8 @@
                     badgeEl.textContent = "Header Disabled Site-Wide";
                 } else {
                     badgeEl.className = "pill green";
-                    badgeEl.textContent = `${isDarkHeader ? "Dark" : "Light"} Header • ${layout} • Hb: ${hbStyle} • Drawer: ${drawerStyle} (${resolvedMobileTheme})`;
+                    const toggleTag = themeToggleEnabled ? `Theme Switch: ON (${header.default_color_mode || "light"})` : "Theme Switch: OFF";
+                    badgeEl.textContent = `${isDarkHeader ? "Dark" : "Light"} Header • ${layout} • ${toggleTag}`;
                 }
             }
 
@@ -3558,7 +4346,7 @@
                 ["--ph-border", colors.border]
             ]);
 
-            const headerStyleAttr = formatVars([
+            const headerStyleAttr = readerDark ? "" : formatVars([
                 ["--ph-bg", colors.bg],
                 ["--ph-text", colors.text],
                 ["--ph-muted", colors.muted],
@@ -3577,7 +4365,7 @@
             if (colors.drawer_text) drawerColorMap.drawer_text = colors.drawer_text;
             if (colors.accent) drawerColorMap.accent = colors.accent;
 
-            const drawerStyleAttr = formatVars([
+            const drawerStyleAttr = readerDark ? "" : formatVars([
                 ["--ph-drawer-bg", drawerColorMap.drawer_bg],
                 ["--ph-drawer-text", drawerColorMap.drawer_text],
                 ["--ph-drawer-border", drawerColorMap.drawer_border],
@@ -3599,7 +4387,7 @@
             }
             const showTopBar = header.top_bar_enabled !== false && (topLeftParts.length > 0 || editionTag);
             const topBarHtml = showTopBar
-                ? `<div class="ph-topbar${isDarkHeader ? " dark" : ""}"${topBarStyleAttr}>
+                ? `<div class="ph-topbar${effectiveDarkHeader ? " dark" : ""}"${topBarStyleAttr}>
                     ${topLeftParts.length ? `<div style="display:inline-flex; align-items:center; gap:10px; flex-wrap:wrap;">${topLeftParts.join("")}</div>` : ""}
                     ${editionTag ? `<span class="ph-topbar-edition">${escapeHtml(editionTag)}</span>` : ""}
                    </div>`
@@ -3608,8 +4396,8 @@
             // Brand Logo / Title
             const brandTitle = String(header.brand_title || "अबतक24.in (Aabtak24.in)").trim();
             const brandTagline = String(header.brand_tagline || "").trim();
-            const headerLogoFile = isDarkHeader ? "logo-light.svg" : "logo.svg";
-            const drawerLogoFile = isDarkDrawer ? "logo-light.svg" : "logo.svg";
+            const headerLogoFile = effectiveDarkHeader ? "logo-light.svg" : "logo.svg";
+            const drawerLogoFile = effectiveDarkDrawer ? "logo-light.svg" : "logo.svg";
 
             const headerBrandInner = header.show_logo !== false
                 ? `<img src="https://aabtak24.in/${headerLogoFile}" alt="${escapeHtml(brandTitle)}" class="ph-logo-img" onerror="this.style.display='none'; if(this.nextElementSibling) this.nextElementSibling.style.display='inline-block';">
@@ -3636,6 +4424,21 @@
                 return `<a href="#" onclick="return false;" class="ph-action-btn ${cls}" title="${escapeHtml(act.href)}">${escapeHtml(act.label)}</a>`;
             }).join("");
 
+            const desktopThemeBtnHtml = themeToggleEnabled
+                ? `<button type="button" class="ph-theme-toggle" onclick="toggleHeaderPreviewReaderTheme()" title="प्रीव्यू में लाइट / डार्क मोड बदलें">${readerDark ? "☀️ लाइट" : "🌙 डार्क"}</button>`
+                : "";
+            const drawerThemeHtml = themeToggleEnabled
+                ? `<div class="ph-drawer-theme">
+                        <button type="button" class="ph-drawer-theme-btn" onclick="toggleHeaderPreviewReaderTheme()">
+                            <span>
+                                <strong style="display:block; font-size:12px;">डिस्प्ले मोड</strong>
+                                <span class="ph-drawer-theme-sub" style="font-size:10.5px; color:var(--ph-drawer-muted);">${readerDark ? "डार्क मोड सक्रिय" : "लाइट मोड सक्रिय"}</span>
+                            </span>
+                            <span class="ph-drawer-theme-pill">${readerDark ? "☀️ लाइट" : "🌙 डार्क"}</span>
+                        </button>
+                   </div>`
+                : "";
+
             const mobileLabel = String(header.mobile_menu_label || "मेनू").trim() || "मेनू";
             const pillLabelSpan = hbStyle === "pill" ? `<span>${escapeHtml(mobileLabel)}</span>` : "";
 
@@ -3643,6 +4446,7 @@
                 ? `<div class="ph-desktop-group">
                         <nav class="ph-nav nav-${navStyle}">${navLinksHtml || '<span style="font-size:12px; color:var(--ph-muted);">कोई मेनू लिंक नहीं</span>'}</nav>
                         ${actionsHtml ? `<div class="ph-actions">${actionsHtml}</div>` : ""}
+                        ${desktopThemeBtnHtml}
                    </div>`
                 : `<button type="button" id="preview-ph-hamburger" class="ph-hamburger hb-${hbStyle}${HEADER_PREVIEW_DRAWER_OPEN ? " is-open" : ""}" aria-label="${escapeHtml(mobileLabel)}" aria-expanded="${HEADER_PREVIEW_DRAWER_OPEN ? "true" : "false"}" onclick="toggleHeaderPreviewDrawer()">
                         <span class="ph-hamburger-lines"><span></span><span></span><span></span></span>
@@ -3657,7 +4461,7 @@
                 : "";
 
             const mobileDrawerHtml = isMobile
-                ? `<div id="preview-ph-drawer-wrap" class="ph-drawer-wrap style-${drawerStyle}${isDarkDrawer ? " dark" : ""}${HEADER_PREVIEW_DRAWER_OPEN ? " is-open" : ""}" aria-hidden="${HEADER_PREVIEW_DRAWER_OPEN ? "false" : "true"}"${drawerStyleAttr}>
+                ? `<div id="preview-ph-drawer-wrap" class="ph-drawer-wrap style-${drawerStyle}${effectiveDarkDrawer ? " dark" : ""}${HEADER_PREVIEW_DRAWER_OPEN ? " is-open" : ""}" aria-hidden="${HEADER_PREVIEW_DRAWER_OPEN ? "false" : "true"}"${drawerStyleAttr}>
                         <div class="ph-drawer-backdrop" onclick="closeHeaderPreviewDrawer()"></div>
                         <div class="ph-drawer-panel">
                             <div class="ph-drawer-head">
@@ -3668,6 +4472,7 @@
                             <nav class="ph-drawer-links">
                                 ${navLinksHtml || '<div style="padding:12px 14px; font-size:12.5px; color:var(--ph-drawer-muted);">कोई नेविगेशन लिंक नहीं</div>'}
                             </nav>
+                            ${drawerThemeHtml}
                             ${actionsHtml ? `<div class="ph-drawer-actions">${actionsHtml}</div>` : ""}
                             ${drawerFootHtml}
                         </div>
@@ -3675,9 +4480,9 @@
                 : "";
 
             previewEl.innerHTML = `
-                <div class="ph-viewport${isMobile ? " mobile-frame" : ""}">
+                <div class="ph-viewport${isMobile ? " mobile-frame" : ""}${readerDark ? " reader-dark" : ""}">
                     ${topBarHtml}
-                    <div class="ph-header${isDarkHeader ? " dark" : ""} layout-${layout}"${headerStyleAttr}>
+                    <div class="ph-header${effectiveDarkHeader ? " dark" : ""} layout-${layout}"${headerStyleAttr}>
                         <div class="ph-header-inner">
                             <div class="ph-brand-wrap">
                                 <div>${headerBrandInner}</div>
@@ -3689,7 +4494,7 @@
                     <div class="ph-mock-page">
                         <div class="ph-mock-card">
                             <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px; font-size:11px; font-weight:700; color:var(--accent); text-transform:uppercase;">
-                                <span>🔥 मुख्य समाचार (Page Content Preview)</span>
+                                <span>🔥 मुख्य समाचार (Page Content Preview — ${readerDark ? "Dark" : "Light"})</span>
                                 ${header.sticky !== false ? '<span style="color:var(--text-muted);">Sticky Header</span>' : '<span style="color:var(--text-muted);">Static Header</span>'}
                             </div>
                             <div class="ph-mock-line title"></div>
@@ -4261,6 +5066,772 @@
                 showStatus("footer-status", "success", "✅ फ़ुटर सेटिंग्स सेव हो गई हैं! लगभग 15–20 सेकंड में पूरी वेबसाइट (होमपेज, श्रेणियाँ, कस्टम पेज व सभी समाचार) नए फ़ुटर के साथ अपडेट हो जाएगी।");
             } catch (e) {
                 showStatus("footer-status", "error", `सेव करने में त्रुटि: ${e.message}`);
+            } finally {
+                btn.disabled = false;
+            }
+        }
+
+        // =========================================================================
+        // 10. TAB 6: HOMEPAGE LAYOUT MANAGER & LIVE PREVIEW
+        // =========================================================================
+        function ensureHomepageConfig() {
+            SITE_CONFIG.homepage = normalizeHomepageConfig(SITE_CONFIG.homepage);
+            return SITE_CONFIG.homepage;
+        }
+
+        function buildHomepagePresetConfig(presetId) {
+            const cats = Array.isArray(SITE_CONFIG.categories) && SITE_CONFIG.categories.length
+                ? SITE_CONFIG.categories
+                : DEFAULT_SITE_CONFIG.categories;
+            const pickCat = (idx) => cats[idx] || null;
+
+            if (presetId === "category-showcase") {
+                const sections = [
+                    {
+                        id: "top-stories",
+                        title: "प्रमुख सुर्खियां / Top Stories",
+                        subtitle: "बड़ी खबरें",
+                        category: "all",
+                        layout: "bento",
+                        max_articles: 5,
+                        show_view_all: false,
+                        enabled: true
+                    }
+                ];
+                const catLayouts = [
+                    { layout: "strip", max: 4, sub: "ताज़ा हाइलाइट्स" },
+                    { layout: "grid", max: 6, sub: "विशेष कवरेज" },
+                    { layout: "compact-list", max: 6, sub: "संक्षिप्त समाचार" },
+                    { layout: "grid", max: 6, sub: "प्रमुख रिपोर्ट्स" }
+                ];
+                catLayouts.forEach((spec, i) => {
+                    const c = pickCat(i);
+                    if (!c) return;
+                    sections.push({
+                        id: `cat-${c.id || i + 1}`,
+                        title: c.name,
+                        subtitle: spec.sub,
+                        category: c.id || c.name,
+                        layout: spec.layout,
+                        max_articles: spec.max,
+                        show_view_all: true,
+                        enabled: true
+                    });
+                });
+                return {
+                    preset: "category-showcase",
+                    deduplicate_across_sections: true,
+                    sections
+                };
+            }
+
+            if (presetId === "magazine-editorial") {
+                const c0 = pickCat(0);
+                const c1 = pickCat(1);
+                const sections = [
+                    {
+                        id: "editorial-lead",
+                        title: "संपादकीय चयन / Featured Desk",
+                        subtitle: "विशेष रिपोर्ट",
+                        category: "all",
+                        layout: "magazine",
+                        max_articles: 5,
+                        show_view_all: false,
+                        enabled: true
+                    }
+                ];
+                if (c0) {
+                    sections.push({
+                        id: `mag-strip-${c0.id || "1"}`,
+                        title: c0.name,
+                        subtitle: "चर्चित खबरें",
+                        category: c0.id || c0.name,
+                        layout: "strip",
+                        max_articles: 4,
+                        show_view_all: true,
+                        enabled: true
+                    });
+                }
+                if (c1) {
+                    sections.push({
+                        id: `mag-split-${c1.id || "2"}`,
+                        title: c1.name,
+                        subtitle: "विश्लेषण",
+                        category: c1.id || c1.name,
+                        layout: "magazine",
+                        max_articles: 5,
+                        show_view_all: true,
+                        enabled: true
+                    });
+                }
+                sections.push({
+                    id: "briefs-wire",
+                    title: "ताज़ा समाचार संक्षेप / Latest Briefs",
+                    subtitle: "त्वरित अपडेट",
+                    category: "all",
+                    layout: "compact-list",
+                    max_articles: 8,
+                    show_view_all: false,
+                    enabled: true
+                });
+                return {
+                    preset: "magazine-editorial",
+                    deduplicate_across_sections: true,
+                    sections
+                };
+            }
+
+            if (presetId === "compact-wire") {
+                const c0 = pickCat(0);
+                const c1 = pickCat(1);
+                const sections = [
+                    {
+                        id: "breaking-strip",
+                        title: "ब्रेकिंग हाइलाइट्स / Breaking Strip",
+                        subtitle: "लाइव अपडेट",
+                        category: "all",
+                        layout: "strip",
+                        max_articles: 4,
+                        show_view_all: false,
+                        enabled: true
+                    },
+                    {
+                        id: "news-wire",
+                        title: "ताज़ा न्यूज़ वायर / Latest Wire",
+                        subtitle: "तेज़ स्कैन",
+                        category: "all",
+                        layout: "compact-list",
+                        max_articles: 10,
+                        show_view_all: false,
+                        enabled: true
+                    }
+                ];
+                if (c0) {
+                    sections.push({
+                        id: `wire-cat-${c0.id || "1"}`,
+                        title: c0.name,
+                        subtitle: "शीर्ष सुर्खियाँ",
+                        category: c0.id || c0.name,
+                        layout: "compact-list",
+                        max_articles: 6,
+                        show_view_all: true,
+                        enabled: true
+                    });
+                }
+                if (c1) {
+                    sections.push({
+                        id: `wire-cat-${c1.id || "2"}`,
+                        title: c1.name,
+                        subtitle: "विस्तार से",
+                        category: c1.id || c1.name,
+                        layout: "grid",
+                        max_articles: 6,
+                        show_view_all: true,
+                        enabled: true
+                    });
+                }
+                return {
+                    preset: "compact-wire",
+                    deduplicate_across_sections: true,
+                    sections
+                };
+            }
+
+            return JSON.parse(JSON.stringify(DEFAULT_SITE_CONFIG.homepage));
+        }
+
+        function applyHomepagePreset(presetId) {
+            SITE_CONFIG.homepage = normalizeHomepageConfig(buildHomepagePresetConfig(presetId));
+            renderHomepageManager();
+            showStatus(
+                "homepage-status",
+                "info",
+                `🧩 प्रीसेट <strong>${escapeHtml(HOMEPAGE_PRESET_LABELS[SITE_CONFIG.homepage.preset] || presetId)}</strong> लोड हो गया है! आप नीचे सेक्शन में और बदलाव कर सकते हैं, फिर <strong>Save Homepage &amp; Rebuild</strong> दबाएं।`
+            );
+        }
+
+        function syncHomepageGlobalFields() {
+            const hp = ensureHomepageConfig();
+            const dedupEl = document.getElementById("hp-deduplicate");
+            if (dedupEl) hp.deduplicate_across_sections = dedupEl.checked;
+            renderHomepageSectionsList();
+            renderHomepageLivePreview();
+        }
+
+        function syncThemeSettingsFromHomepage() {
+            const header = ensureHeaderConfig();
+            const hpToggleEl = document.getElementById("hp-theme-toggle-enabled");
+            const hpModeEl = document.getElementById("hp-default-color-mode");
+            const prevMode = header.default_color_mode;
+
+            if (hpToggleEl) header.theme_toggle_enabled = hpToggleEl.checked;
+            if (hpModeEl) {
+                const rawMode = hpModeEl.value;
+                header.default_color_mode = ["light", "dark", "system"].includes(rawMode) ? rawMode : "light";
+            }
+
+            const hdToggleEl = document.getElementById("hd-theme-toggle-enabled");
+            const hdModeEl = document.getElementById("hd-default-color-mode");
+            if (hdToggleEl) hdToggleEl.checked = header.theme_toggle_enabled !== false;
+            if (hdModeEl) hdModeEl.value = header.default_color_mode;
+
+            if (prevMode !== header.default_color_mode) {
+                HEADER_PREVIEW_READER_DARK = header.default_color_mode === "dark";
+                HP_PREVIEW_THEME = header.default_color_mode === "dark" ? "dark" : "light";
+                syncHomepagePreviewButtons();
+            }
+            renderHeaderLivePreview();
+            renderHomepageLivePreview();
+        }
+
+        function resolveHomepageCategoryObj(catKey) {
+            const key = String(catKey || "all").trim();
+            if (!key || key.toLowerCase() === "all") return null;
+            const keyLow = key.toLowerCase();
+            const cats = Array.isArray(SITE_CONFIG.categories) ? SITE_CONFIG.categories : [];
+            for (const cat of cats) {
+                if (!cat || typeof cat !== "object") continue;
+                const cid = String(cat.id || "").trim().toLowerCase();
+                const cname = String(cat.name || "").trim().toLowerCase();
+                const aliases = Array.isArray(cat.aliases) ? cat.aliases.map(a => String(a).trim().toLowerCase()) : [];
+                if (keyLow === cid || keyLow === cname || aliases.includes(keyLow)) {
+                    return cat;
+                }
+            }
+            return null;
+        }
+
+        function getPreviewArticlesPool() {
+            if (Array.isArray(ALL_ARTICLES) && ALL_ARTICLES.length > 0) {
+                return ALL_ARTICLES;
+            }
+            const cats = Array.isArray(SITE_CONFIG.categories) && SITE_CONFIG.categories.length
+                ? SITE_CONFIG.categories
+                : DEFAULT_SITE_CONFIG.categories;
+            const samples = [];
+            for (let i = 0; i < 16; i++) {
+                const cat = cats[i % cats.length];
+                samples.push({
+                    slug: `sample-article-${i + 1}`,
+                    title: `${cat.name}: प्रमुख समाचार और विशेष रिपोर्ट — अपडेट #${i + 1}`,
+                    category: cat.name,
+                    date: "आज",
+                    image: "",
+                    content_html: "<p>यह होमपेज लेआउट का सैंपल सारांश है। लाइव साइट पर आपके प्रकाशित समाचार स्वतः दिखेंगे।</p>"
+                });
+            }
+            return samples;
+        }
+
+        function filterPreviewArticlesForSection(articles, catKey, maxArticles, seenSlugs, deduplicate) {
+            const matchedCat = resolveHomepageCategoryObj(catKey);
+            const rawKey = String(catKey || "all").trim();
+            const isAll = !rawKey || rawKey.toLowerCase() === "all";
+            const allowedNames = new Set();
+            if (!isAll) {
+                if (matchedCat) {
+                    if (matchedCat.name) allowedNames.add(String(matchedCat.name).trim());
+                    (matchedCat.aliases || []).forEach(a => allowedNames.add(String(a).trim()));
+                } else {
+                    allowedNames.add(rawKey);
+                }
+            }
+
+            const selected = [];
+            for (const art of articles) {
+                if (!art || typeof art !== "object") continue;
+                const slug = String(art.slug || art.title || "");
+                if (deduplicate && slug && seenSlugs.has(slug)) continue;
+                const artCat = String(art.category || "").trim();
+                if (!isAll && !allowedNames.has(artCat)) continue;
+                selected.push(art);
+                if (selected.length >= maxArticles) break;
+            }
+            if (deduplicate) {
+                selected.forEach(a => {
+                    const s = String(a.slug || a.title || "");
+                    if (s) seenSlugs.add(s);
+                });
+            }
+            return { selected, matchedCat };
+        }
+
+        function computeHomepagePreviewPlan() {
+            const hp = ensureHomepageConfig();
+            const pool = getPreviewArticlesPool();
+            const seenSlugs = new Set();
+            const deduplicate = hp.deduplicate_across_sections !== false;
+            const plan = [];
+            (hp.sections || []).forEach((sec, idx) => {
+                if (sec.enabled === false) {
+                    plan.push({ idx, sec, articles: [], matchedCat: resolveHomepageCategoryObj(sec.category) });
+                    return;
+                }
+                const { selected, matchedCat } = filterPreviewArticlesForSection(
+                    pool,
+                    sec.category,
+                    sec.max_articles,
+                    seenSlugs,
+                    deduplicate
+                );
+                plan.push({ idx, sec, articles: selected, matchedCat });
+            });
+            return plan;
+        }
+
+        function syncHomepagePresetCardsUI() {
+            const hp = ensureHomepageConfig();
+            const pill = document.getElementById("homepage-preset-pill");
+            if (pill) {
+                pill.textContent = HOMEPAGE_PRESET_LABELS[hp.preset] || hp.preset || "custom";
+            }
+            document.querySelectorAll("#homepage-presets-grid .preset-card").forEach(card => {
+                card.classList.toggle("active", card.dataset.preset === hp.preset);
+            });
+        }
+
+        function syncHomepagePreviewButtons() {
+            const dBtn = document.getElementById("hp-preview-desktop");
+            const mBtn = document.getElementById("hp-preview-mobile");
+            const lBtn = document.getElementById("hp-preview-light");
+            const dkBtn = document.getElementById("hp-preview-dark");
+            if (dBtn) dBtn.classList.toggle("active", HP_PREVIEW_DEVICE === "desktop");
+            if (mBtn) mBtn.classList.toggle("active", HP_PREVIEW_DEVICE === "mobile");
+            if (lBtn) lBtn.classList.toggle("active", HP_PREVIEW_THEME === "light");
+            if (dkBtn) dkBtn.classList.toggle("active", HP_PREVIEW_THEME === "dark");
+        }
+
+        function setHomepagePreviewDevice(device) {
+            HP_PREVIEW_DEVICE = device === "mobile" ? "mobile" : "desktop";
+            syncHomepagePreviewButtons();
+            renderHomepageLivePreview();
+        }
+
+        function setHomepagePreviewTheme(theme) {
+            HP_PREVIEW_THEME = theme === "dark" ? "dark" : "light";
+            syncHomepagePreviewButtons();
+            renderHomepageLivePreview();
+        }
+
+        function renderHomepageManager() {
+            const hp = ensureHomepageConfig();
+            const header = ensureHeaderConfig();
+
+            const dedupEl = document.getElementById("hp-deduplicate");
+            if (dedupEl) dedupEl.checked = hp.deduplicate_across_sections !== false;
+
+            const hpToggleEl = document.getElementById("hp-theme-toggle-enabled");
+            const hpModeEl = document.getElementById("hp-default-color-mode");
+            if (hpToggleEl) hpToggleEl.checked = header.theme_toggle_enabled !== false;
+            if (hpModeEl) hpModeEl.value = ["light", "dark", "system"].includes(header.default_color_mode) ? header.default_color_mode : "light";
+
+            syncHomepagePresetCardsUI();
+            syncHomepagePreviewButtons();
+            renderHomepageSectionsList();
+            renderHomepageLivePreview();
+        }
+
+        function renderHomepageSectionsList() {
+            const hp = ensureHomepageConfig();
+            const container = document.getElementById("homepage-sections-list");
+            const badge = document.getElementById("homepage-sections-badge");
+            if (!container) return;
+
+            const sections = hp.sections || [];
+            const enabledCount = sections.filter(s => s.enabled !== false).length;
+            if (badge) {
+                badge.textContent = `${enabledCount} active / ${sections.length} total`;
+                badge.className = enabledCount > 0 ? "pill green" : "pill muted";
+            }
+
+            if (!sections.length) {
+                container.innerHTML = `<p class="subtext">अभी कोई होमपेज सेक्शन नहीं है। ऊपर से कोई रेडी-मेड प्रीसेट चुनें या नीचे <strong>➕ नया होमपेज सेक्शन जोड़ें</strong> दबाएं।</p>`;
+                return;
+            }
+
+            const plan = computeHomepagePreviewPlan();
+            const cats = Array.isArray(SITE_CONFIG.categories) ? SITE_CONFIG.categories : [];
+
+            container.innerHTML = sections.map((sec, idx) => {
+                const planEntry = plan[idx] || { articles: [], matchedCat: null };
+                const matchedCount = planEntry.articles.length;
+                const isEnabled = sec.enabled !== false;
+                const isAllCat = !sec.category || String(sec.category).toLowerCase() === "all";
+                const layoutMeta = HOMEPAGE_LAYOUT_META[sec.layout] || { short: sec.layout };
+
+                const catOptions = [
+                    `<option value="all"${isAllCat ? " selected" : ""}>🌐 सभी श्रेणियाँ (All Latest News)</option>`,
+                    ...cats.map(c => {
+                        const val = c.id || c.name;
+                        const isSel = !isAllCat && (sec.category === c.id || sec.category === c.name);
+                        return `<option value="${escapeHtml(val)}"${isSel ? " selected" : ""}>🗂️ ${escapeHtml(c.name)} (${escapeHtml(c.file || "")})</option>`;
+                    })
+                ].join("");
+
+                const layoutOptions = HOMEPAGE_LAYOUTS.map(l => {
+                    const meta = HOMEPAGE_LAYOUT_META[l] || { label: l };
+                    return `<option value="${l}"${sec.layout === l ? " selected" : ""}>${escapeHtml(meta.label)}</option>`;
+                }).join("");
+
+                const countPillClass = !isEnabled ? "muted" : (matchedCount > 0 ? "green" : "");
+                const countPillText = !isEnabled
+                    ? "Hidden"
+                    : (ALL_ARTICLES.length > 0 ? `दिखने वाले लेख: ${matchedCount} / सीमा ${sec.max_articles}` : `सीमा: ${sec.max_articles} लेख`);
+
+                return `
+                <div class="hp-sec-card${isEnabled ? "" : " is-disabled"}">
+                    <div class="hp-sec-head">
+                        <div class="hp-sec-meta-left">
+                            <span class="pill muted">#${idx + 1}</span>
+                            <label class="checkbox-row" style="margin:0; font-weight:700;">
+                                <input type="checkbox" ${isEnabled ? "checked" : ""} onchange="updateHomepageSectionField(${idx}, 'enabled', this.checked, true)">
+                                ${isEnabled ? "सक्रिय (Enabled)" : "बंद (Hidden)"}
+                            </label>
+                            <span class="pill">${escapeHtml(layoutMeta.short)}</span>
+                            <span class="pill ${countPillClass}" id="hp-sec-count-${idx}">${escapeHtml(countPillText)}</span>
+                        </div>
+                        <div class="actions-group">
+                            <button type="button" class="btn btn-outline btn-sm" ${idx === 0 ? "disabled" : ""} onclick="moveHomepageSection(${idx}, -1)" title="ऊपर ले जाएं">↑</button>
+                            <button type="button" class="btn btn-outline btn-sm" ${idx === sections.length - 1 ? "disabled" : ""} onclick="moveHomepageSection(${idx}, 1)" title="नीचे ले जाएं">↓</button>
+                            <button type="button" class="btn btn-outline btn-sm" onclick="duplicateHomepageSection(${idx})" title="कॉपी बनाएं">⧉ कॉपी</button>
+                            <button type="button" class="btn btn-danger btn-sm" onclick="removeHomepageSection(${idx})" title="सेक्शन हटाएं">✕ हटाएं</button>
+                        </div>
+                    </div>
+
+                    <div class="hp-sec-grid-top">
+                        <div>
+                            <label>सेक्शन शीर्षक (Section Title)</label>
+                            <input type="text" value="${escapeHtml(sec.title)}" oninput="updateHomepageSectionField(${idx}, 'title', this.value, false)" placeholder="जैसे: टेक्नोलॉजी या प्रमुख सुर्खियां">
+                        </div>
+                        <div>
+                            <label>उप-शीर्षक / टैग (Optional Subtitle)</label>
+                            <input type="text" value="${escapeHtml(sec.subtitle || "")}" oninput="updateHomepageSectionField(${idx}, 'subtitle', this.value, false)" placeholder="जैसे: ताज़ा अपडेट्स">
+                        </div>
+                        <div>
+                            <label>श्रेणी स्रोत (Category Source)</label>
+                            <select onchange="updateHomepageSectionField(${idx}, 'category', this.value, true)">${catOptions}</select>
+                        </div>
+                    </div>
+
+                    <div class="hp-sec-grid-bottom">
+                        <div>
+                            <label>लेआउट स्टाइल (Layout Style)</label>
+                            <select onchange="updateHomepageSectionField(${idx}, 'layout', this.value, true)">${layoutOptions}</select>
+                        </div>
+                        <div>
+                            <label>अधिकतम लेख (Max Articles: 1–30)</label>
+                            <input type="number" min="1" max="30" value="${sec.max_articles}" oninput="updateHomepageSectionField(${idx}, 'max_articles', this.value, false)">
+                        </div>
+                        <div style="padding-bottom:6px;">
+                            <label class="checkbox-row" style="margin:0;">
+                                <input type="checkbox" ${sec.show_view_all ? "checked" : ""} ${isAllCat ? "disabled" : ""} onchange="updateHomepageSectionField(${idx}, 'show_view_all', this.checked, true)">
+                                <span>"सभी देखें →" लिंक दिखाएं ${isAllCat ? "(केवल विशिष्ट श्रेणी पर)" : ""}</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>`;
+            }).join("");
+        }
+
+        function updateHomepageSectionField(idx, field, value, shouldRebuildList = false) {
+            const hp = ensureHomepageConfig();
+            const sec = hp.sections[idx];
+            if (!sec) return;
+
+            if (field === "max_articles") {
+                const parsed = parseInt(value, 10);
+                if (!isNaN(parsed)) {
+                    sec.max_articles = Math.max(1, Math.min(30, parsed));
+                }
+            } else if (field === "enabled" || field === "show_view_all") {
+                sec[field] = Boolean(value);
+            } else if (field === "category") {
+                const prevCatObj = resolveHomepageCategoryObj(sec.category);
+                sec.category = String(value || "all").trim() || "all";
+                const newCatObj = resolveHomepageCategoryObj(sec.category);
+                sec.show_view_all = sec.category.toLowerCase() !== "all";
+                // Auto-update generic or previous category title to the newly selected category name
+                if (newCatObj && (!sec.title || sec.title.startsWith("नया सेक्शन") || (prevCatObj && sec.title === prevCatObj.name))) {
+                    sec.title = newCatObj.name;
+                }
+            } else if (field === "layout") {
+                sec.layout = HOMEPAGE_LAYOUTS.includes(value) ? value : "grid";
+            } else {
+                sec[field] = String(value ?? "");
+            }
+
+            hp.preset = "custom";
+            syncHomepagePresetCardsUI();
+
+            if (shouldRebuildList) {
+                renderHomepageSectionsList();
+            } else {
+                // Update count pills smoothly without breaking typing focus
+                const plan = computeHomepagePreviewPlan();
+                plan.forEach(entry => {
+                    const pillEl = document.getElementById(`hp-sec-count-${entry.idx}`);
+                    if (pillEl && entry.sec.enabled !== false) {
+                        pillEl.textContent = ALL_ARTICLES.length > 0
+                            ? `दिखने वाले लेख: ${entry.articles.length} / सीमा ${entry.sec.max_articles}`
+                            : `सीमा: ${entry.sec.max_articles} लेख`;
+                    }
+                });
+            }
+            renderHomepageLivePreview();
+        }
+
+        function addHomepageSection() {
+            const hp = ensureHomepageConfig();
+            const cats = Array.isArray(SITE_CONFIG.categories) ? SITE_CONFIG.categories : [];
+            const usedCats = new Set(hp.sections.map(s => s.category));
+            const nextCat = cats.find(c => !usedCats.has(c.id) && !usedCats.has(c.name)) || null;
+            const newIdx = hp.sections.length + 1;
+
+            hp.sections.push({
+                id: `section-${Date.now().toString(36)}-${newIdx}`,
+                title: nextCat ? nextCat.name : `नया सेक्शन ${newIdx}`,
+                subtitle: nextCat ? "ताज़ा खबरें" : "विशेष समाचार",
+                category: nextCat ? (nextCat.id || nextCat.name) : "all",
+                layout: nextCat ? "grid" : "compact-list",
+                max_articles: nextCat ? 6 : 6,
+                show_view_all: Boolean(nextCat),
+                enabled: true
+            });
+            hp.preset = "custom";
+            renderHomepageManager();
+        }
+
+        function moveHomepageSection(idx, dir) {
+            const hp = ensureHomepageConfig();
+            const target = idx + dir;
+            if (target < 0 || target >= hp.sections.length) return;
+            [hp.sections[idx], hp.sections[target]] = [hp.sections[target], hp.sections[idx]];
+            hp.preset = "custom";
+            renderHomepageManager();
+        }
+
+        function duplicateHomepageSection(idx) {
+            const hp = ensureHomepageConfig();
+            const src = hp.sections[idx];
+            if (!src) return;
+            const copy = JSON.parse(JSON.stringify(src));
+            copy.id = `${src.id || "section"}-copy-${Date.now().toString(36)}`;
+            copy.title = `${src.title} (Copy)`;
+            hp.sections.splice(idx + 1, 0, copy);
+            hp.preset = "custom";
+            renderHomepageManager();
+        }
+
+        function removeHomepageSection(idx) {
+            const hp = ensureHomepageConfig();
+            if (hp.sections.length <= 1) {
+                alert("कम से कम एक होमपेज सेक्शन आवश्यक है। आप इसकी सेटिंग्स बदल सकते हैं या कोई अन्य प्रीसेट चुन सकते हैं।");
+                return;
+            }
+            hp.sections.splice(idx, 1);
+            hp.preset = "custom";
+            renderHomepageManager();
+        }
+
+        function extractPreviewExcerpt(htmlStr, maxChars = 110) {
+            const plain = String(htmlStr || "").replace(/<[^>]+>/g, " ").replace(/\s+/g, " ").trim();
+            if (!plain) return "";
+            if (plain.length <= maxChars) return plain;
+            return plain.slice(0, maxChars).replace(/\s+\S*$/, "") + "…";
+        }
+
+        function buildPreviewThumbTag(art, altText) {
+            const img = String(art && art.image ? art.image : "").trim();
+            if (img && /^https?:\/\//i.test(img)) {
+                return `<img class="hp-pv-img" src="${escapeHtml(img)}" alt="${escapeHtml(altText)}" loading="lazy" onerror="this.style.background='linear-gradient(135deg,#2C2621,#43372E)'; this.removeAttribute('src');">`;
+            }
+            return `<div class="hp-pv-img" aria-hidden="true"></div>`;
+        }
+
+        function renderHomepageLivePreview() {
+            const previewEl = document.getElementById("homepage-live-preview");
+            const badgeEl = document.getElementById("homepage-preview-badge");
+            if (!previewEl) return;
+
+            const hp = ensureHomepageConfig();
+            const header = ensureHeaderConfig();
+            const plan = computeHomepagePreviewPlan();
+            const visibleSections = plan.filter(p => p.sec.enabled !== false && p.articles.length > 0);
+            const totalShown = visibleSections.reduce((sum, p) => sum + p.articles.length, 0);
+            const isMobile = HP_PREVIEW_DEVICE === "mobile";
+            const isDark = HP_PREVIEW_THEME === "dark";
+
+            if (badgeEl) {
+                const presetName = HOMEPAGE_PRESET_LABELS[hp.preset] || hp.preset;
+                badgeEl.className = visibleSections.length ? "pill green" : "pill muted";
+                badgeEl.textContent = `${presetName} • ${visibleSections.length} sections • ${totalShown} articles`;
+            }
+
+            const logoFile = isDark ? "logo-light.svg" : "logo.svg";
+            const themeToggleEnabled = header.theme_toggle_enabled !== false;
+            const navSample = (SITE_CONFIG.header_menu || []).slice(0, 4).map(m => `<span>${escapeHtml(m.label || "")}</span>`).join("");
+
+            const miniHeaderHtml = `
+                <div class="hp-pv-header">
+                    <div class="hp-pv-brand">
+                        <img src="https://aabtak24.in/${logoFile}" alt="अबतक24.in" onerror="this.style.display='none';">
+                    </div>
+                    ${isMobile
+                        ? `<span class="hp-pv-theme-chip">☰ ${escapeHtml(header.mobile_menu_label || "मेनू")}${themeToggleEnabled ? (isDark ? " • ☀️" : " • 🌙") : ""}</span>`
+                        : `<div class="hp-pv-nav">
+                                ${navSample}
+                                ${themeToggleEnabled ? `<span class="hp-pv-theme-chip">${isDark ? "☀️ लाइट" : "🌙 डार्क"}</span>` : ""}
+                           </div>`
+                    }
+                </div>`;
+
+            let sectionsHtml = "";
+            if (!visibleSections.length) {
+                sectionsHtml = `<div style="padding:26px; text-align:center; color:var(--hp-muted); font-size:13px; font-weight:700;">कोई सक्रिय सेक्शन या मेल खाने वाले लेख नहीं मिले। कम से कम एक सेक्शन चालू करें।</div>`;
+            } else {
+                sectionsHtml = visibleSections.map(({ sec, articles, matchedCat }) => {
+                    const rightBits = [];
+                    if (sec.subtitle) rightBits.push(`<span>${escapeHtml(sec.subtitle)}</span>`);
+                    if (sec.show_view_all && matchedCat && matchedCat.file) {
+                        rightBits.push(`<span class="hp-pv-viewall">सभी देखें →</span>`);
+                    }
+                    const ruleHtml = `
+                        <div class="hp-pv-rule">
+                            <span class="hp-pv-rule-title">${escapeHtml(sec.title)}</span>
+                            <div class="hp-pv-rule-right">${rightBits.join("")}</div>
+                        </div>`;
+
+                    let bodyHtml = "";
+                    if (sec.layout === "bento") {
+                        const hero = articles[0];
+                        const side = articles.slice(1);
+                        const sideHtml = side.map(a => `
+                            <div class="hp-pv-side">
+                                ${buildPreviewThumbTag(a, a.title)}
+                                <div>
+                                    <span class="hp-pv-badge">${escapeHtml(a.category || "")}</span>
+                                    <div class="hp-pv-title">${escapeHtml(a.title)}</div>
+                                    <div class="hp-pv-meta">${escapeHtml(a.date || "")}</div>
+                                </div>
+                            </div>`).join("");
+                        bodyHtml = `
+                            <div class="hp-pv-bento${side.length ? "" : " single"}">
+                                <div class="hp-pv-hero">
+                                    ${buildPreviewThumbTag(hero, hero.title)}
+                                    <div class="hp-pv-hero-body">
+                                        <span class="hp-pv-badge">${escapeHtml(hero.category || "")}</span>
+                                        <div class="hp-pv-title">${escapeHtml(hero.title)}</div>
+                                        <div class="hp-pv-meta">${escapeHtml(hero.date || "")}</div>
+                                    </div>
+                                </div>
+                                ${side.length ? `<div class="hp-pv-side-stack">${sideHtml}</div>` : ""}
+                            </div>`;
+                    } else if (sec.layout === "magazine") {
+                        const lead = articles[0];
+                        const rest = articles.slice(1);
+                        const excerpt = extractPreviewExcerpt(lead.content_html, 105);
+                        const listHtml = rest.map(a => `
+                            <div class="hp-pv-mag-item">
+                                ${buildPreviewThumbTag(a, a.title)}
+                                <div>
+                                    <span class="hp-pv-badge">${escapeHtml(a.category || "")}</span>
+                                    <div class="hp-pv-title">${escapeHtml(a.title)}</div>
+                                    <div class="hp-pv-meta">${escapeHtml(a.date || "")}</div>
+                                </div>
+                            </div>`).join("");
+                        bodyHtml = `
+                            <div class="hp-pv-mag${rest.length ? "" : " single"}">
+                                <div class="hp-pv-mag-lead">
+                                    ${buildPreviewThumbTag(lead, lead.title)}
+                                    <div class="hp-pv-mag-lead-body">
+                                        <span class="hp-pv-badge">${escapeHtml(lead.category || "")}</span>
+                                        <div class="hp-pv-title">${escapeHtml(lead.title)}</div>
+                                        ${excerpt ? `<div class="hp-pv-mag-excerpt">${escapeHtml(excerpt)}</div>` : ""}
+                                        <div class="hp-pv-meta">${escapeHtml(lead.date || "")}</div>
+                                    </div>
+                                </div>
+                                ${rest.length ? `<div class="hp-pv-mag-list">${listHtml}</div>` : ""}
+                            </div>`;
+                    } else if (sec.layout === "compact-list") {
+                        bodyHtml = `<div class="hp-pv-compact">${articles.map(a => `
+                            <div class="hp-pv-side">
+                                ${buildPreviewThumbTag(a, a.title)}
+                                <div>
+                                    <span class="hp-pv-badge">${escapeHtml(a.category || "")}</span>
+                                    <div class="hp-pv-title">${escapeHtml(a.title)}</div>
+                                    <div class="hp-pv-meta">${escapeHtml(a.date || "")}</div>
+                                </div>
+                            </div>`).join("")}</div>`;
+                    } else if (sec.layout === "strip") {
+                        bodyHtml = `<div class="hp-pv-strip">${articles.map(a => `
+                            <div class="hp-pv-strip-card">
+                                ${buildPreviewThumbTag(a, a.title)}
+                                <div class="hp-pv-card-body">
+                                    <span class="hp-pv-badge">${escapeHtml(a.category || "")}</span>
+                                    <div class="hp-pv-title">${escapeHtml(a.title)}</div>
+                                    <div class="hp-pv-meta">${escapeHtml(a.date || "")}</div>
+                                </div>
+                            </div>`).join("")}</div>`;
+                    } else {
+                        bodyHtml = `<div class="hp-pv-grid">${articles.map(a => `
+                            <div class="hp-pv-card">
+                                ${buildPreviewThumbTag(a, a.title)}
+                                <div class="hp-pv-card-body">
+                                    <span class="hp-pv-badge">${escapeHtml(a.category || "")}</span>
+                                    <div class="hp-pv-title">${escapeHtml(a.title)}</div>
+                                    <div class="hp-pv-meta">${escapeHtml(a.date || "")}</div>
+                                </div>
+                            </div>`).join("")}</div>`;
+                    }
+
+                    return `<div class="hp-pv-sec">${ruleHtml}${bodyHtml}</div>`;
+                }).join("");
+            }
+
+            previewEl.innerHTML = `
+                <div class="hp-preview-viewport${isMobile ? " mobile-frame" : ""}${isDark ? " hp-theme-dark" : ""}">
+                    ${miniHeaderHtml}
+                    <div class="hp-pv-main">${sectionsHtml}</div>
+                </div>`;
+        }
+
+        async function commitHomepageConfig() {
+            const btn = document.getElementById("save-homepage-btn");
+            btn.disabled = true;
+            syncHomepageGlobalFields();
+            syncThemeSettingsFromHomepage();
+
+            const hp = ensureHomepageConfig();
+            if (!hp.sections.some(s => s.enabled !== false)) {
+                btn.disabled = false;
+                showStatus("homepage-status", "error", "⚠️ कम से कम एक होमपेज सेक्शन सक्रिय (Enabled) होना चाहिए।");
+                return;
+            }
+
+            showStatus("homepage-status", "info", "होमपेज लेआउट और थीम सेटिंग्स site_config.json में सेव हो रही हैं और वेबसाइट रीबिल्ड शुरू हो रही है...");
+
+            try {
+                const latest = await ghGetFile("site_config.json");
+                const payload = buildSiteConfigPayload(latest ? latest.content : null);
+                const res = await ghPutFile(
+                    "site_config.json",
+                    JSON.stringify(payload, null, 2),
+                    "Update homepage layout and theme settings via Admin CMS",
+                    latest ? latest.sha : SITE_CONFIG_SHA
+                );
+                SITE_CONFIG_SHA = res.content.sha;
+                SITE_CONFIG.homepage = normalizeHomepageConfig(payload.homepage);
+                SITE_CONFIG.header = normalizeHeaderConfig(payload.header);
+                renderHomepageManager();
+                renderHeaderManager();
+                await triggerRebuild();
+                showStatus(
+                    "homepage-status",
+                    "success",
+                    "✅ होमपेज लेआउट और लाइट/डार्क मोड सेटिंग्स सेव हो गई हैं! लगभग 15–20 सेकंड में <strong>aabtak24.in</strong> का नया होमपेज लाइव अपडेट हो जाएगा।"
+                );
+            } catch (e) {
+                showStatus("homepage-status", "error", `सेव करने में त्रुटि: ${e.message}`);
             } finally {
                 btn.disabled = false;
             }
