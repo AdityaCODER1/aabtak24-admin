@@ -1,0 +1,27 @@
+name = "aabtak24-editor"
+main = "src/index.js"
+compatibility_date = "2025-09-01"
+
+# Serve the static CMS UI from ./public on the exact same origin as /api/*
+# run_worker_first = true ensures every HTML/asset response receives strict HTTP security headers (CSP, HSTS, X-Frame-Options)
+[assets]
+directory = "./public"
+binding = "ASSETS"
+run_worker_first = true
+
+# Custom Domain route (activates automatically once aabtak24.in DNS is on Cloudflare)
+routes = [
+  { pattern = "editor.aabtak24.in", custom_domain = true }
+]
+
+# Private Cloudflare D1 SQLite database for Admin auth, Editors, Sessions, Rate Limits, and Audit Logs
+# Run `npx wrangler d1 create aabtak24-cms` and replace the database_id below before deploying.
+[[d1_databases]]
+binding = "CMS_DB"
+database_name = "aabtak24-cms"
+database_id = "REPLACE_WITH_YOUR_D1_DATABASE_ID"
+
+[vars]
+GITHUB_REPO = "AdityaCODER1/auto-news-bot"
+GITHUB_BRANCH = "main"
+ALLOWED_ORIGIN = "https://editor.aabtak24.in"

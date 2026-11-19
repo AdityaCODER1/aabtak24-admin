@@ -1,0 +1,15 @@
+{
+  "name": "aabtak24-editor-worker",
+  "version": "2.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Cloudflare Worker + D1 server-side CMS backend & portal for editor.aabtak24.in",
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy",
+    "test": "node --test tests/worker.test.mjs"
+  },
+  "devDependencies": {
+    "wrangler": "^4.0.0"
+  }
+}
