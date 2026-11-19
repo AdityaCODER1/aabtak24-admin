@@ -1199,7 +1199,7 @@
         }
         .hp-sec-grid-bottom {
             display: grid;
-            grid-template-columns: 1.2fr 0.75fr 1fr;
+            grid-template-columns: 1.25fr 1.05fr 0.65fr 0.95fr;
             gap: 12px;
             align-items: end;
         }
@@ -1228,6 +1228,11 @@
             --hp-accent-dark: #C83700;
             --hp-border: #E2D9CC;
             --hp-border-heavy: #141210;
+            --hp-desk-kicker: #9E1B1B;
+            --hp-desk-pick-title: #8C1D1D;
+            --hp-desk-center-bg: #E6DFD3;
+            --hp-desk-center-border: #CFC5B4;
+            --hp-justin-dot: #D92323;
             background: var(--hp-bg);
             color: var(--hp-text);
             border: 1px solid rgba(20, 18, 16, 0.16);
@@ -1248,6 +1253,11 @@
             --hp-accent-dark: #FF8A5C;
             --hp-border: #2E2924;
             --hp-border-heavy: #4A423B;
+            --hp-desk-kicker: #FF6B57;
+            --hp-desk-pick-title: #FF9E8A;
+            --hp-desk-center-bg: #25201B;
+            --hp-desk-center-border: #3D342C;
+            --hp-justin-dot: #FF4D4D;
         }
         .hp-preview-viewport.mobile-frame {
             max-width: 375px;
@@ -1293,12 +1303,90 @@
             font-weight: 800;
         }
         .hp-pv-main {
-            padding: 16px;
-            max-height: 540px;
+            padding: 14px;
+            max-height: 580px;
             overflow-y: auto;
         }
-        .hp-pv-sec { margin-bottom: 22px; }
+        .hp-pv-sec {
+            margin-bottom: 16px;
+            padding: 12px;
+            border-radius: 5px;
+            border: 1px solid var(--hp-border);
+            background: var(--hp-bg);
+        }
         .hp-pv-sec:last-child { margin-bottom: 0; }
+        /* Per-Section Background Themes (Light Mode) */
+        .hp-pv-sec.hp-bg-sand {
+            background: #F4EFE6;
+            border-color: #DFD6C7;
+            --hp-card: #FAF7F2;
+            --hp-desk-center-bg: #E5DEC9;
+            --hp-desk-center-border: #CEC4AC;
+        }
+        .hp-pv-sec.hp-bg-crimson {
+            background: #F9EFEA;
+            border-color: #E8D2C8;
+            --hp-card: #FFFDFB;
+            --hp-desk-center-bg: #EFE0D8;
+            --hp-desk-center-border: #DEC4B8;
+        }
+        .hp-pv-sec.hp-bg-slate {
+            background: #EDF1F5;
+            border-color: #D2DCE6;
+            --hp-card: #FAFBFD;
+            --hp-desk-center-bg: #DFE6EE;
+            --hp-desk-center-border: #C5D1DF;
+        }
+        .hp-pv-sec.hp-bg-sage {
+            background: #EEF3EE;
+            border-color: #D2DFD2;
+            --hp-card: #FAFDF9;
+            --hp-desk-center-bg: #E0EAE0;
+            --hp-desk-center-border: #C4D6C4;
+        }
+        .hp-pv-sec.hp-bg-amber {
+            background: #F8F2E4;
+            border-color: #E5D7B8;
+            --hp-card: #FFFDF8;
+            --hp-desk-center-bg: #EDE3CA;
+            --hp-desk-center-border: #D9C9A3;
+        }
+        /* Per-Section Background Themes (Dark Mode) */
+        .hp-preview-viewport.hp-theme-dark .hp-pv-sec.hp-bg-sand {
+            background: #1A1714;
+            border-color: #302A24;
+            --hp-card: #221E1A;
+            --hp-desk-center-bg: #2A241F;
+            --hp-desk-center-border: #423830;
+        }
+        .hp-preview-viewport.hp-theme-dark .hp-pv-sec.hp-bg-crimson {
+            background: #211515;
+            border-color: #3D2424;
+            --hp-card: #2A1B1B;
+            --hp-desk-center-bg: #332020;
+            --hp-desk-center-border: #4F3131;
+        }
+        .hp-preview-viewport.hp-theme-dark .hp-pv-sec.hp-bg-slate {
+            background: #151A21;
+            border-color: #26313F;
+            --hp-card: #1C232C;
+            --hp-desk-center-bg: #232C37;
+            --hp-desk-center-border: #354354;
+        }
+        .hp-preview-viewport.hp-theme-dark .hp-pv-sec.hp-bg-sage {
+            background: #151D18;
+            border-color: #25352B;
+            --hp-card: #1C2620;
+            --hp-desk-center-bg: #223027;
+            --hp-desk-center-border: #33483B;
+        }
+        .hp-preview-viewport.hp-theme-dark .hp-pv-sec.hp-bg-amber {
+            background: #201A12;
+            border-color: #3B3020;
+            --hp-card: #292117;
+            --hp-desk-center-bg: #33291C;
+            --hp-desk-center-border: #4D3E2A;
+        }
         .hp-pv-rule {
             border-top: 3px solid var(--hp-border-heavy);
             border-bottom: 1px solid var(--hp-border);
@@ -1363,6 +1451,94 @@
             font-size: 10px;
             color: var(--hp-muted);
             margin-top: 4px;
+        }
+        /* 3-Column Editorial Desk Preview (The Wire Inspired) */
+        .hp-pv-desk {
+            display: grid;
+            grid-template-columns: 1fr 1.95fr 1.05fr;
+            gap: 12px;
+            align-items: stretch;
+        }
+        .hp-pv-desk-head {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 6px;
+            padding-bottom: 5px;
+            margin-bottom: 8px;
+            border-bottom: 2px solid var(--hp-border-heavy);
+            font-family: 'Mukta', sans-serif;
+            font-size: 11.5px;
+            font-weight: 800;
+            color: var(--hp-desk-kicker);
+            text-transform: uppercase;
+        }
+        .hp-pv-desk-left {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .hp-pv-desk-pick {
+            background: var(--hp-card);
+            border: 1px solid var(--hp-border);
+            border-radius: 4px;
+            overflow: hidden;
+        }
+        .hp-pv-desk-pick .hp-pv-img { height: 74px; }
+        .hp-pv-desk-pick-body { padding: 7px 8px; }
+        .hp-pv-desk-pick .hp-pv-title {
+            font-size: 11px;
+            color: var(--hp-desk-pick-title);
+        }
+        .hp-pv-desk-center {
+            background: var(--hp-desk-center-bg);
+            border: 1px solid var(--hp-desk-center-border);
+            border-top: 3px solid var(--hp-desk-kicker);
+            border-radius: 4px;
+            padding: 10px 12px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        .hp-pv-desk-lead-title {
+            font-family: 'Mukta', sans-serif;
+            font-weight: 800;
+            font-size: 15.5px;
+            line-height: 1.25;
+            color: var(--hp-text);
+            margin: 4px 0 6px;
+        }
+        .hp-pv-desk-center .hp-pv-img {
+            height: 145px;
+            border-radius: 3px;
+            margin: 6px 0 8px;
+            border: 1px solid var(--hp-border);
+        }
+        .hp-pv-desk-right {
+            display: flex;
+            flex-direction: column;
+        }
+        .hp-pv-desk-wire-list {
+            display: flex;
+            flex-direction: column;
+        }
+        .hp-pv-desk-wire {
+            padding: 6px 0;
+            border-bottom: 1px solid var(--hp-border);
+        }
+        .hp-pv-desk-wire:first-child { padding-top: 2px; }
+        .hp-pv-desk-wire:last-child { border-bottom: none; }
+        .hp-pv-desk-wire .hp-pv-title {
+            font-size: 11px;
+            -webkit-line-clamp: 2;
+        }
+        .hp-pv-dot {
+            display: inline-block;
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: var(--hp-justin-dot);
+            margin-right: 4px;
         }
         .hp-pv-bento {
             display: grid;
@@ -1474,6 +1650,7 @@
         .hp-pv-strip-card .hp-pv-card-body { padding: 7px; }
         .hp-pv-strip-card .hp-pv-title { font-size: 11px; }
 
+        .hp-preview-viewport.mobile-frame .hp-pv-desk,
         .hp-preview-viewport.mobile-frame .hp-pv-bento,
         .hp-preview-viewport.mobile-frame .hp-pv-grid,
         .hp-preview-viewport.mobile-frame .hp-pv-mag,
@@ -1837,8 +2014,8 @@
                             <div class="form-group" style="margin-bottom:0;">
                                 <label for="hd-default-color-mode">डिफ़ॉल्ट रंग मोड (Default Reader Color Mode)</label>
                                 <select id="hd-default-color-mode" onchange="syncHeaderFieldsFromUI()">
-                                    <option value="light">लाइट मोड (Warm Paper — Default)</option>
-                                    <option value="dark">डार्क मोड (Warm Carbon Dark)</option>
+                                    <option value="dark">डार्क मोड (Warm Carbon Dark — Default)</option>
+                                    <option value="light">लाइट मोड (Warm Paper Light)</option>
                                     <option value="system">डिवाइस थीम के अनुसार (Follow System)</option>
                                 </select>
                             </div>
@@ -2243,8 +2420,8 @@
                                 <button type="button" id="hp-preview-mobile" class="seg-btn" onclick="setHomepagePreviewDevice('mobile')">📱 मोबाइल</button>
                             </div>
                             <div class="seg-control" role="group" aria-label="प्रीव्यू रंग मोड चुनें">
-                                <button type="button" id="hp-preview-light" class="seg-btn active" onclick="setHomepagePreviewTheme('light')">☀️ लाइट</button>
-                                <button type="button" id="hp-preview-dark" class="seg-btn" onclick="setHomepagePreviewTheme('dark')">🌙 डार्क</button>
+                                <button type="button" id="hp-preview-light" class="seg-btn" onclick="setHomepagePreviewTheme('light')">☀️ लाइट</button>
+                                <button type="button" id="hp-preview-dark" class="seg-btn active" onclick="setHomepagePreviewTheme('dark')">🌙 डार्क</button>
                             </div>
                         </div>
                     </div>
@@ -2256,12 +2433,36 @@
                 <div class="card secondary">
                     <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px; margin-bottom:6px;">
                         <h2 style="margin:0;">🧩 रेडी-मेड होमपेज कॉन्फ़िगरेशन (Ready-Made Presets)</h2>
-                        <span id="homepage-preset-pill" class="pill">classic-bento</span>
+                        <span id="homepage-preset-pill" class="pill">wire-editorial</span>
                     </div>
-                    <p class="subtext">नीचे दिए किसी भी तैयार लेआउट पर क्लिक करें — वह नीचे सेक्शन बिल्डर में लोड हो जाएगा, और फिर आप उसमें अपने अनुसार सेक्शन, श्रेणी, स्टाइल और लेखों की संख्या बदल सकते हैं।</p>
+                    <p class="subtext">नीचे दिए किसी भी तैयार लेआउट पर क्लिक करें — वह नीचे सेक्शन बिल्डर में लोड हो जाएगा, और फिर आप उसमें अपने अनुसार सेक्शन, श्रेणी, स्टाइल, सेक्शन बैकग्राउंड रंग और लेखों की संख्या बदल सकते हैं।</p>
 
                     <div class="preset-card-grid" id="homepage-presets-grid">
-                        <button type="button" class="preset-card active" data-preset="classic-bento" onclick="applyHomepagePreset('classic-bento')">
+                        <button type="button" class="preset-card active" data-preset="wire-editorial" onclick="applyHomepagePreset('wire-editorial')">
+                            <div class="preset-thumb" aria-hidden="true">
+                                <div class="preset-thumb-row" style="grid-template-columns: 1fr 1.6fr 1fr;">
+                                    <div style="display:grid; gap:3px;">
+                                        <div class="preset-thumb-block"></div>
+                                        <div class="preset-thumb-block"></div>
+                                    </div>
+                                    <div class="preset-thumb-block accent"></div>
+                                    <div style="display:grid; gap:2px;">
+                                        <div class="preset-thumb-block"></div>
+                                        <div class="preset-thumb-block"></div>
+                                        <div class="preset-thumb-block"></div>
+                                    </div>
+                                </div>
+                                <div class="preset-thumb-row" style="grid-template-columns: repeat(3, 1fr);">
+                                    <div class="preset-thumb-block"></div>
+                                    <div class="preset-thumb-block"></div>
+                                    <div class="preset-thumb-block"></div>
+                                </div>
+                            </div>
+                            <div class="preset-card-title">1. द वायर 3-कॉलम एडिटोरियल डेस्क (Default)</div>
+                            <div class="preset-card-desc">बाएँ मैनुअल लेख (संपादक की पसंद), बीच में शेडेड राजनीति लीड स्टोरी, दाएँ ताज़ा खबरें (● Just In) + नीचे अलग-अलग रंग के कैटेगरी सेक्शन।</div>
+                        </button>
+
+                        <button type="button" class="preset-card" data-preset="classic-bento" onclick="applyHomepagePreset('classic-bento')">
                             <div class="preset-thumb" aria-hidden="true">
                                 <div class="preset-thumb-row" style="grid-template-columns: 1.7fr 1fr;">
                                     <div class="preset-thumb-block accent"></div>
@@ -2276,8 +2477,8 @@
                                     <div class="preset-thumb-block"></div>
                                 </div>
                             </div>
-                            <div class="preset-card-title">1. क्लासिक बेंटो + ग्रिड (Default)</div>
-                            <div class="preset-card-desc">मौजूदा मुख्य लेआउट: ऊपर प्रमुख बेंटो (5 लेख) और नीचे अन्य खबरों की ग्रिड (12 लेख)।</div>
+                            <div class="preset-card-title">2. क्लासिक बेंटो + ग्रिड (Classic Bento)</div>
+                            <div class="preset-card-desc">ऊपर प्रमुख बेंटो (5 लेख) और नीचे अन्य खबरों की ग्रिड (12 लेख)।</div>
                         </button>
 
                         <button type="button" class="preset-card" data-preset="category-showcase" onclick="applyHomepagePreset('category-showcase')">
@@ -2298,7 +2499,7 @@
                                     <div class="preset-thumb-block"></div>
                                 </div>
                             </div>
-                            <div class="preset-card-title">2. कैटेगरी शोकेस (Category Desk)</div>
+                            <div class="preset-card-title">3. कैटेगरी शोकेस (Category Desk)</div>
                             <div class="preset-card-desc">ऊपर ताज़ा बेंटो, फिर हर प्रमुख श्रेणी (देश-विदेश, टेक्नोलॉजी, अर्थव्यवस्था, राजनीति) का अलग ब्लॉक और "सभी देखें →" लिंक।</div>
                         </button>
 
@@ -2317,7 +2518,7 @@
                                     <div class="preset-thumb-block"></div>
                                 </div>
                             </div>
-                            <div class="preset-card-title">3. मैगज़ीन एडिटोरियल (Magazine)</div>
+                            <div class="preset-card-title">4. मैगज़ीन एडिटोरियल (Magazine)</div>
                             <div class="preset-card-desc">बड़े फ़ीचर लीड + सारांश वाला मैगज़ीन स्प्लिट, हाइलाइट स्ट्रिप और कॉम्पैक्ट न्यूज़ लिस्ट का संपादकीय संतुलन।</div>
                         </button>
 
@@ -2338,7 +2539,7 @@
                                     <div class="preset-thumb-block"></div>
                                 </div>
                             </div>
-                            <div class="preset-card-title">4. कॉम्पैक्ट न्यूज़ वायर (News Wire)</div>
+                            <div class="preset-card-title">5. कॉम्पैक्ट न्यूज़ वायर (News Wire)</div>
                             <div class="preset-card-desc">तेज़ स्कैनिंग के लिए ऊपर 4-कॉलम ब्रेकिंग स्ट्रिप और नीचे 2-कॉलम कॉम्पैक्ट हेडलाइन फ़ीड।</div>
                         </button>
                     </div>
@@ -2350,7 +2551,7 @@
                         <h2 style="margin:0;">🧱 होमपेज सेक्शन और लेख संख्या नियंत्रण (Section Builder &amp; Limits)</h2>
                         <span id="homepage-sections-badge" class="pill green">0 sections</span>
                     </div>
-                    <p class="subtext">हर सेक्शन का क्रम बदलें, किसी भी श्रेणी को बाँधें, 5 में से कोई भी लेआउट चुनें, और प्रत्येक सेक्शन में दिखने वाले अधिकतम लेखों की सीमा (Max Articles) तय करें।</p>
+                    <p class="subtext">हर सेक्शन का क्रम बदलें, किसी भी श्रेणी को बाँधें, 6 में से कोई भी लेआउट और सेक्शन बैकग्राउंड रंग (Background Theme) चुनें, और प्रत्येक सेक्शन में दिखने वाले अधिकतम लेखों की सीमा (Max Articles) तय करें।</p>
 
                     <div style="background: var(--card-subtle); padding: 14px; border-radius: 5px; margin-bottom: 16px;">
                         <div class="grid-2" style="align-items:center; margin-bottom:10px;">
@@ -2365,8 +2566,8 @@
                             <div class="form-group" style="margin-bottom:0;">
                                 <label for="hp-default-color-mode">साइट का डिफ़ॉल्ट रंग मोड (Default Reader Color Mode)</label>
                                 <select id="hp-default-color-mode" onchange="syncThemeSettingsFromHomepage()">
-                                    <option value="light">लाइट मोड (Warm Paper — Default)</option>
-                                    <option value="dark">डार्क मोड (Warm Carbon Dark)</option>
+                                    <option value="dark">डार्क मोड (Warm Carbon Dark — Default)</option>
+                                    <option value="light">लाइट मोड (Warm Paper Light)</option>
                                     <option value="system">डिवाइस थीम के अनुसार (Follow System)</option>
                                 </select>
                             </div>
@@ -2380,7 +2581,7 @@
 
                     <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:14px;">
                         <button type="button" class="btn btn-dark btn-sm" onclick="addHomepageSection()">➕ नया होमपेज सेक्शन जोड़ें (Add Section)</button>
-                        <button type="button" class="btn btn-outline btn-sm" onclick="applyHomepagePreset('classic-bento')">↺ डिफ़ॉल्ट क्लासिक लेआउट रीसेट करें</button>
+                        <button type="button" class="btn btn-outline btn-sm" onclick="applyHomepagePreset('wire-editorial')">↺ द वायर 3-कॉलम एडिटोरियल लेआउट लोड करें</button>
                     </div>
 
                     <div style="margin-top: 20px; padding-top: 16px; border-top: 2px solid var(--border);">
@@ -2468,7 +2669,7 @@
                 mobile_menu_label: "मेनू",
                 mobile_show_tagline: true,
                 theme_toggle_enabled: true,
-                default_color_mode: "light",
+                default_color_mode: "dark",
                 action_links: [],
                 colors: {}
             },
@@ -2522,42 +2723,90 @@
                 colors: {}
             },
             homepage: {
-                preset: "classic-bento",
+                preset: "wire-editorial",
                 deduplicate_across_sections: true,
                 sections: [
                     {
-                        id: "top-stories",
-                        title: "प्रमुख सुर्खियां / Top Stories",
-                        subtitle: "ताज़ा अपडेट्स",
+                        id: "editorial-frontpage",
+                        title: "मुख्य संपादकीय डेस्क / Frontpage Desk",
+                        subtitle: "संपादक की पसंद • राजनीति • ताज़ा खबरें",
                         category: "all",
-                        layout: "bento",
-                        max_articles: 5,
+                        layout: "editorial-desk",
+                        max_articles: 9,
                         show_view_all: false,
-                        enabled: true
+                        enabled: true,
+                        bg_theme: "sand"
+                    },
+                    {
+                        id: "cat-desh-videsh",
+                        title: "देश-विदेश",
+                        subtitle: "राष्ट्रीय एवं अंतरराष्ट्रीय कवरेज",
+                        category: "desh-videsh",
+                        layout: "grid",
+                        max_articles: 6,
+                        show_view_all: true,
+                        enabled: true,
+                        bg_theme: "crimson"
+                    },
+                    {
+                        id: "cat-technology",
+                        title: "टेक्नोलॉजी",
+                        subtitle: "विज्ञान, AI और डिजिटल दुनिया",
+                        category: "technology",
+                        layout: "strip",
+                        max_articles: 4,
+                        show_view_all: true,
+                        enabled: true,
+                        bg_theme: "slate"
+                    },
+                    {
+                        id: "cat-economy",
+                        title: "अर्थव्यवस्था",
+                        subtitle: "बाज़ार, व्यापार एवं आर्थिक नीति",
+                        category: "economy",
+                        layout: "magazine",
+                        max_articles: 5,
+                        show_view_all: true,
+                        enabled: true,
+                        bg_theme: "sage"
                     },
                     {
                         id: "more-news",
                         title: "अन्य खबरें / More News",
                         subtitle: "सभी समाचार",
                         category: "all",
-                        layout: "grid",
-                        max_articles: 12,
+                        layout: "compact-list",
+                        max_articles: 8,
                         show_view_all: false,
-                        enabled: true
+                        enabled: true,
+                        bg_theme: "amber"
                     }
                 ]
             }
         };
 
-        const HOMEPAGE_LAYOUTS = ["bento", "grid", "magazine", "compact-list", "strip"];
+        const HOMEPAGE_LAYOUTS = ["editorial-desk", "bento", "grid", "magazine", "compact-list", "strip"];
         const HOMEPAGE_LAYOUT_META = {
+            "editorial-desk": { label: "📰 3-कॉलम एडिटोरियल डेस्क (संपादक की पसंद | राजनीति | ताज़ा खबरें)", short: "3-Col Desk" },
             "bento": { label: "बेंटो हीरो + साइड स्टैक (Bento Hero + Stack)", short: "Bento" },
             "grid": { label: "3-कॉलम कार्ड ग्रिड (3-Column Card Grid)", short: "Grid" },
             "magazine": { label: "मैगज़ीन स्प्लिट — लीड + सूची (Magazine Split)", short: "Magazine" },
             "compact-list": { label: "कॉम्पैक्ट 2-कॉलम सूची (Compact 2-Col List)", short: "Compact List" },
             "strip": { label: "4-कॉलम हाइलाइट स्ट्रिप (4-Col Visual Strip)", short: "4-Col Strip" }
         };
+        const SECTION_BG_THEMES = ["auto", "default", "sand", "crimson", "slate", "sage", "amber"];
+        const AUTO_SECTION_BG_CYCLE = ["sand", "crimson", "slate", "sage", "amber"];
+        const SECTION_BG_THEME_META = {
+            "auto": { label: "🎨 ऑटो रोटेशन (Auto Distinct Section Color)", short: "Auto Color" },
+            "sand": { label: "🏜️ सैंड / वार्म पेपर (Warm Sand Tint)", short: "Sand" },
+            "crimson": { label: "🌹 क्रिमसन / एडिटोरियल रोज़ (Editorial Rose)", short: "Crimson" },
+            "slate": { label: "🪨 स्लेट / कूल ब्लू-ग्रे (Cool Slate)", short: "Slate" },
+            "sage": { label: "🌿 सेज / सॉफ्ट ऑलिव (Muted Sage)", short: "Sage" },
+            "amber": { label: "🍯 एम्बर / गोल्डन ओकर (Warm Amber)", short: "Amber" },
+            "default": { label: "⬜ डिफ़ॉल्ट सतह (Plain Default Bg)", short: "Default" }
+        };
         const HOMEPAGE_PRESET_LABELS = {
+            "wire-editorial": "The Wire 3-Col Editorial Desk",
             "classic-bento": "Classic Bento + Grid",
             "category-showcase": "Category Showcase",
             "magazine-editorial": "Magazine Editorial",
@@ -2622,9 +2871,9 @@
         let EDITING_PAGE_ID = null;
         let HEADER_PREVIEW_DEVICE = "desktop";
         let HEADER_PREVIEW_DRAWER_OPEN = false;
-        let HEADER_PREVIEW_READER_DARK = false;
+        let HEADER_PREVIEW_READER_DARK = true;
         let HP_PREVIEW_DEVICE = "desktop";
-        let HP_PREVIEW_THEME = "light";
+        let HP_PREVIEW_THEME = "dark";
 
         const quillToolbar = [
             [{ header: [3, false] }],
@@ -2954,7 +3203,7 @@
             }
 
             const rawDefaultColor = String(raw.default_color_mode || defs.default_color_mode).trim().toLowerCase();
-            const default_color_mode = ["light", "dark", "system"].includes(rawDefaultColor) ? rawDefaultColor : "light";
+            const default_color_mode = ["light", "dark", "system"].includes(rawDefaultColor) ? rawDefaultColor : "dark";
 
             return {
                 enabled: raw.enabled !== undefined ? Boolean(raw.enabled) : defs.enabled,
@@ -3000,6 +3249,8 @@
                     if (isNaN(maxArt)) maxArt = 6;
                     maxArt = Math.max(1, Math.min(30, maxArt));
                     const category = String(s.category || "all").trim() || "all";
+                    const rawBg = String(s.bg_theme || "auto").trim().toLowerCase();
+                    const bg_theme = SECTION_BG_THEMES.includes(rawBg) ? rawBg : "auto";
                     return {
                         id: (typeof s.id === "string" && s.id.trim()) ? s.id.trim() : `section-${idx + 1}`,
                         title: typeof s.title === "string" && s.title.trim() ? s.title.trim() : `सेक्शन ${idx + 1}`,
@@ -3008,7 +3259,8 @@
                         layout,
                         max_articles: maxArt,
                         show_view_all: s.show_view_all !== undefined ? Boolean(s.show_view_all) : (category.toLowerCase() !== "all"),
-                        enabled: s.enabled !== undefined ? Boolean(s.enabled) : true
+                        enabled: s.enabled !== undefined ? Boolean(s.enabled) : true,
+                        bg_theme
                     };
                 });
             } else {
@@ -3993,11 +4245,11 @@
             const hdToggleEl = document.getElementById("hd-theme-toggle-enabled");
             const hdModeEl = document.getElementById("hd-default-color-mode");
             if (hdToggleEl) hdToggleEl.checked = header.theme_toggle_enabled !== false;
-            if (hdModeEl) hdModeEl.value = ["light", "dark", "system"].includes(header.default_color_mode) ? header.default_color_mode : "light";
+            if (hdModeEl) hdModeEl.value = ["light", "dark", "system"].includes(header.default_color_mode) ? header.default_color_mode : "dark";
             const hpToggleEl = document.getElementById("hp-theme-toggle-enabled");
             const hpModeEl = document.getElementById("hp-default-color-mode");
             if (hpToggleEl) hpToggleEl.checked = header.theme_toggle_enabled !== false;
-            if (hpModeEl) hpModeEl.value = ["light", "dark", "system"].includes(header.default_color_mode) ? header.default_color_mode : "light";
+            if (hpModeEl) hpModeEl.value = ["light", "dark", "system"].includes(header.default_color_mode) ? header.default_color_mode : "dark";
             syncHamburgerCardsUI(header.hamburger_style || "staggered");
             syncHeaderColorInputs();
         }
@@ -4068,7 +4320,7 @@
             if (hdToggleEl) header.theme_toggle_enabled = hdToggleEl.checked;
             if (hdModeEl) {
                 const rawMode = hdModeEl.value;
-                header.default_color_mode = ["light", "dark", "system"].includes(rawMode) ? rawMode : "light";
+                header.default_color_mode = ["light", "dark", "system"].includes(rawMode) ? rawMode : "dark";
             }
             const hpToggleEl = document.getElementById("hp-theme-toggle-enabled");
             const hpModeEl = document.getElementById("hp-default-color-mode");
@@ -5085,6 +5337,111 @@
                 : DEFAULT_SITE_CONFIG.categories;
             const pickCat = (idx) => cats[idx] || null;
 
+            if (presetId === "wire-editorial") {
+                const c0 = pickCat(0);
+                const c1 = pickCat(1);
+                const c2 = pickCat(2);
+                const sections = [
+                    {
+                        id: "editorial-frontpage",
+                        title: "मुख्य संपादकीय डेस्क / Frontpage Desk",
+                        subtitle: "संपादक की पसंद • राजनीति • ताज़ा खबरें",
+                        category: "all",
+                        layout: "editorial-desk",
+                        max_articles: 9,
+                        show_view_all: false,
+                        enabled: true,
+                        bg_theme: "sand"
+                    }
+                ];
+                if (c0) {
+                    sections.push({
+                        id: `cat-${c0.id || "1"}`,
+                        title: c0.name,
+                        subtitle: "राष्ट्रीय एवं अंतरराष्ट्रीय कवरेज",
+                        category: c0.id || c0.name,
+                        layout: "grid",
+                        max_articles: 6,
+                        show_view_all: true,
+                        enabled: true,
+                        bg_theme: "crimson"
+                    });
+                }
+                if (c1) {
+                    sections.push({
+                        id: `cat-${c1.id || "2"}`,
+                        title: c1.name,
+                        subtitle: "विज्ञान, AI और डिजिटल दुनिया",
+                        category: c1.id || c1.name,
+                        layout: "strip",
+                        max_articles: 4,
+                        show_view_all: true,
+                        enabled: true,
+                        bg_theme: "slate"
+                    });
+                }
+                if (c2) {
+                    sections.push({
+                        id: `cat-${c2.id || "3"}`,
+                        title: c2.name,
+                        subtitle: "बाज़ार, व्यापार एवं आर्थिक नीति",
+                        category: c2.id || c2.name,
+                        layout: "magazine",
+                        max_articles: 5,
+                        show_view_all: true,
+                        enabled: true,
+                        bg_theme: "sage"
+                    });
+                }
+                sections.push({
+                    id: "more-news",
+                    title: "अन्य खबरें / More News",
+                    subtitle: "सभी समाचार",
+                    category: "all",
+                    layout: "compact-list",
+                    max_articles: 8,
+                    show_view_all: false,
+                    enabled: true,
+                    bg_theme: "amber"
+                });
+                return {
+                    preset: "wire-editorial",
+                    deduplicate_across_sections: true,
+                    sections
+                };
+            }
+
+            if (presetId === "classic-bento") {
+                return {
+                    preset: "classic-bento",
+                    deduplicate_across_sections: true,
+                    sections: [
+                        {
+                            id: "top-stories",
+                            title: "प्रमुख सुर्खियां / Top Stories",
+                            subtitle: "ताज़ा अपडेट्स",
+                            category: "all",
+                            layout: "bento",
+                            max_articles: 5,
+                            show_view_all: false,
+                            enabled: true,
+                            bg_theme: "sand"
+                        },
+                        {
+                            id: "more-news",
+                            title: "अन्य खबरें / More News",
+                            subtitle: "सभी समाचार",
+                            category: "all",
+                            layout: "grid",
+                            max_articles: 12,
+                            show_view_all: false,
+                            enabled: true,
+                            bg_theme: "slate"
+                        }
+                    ]
+                };
+            }
+
             if (presetId === "category-showcase") {
                 const sections = [
                     {
@@ -5095,14 +5452,15 @@
                         layout: "bento",
                         max_articles: 5,
                         show_view_all: false,
-                        enabled: true
+                        enabled: true,
+                        bg_theme: "sand"
                     }
                 ];
                 const catLayouts = [
-                    { layout: "strip", max: 4, sub: "ताज़ा हाइलाइट्स" },
-                    { layout: "grid", max: 6, sub: "विशेष कवरेज" },
-                    { layout: "compact-list", max: 6, sub: "संक्षिप्त समाचार" },
-                    { layout: "grid", max: 6, sub: "प्रमुख रिपोर्ट्स" }
+                    { layout: "strip", max: 4, sub: "ताज़ा हाइलाइट्स", bg: "crimson" },
+                    { layout: "grid", max: 6, sub: "विशेष कवरेज", bg: "slate" },
+                    { layout: "compact-list", max: 6, sub: "संक्षिप्त समाचार", bg: "sage" },
+                    { layout: "grid", max: 6, sub: "प्रमुख रिपोर्ट्स", bg: "amber" }
                 ];
                 catLayouts.forEach((spec, i) => {
                     const c = pickCat(i);
@@ -5115,7 +5473,8 @@
                         layout: spec.layout,
                         max_articles: spec.max,
                         show_view_all: true,
-                        enabled: true
+                        enabled: true,
+                        bg_theme: spec.bg
                     });
                 });
                 return {
@@ -5137,7 +5496,8 @@
                         layout: "magazine",
                         max_articles: 5,
                         show_view_all: false,
-                        enabled: true
+                        enabled: true,
+                        bg_theme: "sand"
                     }
                 ];
                 if (c0) {
@@ -5149,7 +5509,8 @@
                         layout: "strip",
                         max_articles: 4,
                         show_view_all: true,
-                        enabled: true
+                        enabled: true,
+                        bg_theme: "crimson"
                     });
                 }
                 if (c1) {
@@ -5161,7 +5522,8 @@
                         layout: "magazine",
                         max_articles: 5,
                         show_view_all: true,
-                        enabled: true
+                        enabled: true,
+                        bg_theme: "slate"
                     });
                 }
                 sections.push({
@@ -5172,7 +5534,8 @@
                     layout: "compact-list",
                     max_articles: 8,
                     show_view_all: false,
-                    enabled: true
+                    enabled: true,
+                    bg_theme: "sage"
                 });
                 return {
                     preset: "magazine-editorial",
@@ -5193,7 +5556,8 @@
                         layout: "strip",
                         max_articles: 4,
                         show_view_all: false,
-                        enabled: true
+                        enabled: true,
+                        bg_theme: "crimson"
                     },
                     {
                         id: "news-wire",
@@ -5203,7 +5567,8 @@
                         layout: "compact-list",
                         max_articles: 10,
                         show_view_all: false,
-                        enabled: true
+                        enabled: true,
+                        bg_theme: "sand"
                     }
                 ];
                 if (c0) {
@@ -5215,7 +5580,8 @@
                         layout: "compact-list",
                         max_articles: 6,
                         show_view_all: true,
-                        enabled: true
+                        enabled: true,
+                        bg_theme: "slate"
                     });
                 }
                 if (c1) {
@@ -5227,7 +5593,8 @@
                         layout: "grid",
                         max_articles: 6,
                         show_view_all: true,
-                        enabled: true
+                        enabled: true,
+                        bg_theme: "sage"
                     });
                 }
                 return {
@@ -5267,7 +5634,7 @@
             if (hpToggleEl) header.theme_toggle_enabled = hpToggleEl.checked;
             if (hpModeEl) {
                 const rawMode = hpModeEl.value;
-                header.default_color_mode = ["light", "dark", "system"].includes(rawMode) ? rawMode : "light";
+                header.default_color_mode = ["light", "dark", "system"].includes(rawMode) ? rawMode : "dark";
             }
 
             const hdToggleEl = document.getElementById("hd-theme-toggle-enabled");
@@ -5301,6 +5668,22 @@
             return null;
         }
 
+        function isPreviewManualArticle(art) {
+            if (!art || typeof art !== "object") return false;
+            const sourceName = String(art.source_name || "").trim();
+            const sourceLow = sourceName.toLowerCase();
+            const origLink = String(art.original_link || "").trim().toLowerCase();
+            if (sourceName.includes("अबतक24") || sourceLow.includes("aabtak24")) return true;
+            if (origLink && (origLink.includes("aabtak24.in") || !origLink.startsWith("http"))) return true;
+            return false;
+        }
+
+        function resolvePreviewSectionBgTheme(sec, idx) {
+            const raw = String((sec && sec.bg_theme) || "auto").trim().toLowerCase();
+            if (SECTION_BG_THEMES.includes(raw) && raw !== "auto") return raw;
+            return AUTO_SECTION_BG_CYCLE[idx % AUTO_SECTION_BG_CYCLE.length];
+        }
+
         function getPreviewArticlesPool() {
             if (Array.isArray(ALL_ARTICLES) && ALL_ARTICLES.length > 0) {
                 return ALL_ARTICLES;
@@ -5311,16 +5694,116 @@
             const samples = [];
             for (let i = 0; i < 16; i++) {
                 const cat = cats[i % cats.length];
+                const isManualSample = (i === 1 || i === 4);
                 samples.push({
                     slug: `sample-article-${i + 1}`,
                     title: `${cat.name}: प्रमुख समाचार और विशेष रिपोर्ट — अपडेट #${i + 1}`,
                     category: cat.name,
                     date: "आज",
                     image: "",
+                    source_name: isManualSample ? "अबतक24 न्यूज़ डेस्क" : "News Agency",
+                    original_link: isManualSample ? `https://aabtak24.in/news/sample-article-${i + 1}.html` : "https://example.com/rss",
                     content_html: "<p>यह होमपेज लेआउट का सैंपल सारांश है। लाइव साइट पर आपके प्रकाशित समाचार स्वतः दिखेंगे।</p>"
                 });
             }
             return samples;
+        }
+
+        function selectEditorialDeskPreviewArticles(articles, maxArticles, seenSlugs, deduplicate) {
+            let totalBudget = parseInt(maxArticles, 10);
+            if (isNaN(totalBudget)) totalBudget = 9;
+            totalBudget = Math.max(3, Math.min(20, totalBudget));
+            const leftQuota = 2;
+            const rightQuota = Math.max(1, totalBudget - leftQuota - 1);
+
+            const politicsAliases = new Set(["राजनीति", "चुनाव", "politics"]);
+            const polCat = resolveHomepageCategoryObj("politics");
+            if (polCat) {
+                if (polCat.name) politicsAliases.add(String(polCat.name).trim());
+                (polCat.aliases || []).forEach(a => politicsAliases.add(String(a).trim()));
+            }
+
+            const available = [];
+            for (const art of articles) {
+                if (!art || typeof art !== "object") continue;
+                const slug = String(art.slug || art.title || "");
+                if (deduplicate && slug && seenSlugs.has(slug)) continue;
+                available.push(art);
+            }
+
+            const localUsed = new Set();
+            const markUsed = (art) => {
+                const s = String(art.slug || art.title || "");
+                if (s) localUsed.add(s);
+            };
+            const isUsed = (art) => {
+                const s = String(art.slug || art.title || "");
+                return Boolean(s && localUsed.has(s));
+            };
+
+            // 1. Center Lead (Politics first, preferring non-manual so manual posts stay available for Left column)
+            let leadArticle = null;
+            for (const art of available) {
+                const cat = String(art.category || "").trim();
+                if ((politicsAliases.has(cat) || politicsAliases.has(cat.toLowerCase())) && !isPreviewManualArticle(art)) {
+                    leadArticle = art;
+                    break;
+                }
+            }
+            if (!leadArticle) {
+                for (const art of available) {
+                    const cat = String(art.category || "").trim();
+                    if (politicsAliases.has(cat) || politicsAliases.has(cat.toLowerCase())) {
+                        leadArticle = art;
+                        break;
+                    }
+                }
+            }
+            if (!leadArticle && available.length) {
+                leadArticle = available.find(a => !isPreviewManualArticle(a)) || available[0];
+            }
+            if (leadArticle) markUsed(leadArticle);
+
+            // 2. Left Column: Manual posts first, then backfill
+            const manualPicks = [];
+            for (const art of available) {
+                if (isUsed(art)) continue;
+                if (isPreviewManualArticle(art)) {
+                    manualPicks.push(art);
+                    markUsed(art);
+                    if (manualPicks.length >= leftQuota) break;
+                }
+            }
+            if (manualPicks.length < leftQuota) {
+                for (const art of available) {
+                    if (isUsed(art)) continue;
+                    manualPicks.push(art);
+                    markUsed(art);
+                    if (manualPicks.length >= leftQuota) break;
+                }
+            }
+
+            // 3. Right Column: Latest News (Just In)
+            const justInList = [];
+            for (const art of available) {
+                if (isUsed(art)) continue;
+                justInList.push(art);
+                markUsed(art);
+                if (justInList.length >= rightQuota) break;
+            }
+
+            const combined = [
+                ...(leadArticle ? [leadArticle] : []),
+                ...manualPicks,
+                ...justInList
+            ];
+            if (deduplicate) {
+                combined.forEach(a => {
+                    const s = String(a.slug || a.title || "");
+                    if (s) seenSlugs.add(s);
+                });
+            }
+            return { manualPicks, leadArticle, justInList, selected: combined };
         }
 
         function filterPreviewArticlesForSection(articles, catKey, maxArticles, seenSlugs, deduplicate) {
@@ -5364,7 +5847,18 @@
             const plan = [];
             (hp.sections || []).forEach((sec, idx) => {
                 if (sec.enabled === false) {
-                    plan.push({ idx, sec, articles: [], matchedCat: resolveHomepageCategoryObj(sec.category) });
+                    plan.push({ idx, sec, articles: [], matchedCat: resolveHomepageCategoryObj(sec.category), deskData: null });
+                    return;
+                }
+                if (sec.layout === "editorial-desk") {
+                    const deskData = selectEditorialDeskPreviewArticles(pool, sec.max_articles, seenSlugs, deduplicate);
+                    plan.push({
+                        idx,
+                        sec,
+                        articles: deskData.selected,
+                        matchedCat: resolveHomepageCategoryObj(sec.category),
+                        deskData
+                    });
                     return;
                 }
                 const { selected, matchedCat } = filterPreviewArticlesForSection(
@@ -5374,7 +5868,7 @@
                     seenSlugs,
                     deduplicate
                 );
-                plan.push({ idx, sec, articles: selected, matchedCat });
+                plan.push({ idx, sec, articles: selected, matchedCat, deskData: null });
             });
             return plan;
         }
@@ -5423,7 +5917,7 @@
             const hpToggleEl = document.getElementById("hp-theme-toggle-enabled");
             const hpModeEl = document.getElementById("hp-default-color-mode");
             if (hpToggleEl) hpToggleEl.checked = header.theme_toggle_enabled !== false;
-            if (hpModeEl) hpModeEl.value = ["light", "dark", "system"].includes(header.default_color_mode) ? header.default_color_mode : "light";
+            if (hpModeEl) hpModeEl.value = ["light", "dark", "system"].includes(header.default_color_mode) ? header.default_color_mode : "dark";
 
             syncHomepagePresetCardsUI();
             syncHomepagePreviewButtons();
@@ -5458,6 +5952,8 @@
                 const isEnabled = sec.enabled !== false;
                 const isAllCat = !sec.category || String(sec.category).toLowerCase() === "all";
                 const layoutMeta = HOMEPAGE_LAYOUT_META[sec.layout] || { short: sec.layout };
+                const resolvedBg = resolvePreviewSectionBgTheme(sec, idx);
+                const bgMeta = SECTION_BG_THEME_META[sec.bg_theme || "auto"] || { short: resolvedBg };
 
                 const catOptions = [
                     `<option value="all"${isAllCat ? " selected" : ""}>🌐 सभी श्रेणियाँ (All Latest News)</option>`,
@@ -5471,6 +5967,12 @@
                 const layoutOptions = HOMEPAGE_LAYOUTS.map(l => {
                     const meta = HOMEPAGE_LAYOUT_META[l] || { label: l };
                     return `<option value="${l}"${sec.layout === l ? " selected" : ""}>${escapeHtml(meta.label)}</option>`;
+                }).join("");
+
+                const curBgTheme = SECTION_BG_THEMES.includes(sec.bg_theme) ? sec.bg_theme : "auto";
+                const bgOptions = SECTION_BG_THEMES.map(bg => {
+                    const meta = SECTION_BG_THEME_META[bg] || { label: bg };
+                    return `<option value="${bg}"${curBgTheme === bg ? " selected" : ""}>${escapeHtml(meta.label)}</option>`;
                 }).join("");
 
                 const countPillClass = !isEnabled ? "muted" : (matchedCount > 0 ? "green" : "");
@@ -5488,6 +5990,7 @@
                                 ${isEnabled ? "सक्रिय (Enabled)" : "बंद (Hidden)"}
                             </label>
                             <span class="pill">${escapeHtml(layoutMeta.short)}</span>
+                            <span class="pill muted">🎨 ${escapeHtml(bgMeta.short || resolvedBg)}</span>
                             <span class="pill ${countPillClass}" id="hp-sec-count-${idx}">${escapeHtml(countPillText)}</span>
                         </div>
                         <div class="actions-group">
@@ -5519,7 +6022,11 @@
                             <select onchange="updateHomepageSectionField(${idx}, 'layout', this.value, true)">${layoutOptions}</select>
                         </div>
                         <div>
-                            <label>अधिकतम लेख (Max Articles: 1–30)</label>
+                            <label>सेक्शन बैकग्राउंड रंग (Background Theme)</label>
+                            <select onchange="updateHomepageSectionField(${idx}, 'bg_theme', this.value, true)">${bgOptions}</select>
+                        </div>
+                        <div>
+                            <label>अधिकतम लेख (Max: 1–30)</label>
                             <input type="number" min="1" max="30" value="${sec.max_articles}" oninput="updateHomepageSectionField(${idx}, 'max_articles', this.value, false)">
                         </div>
                         <div style="padding-bottom:6px;">
@@ -5556,6 +6063,11 @@
                 }
             } else if (field === "layout") {
                 sec.layout = HOMEPAGE_LAYOUTS.includes(value) ? value : "grid";
+                if (sec.layout === "editorial-desk" && sec.max_articles < 6) {
+                    sec.max_articles = 9;
+                }
+            } else if (field === "bg_theme") {
+                sec.bg_theme = SECTION_BG_THEMES.includes(value) ? value : "auto";
             } else {
                 sec[field] = String(value ?? "");
             }
@@ -5595,7 +6107,8 @@
                 layout: nextCat ? "grid" : "compact-list",
                 max_articles: nextCat ? 6 : 6,
                 show_view_all: Boolean(nextCat),
-                enabled: true
+                enabled: true,
+                bg_theme: "auto"
             });
             hp.preset = "custom";
             renderHomepageManager();
@@ -5689,7 +6202,8 @@
             if (!visibleSections.length) {
                 sectionsHtml = `<div style="padding:26px; text-align:center; color:var(--hp-muted); font-size:13px; font-weight:700;">कोई सक्रिय सेक्शन या मेल खाने वाले लेख नहीं मिले। कम से कम एक सेक्शन चालू करें।</div>`;
             } else {
-                sectionsHtml = visibleSections.map(({ sec, articles, matchedCat }) => {
+                sectionsHtml = visibleSections.map(({ idx, sec, articles, matchedCat, deskData }) => {
+                    const resolvedBg = resolvePreviewSectionBgTheme(sec, idx);
                     const rightBits = [];
                     if (sec.subtitle) rightBits.push(`<span>${escapeHtml(sec.subtitle)}</span>`);
                     if (sec.show_view_all && matchedCat && matchedCat.file) {
@@ -5702,7 +6216,66 @@
                         </div>`;
 
                     let bodyHtml = "";
-                    if (sec.layout === "bento") {
+                    if (sec.layout === "editorial-desk") {
+                        const d = deskData || selectEditorialDeskPreviewArticles(articles, sec.max_articles, new Set(), false);
+                        const lead = d.leadArticle || articles[0];
+                        const picks = d.manualPicks || [];
+                        const wire = d.justInList || [];
+                        const leadExcerpt = lead ? extractPreviewExcerpt(lead.content_html, 125) : "";
+
+                        const picksHtml = picks.map(a => {
+                            const isManual = isPreviewManualArticle(a);
+                            const srcBadge = isManual ? "अबतक24 डेस्क" : (a.source_name || a.date || "");
+                            return `
+                                <div class="hp-pv-desk-pick">
+                                    ${buildPreviewThumbTag(a, a.title)}
+                                    <div class="hp-pv-desk-pick-body">
+                                        <span class="hp-pv-badge">${escapeHtml(a.category || "")}</span>
+                                        <div class="hp-pv-title">${escapeHtml(a.title)}</div>
+                                        <div class="hp-pv-meta">${escapeHtml(srcBadge)} • ${escapeHtml(a.date || "")}</div>
+                                    </div>
+                                </div>`;
+                        }).join("");
+
+                        const centerHtml = lead ? `
+                            <div>
+                                <div class="hp-pv-desk-head">
+                                    <span>${escapeHtml(lead.category || "राजनीति")}</span>
+                                    <span style="font-size:10px; color:var(--hp-muted); font-weight:700;">विशेष रिपोर्ट</span>
+                                </div>
+                                <div class="hp-pv-desk-lead-title">${escapeHtml(lead.title)}</div>
+                                <div class="hp-pv-meta">${escapeHtml(lead.source_name || "अबतक24 न्यूज़ डेस्क")} • ${escapeHtml(lead.date || "")}</div>
+                                ${buildPreviewThumbTag(lead, lead.title)}
+                            </div>
+                            ${leadExcerpt ? `<div class="hp-pv-mag-excerpt">${escapeHtml(leadExcerpt)}</div>` : ""}` : "";
+
+                        const wireHtml = wire.map(a => `
+                            <div class="hp-pv-desk-wire">
+                                <span class="hp-pv-badge">${escapeHtml(a.category || "")}</span>
+                                <div class="hp-pv-title">${escapeHtml(a.title)}</div>
+                                <div class="hp-pv-meta">${escapeHtml(a.date || "")}</div>
+                            </div>`).join("");
+
+                        bodyHtml = `
+                            <div class="hp-pv-desk">
+                                <div class="hp-pv-desk-left">
+                                    <div class="hp-pv-desk-head">
+                                        <span>संपादक की पसंद</span>
+                                    </div>
+                                    ${picksHtml}
+                                </div>
+                                <div class="hp-pv-desk-center">
+                                    ${centerHtml}
+                                </div>
+                                <div class="hp-pv-desk-right">
+                                    <div class="hp-pv-desk-head">
+                                        <span><span class="hp-pv-dot"></span>ताज़ा खबरें</span>
+                                        <span>→</span>
+                                    </div>
+                                    <div class="hp-pv-desk-wire-list">${wireHtml}</div>
+                                </div>
+                            </div>`;
+                    } else if (sec.layout === "bento") {
                         const hero = articles[0];
                         const side = articles.slice(1);
                         const sideHtml = side.map(a => `
@@ -5784,7 +6357,7 @@
                             </div>`).join("")}</div>`;
                     }
 
-                    return `<div class="hp-pv-sec">${ruleHtml}${bodyHtml}</div>`;
+                    return `<div class="hp-pv-sec hp-bg-${escapeHtml(resolvedBg)}">${ruleHtml}${bodyHtml}</div>`;
                 }).join("");
             }
 
