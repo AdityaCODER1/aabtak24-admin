@@ -6224,15 +6224,13 @@
                         const leadExcerpt = lead ? extractPreviewExcerpt(lead.content_html, 125) : "";
 
                         const picksHtml = picks.map(a => {
-                            const isManual = isPreviewManualArticle(a);
-                            const srcBadge = isManual ? "अबतक24 डेस्क" : (a.source_name || a.date || "");
                             return `
                                 <div class="hp-pv-desk-pick">
                                     ${buildPreviewThumbTag(a, a.title)}
                                     <div class="hp-pv-desk-pick-body">
                                         <span class="hp-pv-badge">${escapeHtml(a.category || "")}</span>
                                         <div class="hp-pv-title">${escapeHtml(a.title)}</div>
-                                        <div class="hp-pv-meta">${escapeHtml(srcBadge)} • ${escapeHtml(a.date || "")}</div>
+                                        <div class="hp-pv-meta">Aabtak24 • ${escapeHtml(a.date || "")}</div>
                                     </div>
                                 </div>`;
                         }).join("");
@@ -6244,7 +6242,7 @@
                                     <span style="font-size:10px; color:var(--hp-muted); font-weight:700;">विशेष रिपोर्ट</span>
                                 </div>
                                 <div class="hp-pv-desk-lead-title">${escapeHtml(lead.title)}</div>
-                                <div class="hp-pv-meta">${escapeHtml(lead.source_name || "अबतक24 न्यूज़ डेस्क")} • ${escapeHtml(lead.date || "")}</div>
+                                <div class="hp-pv-meta">Aabtak24 • ${escapeHtml(lead.date || "")}</div>
                                 ${buildPreviewThumbTag(lead, lead.title)}
                             </div>
                             ${leadExcerpt ? `<div class="hp-pv-mag-excerpt">${escapeHtml(leadExcerpt)}</div>` : ""}` : "";
