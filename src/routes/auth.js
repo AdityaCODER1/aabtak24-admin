@@ -86,7 +86,8 @@ export async function handleAuthRoutes(request, env, pathname) {
             return errorResponse("कृपया अपना पासवर्ड दर्ज करें।", 400);
         }
 
-        const buckets = [`ip:${ip}`, `acct:${normalizedUser || "admin"}`];
+        // Scope rate limit per client IP (and per-IP+account) so remote attackers cannot trigger a global lockout DoS on Admin/Editors
+        const buckets = [`ip:${ip}`];
         const rate = await checkRateLimit(env.CMS_DB, buckets);
         if (!rate.allowed) {
             return errorResponse(
@@ -359,7 +360,7 @@ export async function handleAuthRoutes(request, env, pathname) {
             );
         }
 
-        const buckets = [`ip:${ip}`, `recovery:admin`];
+        const buckets = [`ip_rec:${ip}`, `ip:${ip}`];
         const rate = await checkRateLimit(env.CMS_DB, buckets);
         if (!rate.allowed) {
             return errorResponse(

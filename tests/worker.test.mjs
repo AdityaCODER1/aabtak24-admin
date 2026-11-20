@@ -248,6 +248,20 @@ describe("Aabtak24 Cloudflare Worker + D1 Server-Side CMS Security Suite", () =>
             body: { username: "a@b.in", password: "Password#123", permission: "own_only" }
         }), env);
         assert.equal(badOrigin.status, 403);
+
+        // Alternate deployment hostname (e.g., *.workers.dev) rejected when ALLOWED_ORIGIN is explicitly set -> 403
+        const altHostReq = new Request("https://aabtak24-admin.workers.dev/api/editors", {
+            method: "POST",
+            headers: {
+                "Origin": "https://aabtak24-admin.workers.dev",
+                "Cookie": cookie,
+                "X-CSRF-Token": csrf,
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({ username: "a@b.in", password: "Password#123", permission: "own_only" })
+        });
+        const altHostRes = await worker.fetch(altHostReq, env);
+        assert.equal(altHostRes.status, 403);
     });
 
     it("3. Enforces Main Admin password change, old session revocation, and Forgot Password Recovery", async () => {
@@ -436,6 +450,32 @@ describe("Aabtak24 Cloudflare Worker + D1 Server-Side CMS Security Suite", () =>
         }), env);
         assert.equal(fakeRes.status, 415, "Disguised SVG must be rejected via magic bytes");
 
+        // Oversized upload header rejected with 413 BEFORE formData() parses body
+        const hugeHeaderReq = new Request(`${ORIGIN}/api/uploads`, {
+            method: "POST",
+            headers: {
+                "Origin": ORIGIN,
+                "Cookie": admin.cookie,
+                "X-CSRF-Token": admin.csrf,
+                "Content-Type": "multipart/form-data; boundary=----abc",
+                "Content-Length": String(6 * 1024 * 1024)
+            },
+            body: "----abc--"
+        });
+        const hugeHeaderRes = await worker.fetch(hugeHeaderReq, env);
+        assert.equal(hugeHeaderRes.status, 413);
+
+        // Oversized streamed body (>5.25 MB) without Content-Length rejected with 413 before FormData
+        const bigForm = new FormData();
+        bigForm.append("file", new File([new Uint8Array(5 * 1024 * 1024 + 300 * 1024)], "big.png", { type: "image/png" }));
+        const hugeStreamRes = await worker.fetch(makeReq("/api/uploads", {
+            method: "POST",
+            cookie: admin.cookie,
+            csrf: admin.csrf,
+            body: bigForm
+        }), env);
+        assert.equal(hugeStreamRes.status, 413);
+
         // Real valid PNG header -> accepted & filename rewritten cleanly
         const pngBytes = new Uint8Array([0x89, 0x50, 0x4e, 0x47, 0x0d, 0x0a, 0x1a, 0x0a, 0x00, 0x00, 0x00, 0x0d, 0x49, 0x48, 0x44, 0x52]);
         const validForm = new FormData();
@@ -498,7 +538,7 @@ describe("Aabtak24 Cloudflare Worker + D1 Server-Side CMS Security Suite", () =>
         assert.ok(logsData.logs.some(l => l.action === "site_config_updated"));
     });
 
-    it("7. Enforces server-side D1 login rate limiting after 5 failed attempts", async () => {
+    it("7. Enforces per-IP D1 rate limiting without allowing remote DoS lockout of legitimate Admin logins", async () => {
         for (let i = 0; i < 4; i++) {
             const r = await loginAs("", "WrongPass#123", "198.51.100.77");
             assert.equal(r.res.status, 401);
@@ -507,8 +547,47 @@ describe("Aabtak24 Cloudflare Worker + D1 Server-Side CMS Security Suite", () =>
         assert.equal(fifth.res.status, 429);
         assert.ok(Number(fifth.res.headers.get("Retry-After")) > 0);
 
-        // Even valid password blocked from locked IP during cooldown!
+        // Locked attacker IP blocked even with valid password
         const blockedValid = await loginAs("", "InitAdminPass#2026", "198.51.100.77");
         assert.equal(blockedValid.res.status, 429);
+
+        // Legitimate Admin from another IP is NOT locked out (no global DoS)
+        const legitOtherIp = await loginAs("", "InitAdminPass#2026", "203.0.113.55");
+        assert.equal(legitOtherIp.res.status, 200);
+    });
+
+    it("8. State-machine HTML sanitizer blocks malformed/adversarial XSS edge cases", async () => {
+        const admin = await loginAs("", "InitAdminPass#2026");
+        const maliciousHtml = [
+            `<p title="> <img src=x onerror=alert(1)>">Safe paragraph content for article.</p>`,
+            `<scr<script>ipt>alert(1)</script>`,
+            `<svg><script>alert(2)</script></svg>`,
+            `<p><a href="&#106;avascript:alert(3)" target="_blank">Bad Link</a></p>`,
+            `<p><a href="https://aabtak24.in/news" target="_blank">Good Link</a></p>`
+        ].join("");
+
+        const res = await worker.fetch(makeReq("/api/articles", {
+            method: "POST",
+            cookie: admin.cookie,
+            csrf: admin.csrf,
+            body: {
+                title: "Adversarial Sanitizer Test",
+                category: "देश-विदेश",
+                summary: "Clean summary",
+                content_html: maliciousHtml
+            }
+        }), env);
+        assert.equal(res.status, 201);
+
+        const dbAfter = JSON.parse(gh.files.get("articles_db.json").content);
+        const saved = dbAfter.find(a => a.title === "Adversarial Sanitizer Test");
+        assert.ok(saved);
+        assert.ok(!saved.content_html.includes("<img"), "Quoted > breakout must not inject img tag");
+        assert.ok(!saved.content_html.includes("onerror"), "Event handler must not survive");
+        assert.ok(!saved.content_html.includes("<script"), "Nested script tags must not survive");
+        assert.ok(!saved.content_html.includes("alert(1)") && !saved.content_html.includes("alert(2)"), "Script bodies must be stripped");
+        assert.ok(!saved.content_html.includes("javascript:"), "Entity-encoded javascript: URI must be stripped");
+        assert.ok(saved.content_html.includes('href="https://aabtak24.in/news"'), "Valid HTTPS link preserved");
+        assert.ok(saved.content_html.includes('rel="noopener noreferrer"'), "noopener noreferrer enforced");
     });
 });

@@ -243,14 +243,18 @@ export async function authenticateRequest(request, env) {
 }
 
 export function verifyOrigin(request, env) {
-    const reqUrl = new URL(request.url);
     const origin = request.headers.get("Origin");
-    const allowedOrigin = String(env.ALLOWED_ORIGIN || "").trim() || reqUrl.origin;
-
     // For state-changing requests, browsers always send Origin
     if (!origin) return false;
-    if (origin === allowedOrigin || origin === reqUrl.origin) return true;
-    return false;
+
+    const configured = String(env.ALLOWED_ORIGIN || "").trim();
+    if (configured) {
+        const allowedOrigins = configured.split(",").map(s => s.trim()).filter(Boolean);
+        return allowedOrigins.includes(origin);
+    }
+
+    const reqUrl = new URL(request.url);
+    return origin === reqUrl.origin;
 }
 
 export async function verifyOriginAndCsrf(request, env, session) {

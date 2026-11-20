@@ -15,6 +15,52 @@ import { errorResponse, jsonResponse } from "../http.js";
 import { bytesToBase64, cleanSlug, verifyImageMagicBytes } from "../sanitize.js";
 
 const MAX_UPLOAD_BYTES = 5 * 1024 * 1024; // 5 MB
+const MAX_MULTIPART_BODY_BYTES = MAX_UPLOAD_BYTES + 256 * 1024; // 5 MB image + multipart overhead
+
+async function readBoundedMultipart(request, rawContentType, maxBytes) {
+    const clHeader = request.headers.get("Content-Length");
+    if (clHeader !== null) {
+        const declared = Number(clHeader);
+        if (Number.isFinite(declared) && declared > maxBytes) {
+            const err = new Error("⚠️ फ़ोटो का आकार 5 MB से अधिक नहीं हो सकता।");
+            err.status = 413;
+            throw err;
+        }
+    }
+
+    if (!request.body || typeof request.body.getReader !== "function") {
+        return request.formData();
+    }
+
+    const reader = request.body.getReader();
+    const chunks = [];
+    let total = 0;
+    while (true) {
+        const { done, value } = await reader.read();
+        if (done) break;
+        if (value) {
+            total += value.byteLength;
+            if (total > maxBytes) {
+                try { await reader.cancel(); } catch (_) {}
+                const err = new Error("⚠️ फ़ोटो का आकार 5 MB से अधिक नहीं हो सकता।");
+                err.status = 413;
+                throw err;
+            }
+            chunks.push(value);
+        }
+    }
+
+    const merged = new Uint8Array(total);
+    let offset = 0;
+    for (const chunk of chunks) {
+        merged.set(chunk, offset);
+        offset += chunk.byteLength;
+    }
+
+    return new Response(merged, {
+        headers: { "Content-Type": rawContentType }
+    }).formData();
+}
 
 export async function handleUploadRoutes(request, env, pathname) {
     if (pathname !== "/api/uploads" || request.method.toUpperCase() !== "POST") {
@@ -31,15 +77,19 @@ export async function handleUploadRoutes(request, env, pathname) {
         return errorResponse(csrfCheck.error, 403);
     }
 
-    const contentType = String(request.headers.get("Content-Type") || "").toLowerCase();
+    const rawContentType = String(request.headers.get("Content-Type") || "");
+    const contentType = rawContentType.toLowerCase();
     if (!contentType.includes("multipart/form-data")) {
         return errorResponse("Uploads must use multipart/form-data.", 415);
     }
 
     let formData;
     try {
-        formData = await request.formData();
-    } catch (_) {
+        formData = await readBoundedMultipart(request, rawContentType, MAX_MULTIPART_BODY_BYTES);
+    } catch (err) {
+        if (err && err.status === 413) {
+            return errorResponse(err.message, 413);
+        }
         return errorResponse("Invalid multipart form data.", 400);
     }
 

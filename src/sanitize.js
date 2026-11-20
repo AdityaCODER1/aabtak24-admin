@@ -11,10 +11,15 @@ const ALLOWED_TAGS = new Set([
 
 const VOID_TAGS = new Set(["br", "hr"]);
 
-const STRIP_WITH_CONTENT_TAGS = [
+const STRIP_WITH_CONTENT_TAGS = new Set([
     "script", "style", "iframe", "object", "embed", "svg", "math",
-    "noscript", "template", "form", "textarea", "select", "option", "button"
-];
+    "noscript", "template", "form", "textarea", "select", "option",
+    "button", "title", "xmp", "plaintext"
+]);
+
+const RAW_TEXT_STRIP_TAGS = new Set([
+    "script", "style", "textarea", "title", "xmp", "plaintext"
+]);
 
 const RESERVED_FILES = new Set([
     "index.html", "404.html", "robots.txt", "sitemap.xml",
@@ -28,6 +33,31 @@ export function escapeHtml(str) {
         .replace(/>/g, "&gt;")
         .replace(/"/g, "&quot;")
         .replace(/'/g, "&#39;");
+}
+
+function decodeBasicEntities(str) {
+    return String(str || "")
+        .replace(/&#(\d+);?/g, (_m, dec) => {
+            const code = Number.parseInt(dec, 10);
+            return Number.isFinite(code) && code > 0 && code <= 0x10ffff ? String.fromCodePoint(code) : "";
+        })
+        .replace(/&#x([0-9a-fA-F]+);?/g, (_m, hex) => {
+            const code = Number.parseInt(hex, 16);
+            return Number.isFinite(code) && code > 0 && code <= 0x10ffff ? String.fromCodePoint(code) : "";
+        })
+        .replace(/&(amp|lt|gt|quot|apos|colon|tab|newline);/gi, (_m, name) => {
+            switch (name.toLowerCase()) {
+                case "amp": return "&";
+                case "lt": return "<";
+                case "gt": return ">";
+                case "quot": return "\"";
+                case "apos": return "'";
+                case "colon": return ":";
+                case "tab": return "\t";
+                case "newline": return "\n";
+                default: return "";
+            }
+        });
 }
 
 export function cleanSlug(text) {
@@ -64,14 +94,14 @@ export function sanitizeImageUrl(rawUrl) {
 }
 
 export function sanitizeHref(rawHref) {
-    const val = String(rawHref || "").trim();
+    const val = decodeBasicEntities(String(rawHref || "")).trim();
     if (!val) return "";
     // Remove ASCII control characters & whitespace before protocol inspection
     const collapsed = val.replace(/[\u0000-\u001F\u007F\s]+/g, "");
     const lower = collapsed.toLowerCase();
     if (lower.startsWith("https://") || lower.startsWith("http://") || lower.startsWith("mailto:")) {
         try {
-            const parsed = new URL(val);
+            const parsed = new URL(collapsed);
             if (["http:", "https:", "mailto:"].includes(parsed.protocol)) {
                 return parsed.href;
             }
@@ -89,53 +119,194 @@ export function sanitizeHref(rawHref) {
     return "";
 }
 
-function parseAttributes(attrStr) {
+function parseAttributesFromSlice(attrStr) {
     const attrs = [];
-    const re = /([a-zA-Z0-9_:-]+)(?:\s*=\s*(?:"([^"]*)"|'([^']*)'|([^\s"'=<>`]+)))?/g;
-    let match;
-    while ((match = re.exec(attrStr)) !== null) {
-        attrs.push({
-            name: match[1].toLowerCase(),
-            value: match[2] ?? match[3] ?? match[4] ?? ""
-        });
+    let i = 0;
+    const len = attrStr.length;
+    while (i < len) {
+        while (i < len && /[\s/]/.test(attrStr[i])) i++;
+        if (i >= len) break;
+
+        const nameStart = i;
+        while (i < len && !/[\s=/>]/.test(attrStr[i])) i++;
+        const name = attrStr.slice(nameStart, i).toLowerCase();
+        if (!name) {
+            i++;
+            continue;
+        }
+
+        while (i < len && /\s/.test(attrStr[i])) i++;
+        let value = "";
+        if (i < len && attrStr[i] === "=") {
+            i++;
+            while (i < len && /\s/.test(attrStr[i])) i++;
+            if (i < len && (attrStr[i] === '"' || attrStr[i] === "'")) {
+                const quote = attrStr[i++];
+                const valStart = i;
+                while (i < len && attrStr[i] !== quote) i++;
+                value = attrStr.slice(valStart, i);
+                if (i < len && attrStr[i] === quote) i++;
+            } else {
+                const valStart = i;
+                while (i < len && !/[\s>]/.test(attrStr[i])) i++;
+                value = attrStr.slice(valStart, i);
+            }
+        }
+        attrs.push({ name, value });
     }
     return attrs;
 }
 
 /**
- * Strict allowlist HTML sanitizer for Quill rich-text content.
- * Strips dangerous elements (with their body), HTML comments, event handlers,
- * inline styles, and unsafe URL schemes.
+ * Quote-aware state-machine HTML allowlist sanitizer for Quill rich-text content.
+ * Strips dangerous elements with their full body, comments/CDATA/declarations,
+ * event handlers, inline styles, and unsafe URL schemes without relying on
+ * fragile tag-matching regexes.
  */
 export function sanitizeRichHtml(dirtyHtml) {
-    let html = String(dirtyHtml || "");
+    const input = String(dirtyHtml || "");
+    const len = input.length;
+    const out = [];
+    let i = 0;
+    let skipTag = null;
+    let skipDepth = 0;
 
-    // 1. Remove HTML comments and CDATA
-    html = html.replace(/<!--[\s\S]*?-->/g, "");
-    html = html.replace(/<!\[CDATA\[[\s\S]*?\]\]>/gi, "");
+    while (i < len) {
+        const lt = input.indexOf("<", i);
+        if (lt === -1) {
+            if (!skipTag) {
+                out.push(input.slice(i).replace(/>/g, "&gt;"));
+            }
+            break;
+        }
 
-    // 2. Remove dangerous tags AND everything inside them
-    for (const tag of STRIP_WITH_CONTENT_TAGS) {
-        const pairRe = new RegExp(`<${tag}\\b[^>]*>[\\s\\S]*?<\\/${tag}\\s*>`, "gi");
-        html = html.replace(pairRe, "");
-        const openOnlyRe = new RegExp(`<\\/?${tag}\\b[^>]*>`, "gi");
-        html = html.replace(openOnlyRe, "");
-    }
+        if (lt > i && !skipTag) {
+            out.push(input.slice(i, lt).replace(/>/g, "&gt;"));
+        }
 
-    // 3. Walk all remaining tags and enforce strict allowlist + safe attributes
-    html = html.replace(/<(\/?)([a-zA-Z0-9]+)([^>]*)>/g, (_full, closingSlash, rawTag, attrStr) => {
-        const tag = rawTag.toLowerCase();
+        // Comments <!-- ... -->
+        if (input.startsWith("<!--", lt)) {
+            const endComment = input.indexOf("-->", lt + 4);
+            i = endComment === -1 ? len : endComment + 3;
+            continue;
+        }
+
+        // Declarations / CDATA / Processing Instructions (<!...> or <?...>)
+        const nextChar = input[lt + 1] || "";
+        if (nextChar === "!" || nextChar === "?") {
+            if (input.slice(lt, lt + 9).toUpperCase() === "<![CDATA[") {
+                const endCdata = input.indexOf("]]>", lt + 9);
+                i = endCdata === -1 ? len : endCdata + 3;
+            } else {
+                const endDecl = input.indexOf(">", lt + 2);
+                i = endDecl === -1 ? len : endDecl + 1;
+            }
+            continue;
+        }
+
+        // Closing vs opening tag check
+        let pos = lt + 1;
+        let isClosing = false;
+        if (input[pos] === "/") {
+            isClosing = true;
+            pos++;
+        }
+
+        if (!/[a-zA-Z]/.test(input[pos] || "")) {
+            // Stray '<' not starting a tag
+            if (!skipTag) out.push("&lt;");
+            i = lt + 1;
+            continue;
+        }
+
+        const nameStart = pos;
+        while (pos < len && /[a-zA-Z0-9:-]/.test(input[pos])) pos++;
+        const tag = input.slice(nameStart, pos).toLowerCase();
+
+        // While inside a rawtext stripped tag (<script>, <style>, etc.), only close on </tag>
+        if (skipTag && RAW_TEXT_STRIP_TAGS.has(skipTag)) {
+            if (isClosing && tag === skipTag) {
+                const closeGt = input.indexOf(">", pos);
+                i = closeGt === -1 ? len : closeGt + 1;
+                skipTag = null;
+                skipDepth = 0;
+            } else {
+                i = lt + 1;
+            }
+            continue;
+        }
+
+        // Scan until unquoted '>' to correctly handle '>' inside attribute quotes
+        const attrStart = pos;
+        let quote = null;
+        let tagEnd = -1;
+        while (pos < len) {
+            const ch = input[pos];
+            if (quote) {
+                if (ch === quote) quote = null;
+            } else {
+                if (ch === '"' || ch === "'") {
+                    quote = ch;
+                } else if (ch === "<") {
+                    // Malformed unclosed tag interrupted by a new '<'
+                    break;
+                } else if (ch === ">") {
+                    tagEnd = pos;
+                    break;
+                }
+            }
+            pos++;
+        }
+
+        if (tagEnd === -1) {
+            // Malformed/unclosed tag: discard cleanly (or advance past '<' if interrupted)
+            i = pos < len && input[pos] === "<" ? pos : len;
+            continue;
+        }
+
+        const attrStr = input.slice(attrStart, tagEnd);
+        i = tagEnd + 1;
+
+        if (skipTag) {
+            if (tag === skipTag) {
+                if (isClosing) {
+                    skipDepth--;
+                    if (skipDepth <= 0) {
+                        skipTag = null;
+                        skipDepth = 0;
+                    }
+                } else if (!/\/\s*$/.test(attrStr)) {
+                    skipDepth++;
+                }
+            }
+            continue;
+        }
+
+        if (!isClosing && STRIP_WITH_CONTENT_TAGS.has(tag)) {
+            if (!/\/\s*$/.test(attrStr) || RAW_TEXT_STRIP_TAGS.has(tag)) {
+                skipTag = tag;
+                skipDepth = 1;
+            }
+            continue;
+        }
+
         if (!ALLOWED_TAGS.has(tag)) {
-            return "";
-        }
-        if (closingSlash) {
-            return VOID_TAGS.has(tag) ? "" : `</${tag}>`;
-        }
-        if (VOID_TAGS.has(tag)) {
-            return `<${tag}>`;
+            continue;
         }
 
-        const attrs = parseAttributes(attrStr || "");
+        if (isClosing) {
+            if (!VOID_TAGS.has(tag)) {
+                out.push(`</${tag}>`);
+            }
+            continue;
+        }
+
+        if (VOID_TAGS.has(tag)) {
+            out.push(`<${tag}>`);
+            continue;
+        }
+
+        const attrs = parseAttributesFromSlice(attrStr);
         const safeParts = [];
 
         if (tag === "a") {
@@ -166,10 +337,10 @@ export function sanitizeRichHtml(dirtyHtml) {
             }
         }
 
-        return safeParts.length ? `<${tag} ${safeParts.join(" ")}>` : `<${tag}>`;
-    });
+        out.push(safeParts.length ? `<${tag} ${safeParts.join(" ")}>` : `<${tag}>`);
+    }
 
-    return html.trim();
+    return out.join("").trim();
 }
 
 export function stripHtmlToText(html) {
