@@ -1,10 +1,18 @@
 <!DOCTYPE html>
-<html lang="hi">
+<html lang="hi" data-theme="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Aabtak24.in — संपादक एवं CMS पोर्टल</title>
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2216%22 fill=%22%23141210%22/><text x=%2250%%22 y=%2254%%22 dominant-baseline=%22central%22 text-anchor=%22middle%22 fill=%22%23FF4C00%22 font-family=%22sans-serif%22 font-weight=%22900%22 font-size=%2252%22>अ</text></svg>">
+    <script>
+        (function () {
+            var saved = null;
+            try { saved = localStorage.getItem("aabtak-admin-theme"); } catch (_) {}
+            var mode = (saved === "light" || saved === "dark") ? saved : "dark";
+            document.documentElement.setAttribute("data-theme", mode);
+        })();
+    </script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Mukta:wght@600;700;800&family=Noto+Sans+Devanagari:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -14,6 +22,10 @@
             --bg: #FAF6F0;
             --card: #FFFFFF;
             --card-subtle: #F3EDE2;
+            --input-bg: #FFFFFF;
+            --header-bg: rgba(250, 246, 240, 0.96);
+            --topbar-bg: #141210;
+            --topbar-text: #EAE3DC;
             --text-main: #141210;
             --text-body: #1F1B18;
             --text-muted: #6E655F;
@@ -26,7 +38,47 @@
             --success-bg: #DCFCE7;
             --danger: #B91C1C;
             --danger-bg: #FEE2E2;
+            --danger-border: #FCA5A5;
+            --blue-pill-bg: #DBEAFE;
+            --blue-pill-text: #1D4ED8;
+            --suspended-bg: #FFF8F8;
+            --stage-bg: #EDE5D8;
+            --btn-dark-bg: #141210;
+            --btn-dark-hover: #2E2925;
+            --btn-dark-text: #FFFFFF;
+            --shadow-card: 0 8px 24px -10px rgba(20, 18, 16, 0.08);
             --radius: 6px;
+        }
+        html[data-theme="dark"] {
+            color-scheme: dark;
+            --bg: #12100E;
+            --card: #1C1916;
+            --card-subtle: #26221E;
+            --input-bg: #141210;
+            --header-bg: rgba(18, 16, 14, 0.96);
+            --topbar-bg: #0A0908;
+            --topbar-text: #A89F96;
+            --text-main: #FAF6F0;
+            --text-body: #E2D9CC;
+            --text-muted: #A89F96;
+            --accent: #FF5A1F;
+            --accent-dark: #FF8A5C;
+            --accent-tint: rgba(255, 90, 31, 0.16);
+            --border: #2E2924;
+            --border-heavy: #4A423B;
+            --success: #4ADE80;
+            --success-bg: rgba(34, 197, 94, 0.14);
+            --danger: #FCA5A5;
+            --danger-bg: rgba(220, 38, 38, 0.18);
+            --danger-border: rgba(248, 113, 113, 0.38);
+            --blue-pill-bg: rgba(59, 130, 246, 0.18);
+            --blue-pill-text: #93C5FD;
+            --suspended-bg: rgba(220, 38, 38, 0.08);
+            --stage-bg: #171411;
+            --btn-dark-bg: #2B2520;
+            --btn-dark-hover: #3B332C;
+            --btn-dark-text: #FAF6F0;
+            --shadow-card: 0 12px 28px -12px rgba(0, 0, 0, 0.65);
         }
         * { box-sizing: border-box; margin: 0; padding: 0; }
         body {
@@ -34,10 +86,11 @@
             color: var(--text-main);
             font-family: 'Noto Sans Devanagari', sans-serif;
             line-height: 1.6;
+            transition: background-color 0.2s ease, color 0.2s ease;
         }
         .top-bar {
-            background: #141210;
-            color: #EAE3DC;
+            background: var(--topbar-bg);
+            color: var(--topbar-text);
             padding: 8px 5%;
             font-size: 12px;
             font-weight: 700;
@@ -48,7 +101,8 @@
         }
         .top-bar span.tag { color: var(--accent); }
         header {
-            background: rgba(250, 246, 240, 0.96);
+            background: var(--header-bg);
+            backdrop-filter: blur(8px);
             border-bottom: 2px solid var(--border-heavy);
             padding: 14px 5%;
             display: flex;
@@ -59,6 +113,28 @@
             position: sticky;
             top: 0;
             z-index: 50;
+        }
+        .portal-theme-toggle {
+            appearance: none;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 6px 12px;
+            border-radius: 999px;
+            background: var(--card-subtle);
+            color: var(--text-main);
+            border: 1px solid var(--border-heavy);
+            font-family: 'Mukta', sans-serif;
+            font-size: 13px;
+            font-weight: 700;
+            line-height: 1.2;
+            white-space: nowrap;
+            transition: all 0.15s ease;
+        }
+        .portal-theme-toggle:hover {
+            border-color: var(--accent);
+            color: var(--accent);
         }
         .brand {
             font-family: 'Mukta', sans-serif;
@@ -98,7 +174,7 @@
             border-radius: var(--radius);
             padding: 26px;
             margin-bottom: 24px;
-            box-shadow: 0 8px 24px -10px rgba(20, 18, 16, 0.08);
+            box-shadow: var(--shadow-card);
         }
         .card.secondary { border-top-color: var(--border-heavy); }
         h1, h2, h3 {
@@ -134,9 +210,9 @@
         }
         .tab-btn:hover { border-color: var(--accent); color: var(--accent); }
         .tab-btn.active {
-            background: #141210;
-            color: #FFFFFF;
-            border-color: #141210;
+            background: var(--btn-dark-bg);
+            color: var(--btn-dark-text);
+            border-color: var(--border-heavy);
             border-bottom-color: var(--accent);
         }
         .tab-panel { display: none; }
@@ -157,7 +233,10 @@
             border-radius: 4px;
             font-family: inherit;
             font-size: 15px;
-            background: #FFF;
+            background: var(--input-bg);
+            color: var(--text-main);
+        }
+        input[type="file"] {
             color: var(--text-main);
         }
         input:focus, select:focus, textarea:focus {
@@ -206,12 +285,12 @@
         }
         .btn-primary { background: var(--accent); color: #FFF; }
         .btn-primary:hover { background: var(--accent-dark); }
-        .btn-dark { background: #141210; color: #FFF; }
-        .btn-dark:hover { background: #2E2925; }
-        .btn-outline { background: #FFF; border-color: var(--border-heavy); color: var(--text-main); }
+        .btn-dark { background: var(--btn-dark-bg); color: var(--btn-dark-text); border-color: var(--border-heavy); }
+        .btn-dark:hover { background: var(--btn-dark-hover); }
+        .btn-outline { background: var(--card); border-color: var(--border-heavy); color: var(--text-main); }
         .btn-outline:hover { background: var(--card-subtle); }
-        .btn-danger { background: var(--danger-bg); color: var(--danger); border-color: #FCA5A5; }
-        .btn-danger:hover { background: var(--danger); color: #FFF; }
+        .btn-danger { background: var(--danger-bg); color: var(--danger); border-color: var(--danger-border); }
+        .btn-danger:hover { background: #B91C1C; color: #FFF; border-color: #B91C1C; }
         .btn-sm { padding: 5px 10px; font-size: 13px; }
         .btn-full { width: 100%; }
         .btn:disabled { opacity: 0.6; cursor: not-allowed; }
@@ -223,12 +302,47 @@
             border-radius: 4px 4px 0 0;
         }
         .ql-container.ql-snow {
+            background: var(--input-bg);
+            color: var(--text-main);
             border-color: var(--border);
             border-radius: 0 0 4px 4px;
             min-height: 230px;
             font-family: 'Noto Sans Devanagari', sans-serif;
             font-size: 17px;
             line-height: 1.8;
+        }
+        .ql-editor.ql-blank::before {
+            color: var(--text-muted);
+        }
+        .ql-editor a {
+            color: var(--accent-dark);
+        }
+        html[data-theme="dark"] .ql-snow .ql-stroke { stroke: var(--text-body); }
+        html[data-theme="dark"] .ql-snow .ql-fill,
+        html[data-theme="dark"] .ql-snow .ql-stroke.ql-fill { fill: var(--text-body); }
+        html[data-theme="dark"] .ql-snow .ql-picker { color: var(--text-body); }
+        html[data-theme="dark"] .ql-snow .ql-picker-options {
+            background: var(--card);
+            border-color: var(--border-heavy);
+            color: var(--text-main);
+        }
+        html[data-theme="dark"] .ql-snow.ql-toolbar button:hover .ql-stroke,
+        html[data-theme="dark"] .ql-snow.ql-toolbar button.ql-active .ql-stroke,
+        html[data-theme="dark"] .ql-snow.ql-toolbar .ql-picker-label:hover .ql-stroke,
+        html[data-theme="dark"] .ql-snow.ql-toolbar .ql-picker-label.ql-active .ql-stroke {
+            stroke: var(--accent);
+        }
+        html[data-theme="dark"] .ql-snow.ql-toolbar button:hover .ql-fill,
+        html[data-theme="dark"] .ql-snow.ql-toolbar button.ql-active .ql-fill {
+            fill: var(--accent);
+        }
+        html[data-theme="dark"] .ql-snow.ql-toolbar button:hover,
+        html[data-theme="dark"] .ql-snow.ql-toolbar button.ql-active,
+        html[data-theme="dark"] .ql-snow.ql-toolbar .ql-picker-label:hover,
+        html[data-theme="dark"] .ql-snow.ql-toolbar .ql-picker-label.ql-active,
+        html[data-theme="dark"] .ql-snow.ql-toolbar .ql-picker-item:hover,
+        html[data-theme="dark"] .ql-snow.ql-toolbar .ql-picker-item.ql-selected {
+            color: var(--accent);
         }
         .ql-editor h3, .ql-editor h2 {
             border-left: 4px solid var(--accent);
@@ -248,6 +362,7 @@
         .status-box.info { display: block; background: var(--accent-tint); color: var(--accent-dark); border-left: 4px solid var(--accent); }
         .status-box.success { display: block; background: var(--success-bg); color: var(--success); border-left: 4px solid var(--success); }
         .status-box.error { display: block; background: var(--danger-bg); color: var(--danger); border-left: 4px solid var(--danger); }
+        .status-box a { color: inherit; }
 
         .hint-banner {
             background: var(--card-subtle);
@@ -268,7 +383,7 @@
             border: 1px solid var(--border);
             border-radius: 4px;
             margin-bottom: 10px;
-            background: #FFF;
+            background: var(--card);
             flex-wrap: wrap;
         }
         .list-item:hover { border-color: var(--accent); }
@@ -281,7 +396,7 @@
             border: 1px solid var(--border);
             border-radius: 4px;
             margin-bottom: 10px;
-            background: #FFF;
+            background: var(--card);
         }
         @media (max-width: 640px) {
             .post-row { grid-template-columns: 1fr; }
@@ -318,7 +433,7 @@
             border: 1px solid var(--border);
             border-top: 3px solid var(--border-heavy);
             border-radius: var(--radius);
-            background: #FFF;
+            background: var(--card);
             padding: 16px;
             margin-bottom: 16px;
         }
@@ -349,7 +464,7 @@
             padding: 2px;
             border: 1px solid var(--border);
             border-radius: 4px;
-            background: #FFF;
+            background: var(--input-bg);
             cursor: pointer;
             flex-shrink: 0;
         }
@@ -481,8 +596,8 @@
             transition: all 0.15s ease;
         }
         .seg-btn.active {
-            background: #141210;
-            color: #FFFFFF;
+            background: var(--btn-dark-bg);
+            color: var(--btn-dark-text);
         }
         .hb-option-grid {
             display: grid;
@@ -493,7 +608,7 @@
         .hb-option-card {
             appearance: none;
             text-align: left;
-            background: #FFF;
+            background: var(--card);
             border: 2px solid var(--border);
             border-radius: 6px;
             padding: 12px 14px;
@@ -528,9 +643,9 @@
             flex-shrink: 0;
         }
         .hb-preview-glyph.boxed {
-            background: #FFF;
-            border: 2px solid #141210;
-            box-shadow: 2px 2px 0 #141210;
+            background: var(--card);
+            border: 2px solid var(--border-heavy);
+            box-shadow: 2px 2px 0 var(--border-heavy);
         }
         .hb-preview-glyph.bars {
             background: transparent;
@@ -538,7 +653,7 @@
         }
         .hb-preview-glyph.pill {
             border-radius: 999px;
-            background: #FFF;
+            background: var(--card);
         }
         .hb-mini-lines {
             width: 18px;
@@ -552,7 +667,7 @@
             display: block;
             width: 100%;
             height: 2px;
-            background: #141210;
+            background: var(--text-main);
             border-radius: 2px;
         }
         .hb-preview-glyph.staggered .hb-mini-lines span:nth-child(2) { width: 70%; }
@@ -560,7 +675,7 @@
 
         /* Simulated Website Preview Frame */
         .preview-header-stage {
-            background: #EDE5D8;
+            background: var(--stage-bg);
             padding: 18px;
             border-radius: 6px;
             border: 1px solid var(--border);
@@ -1108,7 +1223,7 @@
             width: 100%;
             text-align: left;
             cursor: pointer;
-            background: #FFFFFF;
+            background: var(--card);
             border: 2px solid var(--border);
             border-radius: 6px;
             padding: 14px;
@@ -1122,18 +1237,18 @@
         .preset-card:hover {
             border-color: var(--accent);
             transform: translateY(-2px);
-            box-shadow: 0 8px 18px -8px rgba(20, 18, 16, 0.14);
+            box-shadow: var(--shadow-card);
         }
         .preset-card.active {
             border-color: var(--accent);
-            background: #FFF6F1;
+            background: var(--accent-tint);
             box-shadow: 0 0 0 2px rgba(255, 76, 0, 0.18);
         }
         .preset-thumb {
             height: 62px;
             border-radius: 4px;
-            background: #FAF6F0;
-            border: 1px solid #E2D9CC;
+            background: var(--bg);
+            border: 1px solid var(--border);
             padding: 6px;
             display: flex;
             flex-direction: column;
@@ -1145,11 +1260,13 @@
             flex: 1;
         }
         .preset-thumb-block {
-            background: #D9CFC2;
+            background: var(--border-heavy);
+            opacity: 0.45;
             border-radius: 2px;
         }
         .preset-thumb-block.accent {
-            background: rgba(255, 76, 0, 0.72);
+            background: rgba(255, 76, 0, 0.85);
+            opacity: 1;
         }
         .preset-card-title {
             font-family: 'Mukta', sans-serif;
@@ -1165,7 +1282,7 @@
         }
 
         .hp-sec-card {
-            background: #FFFFFF;
+            background: var(--card);
             border: 1.5px solid var(--border);
             border-left: 4px solid var(--accent);
             border-radius: 6px;
@@ -1178,7 +1295,7 @@
             border-left-color: #9CA3AF;
             border-style: dashed;
             border-left-style: solid;
-            background: #FAF8F5;
+            background: var(--card-subtle);
         }
         .hp-sec-head {
             display: flex;
@@ -1216,7 +1333,7 @@
         }
 
         .hp-preview-stage {
-            background: #EAE4DA;
+            background: var(--stage-bg);
             border: 1px solid var(--border);
             border-radius: 6px;
             padding: 16px;
@@ -1692,8 +1809,8 @@
             border-color: var(--accent);
         }
         .pill.danger { background: var(--danger-bg); color: var(--danger); }
-        .pill.blue { background: #DBEAFE; color: #1D4ED8; }
-        .pill.dark { background: #141210; color: #FAF6F0; }
+        .pill.blue { background: var(--blue-pill-bg); color: var(--blue-pill-text); }
+        .pill.dark { background: var(--btn-dark-bg); color: var(--btn-dark-text); border: 1px solid var(--border-heavy); }
         .field-hint {
             font-size: 12px;
             color: var(--text-muted);
@@ -1771,12 +1888,12 @@
             border-left: 4px solid var(--success);
             border-radius: 5px;
             margin-bottom: 10px;
-            background: #FFF;
+            background: var(--card);
             flex-wrap: wrap;
         }
         .editor-card.suspended {
             border-left-color: var(--danger);
-            background: #FFF8F8;
+            background: var(--suspended-bg);
             opacity: 0.92;
         }
         .editor-card.unreadable {
@@ -1850,20 +1967,26 @@
     </style>
 </head>
 <body>
-    <div class="top-bar">
+    <div class="top-bar notranslate" translate="no">
         <span><span class="notranslate" translate="no">अबतक24.in</span> (AABTAK24.IN) • EDITORIAL & SITE CMS</span>
         <span class="tag">Operated by Aabtak24</span>
     </div>
 
-    <header>
+    <header class="notranslate" translate="no">
         <div class="brand notranslate" translate="no">
-            <img src="https://aabtak24.in/logo.svg" alt="अबतक24.in" width="206" height="36" decoding="sync">
+            <img id="portal-brand-logo" src="https://aabtak24.in/logo-light.svg" alt="अबतक24.in" width="206" height="36" decoding="sync">
             <span class="badge-cms" id="brand-role-badge">ADMIN CMS</span>
         </div>
-        <div class="actions-group hidden" id="header-actions">
-            <span id="current-user-badge" class="user-badge hidden"></span>
-            <a href="https://aabtak24.in" target="_blank" rel="noopener" class="btn btn-outline btn-sm">🌐 लाइव वेबसाइट देखें</a>
-            <button type="button" class="btn btn-dark btn-sm" onclick="logout()">🔒 लॉगआउट</button>
+        <div class="actions-group">
+            <button type="button" class="portal-theme-toggle" id="portal-theme-toggle-btn" onclick="togglePortalTheme()" aria-label="लाइट या डार्क मोड बदलें" aria-pressed="true" title="पोर्टल लाइट / डार्क मोड बदलें">
+                <span id="portal-theme-icon" aria-hidden="true">☀️</span>
+                <span id="portal-theme-label">लाइट मोड</span>
+            </button>
+            <div class="actions-group hidden" id="header-actions">
+                <span id="current-user-badge" class="user-badge hidden"></span>
+                <a href="https://aabtak24.in" target="_blank" rel="noopener" class="btn btn-outline btn-sm">🌐 लाइव वेबसाइट देखें</a>
+                <button type="button" class="btn btn-dark btn-sm" onclick="logout()">🔒 लॉगआउट</button>
+            </div>
         </div>
     </header>
 
@@ -1871,12 +1994,10 @@
         <!-- ==================== LOGIN VIEW ==================== -->
         <div id="login-view" class="card" style="max-width: 500px; margin: 36px auto;">
             <h2 style="text-align:center;">🔒 संपादक एवं एडमिन लॉगिन</h2>
-            <p class="subtext" style="text-align:center;">मुख्य एडमिन केवल पासवर्ड से लॉगिन कर सकते हैं। अन्य संपादक अपना ईमेल/यूज़रनेम और पासवर्ड दोनों दर्ज करें।</p>
 
             <div class="form-group">
                 <label for="login-username">ईमेल / यूज़रनेम (Username / Email)</label>
-                <input type="text" id="login-username" autocomplete="username" placeholder="जैसे: reporter@aabtak24.in (मुख्य एडमिन के लिए खाली छोड़ें)" onkeydown="if(event.key==='Enter') document.getElementById('login-password').focus()">
-                <div class="field-hint">👑 मुख्य एडमिन (Main Admin) लॉगिन के लिए इस बॉक्स को खाली छोड़ें।</div>
+                <input type="text" id="login-username" autocomplete="username" placeholder="जैसे: reporter@aabtak24.in" onkeydown="if(event.key==='Enter') document.getElementById('login-password').focus()">
             </div>
 
             <div class="form-group">
@@ -3237,6 +3358,41 @@
         // =========================================================================
         // 3. UI HELPERS, CLIENT SANITIZATION & SERVER-BACKED AUTH
         // =========================================================================
+        const PORTAL_THEME_STORAGE_KEY = "aabtak-admin-theme";
+
+        function getPortalTheme() {
+            const attr = document.documentElement.getAttribute("data-theme");
+            if (attr === "light" || attr === "dark") return attr;
+            try {
+                const saved = localStorage.getItem(PORTAL_THEME_STORAGE_KEY);
+                if (saved === "light" || saved === "dark") return saved;
+            } catch (_) {}
+            return "dark";
+        }
+
+        function applyPortalTheme(mode, persist = true) {
+            const next = mode === "light" ? "light" : "dark";
+            document.documentElement.setAttribute("data-theme", next);
+            if (persist) {
+                try { localStorage.setItem(PORTAL_THEME_STORAGE_KEY, next); } catch (_) {}
+            }
+            const btn = document.getElementById("portal-theme-toggle-btn");
+            const icon = document.getElementById("portal-theme-icon");
+            const label = document.getElementById("portal-theme-label");
+            const logo = document.getElementById("portal-brand-logo");
+            const isDark = next === "dark";
+            if (btn) btn.setAttribute("aria-pressed", isDark ? "true" : "false");
+            if (icon) icon.textContent = isDark ? "☀️" : "🌙";
+            if (label) label.textContent = isDark ? "लाइट मोड" : "डार्क मोड";
+            if (logo) logo.src = isDark ? "https://aabtak24.in/logo-light.svg" : "https://aabtak24.in/logo.svg";
+        }
+
+        function togglePortalTheme() {
+            applyPortalTheme(getPortalTheme() === "dark" ? "light" : "dark", true);
+        }
+
+        applyPortalTheme(getPortalTheme(), false);
+
         function normalizeUsername(raw) {
             return String(raw || "").trim().toLowerCase();
         }
@@ -5135,7 +5291,7 @@
             }
 
             if (!isEnabled) {
-                previewEl.innerHTML = `<div style="padding:26px; text-align:center; background:#FAF6F0; color:var(--text-muted); font-weight:600; border-radius:4px;">🚫 हेडर और टॉप बार अभी पूरी वेबसाइट पर बंद हैं (<code>enabled: false</code>)। पुनः चालू करने के लिए ऊपर "Enable Header" चुनें।</div>`;
+                previewEl.innerHTML = `<div style="padding:26px; text-align:center; background:var(--card-subtle); color:var(--text-muted); font-weight:600; border-radius:4px;">🚫 हेडर और टॉप बार अभी पूरी वेबसाइट पर बंद हैं (<code>enabled: false</code>)। पुनः चालू करने के लिए ऊपर "Enable Header" चुनें।</div>`;
                 return;
             }
 

@@ -211,6 +211,13 @@ describe("Aabtak24 Cloudflare Worker + D1 Server-Side CMS Security Suite", () =>
         assert.ok(!html.includes("ghp_super_secret"), "GitHub PAT must never appear in HTML");
         assert.ok(!html.includes("cdn.jsdelivr.net"), "Quill must be locally vendored (zero CDN JS)");
         assert.ok(html.includes("/vendor/quill.min.js"));
+        assert.ok(!html.includes("मुख्य एडमिन (Main Admin) लॉगिन के लिए इस बॉक्स को खाली छोड़ें"), "Admin blank-username field hint must be removed");
+        assert.ok(!html.includes("मुख्य एडमिन केवल पासवर्ड से लॉगिन कर सकते हैं"), "Admin password-only login subtext must be removed");
+        assert.ok(!html.includes("मुख्य एडमिन के लिए खाली छोड़ें"), "Admin blank-username placeholder hint must be removed");
+        assert.ok(html.includes('<header class="notranslate" translate="no">'), "Header must lock browser translation");
+        assert.ok(html.includes('<div class="top-bar notranslate" translate="no">'), "Top bar must lock browser translation");
+        assert.ok(html.includes('<html lang="hi" data-theme="dark">'), "Portal must default to dark mode");
+        assert.ok(html.includes('id="portal-theme-toggle-btn"'), "Portal-wide dark mode switcher must be present in header");
     });
 
     it("2. Bootstraps Main Admin login with HttpOnly SameSite=Strict cookie & enforces CSRF + Origin", async () => {
